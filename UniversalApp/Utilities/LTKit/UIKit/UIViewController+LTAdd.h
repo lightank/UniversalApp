@@ -10,8 +10,6 @@
 
 @interface UIViewController (LTAdd)
 
-/**  背景透明度  */
-@property (nonatomic, assign) CGFloat navigationBarBackgroundAlpha;
 /**  普通状态下的文字颜色  */
 @property (nonatomic, strong) UIColor *tabBarTitleColorNormal;
 /**  选中状态下的文字颜色  */

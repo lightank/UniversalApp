@@ -6,7 +6,6 @@
 //  Copyright © 2018年 huanyu.li. All rights reserved.
 //
 
-#import "NSString+LTAdd.h"
 #import "UIView+LTAdd.h"
 #import "UIButton+LTAdd.h"
 #import "UIScrollView+LTRefresh.h"
@@ -14,3 +13,6 @@
 #import "UIViewController+LTAdd.h"
 #import "UIImage+LTAdd.h"
 #import "UIWindow+LTAdd.h"
+
+#import "NSString+LTAdd.h"
+#import "NSArray+LTAdd.h"

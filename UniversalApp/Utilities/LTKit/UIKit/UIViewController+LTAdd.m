@@ -6,24 +6,9 @@
 //  Copyright © 2018年 huanyu.li. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "UIViewController+LTAdd.h"
-#import "UINavigationController+LTAdd.h"
 
 @implementation UIViewController (LTAdd)
-
-//navigationBarBackgroundAlpha
-static char kAssociatedObjectKey_navigationBarBackgroundAlpha;
-- (void)setNavigationBarBackgroundAlpha:(CGFloat)navigationBarBackgroundAlpha
-{
-    objc_setAssociatedObject(self, &kAssociatedObjectKey_navigationBarBackgroundAlpha, @(navigationBarBackgroundAlpha), OBJC_ASSOCIATION_ASSIGN);
-    // 设置导航栏透明度（利用Category自己添加的方法）
-    [self.navigationController setNeedsNavigationBackground:navigationBarBackgroundAlpha];
-}
-- (CGFloat)navigationBarBackgroundAlpha
-{
-    return ((NSNumber *)objc_getAssociatedObject(self, &kAssociatedObjectKey_navigationBarBackgroundAlpha)).floatValue;
-}
 
 //tabBarTitleColorNormal
 static char kAssociatedObjectKey_tabBarTitleColorNormal;

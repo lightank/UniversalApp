@@ -8,6 +8,7 @@
 
 #import "LTTabBarControllerConfig.h"
 #import "LTNavigationController.h"
+#import "LTFirstViewController.h"
 
 @interface LTTabBarControllerConfig () <UITabBarControllerDelegate>
 
@@ -33,21 +34,21 @@
 
 - (NSArray *)viewControllers
 {
-    UIViewController *firstViewController = [[UIViewController alloc] init];
+    UIViewController *firstViewController = [[LTFirstViewController alloc] init];
     firstViewController.view.backgroundColor = [UIColor whiteColor];
-    UIViewController *firstNavigationController = [[LTNavigationController alloc] initWithRootViewController:firstViewController];
+    UINavigationController *firstNavigationController = [[LTNavigationController alloc] initWithRootViewController:firstViewController];
     
     UIViewController *secondViewController = [[UIViewController alloc] init];
     secondViewController.view.backgroundColor = [UIColor whiteColor];
-    UIViewController *secondNavigationController = [[LTNavigationController alloc] initWithRootViewController:secondViewController];
+    UINavigationController *secondNavigationController = [[LTNavigationController alloc] initWithRootViewController:secondViewController];
     
     UIViewController *thirdViewController = [[UIViewController alloc] init];
     thirdViewController.view.backgroundColor = [UIColor whiteColor];
-    UIViewController *thirdNavigationController = [[LTNavigationController alloc] initWithRootViewController:thirdViewController];
+    UINavigationController *thirdNavigationController = [[LTNavigationController alloc] initWithRootViewController:thirdViewController];
     
     UIViewController *fourthViewController = [[UIViewController alloc] init];
     fourthViewController.view.backgroundColor = [UIColor whiteColor];
-    UIViewController *fourthNavigationController = [[LTNavigationController alloc] initWithRootViewController:fourthViewController];
+    UINavigationController *fourthNavigationController = [[LTNavigationController alloc] initWithRootViewController:fourthViewController];
     
     NSArray *viewControllers = @[
                                  firstNavigationController,

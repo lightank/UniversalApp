@@ -21,10 +21,14 @@ extern LTNetworkTools *LTNetworkToolsInstance;
 /**  手动设置网络跟H5的baseURL  */
 + (void)DIYBaseURL:(NSString *)baseURL H5BaseURL:(NSString *)H5BaseURL;
 
-/**  网络库配置  */
+/**  网络库配置,必须调用  */
 + (void)configureNetwork;
 /**  网络是否可用  */
 + (BOOL)isNetworkReachable;
+/**  处理无网络事件  */
++ (void)handleNetWorkCannotAccessEvent;
+/**  处理有网络事件  */
++ (void)handleNetWorAccessEvent;
 
 @end
 

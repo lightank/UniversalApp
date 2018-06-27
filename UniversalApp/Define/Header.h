@@ -7,11 +7,12 @@
 //
 
 #pragma mark - 常用工具
-//#import "AppDelegate+AppService.h"
 #import "LTKit.h"
 
 #pragma mark - 全局定义
 #import "Macros.h"
+#import "ColorMacros.h"
+#import "URLString.h"
 
 #pragma mark - --------- 第三方框架 ---------
 #pragma mark - IQKeyboardManager中分类
@@ -64,4 +65,11 @@
 #import <QMUIKit/QMUIKit.h>
 #else
 #import "QMUIKit.h"
+#endif
+
+#pragma mark - ReactiveObjC
+#if __has_include(<ReactiveObjC/ReactiveObjC.h>)
+#import <ReactiveObjC/ReactiveObjC.h>
+#else
+#import "ReactiveObjC.h"
 #endif

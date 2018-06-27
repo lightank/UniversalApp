@@ -14,9 +14,9 @@
 #import "YTKNetwork.h"
 #endif
 
-//0:生产 1:dev 2:sit 3:uat 4:刘志慧
+//0:生产 1:dev 2:sit 3:uat 4:开发人员1的名字
 #if DEBUG
-static BOOL showEnvironmentViewController = YES;
+static BOOL showEnvironmentViewController = NO;
 static NSInteger NetworkType = 1;
 #else
 static BOOL showEnvironmentViewController = NO;
@@ -71,7 +71,6 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             [LTNetworkTools sharedInstance];
-            [self configureNetworkBaseURL];
         });
     }
 
@@ -79,7 +78,8 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
     //是否展示环境选择器
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        if (showEnvironmentViewController) {
+        if (showEnvironmentViewController)
+        {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self showNetworkOption];
             });
@@ -138,7 +138,6 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
         UIAlertAction *action = [UIAlertAction actionWithTitle:titleName style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSUInteger index = idx;
             LTNetworkToolsInstance.environmentType = index;
-            [self configureNetworkBaseURL];
         }];
         [alertController addAction:action];
     }];
@@ -188,7 +187,7 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
 {
     
 }
-/**  处理有网络通知  */
+/**  处理有网络事件  */
 + (void)handleNetWorAccessEvent
 {
     
@@ -199,14 +198,6 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
 {
     LTNetworkToolsInstance.baseURL = baseURL;
     LTNetworkToolsInstance.H5BaseURL = H5BaseURL;
-}
-
-+ (void)setBaseURLIndex:(NSUInteger)index
-{
-    NSDictionary *dict = [LTNetworkToolsInstance.environmentArray objectAtIndex:index];
-    LTNetworkToolsInstance.baseURL = dict[kConnectPortBaseURL];
-    LTNetworkToolsInstance.H5BaseURL = dict[kConnectPortBaseURLH5];
-    LTNetworkToolsInstance.imageBaseURL = dict[kConnectPortBaseURLImage];
 }
 
 /**  单例  */
@@ -267,6 +258,7 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
     self.baseURL = dict[kConnectPortBaseURL];
     self.H5BaseURL = dict[kConnectPortBaseURLH5];
     self.imageBaseURL = dict[kConnectPortBaseURLImage];
+    [LTNetworkTools configureNetworkBaseURL];
 }
 
 @end

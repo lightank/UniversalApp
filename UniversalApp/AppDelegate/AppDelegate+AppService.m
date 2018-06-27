@@ -21,6 +21,7 @@
     // 设置主窗口,并设置根控制器
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     //记录启动次数跟版本信息
     [self recordStartupNumberAndVersion];

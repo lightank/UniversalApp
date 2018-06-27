@@ -10,6 +10,4 @@
 
 @interface UINavigationController (LTAdd)
 
-- (void)setNeedsNavigationBackground:(CGFloat)alpha;
-
 @end
