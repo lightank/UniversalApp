@@ -26,13 +26,13 @@
     //记录启动次数跟版本信息
     [self recordStartupNumberAndVersion];
     //初始化服务
-    [self initAppService];
+    [self initAppServiceWithOptions:launchOptions];
     //For Debug
     [self somethingForDebug];
 }
 
 /**  初始化服务  */
-- (void)initAppService
+- (void)initAppServiceWithOptions:(NSDictionary *)launchOptions
 {
     //网络管理配置 须配置在首位.
     [LTNetworkTools configureNetwork];

@@ -22,6 +22,17 @@ target 'UniversalApp' do
     pod 'Aspects'
     pod 'MBProgressHUD'
     pod 'iCarousel'
+    
+    # UMeng Analytics iOS SDK Begin .......
+    #依赖库
+    pod 'UMCCommon'
+    pod 'UMCSecurityPlugins'
+    #统计 SDK
+    pod 'UMCAnalytics'
+    # UMeng Analytics iOS SDK End .......
+    
+    #极光推送
+    pod 'JPush'
 
   target 'UniversalAppTests' do
     inherit! :search_paths

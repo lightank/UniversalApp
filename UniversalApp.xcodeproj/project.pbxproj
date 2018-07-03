@@ -42,6 +42,10 @@
 		3DCC9F7820B02F3A00CD476A /* UIViewController+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F7620B02F3A00CD476A /* UIViewController+LTAdd.m */; };
 		3DE5B31A20B047CF009719D0 /* LTNetworkTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F7C20B0318C00CD476A /* LTNetworkTools.m */; };
 		3DE5B32420B11EBE009719D0 /* LTBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5B32320B11EBE009719D0 /* LTBaseRequest.m */; };
+		3DEE10B320EB05C0002C597D /* libOpenInstallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DEE10B020EB05C0002C597D /* libOpenInstallSDK.a */; };
+		3DFE3E7020EA531500A8832C /* AppDelegate+UMengAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE3E6F20EA531500A8832C /* AppDelegate+UMengAnalytics.m */; };
+		3DFE3E7320EA532500A8832C /* AppDelegate+OpenInstallSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE3E7220EA532500A8832C /* AppDelegate+OpenInstallSDK.m */; };
+		3DFE3E7620EA533300A8832C /* AppDelegate+JPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE3E7520EA533300A8832C /* AppDelegate+JPush.m */; };
 		7B06541542D17252DD1BA4D2 /* libPods-UniversalAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D3A5DAA64B035CDF219C8B /* libPods-UniversalAppUITests.a */; };
 		E263541D9C33F5DD3886B5D4 /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */; };
 		FB553A15234B274C38B6CE91 /* libPods-UniversalAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0296C350224E490362599AB1 /* libPods-UniversalAppTests.a */; };
@@ -144,6 +148,15 @@
 		3DE5B32120B11B19009719D0 /* URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLString.h; sourceTree = "<group>"; };
 		3DE5B32220B11EBE009719D0 /* LTBaseRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTBaseRequest.h; sourceTree = "<group>"; };
 		3DE5B32320B11EBE009719D0 /* LTBaseRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTBaseRequest.m; sourceTree = "<group>"; };
+		3DEE10B020EB05C0002C597D /* libOpenInstallSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOpenInstallSDK.a; sourceTree = "<group>"; };
+		3DEE10B120EB05C0002C597D /* OpeninstallData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpeninstallData.h; sourceTree = "<group>"; };
+		3DEE10B220EB05C0002C597D /* OpenInstallSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInstallSDK.h; sourceTree = "<group>"; };
+		3DFE3E6E20EA531500A8832C /* AppDelegate+UMengAnalytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UMengAnalytics.h"; sourceTree = "<group>"; };
+		3DFE3E6F20EA531500A8832C /* AppDelegate+UMengAnalytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UMengAnalytics.m"; sourceTree = "<group>"; };
+		3DFE3E7120EA532500A8832C /* AppDelegate+OpenInstallSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+OpenInstallSDK.h"; sourceTree = "<group>"; };
+		3DFE3E7220EA532500A8832C /* AppDelegate+OpenInstallSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+OpenInstallSDK.m"; sourceTree = "<group>"; };
+		3DFE3E7420EA533300A8832C /* AppDelegate+JPush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+JPush.h"; sourceTree = "<group>"; };
+		3DFE3E7520EA533300A8832C /* AppDelegate+JPush.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+JPush.m"; sourceTree = "<group>"; };
 		4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UniversalApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A244D68607808162F3309FE0 /* Pods-UniversalAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppUITests/Pods-UniversalAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C92C279DCD6507F74C2F880F /* Pods-UniversalAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppUITests/Pods-UniversalAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +171,7 @@
 			files = (
 				3D20AC3F20B3B04200BDE45D /* JavaScriptCore.framework in Frameworks */,
 				E263541D9C33F5DD3886B5D4 /* libPods-UniversalApp.a in Frameworks */,
+				3DEE10B320EB05C0002C597D /* libOpenInstallSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +353,12 @@
 				3DCC9F1220B006EF00CD476A /* AppDelegate.m */,
 				3DCC9F4820B018F900CD476A /* AppDelegate+AppService.h */,
 				3DCC9F4920B018F900CD476A /* AppDelegate+AppService.m */,
+				3DFE3E6E20EA531500A8832C /* AppDelegate+UMengAnalytics.h */,
+				3DFE3E6F20EA531500A8832C /* AppDelegate+UMengAnalytics.m */,
+				3DFE3E7120EA532500A8832C /* AppDelegate+OpenInstallSDK.h */,
+				3DFE3E7220EA532500A8832C /* AppDelegate+OpenInstallSDK.m */,
+				3DFE3E7420EA533300A8832C /* AppDelegate+JPush.h */,
+				3DFE3E7520EA533300A8832C /* AppDelegate+JPush.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -368,6 +388,7 @@
 		3DCC9F4620B017F300CD476A /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				3DEE10AF20EB05C0002C597D /* OpenInstallSDK2.2.0 */,
 				3D50913C20C6790400A21655 /* PrivacyPermission */,
 				3D03D64120B80C17006F6F75 /* LTNavigationBar */,
 				3DCC9F4B20B019F100CD476A /* YYFPSLabel */,
@@ -472,6 +493,16 @@
 				3DE5B32320B11EBE009719D0 /* LTBaseRequest.m */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		3DEE10AF20EB05C0002C597D /* OpenInstallSDK2.2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				3DEE10B020EB05C0002C597D /* libOpenInstallSDK.a */,
+				3DEE10B120EB05C0002C597D /* OpeninstallData.h */,
+				3DEE10B220EB05C0002C597D /* OpenInstallSDK.h */,
+			);
+			path = OpenInstallSDK2.2.0;
 			sourceTree = "<group>";
 		};
 		77737A3B12732B904D586EFB /* Pods */ = {
@@ -719,17 +750,20 @@
 				3DCC9F1620B006EF00CD476A /* ViewController.m in Sources */,
 				3DCC9F2120B006F100CD476A /* main.m in Sources */,
 				3D48668420B1B4C0002BACA8 /* NSArray+LTAdd.m in Sources */,
+				3DFE3E7020EA531500A8832C /* AppDelegate+UMengAnalytics.m in Sources */,
 				3DE5B32420B11EBE009719D0 /* LTBaseRequest.m in Sources */,
 				3D48667B20B1B1B7002BACA8 /* LTUserManager.m in Sources */,
 				3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */,
 				3D48666220B1AAC5002BACA8 /* NSString+Hash.m in Sources */,
 				3DCC9F6A20B0237300CD476A /* UIView+LTAdd.m in Sources */,
 				3D20AC4320B3B0EC00BDE45D /* LTBaseWebViewController.m in Sources */,
+				3DFE3E7320EA532500A8832C /* AppDelegate+OpenInstallSDK.m in Sources */,
 				3D48666320B1AAC5002BACA8 /* LTEncryptorTools.m in Sources */,
 				3DCC9F7820B02F3A00CD476A /* UIViewController+LTAdd.m in Sources */,
 				3DCC9F6620B0237300CD476A /* UIImage+LTAdd.m in Sources */,
 				3DCC9F6D20B0237300CD476A /* NSString+LTAdd.m in Sources */,
 				3D03D63B20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m in Sources */,
+				3DFE3E7620EA533300A8832C /* AppDelegate+JPush.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,6 +942,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UniversalApp/Vender/OpenInstallSDK2.2.0",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -927,6 +965,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UniversalApp/Vender/OpenInstallSDK2.2.0",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
