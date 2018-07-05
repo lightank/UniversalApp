@@ -10,6 +10,8 @@
 
 //后台返回的通用表示状态码的字段
 #define kStatusKey @"status"
+//后台返回的通用表示消息的字段
+#define kMessageKey @"message"
 
 @implementation LTBaseRequest
 
@@ -78,20 +80,32 @@
 - (void)requestCompleteFilter
 {
     NSDictionary *info = self.responseJSONObject;
+    //NSString *status= ((NSNumber *)info[kStatusKey]).stringValue;  //status为与后台商定好的状态码key
     NSString *status= info[kStatusKey];  //status为与后台商定好的状态码key
-    self.isSuccess = [status isEqualToString:@"200"];
-    if (self.isAESEncrypted)
+    if ([status isEqualToString:@"200"])
     {
-        //把返回的结果aes解密
-        
+        self.isSuccess = YES;
+        if (self.isAESEncrypted)
+        {
+            //把返回的结果aes解密
+            
+        }
+        else
+        {
+            self.result = self.responseJSONObject;
+        }
     }
     else
     {
-        self.result = self.responseJSONObject;
-    }
-    if ([status integerValue] == 9999)   //与后台协商好的,当前用户登录状态实现时的状态码
-    {
-        //当前用户登录失效时要做的事
+        self.message = info[kMessageKey];
+        if ([status integerValue] == 9999)   //与后台协商好的,当前用户登录状态实现时的状态码456
+        {
+            //当前用户登录失效时要做的事
+        }
+        else
+        {
+            
+        }
     }
 }
 

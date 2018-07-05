@@ -13,6 +13,7 @@
 #import "UIViewController+LTAdd.h"
 #import "UIImage+LTAdd.h"
 #import "UIWindow+LTAdd.h"
+#import "UIApplication+LTAdd.h"
 
 #import "NSString+LTAdd.h"
 #import "NSArray+LTAdd.h"

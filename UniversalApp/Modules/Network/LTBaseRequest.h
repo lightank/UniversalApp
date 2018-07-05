@@ -18,6 +18,8 @@
 @property (nonatomic, assign) BOOL isAESEncrypted;
 /**  是否请求成功,即状态码是否为200  */
 @property (nonatomic, assign) BOOL isSuccess;
+/**  服务器返回的对接口的描述信息  */
+@property (nonatomic, copy) NSString *message;
 /**  服务器返回的数据,如果是aes加密的话,那么已解密  */
 @property (nonatomic, strong) NSDictionary *result;
 /**  请求头字段  */
