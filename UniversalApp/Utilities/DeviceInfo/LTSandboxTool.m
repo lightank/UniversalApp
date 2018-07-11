@@ -23,6 +23,7 @@
  */
 
 #import "LTSandboxTool.h"
+#import "NSString+Hash.h"
 
 @implementation LTSandboxTool
 /**  判断文件或文件夹是否存在  */
@@ -162,6 +163,48 @@
         success = YES;
     }
     return success;
+}
+
+
+#pragma mark - 二进制和资源包的自检
+/**  app的二进制包路径  */
++ (NSString *)applicationBinaryPath
+{
+    NSString *excutableName = [[NSBundle mainBundle] infoDictionary][@"CFBundleExecutable"];
+    NSString *tmpPath = [[[UIApplication sharedApplication] documentsPath] stringByDeletingLastPathComponent];
+    NSString *appPath = [[tmpPath stringByAppendingPathComponent:excutableName]
+                         stringByAppendingPathExtension:@"app"];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.f)
+    {
+        appPath = [[NSBundle mainBundle] bundlePath];
+    }
+    NSString *binaryPath = [appPath stringByAppendingPathComponent:excutableName];
+    return binaryPath;
+}
+/**  app的二进制包SHA256Hash  */
++ (NSString *)applicationBinarySHA256Hash
+{
+    return [[self applicationBinaryPath] fileSHA256Hash];
+}
+/**  app的所有资源校验码路径,可通过修改为.plist文件来访问  */
++ (NSString *)applicationCodeResourcesPath
+{
+    NSString *excutableName = [[NSBundle mainBundle] infoDictionary][@"CFBundleExecutable"];
+    NSString *tmpPath = [[[UIApplication sharedApplication] documentsPath] stringByDeletingLastPathComponent];
+    NSString *appPath = [[tmpPath stringByAppendingPathComponent:excutableName]
+                         stringByAppendingPathExtension:@"app"];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.f)
+    {
+        appPath = [[NSBundle mainBundle] bundlePath];
+    }
+    NSString *sigPath = [[appPath stringByAppendingPathComponent:@"_CodeSignature"]
+                         stringByAppendingPathComponent:@"CodeResources"];
+    return sigPath;
+}
+/**  app的所有资源校验码路径SHA256Hash  */
++ (NSString *)applicationCodeResourcesSHA256Hash
+{
+    return [[self applicationCodeResourcesPath] fileSHA256Hash];
 }
 
 #pragma mark - 文件相关操作

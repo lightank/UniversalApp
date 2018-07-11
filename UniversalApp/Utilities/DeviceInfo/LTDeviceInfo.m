@@ -21,6 +21,14 @@
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
 
+#include <sys/socket.h>
+#include <sys/sysctl.h>
+#include <net/if.h>
+#include <net/if_dl.h>
+#include <mach/mach.h>
+#include <arpa/inet.h>
+#include <ifaddrs.h>
+
 #if __has_include(<YYKit/YYReachability.h>)
 #import <YYKit/YYReachability.h>
 #else
@@ -767,6 +775,54 @@ static YYReachability *_reachability = nil;
     return wifiName;
 }
 
++ (NSString *)ipAddressWIFI
+{
+    return [self ipAddressWithIfaName:@"en0"];
+}
+
++ (NSString *)ipAddressCell
+{
+    return [self ipAddressWithIfaName:@"pdp_ip0"];
+}
+
++ (NSString *)ipAddressWithIfaName:(NSString *)name {
+    if (name.length == 0) return nil;
+    NSString *address = nil;
+    struct ifaddrs *addrs = NULL;
+    if (getifaddrs(&addrs) == 0) {
+        struct ifaddrs *addr = addrs;
+        while (addr) {
+            if ([[NSString stringWithUTF8String:addr->ifa_name] isEqualToString:name]) {
+                sa_family_t family = addr->ifa_addr->sa_family;
+                switch (family) {
+                    case AF_INET: { // IPv4
+                        char str[INET_ADDRSTRLEN] = {0};
+                        inet_ntop(family, &(((struct sockaddr_in *)addr->ifa_addr)->sin_addr), str, sizeof(str));
+                        if (strlen(str) > 0) {
+                            address = [NSString stringWithUTF8String:str];
+                        }
+                    } break;
+                        
+                    case AF_INET6: { // IPv6
+                        char str[INET6_ADDRSTRLEN] = {0};
+                        inet_ntop(family, &(((struct sockaddr_in6 *)addr->ifa_addr)->sin6_addr), str, sizeof(str));
+                        if (strlen(str) > 0) {
+                            address = [NSString stringWithUTF8String:str];
+                        }
+                    }
+                        
+                    default: break;
+                }
+                if (address) break;
+            }
+            addr = addr->ifa_next;
+        }
+    }
+    freeifaddrs(addrs);
+    return address;
+}
+
+
 #pragma mark - APP相关
 // @see https://github.com/nst/iOS-Runtime-Headers/blob/master/Frameworks/MobileCoreServices.framework/LSApplicationProxy.h
 + (NSString *)appVersion
@@ -1020,6 +1076,14 @@ static YYReachability *_reachability = nil;
     return DiskSpace;
 }
 
++ (NSString *)memoryTotal
+{
+    int64_t mem = [[NSProcessInfo processInfo] physicalMemory];
+    if (mem < -1) mem = -1;
+    double TotalGB = mem / (1024 * 1024 * 1024);
+    return [NSString stringWithFormat:@"%.lf", TotalGB < 0.f ? -1.0 : TotalGB];
+}
+
 + (NSDictionary<NSString *, id> *)userDefaultsDictionaryRepresentation
 {
     return [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
@@ -1101,6 +1165,8 @@ static YYReachability *_reachability = nil;
         _networkStatus = [LTDeviceInfo networkStatus];
         _isConnectedToWiFi = [LTDeviceInfo isConnectedToWiFi];
         _WIFIName = [LTDeviceInfo WIFIName];
+        _ipAddressWIFI = [LTDeviceInfo ipAddressWIFI];
+        _ipAddressCell = [LTDeviceInfo ipAddressCell];
         
         //APP相关
         _appVersion = [LTDeviceInfo appVersion];
@@ -1111,6 +1177,7 @@ static YYReachability *_reachability = nil;
         _totalDiskSpace = [LTDeviceInfo totalDiskSpace];
         _usedDiskSpace = [LTDeviceInfo usedDiskSpace];
         _freeDiskSpace = [LTDeviceInfo freeDiskSpace];
+        _memoryTotal = [LTDeviceInfo memoryTotal];
     }
     return self;
 }

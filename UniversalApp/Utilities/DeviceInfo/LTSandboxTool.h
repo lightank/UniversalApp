@@ -22,6 +22,17 @@
 /** 将数据写入文件 */
 + (BOOL)writeDataItem:(NSData *)itemData withName:(NSString *)savedName toFolder:(NSString *)folderPath;
 
+#pragma mark - 二进制和资源包的自检
+#pragma mark - 二进制和资源包的自检
+// 从iOS8开始沙盒机制有所变化，文稿和资源文件分开在不同的路径，而且文稿是一个动态的路径，所以获取方法要区分系统版本。
+/**  app的二进制包路径  */
++ (NSString *)applicationBinaryPath;
+/**  app的二进制包SHA256Hash  */
++ (NSString *)applicationBinarySHA256Hash;
+/**  app的所有资源校验码路径,可通过修改为.plist文件来访问  */
++ (NSString *)applicationCodeResourcesPath;
+/**  app的所有资源校验码路径SHA256Hash  */
++ (NSString *)applicationCodeResourcesSHA256Hash;
 
 #pragma mark - 文件夹相关操作
 + (NSString *)createFolderInCachesDirectoryWithFolderName:(NSString *)folderName;

@@ -189,6 +189,12 @@
 /**  当前WIFI名称  */
 @property (nonatomic, readonly) NSString *WIFIName;
 + (NSString *)WIFIName;
+/// WIFI IP address of this device (can be nil). e.g. @"192.168.1.111"
+@property (nullable, nonatomic, readonly) NSString *ipAddressWIFI;
++ (NSString *)ipAddressWIFI;
+/// Cell IP address of this device (can be nil). e.g. @"10.2.2.222"
+@property (nullable, nonatomic, readonly) NSString *ipAddressCell;
++ (NSString *)ipAddressCell;
 
 #pragma mark - APP相关
 /**  app版本  */
@@ -211,6 +217,10 @@
 /**  空余存储空间大小(如:8.5 GB)  */
 @property (nonatomic, readonly) NSString *freeDiskSpace;
 + (NSString *)freeDiskSpace;
+/**  总运行内存大小(如 2 G)  */
+@property (nonatomic, readonly) NSString *memoryTotal;
++ (NSString *)memoryTotal;
+
 
 #pragma mark - 类方法
 /**  NSUserDefaults所有字典  */
