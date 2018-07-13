@@ -15,5 +15,7 @@
 #import "UIWindow+LTAdd.h"
 #import "UIApplication+LTAdd.h"
 
+#import "NSObject+LTAdd.h"
 #import "NSString+LTAdd.h"
 #import "NSArray+LTAdd.h"
+#import "NSDictionary+LTAdd.h"

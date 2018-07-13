@@ -28,4 +28,23 @@
     return tempArray.copy;
 }
 
++ (nullable NSArray *)arrayWithJSON:(id)json
+{
+    if (!json) return nil;
+    NSArray *arr = nil;
+    NSData *jsonData = nil;
+    if ([json isKindOfClass:[NSArray class]]) {
+        arr = json;
+    } else if ([json isKindOfClass:[NSString class]]) {
+        jsonData = [(NSString *)json dataUsingEncoding : NSUTF8StringEncoding];
+    } else if ([json isKindOfClass:[NSData class]]) {
+        jsonData = json;
+    }
+    if (jsonData) {
+        arr = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:NULL];
+        if (![arr isKindOfClass:[NSArray class]]) arr = nil;
+    }
+    return arr;
+}
+
 @end

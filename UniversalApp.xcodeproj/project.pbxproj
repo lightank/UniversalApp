@@ -21,6 +21,8 @@
 		3D48668120B1B34D002BACA8 /* LTSandboxTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48668020B1B34D002BACA8 /* LTSandboxTool.m */; };
 		3D48668420B1B4C0002BACA8 /* NSArray+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48668320B1B4C0002BACA8 /* NSArray+LTAdd.m */; };
 		3D50913F20C6790F00A21655 /* PrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D50913D20C6790F00A21655 /* PrivacyPermission.m */; };
+		3DC328BE20F84BF40092C35C /* NSObject+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC328BD20F84BF40092C35C /* NSObject+LTAdd.m */; };
+		3DC328C120F84DFA0092C35C /* NSDictionary+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC328C020F84DFA0092C35C /* NSDictionary+LTAdd.m */; };
 		3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1220B006EF00CD476A /* AppDelegate.m */; };
 		3DCC9F1620B006EF00CD476A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1520B006EF00CD476A /* ViewController.m */; };
 		3DCC9F1920B006EF00CD476A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1720B006EF00CD476A /* Main.storyboard */; };
@@ -101,6 +103,10 @@
 		3D48668320B1B4C0002BACA8 /* NSArray+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LTAdd.m"; sourceTree = "<group>"; };
 		3D50913D20C6790F00A21655 /* PrivacyPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyPermission.m; sourceTree = "<group>"; };
 		3D50913E20C6790F00A21655 /* PrivacyPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyPermission.h; sourceTree = "<group>"; };
+		3DC328BC20F84BF40092C35C /* NSObject+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LTAdd.h"; sourceTree = "<group>"; };
+		3DC328BD20F84BF40092C35C /* NSObject+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LTAdd.m"; sourceTree = "<group>"; };
+		3DC328BF20F84DFA0092C35C /* NSDictionary+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LTAdd.h"; sourceTree = "<group>"; };
+		3DC328C020F84DFA0092C35C /* NSDictionary+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LTAdd.m"; sourceTree = "<group>"; };
 		3DCC9F0E20B006EF00CD476A /* UniversalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCC9F1120B006EF00CD476A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3DCC9F1220B006EF00CD476A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -454,10 +460,14 @@
 		3DCC9F6220B0237300CD476A /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				3DC328BC20F84BF40092C35C /* NSObject+LTAdd.h */,
+				3DC328BD20F84BF40092C35C /* NSObject+LTAdd.m */,
 				3DCC9F6420B0237300CD476A /* NSString+LTAdd.h */,
 				3DCC9F6320B0237300CD476A /* NSString+LTAdd.m */,
 				3D48668220B1B4C0002BACA8 /* NSArray+LTAdd.h */,
 				3D48668320B1B4C0002BACA8 /* NSArray+LTAdd.m */,
+				3DC328BF20F84DFA0092C35C /* NSDictionary+LTAdd.h */,
+				3DC328C020F84DFA0092C35C /* NSDictionary+LTAdd.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -741,6 +751,7 @@
 				3DCC9F6920B0237300CD476A /* UIScrollView+LTRefresh.m in Sources */,
 				3D48668120B1B34D002BACA8 /* LTSandboxTool.m in Sources */,
 				3D50913F20C6790F00A21655 /* PrivacyPermission.m in Sources */,
+				3DC328C120F84DFA0092C35C /* NSDictionary+LTAdd.m in Sources */,
 				3D03D64420B80C27006F6F75 /* UINavigationBar+Awesome.m in Sources */,
 				3DCC9F6820B0237300CD476A /* UIButton+LTAdd.m in Sources */,
 				3D48667320B1AE0F002BACA8 /* LTDeviceInfo.m in Sources */,
@@ -758,6 +769,7 @@
 				3D48668420B1B4C0002BACA8 /* NSArray+LTAdd.m in Sources */,
 				3DFE3E7020EA531500A8832C /* AppDelegate+UMengAnalytics.m in Sources */,
 				3DE5B32420B11EBE009719D0 /* LTBaseRequest.m in Sources */,
+				3DC328BE20F84BF40092C35C /* NSObject+LTAdd.m in Sources */,
 				3D48667B20B1B1B7002BACA8 /* LTUserManager.m in Sources */,
 				3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */,
 				3D48666220B1AAC5002BACA8 /* NSString+Hash.m in Sources */,
