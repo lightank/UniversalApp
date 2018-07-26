@@ -225,7 +225,33 @@
 #pragma mark - 类方法
 /**  NSUserDefaults所有字典  */
 + (NSDictionary<NSString *, id> *)userDefaultsDictionaryRepresentation;
+
+#pragma mark - cookie相关
+
+/**
+ 添加一个cookie
+
+ @param name cookie name,不能为空
+ @param value cookie value
+ @param domain 域名
+ @param path 路径
+ @return 是否添加成功,如有有name/value/domain/path有一个空的话就返回NO,如果
+ */
++ (BOOL)addCookieWithName:(nonnull NSString *)name value:(nonnull NSString *)value domain:(nonnull NSString *)domain path:(nonnull NSString *)path;
 /**  对指定key取cookie  */
 + (NSString *)cookieValueForKey:(const NSString *)key;
+
+/**
+ 将[NSHTTPCookieStorage sharedHTTPCookieStorage].cookies转换为NSURLRequest的请求头
+ 得到的字典如下:
+ {
+    Cookie = "key1=value1; key2=value2";
+ }
+ 用法如下:
+ NSURLRequest *request = [NSURLRequest requestWithURL:@""];
+ request.allHTTPHeaderFields = requestHeaderFields;
+ */
++ (NSDictionary *)requestHeaderFields;
+
 
 @end

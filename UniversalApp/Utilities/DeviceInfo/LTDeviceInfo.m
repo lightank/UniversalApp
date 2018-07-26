@@ -1088,6 +1088,32 @@ static YYReachability *_reachability = nil;
 {
     return [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 }
+
+#pragma mark - cookie相关
++ (BOOL)addCookieWithName:(nonnull NSString *)name value:(nonnull NSString *)value domain:(nonnull NSString *)domain path:(nonnull NSString *)path
+{
+    /*
+     [NSHTTPCookie cookieWithProperties:@{
+         NSHTTPCookieName: @"name",
+         NSHTTPCookieValue: @"value",
+         NSHTTPCookieDomain: @"*.baidu.com",
+         NSHTTPCookiePath: @"/"
+     }];
+     */
+    if (name && [name isKindOfClass:[NSString class]] && value && [value isKindOfClass:[NSString class]] && domain && [domain isKindOfClass:[NSString class]] && path && [path isKindOfClass:[NSString class]])
+    {
+        NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:@{
+                                                                    NSHTTPCookieName: name,
+                                                                    NSHTTPCookieValue: value,
+                                                                    NSHTTPCookieDomain: domain,
+                                                                    NSHTTPCookiePath: path,
+                                                                    }];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+        return YES;
+    }
+    return NO;
+}
+
 + (NSString *)cookieValueForKey:(const NSString *)key
 {
     NSArray<NSHTTPCookie *> *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
@@ -1102,6 +1128,12 @@ static YYReachability *_reachability = nil;
     }];
     
     return value;
+}
+
++ (NSDictionary *)requestHeaderFields
+{
+    NSArray *cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies;
+    return [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
 }
 
 #pragma mark - 构造方法

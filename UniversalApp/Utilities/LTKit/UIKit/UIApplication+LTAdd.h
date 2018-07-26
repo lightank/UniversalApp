@@ -11,6 +11,6 @@
 @interface UIApplication (LTAdd)
 
 + (void)openSafari:(NSString *)url;
-+ (void)openSafariInApplicatio:(NSString *)url API_AVAILABLE(ios(9.0));
++ (void)openSafariInApplication:(NSString *)url API_AVAILABLE(ios(9.0));
 
 @end

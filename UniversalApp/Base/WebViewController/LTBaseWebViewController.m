@@ -27,11 +27,28 @@ static LTObserverKey const kContentSize = @"contentSize";
     self = [super init];
     if (self) {
         _jsMethodsDictionary = [[NSMutableDictionary alloc] init];
+        _cookieDictionary = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
 
 #pragma mark - 生命周期
+- (void)loadView
+{
+    [super loadView];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:kKeyWindow.bounds];
+    _scrollView = scrollView;
+    [self.view addSubview:scrollView];
+    
+    UIView *contentView = [[UIView alloc] initWithFrame:kKeyWindow.bounds];
+    _contentView = contentView;
+    self.contentView.backgroundColor = UIColorHex(F4F5F6);
+    [scrollView addSubview:contentView];
+    
+    self.navigationController.navigationBar.tintColor = UIColorHex(050505);
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -43,12 +60,7 @@ static LTObserverKey const kContentSize = @"contentSize";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (!IOS11_OR_LATER)
-    {
-        [self.progressView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view).offset(self.navigationController.navigationBar.hidden ? 0 : kNavigationToTopHeight);
-        }];
-    }
+    
 }
 
 - (void)dealloc
@@ -59,9 +71,12 @@ static LTObserverKey const kContentSize = @"contentSize";
     if (_webView)
     {
         [self webViewRemoveJavaScriptMethod:_webView];
+        [self webViewRemoveAllUserScripts:_webView];
     }
     // 移除kvo
     [self removeObserverWebView];
+    
+    [self.progressView removeFromSuperview];
 }
 
 #pragma mark - NSKeyValueObserving
@@ -120,40 +135,30 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     config.processPool = self.processPool;
     
-    WKUserScript *cookieInScript = [[WKUserScript alloc] initWithSource:[self getSetCookieJSCodeForceOverride:YES] injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
-    [config.userContentController addUserScript:cookieInScript];
-    
     WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
+    webView.frame = self.contentView.bounds;
+    webView.height = [self contentViewHeight];
+    if (@available(iOS 9, *))
+    {
+        self.webView.allowsLinkPreview = YES; //允许链接3D Touch
+        //self.webView.customUserAgent = @"MOLWebView/1.0.0"; //自定义UA
+    }
     self.webView = webView;
+    
+    // 添加js方法
+    [self addJavaScriptMethod];
+    [self webViewAddJavaScriptMethod:webView];
+    
+    // 添加cookie
+    [self addCookie];
+    [self webViewAddCookie:webView];
     
     webView.navigationDelegate = self;
     webView.UIDelegate = self;
-    //    webView.scrollView.delegate = self;
-    
-    [self.view addSubview:webView];
+    //webView.scrollView.delegate = self;
+    [self.contentView addSubview:webView];
     
     [webView.scrollView addHeaderRefreshTarget:self refreshingAction:@selector(reload)];
-    
-    [webView mas_makeConstraints:^(MASConstraintMaker *make) {
-        //        BOOL ios11 = IOS11_OR_LATER;
-        //        if (IOS11_OR_LATER)
-        //        {
-        //            IF_IOS_11(
-        //                      make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
-        //                      make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
-        //                      make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-        //                      make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop);
-        //                      );
-        //        }
-        //        else
-        //        {
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
-        make.top.equalTo(self.view);
-        make.bottom.equalTo(self.view);
-        //        }
-        
-    }];
     
     
     //添加观察webView的进度与标题
@@ -166,24 +171,19 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
 {
     UIProgressView *progressView = [[UIProgressView alloc] initWithFrame:CGRectZero];
     self.progressView = progressView;
-    [self.view addSubview:progressView];
+    [self.contentView addSubview:progressView];
     progressView.tintColor = [UIColor blueColor];
     progressView.trackTintColor = [UIColor whiteColor];
     [progressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.webView);
-        if (IOS11_OR_LATER)
-        {
-            if (@available(iOS 11.0, *))
-            {
-                make.top.equalTo(self.webView.mas_safeAreaLayoutGuideTop);
-            }
-        }
-        else
-        {
-            make.top.equalTo(self.view).offset(self.navigationController.navigationBarHidden ? 0 : kNavigationToTopHeight);
-        }
+        make.top.left.right.equalTo(self.contentView);
         make.height.equalTo(3.f);
     }];
+}
+
+- (CGFloat)contentViewHeight
+{
+    CGFloat height = self.navigationController.navigationBar.isHidden ? kStatusBarHeight : (kNavigationToTopHeight);
+    return kScreenHeight - height;
 }
 
 - (void)setupNavigationBarButtonItem
@@ -194,11 +194,16 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
 #pragma mark - 事件处理
 - (void)loadHomeURL
 {
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.HTML5FullPath]];
-    [req setValue:@"0" forHTTPHeaderField:@"type"];
-    [req setValue:kAppStringPlaceholder forHTTPHeaderField:@"type"];
-    [req setValue:kAppStringPlaceholder forHTTPHeaderField:@"isH5"];
-    [self.webView loadRequest:req];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.HTML5FullPath]];
+//    [req setValue:@"0" forHTTPHeaderField:@"type"];
+//    [req setValue:kAppStringPlaceholder forHTTPHeaderField:@"type"];
+//    [req setValue:kAppStringPlaceholder forHTTPHeaderField:@"isH5"];
+    NSArray *cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies;
+    //Cookies数组转换为requestHeaderFields
+    NSDictionary *requestHeaderFields = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
+    //设置请求头
+    request.allHTTPHeaderFields = requestHeaderFields;
+    [self.webView loadRequest:request];
 }
 /**  刷新页面  */
 - (void)reload
@@ -220,12 +225,6 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     }
 }
 
-/**  检测是否开启pop手势  */
-- (void)checkPopGesture
-{
-    
-}
-
 /**  移除监听WebView  */
 - (void)removeObserverWebView
 {
@@ -242,63 +241,24 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     }
 }
 #pragma mark - cookie相关
-- (NSString *)getSetCookieJSCodeForceOverride:(BOOL)forceOverride {
-    
-    //取出cookie
-    //js函数,如果需要比较，不进行强制覆盖cookie，使用注释掉的js函数
-    NSString *JSFuncString;
-    if (forceOverride)
-    {
-        JSFuncString = @"";
-    }
-    else
-    {
-        JSFuncString =
-        @"\
-        \n var cookieNames = document.cookie.split('; ').map(function(cookie) {\
-        \n     return cookie.split('=')[0] \
-        \n });\
-        \n";
-    }
-    
-    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSArray *cookies = [cookieStorage cookies];
-    //拼凑js字符串
-    NSMutableString *JSCode = [JSFuncString mutableCopy];
-    for (NSHTTPCookie *cookie in cookies)
-    {
-        NSMutableString *string = [NSMutableString stringWithFormat:@"%@=%@;domain=%@;path=%@",
-                                   cookie.name,
-                                   cookie.value,
-                                   cookie.domain,
-                                   cookie.path ?: @"/"];
-        
-        if (cookie.secure)
-        {
-            [string appendString:@";secure=true"];
-        }
-        
-        NSString *setCookieString = nil;
-        if (forceOverride)
-        {
-            setCookieString = [NSString stringWithFormat:
-                               @"\
-                               \n document.cookie='%@';\
-                               \n", string];
-        }
-        else
-        {
-            setCookieString = [NSString stringWithFormat:
-                               @"\
-                               \n if (cookieNames.indexOf('%@') == -1) {\
-                               \n     document.cookie='%@';\
-                               \n };\
-                               \n", cookie.name, string];
-        }
-        [JSCode appendString:setCookieString];
-    }
-    
-    return JSCode;
+- (void)addCookie
+{
+    // 例如
+    // self.cookieDictionary[@"name"] = @"value";
+}
+
+/**  此方法建议在开始加载页面(WKNavigationDelegate中的:webView:didStartProvisionalNavigation:方法)时及之前执行,建议在初始化webview的时候调用  */
+- (void)webViewAddCookie:(WKWebView *)webView
+{
+    NSMutableString *cookies = @"".mutableCopy;
+    [self.cookieDictionary enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+        NSString *cookie = [NSString stringWithFormat:@"document.cookie = '%@=%@;';", key, obj];
+        [cookies appendString:cookie];
+    }];
+    //NSLog(@"%@", cookies);
+    //注入Cookie
+    WKUserScript *cookieScript = [[WKUserScript alloc] initWithSource:cookies injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
+    [webView.configuration.userContentController addUserScript:cookieScript];
 }
 
 - (void)getHTMLCookie
@@ -307,17 +267,6 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
         NSLog(@"调用evaluateJavaScript异步获取cookie：%@", cookies);
     }];
 }
-
-- (void)resetCookieForceOverride:(BOOL)forceOverride
-{
-    [self.webView evaluateJavaScript:[self getSetCookieJSCodeForceOverride:forceOverride] completionHandler:^(id _Nullable obj, NSError * _Nullable error) {
-        if(error)
-        {
-            NSLog(@"Cookie注入失败： %@",error);
-        }
-    }];
-}
-
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -331,15 +280,29 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     //请求的链接
-    //    NSString *urlString = navigationAction.request.URL.absoluteString;
-    //    WKNavigationType type = navigationAction.navigationType;
+    //NSString *urlString = navigationAction.request.URL.absoluteString;
+    //WKNavigationType type = navigationAction.navigationType;
+    NSURL *url = navigationAction.request.URL;
+
+    UIApplication *app = [UIApplication sharedApplication];
+    if ([url.scheme isEqualToString:@"tel"] && [app canOpenURL:url])
+    {
+        [app openURL:url];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }
+    else if ([url.absoluteString containsString:@"itunes.apple.com"] && [app canOpenURL:url])
+    {
+        [app openURL:url];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }
+
     
     //允许跳转
     decisionHandler(WKNavigationActionPolicyAllow);
     //不允许跳转
     //decisionHandler(WKNavigationActionPolicyCancel);
-    
-    [self checkPopGesture];
 }
 // 对于HTTPS的都会触发此代理，如果不要求验证，传默认就行
 // 如果需要证书验证，与使用AFN进行HTTPS证书验证是一样的
@@ -373,7 +336,6 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     decisionHandler(WKNavigationResponsePolicyAllow);
     //不允许跳转
     //decisionHandler(WKNavigationResponsePolicyCancel);
-    [self checkPopGesture];
 }
 // 接收到服务器跳转请求之后调用
 - (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation
@@ -386,10 +348,11 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     
 }
 // 9.0才能使用，web内容处理中断时会触发
-//- (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView
-//{
-//
-//}
+- (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView
+{
+    // 出现白屏就刷新
+    [webView reload];
+}
 #pragma mark - --网页监听--
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
@@ -406,11 +369,8 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
 {
     //可以在页面加载完成后发送消息给JS
     // 通知 h5 是 app登录
-    [webView evaluateJavaScript:@"fromApp()" completionHandler:nil];
-    [webView evaluateJavaScript:@"fromIOSApp()" completionHandler:nil];
-    
-    [self checkPopGesture];
-    
+//    [webView evaluateJavaScript:@"fromApp()" completionHandler:nil];
+//    [webView evaluateJavaScript:@"fromIOSApp()" completionHandler:nil];
     [self.webView.scrollView endHeaderRefresh];
 }
 // 页面加载失败时调用
@@ -432,18 +392,21 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
 }
 
 #pragma mark - JS消息添加/移除与处理
+
+- (void)addJavaScriptMethod
+{
+    // 例如
+    //self.cookieDictionary[@"name"] = @"selectorName";
+}
+
 /**  此方法建议在开始加载页面(WKNavigationDelegate中的:webView:didStartProvisionalNavigation:方法)时及之前执行,建议在初始化webview的时候调用  */
 - (void)webViewAddJavaScriptMethod:(WKWebView *)webView
 {
-    [self.jsMethodsDictionary addEntriesFromDictionary:@{
-                                                         @"testJSToOC" : @"testJSToOC:",
-                                                         }];
-    
     for (NSString *name in self.jsMethodsDictionary.allKeys)
     {
         /*
          在H5的JS中这样写代码调用:window.webkit.messageHandlers.<name>.postMessage(<要传的信息>);
-         有调用addScriptMessageHandler就必须调用removeScriptMessageHandlerForName,不然会
+         有调用addScriptMessageHandler就必须调用removeScriptMessageHandlerForName,不然会崩溃
          */
         [webView.configuration.userContentController addScriptMessageHandler:self name:name];
     }
@@ -457,10 +420,10 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
         [webView.configuration.userContentController removeScriptMessageHandlerForName:name];
     }
 }
-
-- (void)testJSToOC:(WKScriptMessage *)message
+/**  移除UserScripts  */
+- (void)webViewRemoveAllUserScripts:(WKWebView *)webView
 {
-    
+    [webView.configuration.userContentController removeAllUserScripts];
 }
 
 #pragma mark - WKUIDelegate
@@ -473,11 +436,11 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     }
     return nil;
 }
-//// 9.0后可使用,关闭WKWebView
-//- (void)webViewDidClose:(WKWebView *)webView
-//{
-//
-//}
+// 9.0后可使用,关闭WKWebView
+- (void)webViewDidClose:(WKWebView *)webView
+{
+
+}
 // 警告框
 // 对应js的Alert方法
 /**

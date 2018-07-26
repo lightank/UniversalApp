@@ -12,6 +12,7 @@
 		3D03D64420B80C27006F6F75 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D03D64320B80C26006F6F75 /* UINavigationBar+Awesome.m */; };
 		3D20AC3F20B3B04200BDE45D /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20AC3D20B2C83800BDE45D /* JavaScriptCore.framework */; };
 		3D20AC4320B3B0EC00BDE45D /* LTBaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D20AC4220B3B0EC00BDE45D /* LTBaseWebViewController.m */; };
+		3D2E14B721087EA7003B3122 /* LTRequestHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2E14B621087EA7003B3122 /* LTRequestHeaderModel.m */; };
 		3D38625E20EE075000CE4CB0 /* UIApplication+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D38625D20EE075000CE4CB0 /* UIApplication+LTAdd.m */; };
 		3D48666220B1AAC5002BACA8 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48666020B1AAC4002BACA8 /* NSString+Hash.m */; };
 		3D48666320B1AAC5002BACA8 /* LTEncryptorTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48666120B1AAC4002BACA8 /* LTEncryptorTools.m */; };
@@ -85,6 +86,8 @@
 		3D20AC3D20B2C83800BDE45D /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		3D20AC4120B3B0EC00BDE45D /* LTBaseWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTBaseWebViewController.h; sourceTree = "<group>"; };
 		3D20AC4220B3B0EC00BDE45D /* LTBaseWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTBaseWebViewController.m; sourceTree = "<group>"; };
+		3D2E14B521087EA7003B3122 /* LTRequestHeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTRequestHeaderModel.h; sourceTree = "<group>"; };
+		3D2E14B621087EA7003B3122 /* LTRequestHeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTRequestHeaderModel.m; sourceTree = "<group>"; };
 		3D38625C20EE075000CE4CB0 /* UIApplication+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LTAdd.h"; sourceTree = "<group>"; };
 		3D38625D20EE075000CE4CB0 /* UIApplication+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LTAdd.m"; sourceTree = "<group>"; };
 		3D48665E20B1AAC4002BACA8 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
@@ -506,6 +509,8 @@
 				3DCC9F7C20B0318C00CD476A /* LTNetworkTools.m */,
 				3DE5B32220B11EBE009719D0 /* LTBaseRequest.h */,
 				3DE5B32320B11EBE009719D0 /* LTBaseRequest.m */,
+				3D2E14B521087EA7003B3122 /* LTRequestHeaderModel.h */,
+				3D2E14B621087EA7003B3122 /* LTRequestHeaderModel.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -747,6 +752,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D2E14B721087EA7003B3122 /* LTRequestHeaderModel.m in Sources */,
 				3DE5B31A20B047CF009719D0 /* LTNetworkTools.m in Sources */,
 				3DCC9F6920B0237300CD476A /* UIScrollView+LTRefresh.m in Sources */,
 				3D48668120B1B34D002BACA8 /* LTSandboxTool.m in Sources */,

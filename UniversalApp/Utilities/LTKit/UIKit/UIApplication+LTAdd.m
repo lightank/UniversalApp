@@ -16,7 +16,7 @@
     NSURL *trueUrl = [NSURL URLWithString:url];
     [[UIApplication sharedApplication] openURL:trueUrl];
 }
-+ (void)openSafariInApplicatio:(NSString *)url API_AVAILABLE(ios(9.0))
++ (void)openSafariInApplication:(NSString *)url API_AVAILABLE(ios(9.0))
 {
     NSURL *trueUrl = [NSURL URLWithString:url];
     SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:trueUrl];
