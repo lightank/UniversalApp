@@ -10,7 +10,7 @@
 
 @implementation NSDictionary (LTAdd)
 
-+ (NSDictionary *)dictionaryWithJSON:(id)json
++ (NSDictionary *)lt_dictionaryWithJSON:(id)json
 {
     if (!json || json == (id)kCFNull) return nil;
     NSDictionary *dic = nil;

@@ -36,11 +36,25 @@ typedef NS_ENUM(NSUInteger, LTOscillatoryAnimationType) {
 /**  centerY  */
 @property (nonatomic, assign) CGFloat lt_centerY;     ///< Shortcut for center.y
 
-+ (void)showOscillatoryAnimationWithLayer:(CALayer *)layer type:(LTOscillatoryAnimationType)type;
++ (void)lt_showOscillatoryAnimationWithLayer:(CALayer *)layer type:(LTOscillatoryAnimationType)type;
 
-- (UIView *)subviewOfClassType:(Class)classType;
+
+/**
+ Returns the UIViewController object that manages the receiver.
+ */
+@property (nullable, nonatomic, readonly, strong) UIViewController *lt_viewContainingController;
+/**  Returns the topMost UIViewController object in hierarchy.  */
+@property (nullable, nonatomic, readonly, strong) UIViewController *lt_topMostController;
+/**
+ Returns the UIViewController object that is actually the parent of this object. Most of the time it's the viewController object which actually contains it, but result may be different if it's viewController is added as childViewController of another viewController.
+ */
+@property (nullable, nonatomic, readonly, strong) UIViewController *lt_parentContainerViewController;
+/**  Returns the subview of provided class type.  */
+- (UIView *)lt_subviewOfClassType:(Class)classType;
+/**  Returns the superView of provided class type.  */
+- (nullable UIView *)lt_superviewOfClassType:(nonnull Class)classType;
 /**  完全复制一个视图的内容.UIButton的Target.Action复制不过来  */
-- (UIView*)duplicate;
+- (UIView*)lt_duplicate;
 
 @end
 

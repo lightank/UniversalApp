@@ -11,6 +11,6 @@
 @interface NSDictionary (LTAdd)
 
 /**  从yymodel里copy出来的  */
-+ (NSDictionary *)dictionaryWithJSON:(id)json;
++ (NSDictionary *)lt_dictionaryWithJSON:(id)json;
 
 @end

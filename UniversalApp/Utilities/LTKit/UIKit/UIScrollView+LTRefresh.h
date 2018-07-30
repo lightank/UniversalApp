@@ -15,29 +15,29 @@
 
 @interface UIScrollView (LTRefresh)
 
-- (void)addHeaderRefreshTarget:(id)target refreshingAction:(SEL)action;
-- (void)addFooterRefreshTarget:(id)target refreshingAction:(SEL)action;
+- (void)lt_addHeaderRefreshTarget:(id)target refreshingAction:(SEL)action;
+- (void)lt_addFooterRefreshTarget:(id)target refreshingAction:(SEL)action;
 
-- (void)addHeaderRefresh:(void(^)(void))block;
-- (void)addFooterRefresh:(void(^)(void))block;
+- (void)lt_addHeaderRefresh:(void(^)(void))block;
+- (void)lt_addFooterRefresh:(void(^)(void))block;
 
-- (void)setHeaderTitle:(NSString *)title forState:(MJRefreshState)state;
-- (void)setFooterTitle:(NSString *)title forState:(MJRefreshState)state;
+- (void)lt_setHeaderTitle:(NSString *)title forState:(MJRefreshState)state;
+- (void)lt_setFooterTitle:(NSString *)title forState:(MJRefreshState)state;
 
-- (void)beginHeaderRefresh;
-- (void)endHeaderRefresh;
+- (void)lt_beginHeaderRefresh;
+- (void)lt_endHeaderRefresh;
 
-- (void)beginFooterRefresh;
-- (void)endFooterRefresh;
+- (void)lt_beginFooterRefresh;
+- (void)lt_endFooterRefresh;
 
-- (void)endRefresh;
+- (void)lt_endRefresh;
 
 @end
 
 @interface UIScrollView (LTAdd)
 
 /**  是否自动调整scrollview的内间距  */
-@property (nonatomic, assign, getter=isContentInsetAdjust) BOOL contentInsetAdjust;
+@property (nonatomic, assign, getter=isContentInsetAdjust) BOOL lt_contentInsetAdjust;
 
 @end
 

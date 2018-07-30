@@ -10,7 +10,7 @@
 
 @implementation UIWindow (LTAdd)
 
-- (UIViewController*)topMostWindowController
+- (UIViewController*)lt_topMostWindowController
 {
     UIViewController *topController = [self rootViewController];
     
@@ -21,9 +21,9 @@
     return topController;
 }
 
-- (UIViewController*)currentViewController;
+- (UIViewController*)lt_currentViewController;
 {
-    UIViewController *currentViewController = [self topMostWindowController];
+    UIViewController *currentViewController = [self lt_topMostWindowController];
     
     while ([currentViewController isKindOfClass:[UINavigationController class]] && [(UINavigationController*)currentViewController topViewController])
         currentViewController = [(UINavigationController*)currentViewController topViewController];

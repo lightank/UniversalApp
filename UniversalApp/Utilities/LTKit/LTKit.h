@@ -12,6 +12,7 @@
 #import "UINavigationController+LTAdd.h"
 #import "UIViewController+LTAdd.h"
 #import "UIImage+LTAdd.h"
+#import "UIColor+LTAdd.h"
 #import "UIWindow+LTAdd.h"
 #import "UIApplication+LTAdd.h"
 

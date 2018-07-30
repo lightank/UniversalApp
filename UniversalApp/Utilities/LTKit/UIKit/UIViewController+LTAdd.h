@@ -11,8 +11,10 @@
 @interface UIViewController (LTAdd)
 
 /**  普通状态下的文字颜色  */
-@property (nonatomic, strong) UIColor *tabBarTitleColorNormal;
+@property (nonatomic, strong) UIColor *lt_tabBarTitleColorNormal;
 /**  选中状态下的文字颜色  */
-@property (nonatomic, strong) UIColor *tabBarTitleColorSelected;
+@property (nonatomic, strong) UIColor *lt_tabBarTitleColorSelected;
+
+
 
 @end

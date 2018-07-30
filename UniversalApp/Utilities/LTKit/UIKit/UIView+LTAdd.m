@@ -120,7 +120,7 @@
     self.center = CGPointMake(self.center.x, centerY);
 }
 
-+ (void)showOscillatoryAnimationWithLayer:(CALayer *)layer type:(LTOscillatoryAnimationType)type
++ (void)lt_showOscillatoryAnimationWithLayer:(CALayer *)layer type:(LTOscillatoryAnimationType)type
 {
     NSNumber *animationScale1 = type == LTOscillatoryAnimationToBigger ? @(1.15) : @(0.5);
     NSNumber *animationScale2 = type == LTOscillatoryAnimationToBigger ? @(0.92) : @(1.15);
@@ -138,7 +138,7 @@
     }];
 }
 
-- (UIView *)subviewOfClassType:(Class)classType
+- (UIView *)lt_subviewOfClassType:(Class)classType
 {
     __block UIView *subview = nil;
     
@@ -152,7 +152,7 @@
         }
         else
         {
-            subview = [obj subviewOfClassType:classType];
+            subview = [obj lt_subviewOfClassType:classType];
             if (subview) *stop = YES;
         }
     }];
@@ -160,7 +160,149 @@
     return subview;
 }
 
-- (UIView*)duplicate
+- (UIView *)lt_superviewOfClassType:(Class)classType
+{
+    UIView *superview = self.superview;
+    
+    while (superview)
+    {
+        if ([superview isKindOfClass:classType])
+        {
+            //If it's UIScrollView, then validating for special cases
+            if ([superview isKindOfClass:[UIScrollView class]])
+            {
+                NSString *classNameString = NSStringFromClass([superview class]);
+                
+                //  If it's not UITableViewWrapperView class, this is internal class which is actually manage in UITableview. The speciality of this class is that it's superview is UITableView.
+                //  If it's not UITableViewCellScrollView class, this is internal class which is actually manage in UITableviewCell. The speciality of this class is that it's superview is UITableViewCell.
+                //If it's not _UIQueuingScrollView class, actually we validate for _ prefix which usually used by Apple internal classes
+                if ([superview.superview isKindOfClass:[UITableView class]] == NO &&
+                    [superview.superview isKindOfClass:[UITableViewCell class]] == NO &&
+                    [classNameString hasPrefix:@"_"] == NO)
+                {
+                    return superview;
+                }
+            }
+            else
+            {
+                return superview;
+            }
+        }
+        superview = superview.superview;
+    }
+    return nil;
+}
+
+- (UIViewController *)lt_viewContainingController
+{
+    UIResponder *nextResponder =  self;
+    
+    do
+    {
+        nextResponder = [nextResponder nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UIViewController class]])
+            return (UIViewController*)nextResponder;
+        
+    } while (nextResponder);
+    
+    return nil;
+}
+
+- (UIViewController *)lt_topMostController
+{
+    NSMutableArray<UIViewController*> *controllersHierarchy = [[NSMutableArray alloc] init];
+    
+    UIViewController *topController = self.window.rootViewController;
+    
+    if (topController)
+    {
+        [controllersHierarchy addObject:topController];
+    }
+    
+    while ([topController presentedViewController]) {
+        
+        topController = [topController presentedViewController];
+        [controllersHierarchy addObject:topController];
+    }
+    
+    UIViewController *matchController = [self viewContainingController];
+    
+    while (matchController && [controllersHierarchy containsObject:matchController] == NO)
+    {
+        do
+        {
+            matchController = (UIViewController*)[matchController nextResponder];
+            
+        } while (matchController && [matchController isKindOfClass:[UIViewController class]] == NO);
+    }
+    
+    return matchController;
+}
+
+- (UIViewController *)lt_parentContainerViewController
+{
+    UIViewController *matchController = [self viewContainingController];
+    
+    if (matchController.navigationController)
+    {
+        UINavigationController *navController = matchController.navigationController;
+        
+        while (navController.navigationController) {
+            navController = navController.navigationController;
+        }
+        
+        UIViewController *parentController = navController;
+        
+        UIViewController *parentParentController = parentController.parentViewController;
+        
+        while (parentParentController &&
+               ([parentParentController isKindOfClass:[UINavigationController class]] == NO &&
+                [parentParentController isKindOfClass:[UITabBarController class]] == NO &&
+                [parentParentController isKindOfClass:[UISplitViewController class]] == NO))
+        {
+            parentController = parentParentController;
+            parentParentController = parentController.parentViewController;
+        }
+        
+        if (navController == parentController)
+        {
+            return navController.topViewController;
+        }
+        else
+        {
+            return parentController;
+        }
+    }
+    else if (matchController.tabBarController)
+    {
+        if ([matchController.tabBarController.selectedViewController isKindOfClass:[UINavigationController class]])
+        {
+            return [(UINavigationController*)matchController.tabBarController.selectedViewController topViewController];
+        }
+        else
+        {
+            return matchController.tabBarController.selectedViewController;
+        }
+    }
+    else
+    {
+        UIViewController *matchParentController = matchController.parentViewController;
+        
+        while (matchParentController &&
+               ([matchParentController isKindOfClass:[UINavigationController class]] == NO &&
+                [matchParentController isKindOfClass:[UITabBarController class]] == NO &&
+                [matchParentController isKindOfClass:[UISplitViewController class]] == NO))
+        {
+            matchController = matchParentController;
+            matchParentController = matchController.parentViewController;
+        }
+        
+        return matchController;
+    }
+}
+
+- (UIView*)lt_duplicate
 {
     return [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
 }

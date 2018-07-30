@@ -18,6 +18,6 @@
  @param size 图片大小
  @return 图片
  */
-+ (instancetype)gradientColorImageFromColor:(UIColor *)beginColor toColor:(UIColor *)endColor size:(CGSize)size;
++ (instancetype)lt_gradientColorImageFromColor:(UIColor *)beginColor toColor:(UIColor *)endColor size:(CGSize)size;
 
 @end

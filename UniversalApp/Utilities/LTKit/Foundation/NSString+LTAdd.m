@@ -10,12 +10,20 @@
 
 @implementation NSString (LTAdd)
 
-- (NSString *)numbersToChinese
+- (NSString *)lt_numbersToChinese
 {
-    return [NSString numbersToChinese:self.doubleValue];
+    return [NSString lt_numbersToChinese:self.doubleValue];
 }
 
-+ (NSString *)numbersToChinese:(double)number
+- (NSDictionary *)lt_dictionary
+{
+    NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:NULL];
+    if (![dict isKindOfClass:[NSDictionary class]]) dict = nil;
+    return dict;
+}
+
++ (NSString *)lt_numbersToChinese:(double)number
 {
     /*
      typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
@@ -40,7 +48,7 @@
 #pragma mark - 创建二维码/条形码
 //引用自:http://www.jianshu.com/p/e8f7a257b612
 //引用自:https://github.com/MxABC/LBXScan
-- (UIImage*)QRCodeImageWithSize:(CGSize)size
+- (UIImage *)lt_QRCodeImageWithSize:(CGSize)size
 {
     NSData *stringData = [self dataUsingEncoding: NSUTF8StringEncoding];
     
@@ -64,7 +72,7 @@
     return codeImage;
 }
 
-- (UIImage* )QRCodeImageWithSize:(CGSize)size color:(UIColor*)QRCodeColor backgroundColor:(UIColor*)backgroundColor
+- (UIImage *)lt_QRCodeImageWithSize:(CGSize)size color:(UIColor*)QRCodeColor backgroundColor:(UIColor*)backgroundColor
 {
     NSData *stringData = [self dataUsingEncoding: NSUTF8StringEncoding];
     //生成
@@ -95,7 +103,7 @@
 }
 
 //绘制条形码
-- (UIImage *)BarCodeImageWithSize:(CGSize)size
+- (UIImage *)lt_BarCodeImageWithSize:(CGSize)size
 {
     NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:false];
     CIFilter *filter = [CIFilter filterWithName:@"CICode128BarcodeGenerator"];
@@ -117,7 +125,7 @@
 }
 
 
-- (UIImage* )BarCodeImageWithSize:(CGSize)size color:(UIColor*)barCodeColor backgroundColor:(UIColor*)backgroundColor
+- (UIImage *)lt_BarCodeImageWithSize:(CGSize)size color:(UIColor*)barCodeColor backgroundColor:(UIColor*)backgroundColor
 {
     NSData *stringData = [self dataUsingEncoding: NSUTF8StringEncoding];
     //生成
@@ -149,28 +157,28 @@
 }
 
 #pragma mark - 高精度的数字加减乘除
-- (NSString *)decimalNumberByAdding:(NSString *)decimalNumber
+- (NSString *)lt_decimalNumberByAdding:(NSString *)decimalNumber
 {
     NSDecimalNumber *ANumber = [NSDecimalNumber decimalNumberWithString:self];
     NSDecimalNumber *BNumber = [NSDecimalNumber decimalNumberWithString:decimalNumber];
     NSDecimalNumber *product = [ANumber decimalNumberByAdding:BNumber];
     return [product stringValue];
 }
-- (NSString *)decimalNumberBySubtracting:(NSString *)decimalNumber
+- (NSString *)lt_decimalNumberBySubtracting:(NSString *)decimalNumber
 {
     NSDecimalNumber *ANumber = [NSDecimalNumber decimalNumberWithString:self];
     NSDecimalNumber *BNumber = [NSDecimalNumber decimalNumberWithString:decimalNumber];
     NSDecimalNumber *product = [ANumber decimalNumberBySubtracting:BNumber];
     return [product stringValue];
 }
-- (NSString *)decimalNumberByMultiplyingBy:(NSString *)decimalNumber
+- (NSString *)lt_decimalNumberByMultiplyingBy:(NSString *)decimalNumber
 {
     NSDecimalNumber *multiplierNumber = [NSDecimalNumber decimalNumberWithString:self];
     NSDecimalNumber *multiplicandNumber = [NSDecimalNumber decimalNumberWithString:decimalNumber];
     NSDecimalNumber *product = [multiplicandNumber decimalNumberByMultiplyingBy:multiplierNumber];
     return [product stringValue];
 }
-- (NSString *)decimalNumberByDividingBy:(NSString *)decimalNumber
+- (NSString *)lt_decimalNumberByDividingBy:(NSString *)decimalNumber
 {
     if ([self doubleValue] == 0) return @"0";
     NSDecimalNumber *molecularNumber = [NSDecimalNumber decimalNumberWithString:self];
@@ -180,7 +188,8 @@
 }
 
 #pragma mark - 数字
-+ (instancetype)qmui_stringWithCGFloat:(CGFloat)floatValue decimal:(NSUInteger)decimal {
++ (instancetype)lt_stringWithCGFloat:(CGFloat)floatValue decimal:(NSUInteger)decimal
+{
     NSString *formatString = [NSString stringWithFormat:@"%%.%@f", @(decimal)];
     return [NSString stringWithFormat:formatString, floatValue];
 }

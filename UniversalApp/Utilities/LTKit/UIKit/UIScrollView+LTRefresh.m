@@ -10,27 +10,27 @@
 
 @implementation UIScrollView (LTRefresh)
 
-- (void)addHeaderRefreshTarget:(id)target refreshingAction:(SEL)action
+- (void)lt_addHeaderRefreshTarget:(id)target refreshingAction:(SEL)action
 {
     self.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:target refreshingAction:action];
 }
 
-- (void)addFooterRefreshTarget:(id)target refreshingAction:(SEL)action
+- (void)lt_addFooterRefreshTarget:(id)target refreshingAction:(SEL)action
 {
     self.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:target refreshingAction:action];
 }
 
-- (void)addHeaderRefresh:(void (^)(void))block
+- (void)lt_addHeaderRefresh:(void (^)(void))block
 {
     self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:block];
 }
 
-- (void)addFooterRefresh:(void (^)(void))block
+- (void)lt_addFooterRefresh:(void (^)(void))block
 {
     self.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:block];
 }
 
-- (void)setHeaderTitle:(NSString *)title forState:(MJRefreshState)state
+- (void)lt_setHeaderTitle:(NSString *)title forState:(MJRefreshState)state
 {
     if ([self.mj_header isKindOfClass:[MJRefreshStateHeader class]])
     {
@@ -38,7 +38,7 @@
     }
 }
 
-- (void)setFooterTitle:(NSString *)title forState:(MJRefreshState)state
+- (void)lt_setFooterTitle:(NSString *)title forState:(MJRefreshState)state
 {
     if ([self.mj_footer isKindOfClass:[MJRefreshAutoStateFooter class]])
     {
@@ -50,27 +50,27 @@
     }
 }
 
-- (void)beginHeaderRefresh
+- (void)lt_beginHeaderRefresh
 {
     [self.mj_header beginRefreshing];
 }
 
-- (void)endHeaderRefresh
+- (void)lt_endHeaderRefresh
 {
     [self.mj_header endRefreshing];
 }
 
-- (void)beginFooterRefresh
+- (void)lt_beginFooterRefresh
 {
     [self.mj_footer beginRefreshing];
 }
 
-- (void)endFooterRefresh
+- (void)lt_endFooterRefresh
 {
     [self.mj_footer endRefreshing];
 }
 
-- (void)endRefresh
+- (void)lt_endRefresh
 {
     [self.mj_header endRefreshing];
     [self.mj_footer endRefreshing];
@@ -83,13 +83,13 @@
 
 //contentInsetAdjust
 static char kAssociatedObjectKey_contentInsetAdjust;
-- (void)setContentInsetAdjust:(BOOL)contentInsetAdjust
+- (void)setLt_contentInsetAdjust:(BOOL)lt_contentInsetAdjust
 {
-    objc_setAssociatedObject(self, &kAssociatedObjectKey_contentInsetAdjust, @(contentInsetAdjust), OBJC_ASSOCIATION_ASSIGN);
-    self.viewController.automaticallyAdjustsScrollViewInsets = contentInsetAdjust;
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_contentInsetAdjust, @(lt_contentInsetAdjust), OBJC_ASSOCIATION_ASSIGN);
+    self.viewController.automaticallyAdjustsScrollViewInsets = lt_contentInsetAdjust;
     if (@available(iOS 11.0, *))
     {
-        self.contentInsetAdjustmentBehavior = contentInsetAdjust ? : UIScrollViewContentInsetAdjustmentNever;
+        self.contentInsetAdjustmentBehavior = lt_contentInsetAdjust ? : UIScrollViewContentInsetAdjustmentNever;
     }
 }
 - (BOOL)isContentInsetAdjust

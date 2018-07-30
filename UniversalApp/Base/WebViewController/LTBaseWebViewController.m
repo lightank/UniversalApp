@@ -158,7 +158,7 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     //webView.scrollView.delegate = self;
     [self.contentView addSubview:webView];
     
-    [webView.scrollView addHeaderRefreshTarget:self refreshingAction:@selector(reload)];
+    [webView.scrollView lt_addHeaderRefreshTarget:self refreshingAction:@selector(reload)];
     
     
     //添加观察webView的进度与标题
@@ -211,7 +211,7 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     if (![LTNetworkTools isNetworkReachable])
     {
         [LTNetworkTools handleNetWorkCannotAccessEvent];
-        [self.webView.scrollView endHeaderRefresh];
+        [self.webView.scrollView lt_endRefresh];
         return;
     }
     
@@ -371,7 +371,7 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     // 通知 h5 是 app登录
 //    [webView evaluateJavaScript:@"fromApp()" completionHandler:nil];
 //    [webView evaluateJavaScript:@"fromIOSApp()" completionHandler:nil];
-    [self.webView.scrollView endHeaderRefresh];
+    [self.webView.scrollView lt_endHeaderRefresh];
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation

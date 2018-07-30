@@ -22,6 +22,8 @@
 		3D48668120B1B34D002BACA8 /* LTSandboxTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48668020B1B34D002BACA8 /* LTSandboxTool.m */; };
 		3D48668420B1B4C0002BACA8 /* NSArray+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48668320B1B4C0002BACA8 /* NSArray+LTAdd.m */; };
 		3D50913F20C6790F00A21655 /* PrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D50913D20C6790F00A21655 /* PrivacyPermission.m */; };
+		3D655756210F195300E6A3CD /* UINavigationBar+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D655755210F195300E6A3CD /* UINavigationBar+LTAdd.m */; };
+		3D9E107F210EA48B003CED5F /* UIColor+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9E107E210EA48B003CED5F /* UIColor+LTAdd.m */; };
 		3DC328BE20F84BF40092C35C /* NSObject+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC328BD20F84BF40092C35C /* NSObject+LTAdd.m */; };
 		3DC328C120F84DFA0092C35C /* NSDictionary+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC328C020F84DFA0092C35C /* NSDictionary+LTAdd.m */; };
 		3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1220B006EF00CD476A /* AppDelegate.m */; };
@@ -106,6 +108,10 @@
 		3D48668320B1B4C0002BACA8 /* NSArray+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LTAdd.m"; sourceTree = "<group>"; };
 		3D50913D20C6790F00A21655 /* PrivacyPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyPermission.m; sourceTree = "<group>"; };
 		3D50913E20C6790F00A21655 /* PrivacyPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyPermission.h; sourceTree = "<group>"; };
+		3D655754210F195300E6A3CD /* UINavigationBar+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+LTAdd.h"; sourceTree = "<group>"; };
+		3D655755210F195300E6A3CD /* UINavigationBar+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+LTAdd.m"; sourceTree = "<group>"; };
+		3D9E107D210EA48B003CED5F /* UIColor+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+LTAdd.h"; sourceTree = "<group>"; };
+		3D9E107E210EA48B003CED5F /* UIColor+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LTAdd.m"; sourceTree = "<group>"; };
 		3DC328BC20F84BF40092C35C /* NSObject+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LTAdd.h"; sourceTree = "<group>"; };
 		3DC328BD20F84BF40092C35C /* NSObject+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LTAdd.m"; sourceTree = "<group>"; };
 		3DC328BF20F84DFA0092C35C /* NSDictionary+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LTAdd.h"; sourceTree = "<group>"; };
@@ -442,16 +448,20 @@
 			children = (
 				3DCC9F5C20B0237300CD476A /* UIImage+LTAdd.h */,
 				3DCC9F5420B0237300CD476A /* UIImage+LTAdd.m */,
+				3D9E107D210EA48B003CED5F /* UIColor+LTAdd.h */,
+				3D9E107E210EA48B003CED5F /* UIColor+LTAdd.m */,
 				3DCC9F5720B0237300CD476A /* UIView+LTAdd.h */,
 				3DCC9F5D20B0237300CD476A /* UIView+LTAdd.m */,
+				3DCC9F5920B0237300CD476A /* UIWindow+LTAdd.h */,
+				3DCC9F5F20B0237300CD476A /* UIWindow+LTAdd.m */,
 				3DCC9F6020B0237300CD476A /* UIButton+LTAdd.h */,
 				3DCC9F5820B0237300CD476A /* UIButton+LTAdd.m */,
 				3DCC9F5B20B0237300CD476A /* UIViewController+LTAdd.h */,
 				3DCC9F7620B02F3A00CD476A /* UIViewController+LTAdd.m */,
+				3D655754210F195300E6A3CD /* UINavigationBar+LTAdd.h */,
+				3D655755210F195300E6A3CD /* UINavigationBar+LTAdd.m */,
 				3DCC9F7720B02F3A00CD476A /* UINavigationController+LTAdd.h */,
 				3DCC9F5E20B0237300CD476A /* UINavigationController+LTAdd.m */,
-				3DCC9F5920B0237300CD476A /* UIWindow+LTAdd.h */,
-				3DCC9F5F20B0237300CD476A /* UIWindow+LTAdd.m */,
 				3DCC9F6120B0237300CD476A /* UIScrollView+LTRefresh.h */,
 				3DCC9F5A20B0237300CD476A /* UIScrollView+LTRefresh.m */,
 				3D38625C20EE075000CE4CB0 /* UIApplication+LTAdd.h */,
@@ -761,6 +771,7 @@
 				3D03D64420B80C27006F6F75 /* UINavigationBar+Awesome.m in Sources */,
 				3DCC9F6820B0237300CD476A /* UIButton+LTAdd.m in Sources */,
 				3D48667320B1AE0F002BACA8 /* LTDeviceInfo.m in Sources */,
+				3D655756210F195300E6A3CD /* UINavigationBar+LTAdd.m in Sources */,
 				3DCC9F7120B02D4500CD476A /* LTTabBarControllerConfig.m in Sources */,
 				3DCC9F4A20B018F900CD476A /* AppDelegate+AppService.m in Sources */,
 				3D03D63E20B7F987006F6F75 /* LTFirstViewController.m in Sources */,
@@ -788,6 +799,7 @@
 				3DCC9F6D20B0237300CD476A /* NSString+LTAdd.m in Sources */,
 				3D03D63B20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m in Sources */,
 				3DFE3E7620EA533300A8832C /* AppDelegate+JPush.m in Sources */,
+				3D9E107F210EA48B003CED5F /* UIColor+LTAdd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

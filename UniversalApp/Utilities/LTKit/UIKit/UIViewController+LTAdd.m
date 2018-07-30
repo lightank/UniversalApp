@@ -12,30 +12,31 @@
 
 //tabBarTitleColorNormal
 static char kAssociatedObjectKey_tabBarTitleColorNormal;
-- (void)setTabBarTitleColorNormal:(UIColor *)tabBarTitleColorNormal
+- (void)setLt_tabBarTitleColorNormal:(UIColor *)lt_tabBarTitleColorNormal
 {
-    objc_setAssociatedObject(self, &kAssociatedObjectKey_tabBarTitleColorNormal, tabBarTitleColorNormal, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_tabBarTitleColorNormal, lt_tabBarTitleColorNormal, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self.tabBarItem setTitleTextAttributes:@{
-                                              NSForegroundColorAttributeName : tabBarTitleColorNormal,
+                                              NSForegroundColorAttributeName : lt_tabBarTitleColorNormal,
                                               } forState:UIControlStateNormal];
 }
-- (UIColor *)tabBarTitleColorNormal
+- (UIColor *)lt_tabBarTitleColorNormal
 {
     return objc_getAssociatedObject(self, &kAssociatedObjectKey_tabBarTitleColorNormal);
 }
 
 //tabBarTitleColorSelected
 static char kAssociatedObjectKey_tabBarTitleColorSelected;
-- (void)setTabBarTitleColorSelected:(UIColor *)tabBarTitleColorSelected
+- (void)setLt_tabBarTitleColorSelected:(UIColor *)lt_tabBarTitleColorSelected
 {
-    objc_setAssociatedObject(self, &kAssociatedObjectKey_tabBarTitleColorSelected, tabBarTitleColorSelected, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_tabBarTitleColorSelected, lt_tabBarTitleColorSelected, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self.tabBarItem setTitleTextAttributes:@{
-                                              NSForegroundColorAttributeName : tabBarTitleColorSelected,
+                                              NSForegroundColorAttributeName : lt_tabBarTitleColorSelected,
                                               } forState:UIControlStateSelected];
 }
-- (UIColor *)tabBarTitleColorSelected
+- (UIColor *)lt_tabBarTitleColorSelected
 {
     return objc_getAssociatedObject(self, &kAssociatedObjectKey_tabBarTitleColorSelected);
 }
+
 
 @end

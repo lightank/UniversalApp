@@ -11,12 +11,12 @@
 @implementation UIButton (LTAdd)
 
 
-+ (instancetype)buttonWithNormalImage:(UIImage *)normalImage normalTitle:(NSString *)normalTitle andFont:(UIFont *)font
++ (instancetype)lt_buttonWithNormalImage:(UIImage *)normalImage normalTitle:(NSString *)normalTitle andFont:(UIFont *)font
 {
-    return [UIButton buttonWithNormalImage:normalImage highlightedImage:nil selectedImage:nil disabledImage:nil focusedImage:nil andNormalTitle:normalTitle highlightedTitle:nil selectedTitle:nil disabledTitle:nil focusedTitle:nil andFont:font];
+    return [UIButton lt_buttonWithNormalImage:normalImage highlightedImage:nil selectedImage:nil disabledImage:nil focusedImage:nil andNormalTitle:normalTitle highlightedTitle:nil selectedTitle:nil disabledTitle:nil focusedTitle:nil andFont:font];
 }
 
-+ (instancetype)buttonWithNormalImage:(UIImage *)normalImage highlightedImage:(UIImage *)highlightedImage selectedImage:(UIImage *)selectedImage  disabledImage:(UIImage *)disabledImage focusedImage:(UIImage *)focusedImage andNormalTitle:(NSString *)normalTitle highlightedTitle:(NSString *)highlightedTitle selectedTitle:(NSString *)selectedTitle disabledTitle:(NSString *)disabledTitle focusedTitle:(NSString *)focusedTitle andFont:(UIFont *)font
++ (instancetype)lt_buttonWithNormalImage:(UIImage *)normalImage highlightedImage:(UIImage *)highlightedImage selectedImage:(UIImage *)selectedImage  disabledImage:(UIImage *)disabledImage focusedImage:(UIImage *)focusedImage andNormalTitle:(NSString *)normalTitle highlightedTitle:(NSString *)highlightedTitle selectedTitle:(NSString *)selectedTitle disabledTitle:(NSString *)disabledTitle focusedTitle:(NSString *)focusedTitle andFont:(UIFont *)font
 {
     UIButton *button = [[UIButton alloc] init];
     //设置图片
@@ -71,7 +71,7 @@
 }
 
 
-- (void)layoutButtonWithEdgeInsetsStyle:(ButtonEdgeInsetsStyle)style imageTitleSpace:(CGFloat)space
+- (void)lt_layoutButtonWithEdgeInsetsStyle:(ButtonEdgeInsetsStyle)style imageTitleSpace:(CGFloat)space
 {
     // 1. 得到imageView和titleLabel的宽、高
     CGFloat imageWith = self.imageView.frame.size.width;
@@ -129,147 +129,146 @@
     self.imageEdgeInsets = imageEdgeInsets;
     
     self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-
 }
 
 #pragma mark - setter and getter
 // ========== 图片 ==========
-- (void)setImageNoraml:(UIImage *)imageNoraml
+- (void)setLt_imageNoraml:(UIImage *)lt_imageNoraml
 {
-    [self setImage:imageNoraml forState:UIControlStateNormal];
+    [self setImage:lt_imageNoraml forState:UIControlStateNormal];
 }
-- (UIImage *)imageNoraml
+- (UIImage *)lt_imageNoraml
 {
     return [self imageForState:UIControlStateNormal];
 }
-- (void)setImageHighlighted:(UIImage *)imageHighlighted
+- (void)setLt_imageHighlighted:(UIImage *)lt_imageHighlighted
 {
-    [self setImage:imageHighlighted forState:UIControlStateHighlighted];
+    [self setImage:lt_imageHighlighted forState:UIControlStateHighlighted];
 }
-- (UIImage *)imageHighlighted
+- (UIImage *)lt_imageHighlighted
 {
     return [self imageForState:UIControlStateHighlighted];
 }
-- (void)setImageDisabled:(UIImage *)imageDisabled
+- (void)setLt_imageDisabled:(UIImage *)lt_imageDisabled
 {
-    [self setImage:imageDisabled forState:UIControlStateDisabled];
+    [self setImage:lt_imageDisabled forState:UIControlStateDisabled];
 }
-- (UIImage *)imageDisabled
+- (UIImage *)lt_imageDisabled
 {
     return [self imageForState:UIControlStateDisabled];
 }
-- (void)setImageSelected:(UIImage *)imageSelected
+- (void)setLt_imageSelected:(UIImage *)lt_imageSelected
 {
-    [self setImage:imageSelected forState:UIControlStateSelected];
+    [self setImage:lt_imageSelected forState:UIControlStateSelected];
 }
-- (UIImage *)imageSelected
+- (UIImage *)lt_imageSelected
 {
     return [self imageForState:UIControlStateSelected];
 }
-- (void)setBackgroundImageNoraml:(UIImage *)backgroundImageNoraml
+- (void)setLt_backgroundImageNoraml:(UIImage *)lt_backgroundImageNoraml
 {
-    [self setBackgroundImage:backgroundImageNoraml forState:UIControlStateNormal];
+    [self setBackgroundImage:lt_backgroundImageNoraml forState:UIControlStateNormal];
 }
-- (UIImage *)backgroundImageNoraml
+- (UIImage *)lt_backgroundImageNoraml
 {
     return [self backgroundImageForState:UIControlStateNormal];
 }
-- (void)setBackgroundImageHighlighted:(UIImage *)backgroundImageHighlighted
+- (void)setLt_backgroundImageHighlighted:(UIImage *)lt_backgroundImageHighlighted
 {
-    [self setBackgroundImage:backgroundImageHighlighted forState:UIControlStateHighlighted];
+    [self setBackgroundImage:lt_backgroundImageHighlighted forState:UIControlStateHighlighted];
 }
-- (UIImage *)backgroundImageHighlighted
+- (UIImage *)lt_backgroundImageHighlighted
 {
     return [self backgroundImageForState:UIControlStateHighlighted];
 }
-- (void)setBackgroundImageDisabled:(UIImage *)backgroundImageDisabled
+- (void)setLt_backgroundImageDisabled:(UIImage *)lt_backgroundImageDisabled
 {
-    [self setBackgroundImage:backgroundImageDisabled forState:UIControlStateDisabled];
+    [self setBackgroundImage:lt_backgroundImageDisabled forState:UIControlStateDisabled];
 }
-- (UIImage *)backgroundImageDisabled
+- (UIImage *)lt_backgroundImageDisabled
 {
     return [self backgroundImageForState:UIControlStateDisabled];
 }
-- (void)setBackgroundImageSelected:(UIImage *)backgroundImageSelected
+- (void)setLt_backgroundImageSelected:(UIImage *)lt_backgroundImageSelected
 {
-    [self setBackgroundImage:backgroundImageSelected forState:UIControlStateSelected];
+    [self setBackgroundImage:lt_backgroundImageSelected forState:UIControlStateSelected];
 }
-- (UIImage *)backgroundImageSelected
+- (UIImage *)lt_backgroundImageSelected
 {
     return [self backgroundImageForState:UIControlStateSelected];
 }
 
 // ========== title ==========
-- (void)setTitleNoraml:(NSString *)titleNoraml
+- (void)setLt_titleNoraml:(NSString *)lt_titleNoraml
 {
-    [self setTitle:titleNoraml forState:UIControlStateNormal];
+    [self setTitle:lt_titleNoraml forState:UIControlStateNormal];
 }
-- (NSString *)titleNoraml
+- (NSString *)lt_titleNoraml
 {
     return [self titleForState:UIControlStateNormal];
 }
-- (void)setTitleHighlighted:(NSString *)titleHighlighted
+- (void)setLt_titleHighlighted:(NSString *)lt_titleHighlighted
 {
-    [self setTitle:titleHighlighted forState:UIControlStateHighlighted];
+    [self setTitle:lt_titleHighlighted forState:UIControlStateHighlighted];
 }
-- (NSString *)titleHighlighted
+- (NSString *)lt_titleHighlighted
 {
     return [self titleForState:UIControlStateHighlighted];
 }
-- (void)setTitleDisabled:(NSString *)titleDisabled
+- (void)setLt_titleDisabled:(NSString *)lt_titleDisabled
 {
-    [self setTitle:titleDisabled forState:UIControlStateDisabled];
+    [self setTitle:lt_titleDisabled forState:UIControlStateDisabled];
 }
-- (NSString *)titleDisabled
+- (NSString *)lt_titleDisabled
 {
     return [self titleForState:UIControlStateDisabled];
 }
-- (void)setTitleSelected:(NSString *)titleSelected
+- (void)setLt_titleSelected:(NSString *)lt_titleSelected
 {
-    [self setTitle:titleSelected forState:UIControlStateSelected];
+    [self setTitle:lt_titleSelected forState:UIControlStateSelected];
 }
-- (NSString *)titleSelected
+- (NSString *)lt_titleSelected
 {
     return [self titleForState:UIControlStateSelected];
 }
-- (void)setTitleColorNoraml:(UIColor *)titleColorNoraml
+- (void)setLt_titleColorNoraml:(UIColor *)lt_titleColorNoraml
 {
-    [self setTitleColor:titleColorNoraml forState:UIControlStateNormal];
+    [self setTitleColor:lt_titleColorNoraml forState:UIControlStateNormal];
 }
-- (UIColor *)titleColorNoraml
+- (UIColor *)lt_titleColorNoraml
 {
     return [self titleColorForState:UIControlStateNormal];
 }
-- (void)setTitleColorHighlighted:(UIColor *)titleColorHighlighted
+- (void)setLt_titleColorHighlighted:(UIColor *)lt_titleColorHighlighted
 {
-    [self setTitleColor:titleColorHighlighted forState:UIControlStateHighlighted];
+    [self setTitleColor:lt_titleColorHighlighted forState:UIControlStateHighlighted];
 }
-- (UIColor *)titleColorHighlighted
+- (UIColor *)lt_titleColorHighlighted
 {
     return [self titleColorForState:UIControlStateHighlighted];
 }
-- (void)setTitleColorDisabled:(UIColor *)titleColorDisabled
+- (void)setLt_titleColorDisabled:(UIColor *)lt_titleColorDisabled
 {
-    [self setTitleColor:titleColorDisabled forState:UIControlStateDisabled];
+    [self setTitleColor:lt_titleColorDisabled forState:UIControlStateDisabled];
 }
-- (UIColor *)titleColorDisabled
+- (UIColor *)lt_titleColorDisabled
 {
     return [self titleColorForState:UIControlStateDisabled];
 }
-- (void)setTitleColorSelected:(UIColor *)titleColorSelected
+- (void)setLt_titleColorSelected:(UIColor *)lt_titleColorSelected
 {
-    [self setTitleColor:titleColorSelected forState:UIControlStateSelected];
+    [self setTitleColor:lt_titleColorSelected forState:UIControlStateSelected];
 }
-- (UIColor *)titleColorSelected
+- (UIColor *)lt_titleColorSelected
 {
     return [self titleColorForState:UIControlStateSelected];
 }
 // ========== 字体大小 ==========
-- (void)setFont:(UIFont *)font
+- (void)setLt_font:(UIFont *)lt_font
 {
-    self.titleLabel.font = font;
+    self.titleLabel.font = lt_font;
 }
-- (UIFont *)font
+- (UIFont *)lt_font
 {
     return self.titleLabel.font;
 }

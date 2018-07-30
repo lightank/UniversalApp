@@ -11,12 +11,12 @@
 
 @implementation UIApplication (LTAdd)
 
-+ (void)openSafari:(NSString *)url
++ (void)lt_openSafari:(NSString *)url
 {
     NSURL *trueUrl = [NSURL URLWithString:url];
     [[UIApplication sharedApplication] openURL:trueUrl];
 }
-+ (void)openSafariInApplication:(NSString *)url API_AVAILABLE(ios(9.0))
++ (void)lt_openSafariInApplication:(NSString *)url API_AVAILABLE(ios(9.0))
 {
     NSURL *trueUrl = [NSURL URLWithString:url];
     SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:trueUrl];

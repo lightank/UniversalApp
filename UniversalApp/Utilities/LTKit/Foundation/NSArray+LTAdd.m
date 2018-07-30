@@ -10,7 +10,7 @@
 
 @implementation NSArray (LTAdd)
 
-- (nullable NSArray *)randomArray
+- (nullable NSArray *)lt_randomArray
 {
     if (!self || self.count == 0 || ![self isKindOfClass:[NSArray class]]) return nil;
     
@@ -28,7 +28,7 @@
     return tempArray.copy;
 }
 
-+ (nullable NSArray *)arrayWithJSON:(id)json
++ (nullable NSArray *)lt_arrayWithJSON:(id)json
 {
     if (!json) return nil;
     NSArray *arr = nil;

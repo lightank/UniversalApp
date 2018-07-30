@@ -11,8 +11,8 @@
 @interface NSArray (LTAdd)
 
 /**  打乱数组元素顺序  */
-- (nullable NSArray *)randomArray;
+- (nullable NSArray *)lt_randomArray;
 /**  从yymodel里copy出来的  */
-+ (nullable NSArray *)arrayWithJSON:(id)json;
++ (nullable NSArray *)lt_arrayWithJSON:(id)json;
 
 @end

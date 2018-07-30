@@ -10,7 +10,7 @@
 
 @implementation UIImage (LTAdd)
 
-+ (instancetype)gradientColorImageFromColor:(UIColor *)beginColor toColor:(UIColor *)endColor size:(CGSize)size
++ (instancetype)lt_gradientColorImageFromColor:(UIColor *)beginColor toColor:(UIColor *)endColor size:(CGSize)size
 {
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.colors = @[(__bridge id)beginColor.CGColor,(__bridge id)endColor.CGColor];
@@ -28,6 +28,17 @@
     return outputImage;
 }
 
-
++ (UIImage *)imageWithColor:(UIColor *)color
+{
+    if (!color) return nil;
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
 
 @end

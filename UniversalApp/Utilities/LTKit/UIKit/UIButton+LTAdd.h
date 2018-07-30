@@ -18,46 +18,46 @@ typedef NS_ENUM(NSUInteger, ButtonEdgeInsetsStyle) {
 @interface UIButton (LTAdd)
 // ========== 图片 ==========
 /**  Normal下的图片  */
-@property (nonatomic, strong) UIImage *imageNoraml;
+@property (nonatomic, strong) UIImage *lt_imageNoraml;
 /**  Highlighted下的图片  */
-@property (nonatomic, strong) UIImage *imageHighlighted;
+@property (nonatomic, strong) UIImage *lt_imageHighlighted;
 /**  Disabled下的图片  */
-@property (nonatomic, strong) UIImage *imageDisabled;
+@property (nonatomic, strong) UIImage *lt_imageDisabled;
 /**  Selected下的图片  */
-@property (nonatomic, strong) UIImage *imageSelected;
+@property (nonatomic, strong) UIImage *lt_imageSelected;
 /**  Normal下的背景图片  */
-@property (nonatomic, strong) UIImage *backgroundImageNoraml;
+@property (nonatomic, strong) UIImage *lt_backgroundImageNoraml;
 /**  Highlighted下的背景图片  */
-@property (nonatomic, strong) UIImage *backgroundImageHighlighted;
+@property (nonatomic, strong) UIImage *lt_backgroundImageHighlighted;
 /**  Disabled下的背景图片  */
-@property (nonatomic, strong) UIImage *backgroundImageDisabled;
+@property (nonatomic, strong) UIImage *lt_backgroundImageDisabled;
 /**  Selected下的背景图片  */
-@property (nonatomic, strong) UIImage *backgroundImageSelected;
+@property (nonatomic, strong) UIImage *lt_backgroundImageSelected;
 
 // ========== title ==========
 /**  Normal下title  */
-@property (nonatomic, copy) NSString *titleNoraml;
+@property (nonatomic, copy) NSString *lt_titleNoraml;
 /**  Highlighted下title   */
-@property (nonatomic, copy) NSString *titleHighlighted;
+@property (nonatomic, copy) NSString *lt_titleHighlighted;
 /**  Disabled下title   */
-@property (nonatomic, copy) NSString *titleDisabled;
+@property (nonatomic, copy) NSString *lt_titleDisabled;
 /**  Selected下title   */
-@property (nonatomic, copy) NSString *titleSelected;
+@property (nonatomic, copy) NSString *lt_titleSelected;
 /**  Normal下title颜色  */
-@property (nonatomic, strong) UIColor *titleColorNoraml;
+@property (nonatomic, strong) UIColor *lt_titleColorNoraml;
 /**  Highlighted下title颜色   */
-@property (nonatomic, strong) UIColor *titleColorHighlighted;
+@property (nonatomic, strong) UIColor *lt_titleColorHighlighted;
 /**  Disabled下title颜色   */
-@property (nonatomic, strong) UIColor *titleColorDisabled;
+@property (nonatomic, strong) UIColor *lt_titleColorDisabled;
 /**  Selected下title颜色   */
-@property (nonatomic, strong) UIColor *titleColorSelected;
+@property (nonatomic, strong) UIColor *lt_titleColorSelected;
 
 /**  字体大小  */
-@property (nonatomic, strong) UIFont *font;
+@property (nonatomic, strong) UIFont *lt_font;
 
 
 /**  便利构造器  */
-+ (instancetype)buttonWithNormalImage:(UIImage *)normalImage normalTitle:(NSString *)normalTitle andFont:(UIFont *)font;
++ (instancetype)lt_buttonWithNormalImage:(UIImage *)normalImage normalTitle:(NSString *)normalTitle andFont:(UIFont *)font;
 
 
 /**
@@ -66,7 +66,7 @@ typedef NS_ENUM(NSUInteger, ButtonEdgeInsetsStyle) {
  *  @param style titleLabel和imageView的布局样式
  *  @param space titleLabel和imageView的间距
  */
-- (void)layoutButtonWithEdgeInsetsStyle:(ButtonEdgeInsetsStyle)style imageTitleSpace:(CGFloat)space;
+- (void)lt_layoutButtonWithEdgeInsetsStyle:(ButtonEdgeInsetsStyle)style imageTitleSpace:(CGFloat)space;
 
 
 

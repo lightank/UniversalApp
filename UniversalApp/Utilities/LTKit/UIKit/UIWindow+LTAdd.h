@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define kCurrentViewController (([UIApplication sharedApplication].keyWindow).lt_currentViewController)
+
 @interface UIWindow (LTAdd)
 
 ///----------------------
@@ -17,12 +19,12 @@
 /**
  Returns the current Top Most ViewController in hierarchy.
  */
-@property (nullable, nonatomic, readonly, strong) UIViewController *topMostWindowController;
+@property (nullable, nonatomic, readonly, strong) UIViewController *lt_topMostWindowController;
 
 /**
  Returns the topViewController in stack of topMostWindowController.
  */
-@property (nullable, nonatomic, readonly, strong) UIViewController *currentViewController;
+@property (nullable, nonatomic, readonly, strong) UIViewController *lt_currentViewController;
 
 
 @end
