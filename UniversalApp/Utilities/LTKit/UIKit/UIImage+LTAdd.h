@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, LTGradientColorImageDirection) {
-    LTGradientColorImageDirectionTop,
-    LTGradientColorImageDirectionLeft,
-    LTGradientColorImageDirectionBottom,
-    LTGradientColorImageDirectionRight,
+typedef NS_ENUM(NSUInteger, LTGradientImageDirection) {
+    LTGradientImageDirectionTop,    //从上往下渐变,越往下颜色越深
+    LTGradientImageDirectionLeft,   //从左往右渐变,越往右颜色越深
+    LTGradientImageDirectionBottom, //从下往上渐变,越往上颜色越深
+    LTGradientImageDirectionRight,  //从右到左渐变,越往左颜色越深
 };
 
 @interface UIImage (LTAdd)
@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, LTGradientColorImageDirection) {
  @param direction 方向
  @return 图片
  */
-+ (UIImage *)lt_imageWithColor:(UIColor *)color size:(CGSize)size direction:(LTGradientColorImageDirection)direction;
++ (UIImage *)lt_imageWithColor:(UIColor *)color size:(CGSize)size direction:(LTGradientImageDirection)direction;
 
 /**
  生成一张一个颜色数组渐变的图片
@@ -35,7 +35,7 @@ typedef NS_ENUM(NSUInteger, LTGradientColorImageDirection) {
  @param direction 方向
  @return 图片
  */
-+ (UIImage *)lt_imageWithColorArray:(NSArray *)colorArray size:(CGSize)size direction:(LTGradientColorImageDirection)direction;
++ (UIImage *)lt_imageWithColorArray:(NSArray *)colorArray size:(CGSize)size direction:(LTGradientImageDirection)direction;
 
 /**
  生成一张一从fromColor颜色到toColor颜色的渐变图片
@@ -46,7 +46,7 @@ typedef NS_ENUM(NSUInteger, LTGradientColorImageDirection) {
  @param direction 方向
  @return 图片
  */
-+ (UIImage *)lt_imageWithFromColor:(UIColor *)fromColor toColor:(UIColor *)toColor size:(CGSize)size direction:(LTGradientColorImageDirection)direction;
++ (UIImage *)lt_imageWithFromColor:(UIColor *)fromColor toColor:(UIColor *)toColor size:(CGSize)size direction:(LTGradientImageDirection)direction;
 
 /**
  生成一张size为(1.f, 1.f)大小的纯色背景
@@ -56,5 +56,13 @@ typedef NS_ENUM(NSUInteger, LTGradientColorImageDirection) {
  */
 + (UIImage *)lt_imageWithColor:(UIColor *)color;
 
+
+/**
+ 通过在现有图片上叠加一张白色渐变图片来实现现有图片的alpha渐变
+
+ @param alphaDirection alpha渐变方向
+ @return 处理后的图片
+ */
+- (UIImage *)lt_imageWithGradientAlphaDirection:(LTGradientImageDirection)alphaDirection;
 
 @end

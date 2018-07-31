@@ -13,6 +13,7 @@
 @end
 
 /*
+ @see http://www.5tu.cn/colors/yansezhongwenming.html
  英文代码    形像颜色    HEX格式    RGB格式
  LightPink    浅粉红    #FFB6C1    255,182,193
  Pink    粉红    #FFC0CB    255,192,203

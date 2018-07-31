@@ -10,19 +10,19 @@
 
 @implementation UIImage (LTAdd)
 
-+ (UIImage *)lt_imageWithColor:(UIColor *)color size:(CGSize)size direction:(LTGradientColorImageDirection)direction
++ (UIImage *)lt_imageWithColor:(UIColor *)color size:(CGSize)size direction:(LTGradientImageDirection)direction
 {
     if (!color) return nil;
     return [UIImage lt_imageWithColorArray:@[color, [color colorWithAlphaComponent:0.f]] size:size direction:direction];
 }
 
-+ (UIImage *)lt_imageWithFromColor:(UIColor *)fromColor toColor:(UIColor *)toColor size:(CGSize)size direction:(LTGradientColorImageDirection)direction
++ (UIImage *)lt_imageWithFromColor:(UIColor *)fromColor toColor:(UIColor *)toColor size:(CGSize)size direction:(LTGradientImageDirection)direction
 {
     if (!fromColor || !toColor) return nil;
     return [UIImage lt_imageWithColorArray:@[fromColor, toColor] size:size direction:direction];
 }
 
-+ (UIImage *)lt_imageWithColorArray:(NSArray *)colorArray size:(CGSize)size direction:(LTGradientColorImageDirection)direction
++ (UIImage *)lt_imageWithColorArray:(NSArray *)colorArray size:(CGSize)size direction:(LTGradientImageDirection)direction
 {
     if (!colorArray || colorArray.count == 0) return nil;
     CGSize layerSize = (size.width <= 0 || size.height <= 0) ? CGSizeMake(1.f, 1.f) : size;
@@ -34,28 +34,28 @@
     }
     layer.colors = cgColorArray;
     switch (direction) {
-        case LTGradientColorImageDirectionTop:
+        case LTGradientImageDirectionTop:
         {
-            layer.startPoint = CGPointMake(0.5, 1);
-            layer.endPoint = CGPointMake(0.5, 0);
+            layer.startPoint = CGPointMake(0.5f, 1.f);
+            layer.endPoint = CGPointMake(0.5f, .0f);
         }
             break;
-        case LTGradientColorImageDirectionLeft:
+        case LTGradientImageDirectionLeft:
         {
-            layer.startPoint = CGPointMake(1, 0.5);
-            layer.endPoint = CGPointMake(0, 0.5);
+            layer.startPoint = CGPointMake(1.f, 0.5f);
+            layer.endPoint = CGPointMake(.0f, 0.5f);
         }
             break;
-        case LTGradientColorImageDirectionBottom:
+        case LTGradientImageDirectionBottom:
         {
-            layer.startPoint = CGPointMake(0.5, 0);
-            layer.endPoint = CGPointMake(0.5, 1);
+            layer.startPoint = CGPointMake(0.5f, .0f);
+            layer.endPoint = CGPointMake(0.5f, 1.f);
         }
             break;
-        case LTGradientColorImageDirectionRight:
+        case LTGradientImageDirectionRight:
         {
-            layer.startPoint = CGPointMake(0, 0.5);
-            layer.endPoint = CGPointMake(1, 0.5);
+            layer.startPoint = CGPointMake(.0f, 0.5f);
+            layer.endPoint = CGPointMake(1.f, 0.5f);
         }
             break;
     }
@@ -70,7 +70,7 @@
 + (UIImage *)lt_imageWithColor:(UIColor *)color
 {
     if (!color) return nil;
-    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    CGRect rect = CGRectMake(.0f, .0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [color CGColor]);
@@ -78,6 +78,21 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+- (UIImage *)lt_imageWithGradientAlphaDirection:(LTGradientImageDirection)alphaDirection
+{
+    CGSize imageSize = self.size;
+    UIImage *whiteImage = [UIImage lt_imageWithColor:[UIColor whiteColor] size:imageSize direction:alphaDirection];
+    
+    UIImage *imageIn = self;
+    UIImage *imageOut = nil;
+    UIGraphicsBeginImageContextWithOptions(imageIn.size, self.qmui_opaque, imageIn.scale);
+    [imageIn drawInRect:CGRectMakeWithSize(imageIn.size)];
+    [whiteImage drawAtPoint:CGPointZero];
+    imageOut = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return imageOut;
 }
 
 @end
