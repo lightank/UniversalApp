@@ -10,25 +10,64 @@
 
 @implementation UIImage (LTAdd)
 
-+ (instancetype)lt_gradientColorImageFromColor:(UIColor *)beginColor toColor:(UIColor *)endColor size:(CGSize)size
++ (UIImage *)lt_imageWithColor:(UIColor *)color size:(CGSize)size direction:(LTGradientColorImageDirection)direction
 {
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.colors = @[(__bridge id)beginColor.CGColor,(__bridge id)endColor.CGColor];
-    gradientLayer.locations = @[@0.0, @1.0];
-    //startPoint & endPoint设置为(0, 0),(1,0)代表水平方向渐变,(0,0)(0, 1)代表竖直方向渐变
-    gradientLayer.startPoint = CGPointMake(0, 0);
-    gradientLayer.endPoint = CGPointMake(1.0, 1.0);
-    gradientLayer.frame = CGRectMake(0, 0, size.width, size.height);
-    
-    UIGraphicsBeginImageContextWithOptions(gradientLayer.frame.size, NO, 0);
-    [gradientLayer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return outputImage;
+    if (!color) return nil;
+    return [UIImage lt_imageWithColorArray:@[color, [color colorWithAlphaComponent:0.f]] size:size direction:direction];
 }
 
-+ (UIImage *)imageWithColor:(UIColor *)color
++ (UIImage *)lt_imageWithFromColor:(UIColor *)fromColor toColor:(UIColor *)toColor size:(CGSize)size direction:(LTGradientColorImageDirection)direction
+{
+    if (!fromColor || !toColor) return nil;
+    return [UIImage lt_imageWithColorArray:@[fromColor, toColor] size:size direction:direction];
+}
+
++ (UIImage *)lt_imageWithColorArray:(NSArray *)colorArray size:(CGSize)size direction:(LTGradientColorImageDirection)direction
+{
+    if (!colorArray || colorArray.count == 0) return nil;
+    CGSize layerSize = (size.width <= 0 || size.height <= 0) ? CGSizeMake(1.f, 1.f) : size;
+    CAGradientLayer *layer = [[CAGradientLayer alloc] init];
+    layer.frame = CGRectMake(0.f, 0.f, layerSize.width, layerSize.height);
+    NSMutableArray *cgColorArray = [[NSMutableArray alloc] init];
+    for (UIColor *color in colorArray) {
+        [cgColorArray addObject:(__bridge id)color.CGColor];
+    }
+    layer.colors = cgColorArray;
+    switch (direction) {
+        case LTGradientColorImageDirectionTop:
+        {
+            layer.startPoint = CGPointMake(0.5, 1);
+            layer.endPoint = CGPointMake(0.5, 0);
+        }
+            break;
+        case LTGradientColorImageDirectionLeft:
+        {
+            layer.startPoint = CGPointMake(1, 0.5);
+            layer.endPoint = CGPointMake(0, 0.5);
+        }
+            break;
+        case LTGradientColorImageDirectionBottom:
+        {
+            layer.startPoint = CGPointMake(0.5, 0);
+            layer.endPoint = CGPointMake(0.5, 1);
+        }
+            break;
+        case LTGradientColorImageDirectionRight:
+        {
+            layer.startPoint = CGPointMake(0, 0.5);
+            layer.endPoint = CGPointMake(1, 0.5);
+        }
+            break;
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(size, layer.opaque, 0);
+    [layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return snap;
+}
+
++ (UIImage *)lt_imageWithColor:(UIColor *)color
 {
     if (!color) return nil;
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
