@@ -87,7 +87,8 @@
     
     UIImage *imageIn = self;
     UIImage *imageOut = nil;
-    UIGraphicsBeginImageContextWithOptions(imageIn.size, self.qmui_opaque, imageIn.scale);
+//    UIGraphicsBeginImageContextWithOptions(imageIn.size, self.qmui_opaque, imageIn.scale);
+    UIGraphicsBeginImageContext(imageSize);
     [imageIn drawInRect:CGRectMakeWithSize(imageIn.size)];
     [whiteImage drawAtPoint:CGPointZero];
     imageOut = UIGraphicsGetImageFromCurrentImageContext();
