@@ -43,7 +43,6 @@ Stuff; \
 //tabBar的高度
 #define kTabBarHeight (IPHONE_SIZE_58INCH ? (49.f + 34.f) : 49.f)
 //statusBar的高度
-//#define kStatusBarHeight (IPHONE_SIZE_58INCH ? (20.f + 22.f) : 20.f)
 #define kStatusBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height)
 //navigationBar高度
 #define kNavigationBarHeight (44.f)

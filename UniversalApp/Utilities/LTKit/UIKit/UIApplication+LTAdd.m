@@ -23,4 +23,15 @@
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:safariViewController animated:YES completion:nil];
 }
 
++ (void)lt_openApplicationSettings
+{
+    if (@available(iOS 10.0, *))
+    {
+        // iOS 10 以后必须得有申请过一个权限才能打开app设置,不然打开的是系统设置
+        //UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+        //[[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+    }
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+}
+
 @end

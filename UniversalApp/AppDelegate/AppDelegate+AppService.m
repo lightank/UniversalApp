@@ -83,6 +83,29 @@
     [self.window setRootViewController:tabBarController];
 }
 
+// 设置app语言
+- (void)setAppLanguage:(NSString *)language
+{
+    CYLTabBarController *currentTabBarController = (CYLTabBarController *)(self.window.rootViewController);
+    if (![currentTabBarController isKindOfClass:[CYLTabBarController class]]) return;
+    NSUInteger selectedIndex = currentTabBarController.selectedIndex;
+    UINavigationController *currentNavigationController = currentTabBarController.selectedViewController;
+    NSMutableArray *viewControllers = currentNavigationController.viewControllers.mutableCopy;
+    
+    LTTabBarControllerConfig *tabBarControllerConfig = [[LTTabBarControllerConfig alloc] init];
+    CYLTabBarController *tabBarController = tabBarControllerConfig.tabBarController;
+    tabBarController.selectedIndex = selectedIndex;
+    UINavigationController *navigationController = currentTabBarController.selectedViewController;
+    
+    
+    //解决奇怪的动画bug。异步执行
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.window setRootViewController:tabBarController];
+        navigationController.viewControllers = viewControllers;
+        NSLog(@"已切换到语言");
+    });
+}
+
 #pragma mark ————— FPS 监测 —————
 - (void)showFPS
 {

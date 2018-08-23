@@ -28,6 +28,12 @@
 // 判断是否为 3.5英寸 iPhone 4/4S pt:320x480，px:640x960，@2x
 #define IPHONE_SIZE_35INCH ([LTDeviceInfo is35InchScreen])
 
+// 字体相关的宏，用于快速创建一个字体对象，更多创建宏可查看 UIFont+QMUI.h
+#define UIFontOfSize(size) ([UIFont systemFontOfSize:size]) //常规
+#define UIFontItalicOfSize(size) ([UIFont italicSystemFontOfSize:size]) //斜体,只对数字和字母有效，中文无效
+#define UIFontBoldOfSize(size) ([UIFont boldSystemFontOfSize:size]) //粗体
+//#define UIFontBoldWithFont(_font) ([UIFont boldSystemFontOfSize:_font.pointSize])
+
 
 @interface LTDeviceInfo : NSObject
 
@@ -88,6 +94,9 @@
 /**  屏幕高度，会根据横竖屏的变化而变化  */
 @property (nonatomic, readonly) CGFloat screenHeight;
 + (CGFloat)screenHeight;
+/**  状态栏高度(来电等情况下，状态栏高度会发生变化，所以应该实时计算)  */
+@property (nonatomic, readonly) CGFloat statusBarHeight;
++ (CGFloat)statusBarHeight;
 /**  判断是否为 5.8英寸 iPhone X pt:375x812，px:1125x2436，@3x  */
 @property (nonatomic, readonly) BOOL is58InchScreen;
 + (BOOL)is58InchScreen;
@@ -157,8 +166,10 @@
 @property (nonatomic, readonly) NSString *country;
 + (NSString *)country;
 /**  本地语言  */
-@property (nonatomic, readonly) NSString *language;
+@property (nonatomic, copy) NSString *language;
 + (NSString *)language;
++ (void)setLanguage:(NSString *)language;
++ (void)resetLanguage;
 /**  时间区域  */
 @property (nonatomic, readonly) NSString *timeZone;
 + (NSString *)timeZone;
@@ -225,6 +236,8 @@
 #pragma mark - 类方法
 /**  NSUserDefaults所有字典  */
 + (NSDictionary<NSString *, id> *)userDefaultsDictionaryRepresentation;
+/**  app info.plist 字典  */
++ (NSDictionary *)infoDictionary;
 
 #pragma mark - cookie相关
 

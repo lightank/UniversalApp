@@ -327,6 +327,11 @@
     return ((IOS8_OR_LATER ? [[UIScreen mainScreen] bounds].size.height : ([LTDeviceInfo isLandscape] ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height)));
 }
 
++ (CGFloat)statusBarHeight
+{
+    return [[UIApplication sharedApplication] statusBarFrame].size.height;
+}
+
 + (BOOL)is58InchScreen
 {
     static BOOL size = NO;
@@ -573,9 +578,10 @@
 + (NSString *)language
 {
     // Get the list of languages
-    NSArray *LanguageArray = [NSLocale preferredLanguages];
+    //NSArray *LanguageArray = [NSLocale preferredLanguages];
+    NSArray *LanguageArray = [[NSUserDefaults standardUserDefaults] valueForKey:@"AppleLanguages"];
     // Get the user's language
-    NSString *Language = [LanguageArray objectAtIndex:0];
+    NSString *Language = LanguageArray.firstObject;
     // Check for validity
     if (Language == nil || Language.length <= 0) {
         // Error, invalid language
@@ -583,6 +589,20 @@
     }
     // Completed Successfully
     return Language;
+}
+
++ (void)setLanguage:(NSString *)language
+{
+    if (language && [language isKindOfClass:[NSString class]])
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:@[language] forKey:@"AppleLanguages"];
+    }
+}
+
++ (void)resetLanguage
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"AppleLanguages"];
+    //[[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"AppleLanguages"];
 }
 
 + (NSString *)timeZone
@@ -1089,6 +1109,11 @@ static YYReachability *_reachability = nil;
     return [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 }
 
++ (NSDictionary *)infoDictionary
+{
+    return [[NSBundle mainBundle] infoDictionary];
+}
+
 #pragma mark - cookie相关
 + (BOOL)addCookieWithName:(nonnull NSString *)name value:(nonnull NSString *)value domain:(nonnull NSString *)domain path:(nonnull NSString *)path
 {
@@ -1160,6 +1185,7 @@ static YYReachability *_reachability = nil;
         _deviceHeight = [LTDeviceInfo deviceHeight];
         _screenWidth = [LTDeviceInfo screenWidth];
         _screenHeight = [LTDeviceInfo screenHeight];
+        _statusBarHeight = [LTDeviceInfo statusBarHeight];
         _is58InchScreen = [LTDeviceInfo is58InchScreen];
         _is55InchScreen = [LTDeviceInfo is55InchScreen];
         _is47InchScreen = [LTDeviceInfo is47InchScreen];
@@ -1212,6 +1238,16 @@ static YYReachability *_reachability = nil;
         _memoryTotal = [LTDeviceInfo memoryTotal];
     }
     return self;
+}
+
+#pragma mark - setter and getter
+- (void)setLanguage:(NSString *)language
+{
+    _language = language.copy;
+    if (_language)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:@[_language] forKey:@"AppleLanguages"];
+    }
 }
 
 #pragma mark - 额外的
