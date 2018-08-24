@@ -120,7 +120,8 @@
     self.center = CGPointMake(self.center.x, centerY);
 }
 
-+ (void)lt_showOscillatoryAnimationWithLayer:(CALayer *)layer type:(LTOscillatoryAnimationType)type
++ (void)lt_showOscillatoryAnimationWithLayer:(CALayer *)layer
+                                        type:(LTOscillatoryAnimationType)type
 {
     NSNumber *animationScale1 = type == LTOscillatoryAnimationToBigger ? @(1.15) : @(0.5);
     NSNumber *animationScale2 = type == LTOscillatoryAnimationToBigger ? @(0.92) : @(1.15);

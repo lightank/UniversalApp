@@ -6,7 +6,7 @@
 @implementation NSString (Hash)
 
 #pragma mark - 散列函数
-- (NSString *)md5String
+- (NSString *)lt_md5String
 {
     const char *str = self.UTF8String;
     uint8_t buffer[CC_MD5_DIGEST_LENGTH];
@@ -16,7 +16,7 @@
     return [self stringFromBytes:buffer length:CC_MD5_DIGEST_LENGTH];
 }
 
-- (NSString *)sha1String
+- (NSString *)lt_sha1String
 {
     const char *str = self.UTF8String;
     uint8_t buffer[CC_SHA1_DIGEST_LENGTH];
@@ -26,7 +26,7 @@
     return [self stringFromBytes:buffer length:CC_SHA1_DIGEST_LENGTH];
 }
 
-- (NSString *)sha224String
+- (NSString *)lt_sha224String
 {
     const char *str = self.UTF8String;
     uint8_t buffer[CC_SHA224_DIGEST_LENGTH];
@@ -36,7 +36,7 @@
     return [self stringFromBytes:buffer length:CC_SHA224_DIGEST_LENGTH];
 }
 
-- (NSString *)sha256String
+- (NSString *)lt_sha256String
 {
     const char *str = self.UTF8String;
     uint8_t buffer[CC_SHA256_DIGEST_LENGTH];
@@ -46,7 +46,7 @@
     return [self stringFromBytes:buffer length:CC_SHA256_DIGEST_LENGTH];
 }
 
-- (NSString *)sha384String
+- (NSString *)lt_sha384String
 {
     const char *str = self.UTF8String;
     uint8_t buffer[CC_SHA384_DIGEST_LENGTH];
@@ -56,7 +56,7 @@
     return [self stringFromBytes:buffer length:CC_SHA384_DIGEST_LENGTH];
 }
 
-- (NSString *)sha512String
+- (NSString *)lt_sha512String
 {
     const char *str = self.UTF8String;
     uint8_t buffer[CC_SHA512_DIGEST_LENGTH];
@@ -67,7 +67,7 @@
 }
 
 #pragma mark - HMAC 散列函数
-- (NSString *)hmacMD5StringWithKey:(NSString *)key
+- (NSString *)lt_hmacMD5StringWithKey:(NSString *)key
 {
     const char *keyData = key.UTF8String;
     const char *strData = self.UTF8String;
@@ -78,7 +78,7 @@
     return [self stringFromBytes:buffer length:CC_MD5_DIGEST_LENGTH];
 }
 
-- (NSString *)hmacSHA1StringWithKey:(NSString *)key
+- (NSString *)lt_hmacSHA1StringWithKey:(NSString *)key
 {
     const char *keyData = key.UTF8String;
     const char *strData = self.UTF8String;
@@ -89,7 +89,7 @@
     return [self stringFromBytes:buffer length:CC_SHA1_DIGEST_LENGTH];
 }
 
-- (NSString *)hmacSHA256StringWithKey:(NSString *)key
+- (NSString *)lt_hmacSHA256StringWithKey:(NSString *)key
 {
     const char *keyData = key.UTF8String;
     const char *strData = self.UTF8String;
@@ -100,7 +100,7 @@
     return [self stringFromBytes:buffer length:CC_SHA256_DIGEST_LENGTH];
 }
 
-- (NSString *)hmacSHA512StringWithKey:(NSString *)key
+- (NSString *)lt_hmacSHA512StringWithKey:(NSString *)key
 {
     const char *keyData = key.UTF8String;
     const char *strData = self.UTF8String;
@@ -115,7 +115,7 @@
 
 #define FileHashDefaultChunkSizeForReadingData 4096
 
-- (NSString *)fileMD5Hash
+- (NSString *)lt_fileMD5Hash
 {
     NSFileHandle *fp = [NSFileHandle fileHandleForReadingAtPath:self];
     if (fp == nil)
@@ -148,7 +148,7 @@
     return [self stringFromBytes:buffer length:CC_MD5_DIGEST_LENGTH];
 }
 
-- (NSString *)fileSHA1Hash
+- (NSString *)lt_fileSHA1Hash
 {
     NSFileHandle *fp = [NSFileHandle fileHandleForReadingAtPath:self];
     if (fp == nil)
@@ -180,7 +180,7 @@
     return [self stringFromBytes:buffer length:CC_SHA1_DIGEST_LENGTH];
 }
 
-- (NSString *)fileSHA256Hash
+- (NSString *)lt_fileSHA256Hash
 {
     NSFileHandle *fp = [NSFileHandle fileHandleForReadingAtPath:self];
     if (fp == nil)
@@ -213,7 +213,7 @@
     return [self stringFromBytes:buffer length:CC_SHA256_DIGEST_LENGTH];
 }
 
-- (NSString *)fileSHA512Hash
+- (NSString *)lt_fileSHA512Hash
 {
     NSFileHandle *fp = [NSFileHandle fileHandleForReadingAtPath:self];
     if (fp == nil)
@@ -255,7 +255,7 @@
  *
  *  @return 字符串表示形式
  */
-- (NSString *)stringFromBytes:(uint8_t *)bytes length:(int)length
+- (NSString *)lt_stringFromBytes:(uint8_t *)bytes length:(int)length
 {
     NSMutableString *strM = [NSMutableString string];
     

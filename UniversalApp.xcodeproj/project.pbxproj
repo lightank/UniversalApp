@@ -24,6 +24,7 @@
 		3D50913F20C6790F00A21655 /* PrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D50913D20C6790F00A21655 /* PrivacyPermission.m */; };
 		3D655756210F195300E6A3CD /* UINavigationBar+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D655755210F195300E6A3CD /* UINavigationBar+LTAdd.m */; };
 		3D9E107F210EA48B003CED5F /* UIColor+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9E107E210EA48B003CED5F /* UIColor+LTAdd.m */; };
+		3DB7193E212FFCE8004C5218 /* UITextView+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB7193D212FFCE8004C5218 /* UITextView+LTAdd.m */; };
 		3DC328BE20F84BF40092C35C /* NSObject+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC328BD20F84BF40092C35C /* NSObject+LTAdd.m */; };
 		3DC328C120F84DFA0092C35C /* NSDictionary+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC328C020F84DFA0092C35C /* NSDictionary+LTAdd.m */; };
 		3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1220B006EF00CD476A /* AppDelegate.m */; };
@@ -112,6 +113,8 @@
 		3D655755210F195300E6A3CD /* UINavigationBar+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+LTAdd.m"; sourceTree = "<group>"; };
 		3D9E107D210EA48B003CED5F /* UIColor+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+LTAdd.h"; sourceTree = "<group>"; };
 		3D9E107E210EA48B003CED5F /* UIColor+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LTAdd.m"; sourceTree = "<group>"; };
+		3DB7193C212FFCE8004C5218 /* UITextView+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+LTAdd.h"; sourceTree = "<group>"; };
+		3DB7193D212FFCE8004C5218 /* UITextView+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LTAdd.m"; sourceTree = "<group>"; };
 		3DC328BC20F84BF40092C35C /* NSObject+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LTAdd.h"; sourceTree = "<group>"; };
 		3DC328BD20F84BF40092C35C /* NSObject+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LTAdd.m"; sourceTree = "<group>"; };
 		3DC328BF20F84DFA0092C35C /* NSDictionary+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LTAdd.h"; sourceTree = "<group>"; };
@@ -456,6 +459,8 @@
 				3DCC9F5F20B0237300CD476A /* UIWindow+LTAdd.m */,
 				3DCC9F6020B0237300CD476A /* UIButton+LTAdd.h */,
 				3DCC9F5820B0237300CD476A /* UIButton+LTAdd.m */,
+				3DB7193C212FFCE8004C5218 /* UITextView+LTAdd.h */,
+				3DB7193D212FFCE8004C5218 /* UITextView+LTAdd.m */,
 				3DCC9F5B20B0237300CD476A /* UIViewController+LTAdd.h */,
 				3DCC9F7620B02F3A00CD476A /* UIViewController+LTAdd.m */,
 				3D655754210F195300E6A3CD /* UINavigationBar+LTAdd.h */,
@@ -771,6 +776,7 @@
 				3D03D64420B80C27006F6F75 /* UINavigationBar+Awesome.m in Sources */,
 				3DCC9F6820B0237300CD476A /* UIButton+LTAdd.m in Sources */,
 				3D48667320B1AE0F002BACA8 /* LTDeviceInfo.m in Sources */,
+				3DB7193E212FFCE8004C5218 /* UITextView+LTAdd.m in Sources */,
 				3D655756210F195300E6A3CD /* UINavigationBar+LTAdd.m in Sources */,
 				3DCC9F7120B02D4500CD476A /* LTTabBarControllerConfig.m in Sources */,
 				3DCC9F4A20B018F900CD476A /* AppDelegate+AppService.m in Sources */,

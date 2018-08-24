@@ -15,6 +15,7 @@
 /**  选中状态下的文字颜色  */
 @property (nonatomic, strong) UIColor *lt_tabBarTitleColorSelected;
 
-
+/**  在当前控制器为子控制器的时候,通过修改edgesForExtendedLayout为none,来把self.view当safeArea  */
+- (void)lt_setSafeArea;
 
 @end

@@ -33,7 +33,9 @@
  @param backgroundColor 背景色
  @return UIImage图片对象
  */
-- (UIImage *)lt_QRCodeImageWithSize:(CGSize)size color:(UIColor*)QRCodeColor backgroundColor:(UIColor*)backgroundColor;
+- (UIImage *)lt_QRCodeImageWithSize:(CGSize)size
+                              color:(UIColor*)QRCodeColor
+                    backgroundColor:(UIColor*)backgroundColor;
 
 /**
  生成条形码【白底黑色】
@@ -51,7 +53,9 @@
  @param backgroundColor 背景色
  @return UIImage图片对象
  */
-- (UIImage *)lt_BarCodeImageWithSize:(CGSize)size color:(UIColor*)barCodeColor backgroundColor:(UIColor*)backgroundColor;
+- (UIImage *)lt_BarCodeImageWithSize:(CGSize)size
+                               color:(UIColor*)barCodeColor
+                     backgroundColor:(UIColor*)backgroundColor;
 
 #pragma mark - 高精度的数字加减乘除
 /**  加法:self + decimalNumber  */
@@ -64,6 +68,7 @@
 - (NSString *)lt_decimalNumberByDividingBy:(NSString *)decimalNumber;
 
 #pragma mark - 数字
-+ (instancetype)lt_stringWithCGFloat:(CGFloat)floatValue decimal:(NSUInteger)decimal;
++ (instancetype)lt_stringWithCGFloat:(CGFloat)floatValue
+                             decimal:(NSUInteger)decimal;
 
 @end

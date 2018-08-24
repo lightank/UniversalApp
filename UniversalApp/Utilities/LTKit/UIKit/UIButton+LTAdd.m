@@ -11,12 +11,24 @@
 @implementation UIButton (LTAdd)
 
 
-+ (instancetype)lt_buttonWithNormalImage:(UIImage *)normalImage normalTitle:(NSString *)normalTitle andFont:(UIFont *)font
++ (instancetype)lt_buttonWithNormalImage:(UIImage *)normalImage
+                             normalTitle:(NSString *)normalTitle
+                                 andFont:(UIFont *)font
 {
     return [UIButton lt_buttonWithNormalImage:normalImage highlightedImage:nil selectedImage:nil disabledImage:nil focusedImage:nil andNormalTitle:normalTitle highlightedTitle:nil selectedTitle:nil disabledTitle:nil focusedTitle:nil andFont:font];
 }
 
-+ (instancetype)lt_buttonWithNormalImage:(UIImage *)normalImage highlightedImage:(UIImage *)highlightedImage selectedImage:(UIImage *)selectedImage  disabledImage:(UIImage *)disabledImage focusedImage:(UIImage *)focusedImage andNormalTitle:(NSString *)normalTitle highlightedTitle:(NSString *)highlightedTitle selectedTitle:(NSString *)selectedTitle disabledTitle:(NSString *)disabledTitle focusedTitle:(NSString *)focusedTitle andFont:(UIFont *)font
++ (instancetype)lt_buttonWithNormalImage:(UIImage *)normalImage
+                        highlightedImage:(UIImage *)highlightedImage
+                           selectedImage:(UIImage *)selectedImage
+                           disabledImage:(UIImage *)disabledImage
+                            focusedImage:(UIImage *)focusedImage
+                          andNormalTitle:(NSString *)normalTitle
+                        highlightedTitle:(NSString *)highlightedTitle
+                           selectedTitle:(NSString *)selectedTitle
+                           disabledTitle:(NSString *)disabledTitle
+                            focusedTitle:(NSString *)focusedTitle
+                                 andFont:(UIFont *)font
 {
     UIButton *button = [[UIButton alloc] init];
     //设置图片
@@ -71,7 +83,8 @@
 }
 
 
-- (void)lt_layoutButtonWithEdgeInsetsStyle:(ButtonEdgeInsetsStyle)style imageTitleSpace:(CGFloat)space
+- (void)lt_layoutButtonWithEdgeInsetsStyle:(ButtonEdgeInsetsStyle)style
+                           imageTitleSpace:(CGFloat)space
 {
     // 1. 得到imageView和titleLabel的宽、高
     CGFloat imageWith = self.imageView.frame.size.width;

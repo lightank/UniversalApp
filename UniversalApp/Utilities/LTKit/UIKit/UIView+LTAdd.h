@@ -36,7 +36,8 @@ typedef NS_ENUM(NSUInteger, LTOscillatoryAnimationType) {
 /**  centerY  */
 @property (nonatomic, assign) CGFloat lt_centerY;     ///< Shortcut for center.y
 
-+ (void)lt_showOscillatoryAnimationWithLayer:(CALayer *)layer type:(LTOscillatoryAnimationType)type;
++ (void)lt_showOscillatoryAnimationWithLayer:(CALayer *)layer
+                                        type:(LTOscillatoryAnimationType)type;
 
 
 /**

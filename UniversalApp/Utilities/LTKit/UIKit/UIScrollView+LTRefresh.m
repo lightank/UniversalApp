@@ -10,12 +10,14 @@
 
 @implementation UIScrollView (LTRefresh)
 
-- (void)lt_addHeaderRefreshTarget:(id)target refreshingAction:(SEL)action
+- (void)lt_addHeaderRefreshTarget:(id)target
+                 refreshingAction:(SEL)action
 {
     self.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:target refreshingAction:action];
 }
 
-- (void)lt_addFooterRefreshTarget:(id)target refreshingAction:(SEL)action
+- (void)lt_addFooterRefreshTarget:(id)target
+                 refreshingAction:(SEL)action
 {
     self.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:target refreshingAction:action];
 }
@@ -30,7 +32,8 @@
     self.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:block];
 }
 
-- (void)lt_setHeaderTitle:(NSString *)title forState:(MJRefreshState)state
+- (void)lt_setHeaderTitle:(NSString *)title
+                 forState:(MJRefreshState)state
 {
     if ([self.mj_header isKindOfClass:[MJRefreshStateHeader class]])
     {
@@ -38,7 +41,8 @@
     }
 }
 
-- (void)lt_setFooterTitle:(NSString *)title forState:(MJRefreshState)state
+- (void)lt_setFooterTitle:(NSString *)title
+                 forState:(MJRefreshState)state
 {
     if ([self.mj_footer isKindOfClass:[MJRefreshAutoStateFooter class]])
     {

@@ -10,6 +10,44 @@
 
 @implementation UINavigationBar (LTAdd)
 
+
+static char kAssociatedObjectKey_navigationBarOverlayKey;
+- (UIView *)lt_overlay
+{
+    return objc_getAssociatedObject(self, &kAssociatedObjectKey_navigationBarOverlayKey);
+}
+
+- (void)setLt_overlay:(UIView *)overlay
+{
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_navigationBarOverlayKey, overlay, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)lt_setBackgroundColor:(UIColor *)backgroundColor
+{
+    if (!self.lt_overlay)
+    {
+        [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        self.lt_overlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + kStatusBarHeight)];
+        self.lt_overlay.userInteractionEnabled = NO;
+        self.lt_overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth;    // Should not set `UIViewAutoresizingFlexibleHeight`
+        [[self.subviews firstObject] insertSubview:self.lt_overlay atIndex:0];
+    }
+    self.lt_overlay.backgroundColor = backgroundColor;
+}
+
+- (void)lt_setTranslationY:(CGFloat)translationY
+{
+    self.transform = CGAffineTransformMakeTranslation(0, translationY);
+}
+
+- (void)lt_reset
+{
+    [self setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.lt_overlay removeFromSuperview];
+    self.lt_overlay = nil;
+}
+
+
 - (void)lt_hiddenBottomLine
 {
     [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];

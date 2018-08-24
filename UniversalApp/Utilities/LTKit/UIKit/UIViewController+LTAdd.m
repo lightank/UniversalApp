@@ -38,5 +38,13 @@ static char kAssociatedObjectKey_tabBarTitleColorSelected;
     return objc_getAssociatedObject(self, &kAssociatedObjectKey_tabBarTitleColorSelected);
 }
 
+- (void)lt_setSafeArea
+{
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+}
+
 
 @end

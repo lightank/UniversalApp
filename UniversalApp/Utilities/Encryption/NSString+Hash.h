@@ -17,7 +17,7 @@
  *
  *  @return 32个字符的MD5散列字符串
  */
-- (NSString *)md5String;
+- (NSString *)lt_md5String;
 
 /**
  *  计算SHA1散列结果
@@ -29,7 +29,7 @@
  *
  *  @return 40个字符的SHA1散列字符串
  */
-- (NSString *)sha1String;
+- (NSString *)lt_sha1String;
 
 /**
  *  计算SHA224散列结果
@@ -41,7 +41,7 @@
  *
  *  @return 56个字符的SHA224散列字符串
  */
-- (NSString *)sha224String;
+- (NSString *)lt_sha224String;
 
 /**
  *  计算SHA256散列结果
@@ -53,7 +53,7 @@
  *
  *  @return 64个字符的SHA256散列字符串
  */
-- (NSString *)sha256String;
+- (NSString *)lt_sha256String;
 
 /**
  *  计算SHA 384散列结果
@@ -65,7 +65,7 @@
  *
  *  @return 96个字符的SHA 384散列字符串
  */
-- (NSString *)sha384String;
+- (NSString *)lt_sha384String;
 
 /**
  *  计算SHA 512散列结果
@@ -77,7 +77,7 @@
  *
  *  @return 128个字符的SHA 512散列字符串
  */
-- (NSString *)sha512String;
+- (NSString *)lt_sha512String;
 
 #pragma mark - HMAC 散列函数
 /**
@@ -90,7 +90,7 @@
  *
  *  @return 32个字符的HMAC MD5散列字符串
  */
-- (NSString *)hmacMD5StringWithKey:(NSString *)key;
+- (NSString *)lt_hmacMD5StringWithKey:(NSString *)key;
 
 /**
  *  计算HMAC SHA1散列结果
@@ -102,7 +102,7 @@
  *
  *  @return 40个字符的HMAC SHA1散列字符串
  */
-- (NSString *)hmacSHA1StringWithKey:(NSString *)key;
+- (NSString *)lt_hmacSHA1StringWithKey:(NSString *)key;
 
 /**
  *  计算HMAC SHA256散列结果
@@ -114,7 +114,7 @@
  *
  *  @return 64个字符的HMAC SHA256散列字符串
  */
-- (NSString *)hmacSHA256StringWithKey:(NSString *)key;
+- (NSString *)lt_hmacSHA256StringWithKey:(NSString *)key;
 
 /**
  *  计算HMAC SHA512散列结果
@@ -126,7 +126,7 @@
  *
  *  @return 128个字符的HMAC SHA512散列字符串
  */
-- (NSString *)hmacSHA512StringWithKey:(NSString *)key;
+- (NSString *)lt_hmacSHA512StringWithKey:(NSString *)key;
 
 #pragma mark - 文件散列函数
 
@@ -140,7 +140,7 @@
  *
  *  @return 32个字符的MD5散列字符串
  */
-- (NSString *)fileMD5Hash;
+- (NSString *)lt_fileMD5Hash;
 
 /**
  *  计算文件的SHA1散列结果
@@ -152,7 +152,7 @@
  *
  *  @return 40个字符的SHA1散列字符串
  */
-- (NSString *)fileSHA1Hash;
+- (NSString *)lt_fileSHA1Hash;
 
 /**
  *  计算文件的SHA256散列结果
@@ -164,7 +164,7 @@
  *
  *  @return 64个字符的SHA256散列字符串
  */
-- (NSString *)fileSHA256Hash;
+- (NSString *)lt_fileSHA256Hash;
 
 /**
  *  计算文件的SHA512散列结果
@@ -176,6 +176,6 @@
  *
  *  @return 128个字符的SHA512散列字符串
  */
-- (NSString *)fileSHA512Hash;
+- (NSString *)lt_fileSHA512Hash;
 
 @end

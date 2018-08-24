@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"第一个";
+    
     for (int i = 0; i < 4; i++) {
         UIImageView *image = [self imageViewWithColor:UIColorHex(0x1E90FF) size:CGSizeMake(kScreenWidth - 20.f, 44) direction:i];
         image.centerX = self.view.centerX;

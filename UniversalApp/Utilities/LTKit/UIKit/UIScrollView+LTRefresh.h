@@ -15,14 +15,18 @@
 
 @interface UIScrollView (LTRefresh)
 
-- (void)lt_addHeaderRefreshTarget:(id)target refreshingAction:(SEL)action;
-- (void)lt_addFooterRefreshTarget:(id)target refreshingAction:(SEL)action;
+- (void)lt_addHeaderRefreshTarget:(id)target
+                 refreshingAction:(SEL)action;
+- (void)lt_addFooterRefreshTarget:(id)target
+                 refreshingAction:(SEL)action;
 
 - (void)lt_addHeaderRefresh:(void(^)(void))block;
 - (void)lt_addFooterRefresh:(void(^)(void))block;
 
-- (void)lt_setHeaderTitle:(NSString *)title forState:(MJRefreshState)state;
-- (void)lt_setFooterTitle:(NSString *)title forState:(MJRefreshState)state;
+- (void)lt_setHeaderTitle:(NSString *)title
+                 forState:(MJRefreshState)state;
+- (void)lt_setFooterTitle:(NSString *)title
+                 forState:(MJRefreshState)state;
 
 - (void)lt_beginHeaderRefresh;
 - (void)lt_endHeaderRefresh;

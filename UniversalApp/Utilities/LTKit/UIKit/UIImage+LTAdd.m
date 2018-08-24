@@ -10,19 +10,26 @@
 
 @implementation UIImage (LTAdd)
 
-+ (UIImage *)lt_imageWithColor:(UIColor *)color size:(CGSize)size direction:(LTGradientImageDirection)direction
++ (UIImage *)lt_imageWithColor:(UIColor *)color
+                          size:(CGSize)size
+                     direction:(LTGradientImageDirection)direction
 {
     if (!color) return nil;
     return [UIImage lt_imageWithColorArray:@[color, [color colorWithAlphaComponent:0.f]] size:size direction:direction];
 }
 
-+ (UIImage *)lt_imageWithFromColor:(UIColor *)fromColor toColor:(UIColor *)toColor size:(CGSize)size direction:(LTGradientImageDirection)direction
++ (UIImage *)lt_imageWithFromColor:(UIColor *)fromColor
+                           toColor:(UIColor *)toColor
+                              size:(CGSize)size
+                         direction:(LTGradientImageDirection)direction
 {
     if (!fromColor || !toColor) return nil;
     return [UIImage lt_imageWithColorArray:@[fromColor, toColor] size:size direction:direction];
 }
 
-+ (UIImage *)lt_imageWithColorArray:(NSArray *)colorArray size:(CGSize)size direction:(LTGradientImageDirection)direction
++ (UIImage *)lt_imageWithColorArray:(NSArray *)colorArray
+                               size:(CGSize)size
+                          direction:(LTGradientImageDirection)direction
 {
     if (!colorArray || colorArray.count == 0) return nil;
     CGSize layerSize = (size.width <= 0 || size.height <= 0) ? CGSizeMake(1.f, 1.f) : size;

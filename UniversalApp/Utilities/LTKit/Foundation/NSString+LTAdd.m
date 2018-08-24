@@ -72,7 +72,9 @@
     return codeImage;
 }
 
-- (UIImage *)lt_QRCodeImageWithSize:(CGSize)size color:(UIColor*)QRCodeColor backgroundColor:(UIColor*)backgroundColor
+- (UIImage *)lt_QRCodeImageWithSize:(CGSize)size
+                              color:(UIColor*)QRCodeColor
+                    backgroundColor:(UIColor*)backgroundColor
 {
     NSData *stringData = [self dataUsingEncoding: NSUTF8StringEncoding];
     //生成
@@ -125,7 +127,9 @@
 }
 
 
-- (UIImage *)lt_BarCodeImageWithSize:(CGSize)size color:(UIColor*)barCodeColor backgroundColor:(UIColor*)backgroundColor
+- (UIImage *)lt_BarCodeImageWithSize:(CGSize)size
+                               color:(UIColor*)barCodeColor
+                     backgroundColor:(UIColor*)backgroundColor
 {
     NSData *stringData = [self dataUsingEncoding: NSUTF8StringEncoding];
     //生成

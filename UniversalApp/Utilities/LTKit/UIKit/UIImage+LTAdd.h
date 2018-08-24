@@ -25,7 +25,9 @@ typedef NS_ENUM(NSUInteger, LTGradientImageDirection) {
  @param direction 方向
  @return 图片
  */
-+ (UIImage *)lt_imageWithColor:(UIColor *)color size:(CGSize)size direction:(LTGradientImageDirection)direction;
++ (UIImage *)lt_imageWithColor:(UIColor *)color
+                          size:(CGSize)size
+                     direction:(LTGradientImageDirection)direction;
 
 /**
  生成一张一个颜色数组渐变的图片
@@ -35,7 +37,9 @@ typedef NS_ENUM(NSUInteger, LTGradientImageDirection) {
  @param direction 方向
  @return 图片
  */
-+ (UIImage *)lt_imageWithColorArray:(NSArray *)colorArray size:(CGSize)size direction:(LTGradientImageDirection)direction;
++ (UIImage *)lt_imageWithColorArray:(NSArray *)colorArray
+                               size:(CGSize)size
+                          direction:(LTGradientImageDirection)direction;
 
 /**
  生成一张一从fromColor颜色到toColor颜色的渐变图片
@@ -46,7 +50,10 @@ typedef NS_ENUM(NSUInteger, LTGradientImageDirection) {
  @param direction 方向
  @return 图片
  */
-+ (UIImage *)lt_imageWithFromColor:(UIColor *)fromColor toColor:(UIColor *)toColor size:(CGSize)size direction:(LTGradientImageDirection)direction;
++ (UIImage *)lt_imageWithFromColor:(UIColor *)fromColor
+                           toColor:(UIColor *)toColor
+                              size:(CGSize)size
+                         direction:(LTGradientImageDirection)direction;
 
 /**
  生成一张size为(1.f, 1.f)大小的纯色背景

@@ -57,7 +57,9 @@ typedef NS_ENUM(NSUInteger, ButtonEdgeInsetsStyle) {
 
 
 /**  便利构造器  */
-+ (instancetype)lt_buttonWithNormalImage:(UIImage *)normalImage normalTitle:(NSString *)normalTitle andFont:(UIFont *)font;
++ (instancetype)lt_buttonWithNormalImage:(UIImage *)normalImage
+                             normalTitle:(NSString *)normalTitle
+                                 andFont:(UIFont *)font;
 
 
 /**
@@ -66,7 +68,8 @@ typedef NS_ENUM(NSUInteger, ButtonEdgeInsetsStyle) {
  *  @param style titleLabel和imageView的布局样式
  *  @param space titleLabel和imageView的间距
  */
-- (void)lt_layoutButtonWithEdgeInsetsStyle:(ButtonEdgeInsetsStyle)style imageTitleSpace:(CGFloat)space;
+- (void)lt_layoutButtonWithEdgeInsetsStyle:(ButtonEdgeInsetsStyle)style
+                           imageTitleSpace:(CGFloat)space;
 
 
 
