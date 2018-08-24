@@ -16,6 +16,8 @@
 
 - (NSDictionary *)lt_dictionary;
 
+- (void)lt_copyToPasteboard;
+
 #pragma mark - 二维码/条形码
 /**
  生成二维码【白底黑色】

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@import MessageUI;
 
 @interface UIApplication (LTAdd)
 
@@ -15,4 +16,11 @@
 
 + (void)lt_openApplicationSettings;
 
++ (void)lt_openURL:(NSString*)url;
++ (BOOL)lt_canOpen:(NSString*)url;
+
++ (void)lt_openMessageWithPhoneNumber:(NSString *)phoneNumber
+                              content:(NSString *)content;
+
 @end
+

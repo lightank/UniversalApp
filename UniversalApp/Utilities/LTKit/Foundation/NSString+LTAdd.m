@@ -23,6 +23,14 @@
     return dict;
 }
 
+- (void)lt_copyToPasteboard
+{
+    if (self)
+    {
+        [UIPasteboard generalPasteboard].string = self;
+    }
+}
+
 + (NSString *)lt_numbersToChinese:(double)number
 {
     /*
