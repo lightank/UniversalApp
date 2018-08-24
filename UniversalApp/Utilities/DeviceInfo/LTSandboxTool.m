@@ -184,7 +184,7 @@
 /**  app的二进制包SHA256Hash  */
 + (NSString *)applicationBinarySHA256Hash
 {
-    return [[self applicationBinaryPath] fileSHA256Hash];
+    return [[self applicationBinaryPath] lt_fileSHA256Hash];
 }
 /**  app的所有资源校验码路径,可通过修改为.plist文件来访问  */
 + (NSString *)applicationCodeResourcesPath
@@ -204,7 +204,7 @@
 /**  app的所有资源校验码路径SHA256Hash  */
 + (NSString *)applicationCodeResourcesSHA256Hash
 {
-    return [[self applicationCodeResourcesPath] fileSHA256Hash];
+    return [[self applicationCodeResourcesPath] lt_fileSHA256Hash];
 }
 
 #pragma mark - 文件相关操作
