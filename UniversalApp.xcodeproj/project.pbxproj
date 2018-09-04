@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3D03D63B20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D03D63A20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m */; };
-		3D03D63E20B7F987006F6F75 /* LTFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D03D63D20B7F987006F6F75 /* LTFirstViewController.m */; };
 		3D03D64420B80C27006F6F75 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D03D64320B80C26006F6F75 /* UINavigationBar+Awesome.m */; };
 		3D20AC3F20B3B04200BDE45D /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20AC3D20B2C83800BDE45D /* JavaScriptCore.framework */; };
 		3D20AC4320B3B0EC00BDE45D /* LTBaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D20AC4220B3B0EC00BDE45D /* LTBaseWebViewController.m */; };
@@ -22,9 +21,14 @@
 		3D48668120B1B34D002BACA8 /* LTSandboxTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48668020B1B34D002BACA8 /* LTSandboxTool.m */; };
 		3D48668420B1B4C0002BACA8 /* NSArray+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48668320B1B4C0002BACA8 /* NSArray+LTAdd.m */; };
 		3D50913F20C6790F00A21655 /* PrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D50913D20C6790F00A21655 /* PrivacyPermission.m */; };
+		3D5B93362134F29D00B8599C /* UITableViewCell+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B93352134F29D00B8599C /* UITableViewCell+LTAdd.m */; };
 		3D655756210F195300E6A3CD /* UINavigationBar+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D655755210F195300E6A3CD /* UINavigationBar+LTAdd.m */; };
+		3D679305213D24000017891D /* UIBarButtonItem+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D679304213D24000017891D /* UIBarButtonItem+LTAdd.m */; };
+		3D67930D213E23160017891D /* LTFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D67930C213E23160017891D /* LTFirstViewController.m */; };
 		3D9E107F210EA48B003CED5F /* UIColor+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9E107E210EA48B003CED5F /* UIColor+LTAdd.m */; };
 		3DB7193E212FFCE8004C5218 /* UITextView+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB7193D212FFCE8004C5218 /* UITextView+LTAdd.m */; };
+		3DB7194121302C43004C5218 /* UITableView+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB7194021302C43004C5218 /* UITableView+LTAdd.m */; };
+		3DB7194521302D89004C5218 /* LTPermissions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB7194421302D89004C5218 /* LTPermissions.m */; };
 		3DC328BE20F84BF40092C35C /* NSObject+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC328BD20F84BF40092C35C /* NSObject+LTAdd.m */; };
 		3DC328C120F84DFA0092C35C /* NSDictionary+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC328C020F84DFA0092C35C /* NSDictionary+LTAdd.m */; };
 		3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1220B006EF00CD476A /* AppDelegate.m */; };
@@ -82,8 +86,6 @@
 		32D3A5DAA64B035CDF219C8B /* libPods-UniversalAppUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UniversalAppUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D03D63920B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTBaseLocalHTMLWebViewController.h; sourceTree = "<group>"; };
 		3D03D63A20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTBaseLocalHTMLWebViewController.m; sourceTree = "<group>"; };
-		3D03D63C20B7F987006F6F75 /* LTFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTFirstViewController.h; sourceTree = "<group>"; };
-		3D03D63D20B7F987006F6F75 /* LTFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTFirstViewController.m; sourceTree = "<group>"; };
 		3D03D64220B80C26006F6F75 /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
 		3D03D64320B80C26006F6F75 /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
 		3D20AC3D20B2C83800BDE45D /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -109,12 +111,22 @@
 		3D48668320B1B4C0002BACA8 /* NSArray+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LTAdd.m"; sourceTree = "<group>"; };
 		3D50913D20C6790F00A21655 /* PrivacyPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyPermission.m; sourceTree = "<group>"; };
 		3D50913E20C6790F00A21655 /* PrivacyPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyPermission.h; sourceTree = "<group>"; };
+		3D5B93342134F29D00B8599C /* UITableViewCell+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+LTAdd.h"; sourceTree = "<group>"; };
+		3D5B93352134F29D00B8599C /* UITableViewCell+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+LTAdd.m"; sourceTree = "<group>"; };
 		3D655754210F195300E6A3CD /* UINavigationBar+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+LTAdd.h"; sourceTree = "<group>"; };
 		3D655755210F195300E6A3CD /* UINavigationBar+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+LTAdd.m"; sourceTree = "<group>"; };
+		3D679303213D24000017891D /* UIBarButtonItem+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+LTAdd.h"; sourceTree = "<group>"; };
+		3D679304213D24000017891D /* UIBarButtonItem+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+LTAdd.m"; sourceTree = "<group>"; };
+		3D67930B213E23160017891D /* LTFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTFirstViewController.h; sourceTree = "<group>"; };
+		3D67930C213E23160017891D /* LTFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTFirstViewController.m; sourceTree = "<group>"; };
 		3D9E107D210EA48B003CED5F /* UIColor+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+LTAdd.h"; sourceTree = "<group>"; };
 		3D9E107E210EA48B003CED5F /* UIColor+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LTAdd.m"; sourceTree = "<group>"; };
 		3DB7193C212FFCE8004C5218 /* UITextView+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+LTAdd.h"; sourceTree = "<group>"; };
 		3DB7193D212FFCE8004C5218 /* UITextView+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LTAdd.m"; sourceTree = "<group>"; };
+		3DB7193F21302C43004C5218 /* UITableView+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+LTAdd.h"; sourceTree = "<group>"; };
+		3DB7194021302C43004C5218 /* UITableView+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LTAdd.m"; sourceTree = "<group>"; };
+		3DB7194321302D89004C5218 /* LTPermissions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTPermissions.h; sourceTree = "<group>"; };
+		3DB7194421302D89004C5218 /* LTPermissions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTPermissions.m; sourceTree = "<group>"; };
 		3DC328BC20F84BF40092C35C /* NSObject+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LTAdd.h"; sourceTree = "<group>"; };
 		3DC328BD20F84BF40092C35C /* NSObject+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LTAdd.m"; sourceTree = "<group>"; };
 		3DC328BF20F84DFA0092C35C /* NSDictionary+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LTAdd.h"; sourceTree = "<group>"; };
@@ -226,24 +238,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3D03D63F20B7F990006F6F75 /* FirstViewController */ = {
-			isa = PBXGroup;
-			children = (
-				3D03D64020B7F9A2006F6F75 /* Controller */,
-			);
-			name = FirstViewController;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
-		3D03D64020B7F9A2006F6F75 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				3D03D63C20B7F987006F6F75 /* LTFirstViewController.h */,
-				3D03D63D20B7F987006F6F75 /* LTFirstViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		3D03D64120B80C17006F6F75 /* LTNavigationBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +298,32 @@
 				3D50913D20C6790F00A21655 /* PrivacyPermission.m */,
 			);
 			path = PrivacyPermission;
+			sourceTree = "<group>";
+		};
+		3D679309213E23160017891D /* FirstViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3D67930A213E23160017891D /* Controller */,
+			);
+			path = FirstViewController;
+			sourceTree = "<group>";
+		};
+		3D67930A213E23160017891D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3D67930B213E23160017891D /* LTFirstViewController.h */,
+				3D67930C213E23160017891D /* LTFirstViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3DB7194221302D6F004C5218 /* LTPermissions */ = {
+			isa = PBXGroup;
+			children = (
+				3DB7194321302D89004C5218 /* LTPermissions.h */,
+				3DB7194421302D89004C5218 /* LTPermissions.m */,
+			);
+			path = LTPermissions;
 			sourceTree = "<group>";
 		};
 		3DCC9F0520B006EF00CD476A = {
@@ -387,7 +407,7 @@
 		3DCC9F4420B00E8100CD476A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				3D03D63F20B7F990006F6F75 /* FirstViewController */,
+				3D679309213E23160017891D /* FirstViewController */,
 				3D48667820B1B197002BACA8 /* User */,
 				3DCC9F7A20B0313F00CD476A /* Network */,
 				3DCC9F6E20B02D2E00CD476A /* HomeTabBar */,
@@ -420,6 +440,7 @@
 		3DCC9F4720B0183300CD476A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				3DB7194221302D6F004C5218 /* LTPermissions */,
 				3D48666420B1ADF5002BACA8 /* DeviceInfo */,
 				3D48665D20B1AAA3002BACA8 /* Encryption */,
 				3DCC9F5220B0237300CD476A /* LTKit */,
@@ -463,6 +484,12 @@
 				3DB7193D212FFCE8004C5218 /* UITextView+LTAdd.m */,
 				3DCC9F5B20B0237300CD476A /* UIViewController+LTAdd.h */,
 				3DCC9F7620B02F3A00CD476A /* UIViewController+LTAdd.m */,
+				3DB7193F21302C43004C5218 /* UITableView+LTAdd.h */,
+				3DB7194021302C43004C5218 /* UITableView+LTAdd.m */,
+				3D679303213D24000017891D /* UIBarButtonItem+LTAdd.h */,
+				3D679304213D24000017891D /* UIBarButtonItem+LTAdd.m */,
+				3D5B93342134F29D00B8599C /* UITableViewCell+LTAdd.h */,
+				3D5B93352134F29D00B8599C /* UITableViewCell+LTAdd.m */,
 				3D655754210F195300E6A3CD /* UINavigationBar+LTAdd.h */,
 				3D655755210F195300E6A3CD /* UINavigationBar+LTAdd.m */,
 				3DCC9F7720B02F3A00CD476A /* UINavigationController+LTAdd.h */,
@@ -770,6 +797,7 @@
 				3D2E14B721087EA7003B3122 /* LTRequestHeaderModel.m in Sources */,
 				3DE5B31A20B047CF009719D0 /* LTNetworkTools.m in Sources */,
 				3DCC9F6920B0237300CD476A /* UIScrollView+LTRefresh.m in Sources */,
+				3DB7194121302C43004C5218 /* UITableView+LTAdd.m in Sources */,
 				3D48668120B1B34D002BACA8 /* LTSandboxTool.m in Sources */,
 				3D50913F20C6790F00A21655 /* PrivacyPermission.m in Sources */,
 				3DC328C120F84DFA0092C35C /* NSDictionary+LTAdd.m in Sources */,
@@ -777,10 +805,11 @@
 				3DCC9F6820B0237300CD476A /* UIButton+LTAdd.m in Sources */,
 				3D48667320B1AE0F002BACA8 /* LTDeviceInfo.m in Sources */,
 				3DB7193E212FFCE8004C5218 /* UITextView+LTAdd.m in Sources */,
+				3D5B93362134F29D00B8599C /* UITableViewCell+LTAdd.m in Sources */,
+				3D679305213D24000017891D /* UIBarButtonItem+LTAdd.m in Sources */,
 				3D655756210F195300E6A3CD /* UINavigationBar+LTAdd.m in Sources */,
 				3DCC9F7120B02D4500CD476A /* LTTabBarControllerConfig.m in Sources */,
 				3DCC9F4A20B018F900CD476A /* AppDelegate+AppService.m in Sources */,
-				3D03D63E20B7F987006F6F75 /* LTFirstViewController.m in Sources */,
 				3DCC9F7520B02E0A00CD476A /* LTNavigationController.m in Sources */,
 				3D38625E20EE075000CE4CB0 /* UIApplication+LTAdd.m in Sources */,
 				3DCC9F6B20B0237300CD476A /* UINavigationController+LTAdd.m in Sources */,
@@ -796,6 +825,7 @@
 				3D48667B20B1B1B7002BACA8 /* LTUserManager.m in Sources */,
 				3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */,
 				3D48666220B1AAC5002BACA8 /* NSString+Hash.m in Sources */,
+				3D67930D213E23160017891D /* LTFirstViewController.m in Sources */,
 				3DCC9F6A20B0237300CD476A /* UIView+LTAdd.m in Sources */,
 				3D20AC4320B3B0EC00BDE45D /* LTBaseWebViewController.m in Sources */,
 				3DFE3E7320EA532500A8832C /* AppDelegate+OpenInstallSDK.m in Sources */,
@@ -804,6 +834,7 @@
 				3DCC9F6620B0237300CD476A /* UIImage+LTAdd.m in Sources */,
 				3DCC9F6D20B0237300CD476A /* NSString+LTAdd.m in Sources */,
 				3D03D63B20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m in Sources */,
+				3DB7194521302D89004C5218 /* LTPermissions.m in Sources */,
 				3DFE3E7620EA533300A8832C /* AppDelegate+JPush.m in Sources */,
 				3D9E107F210EA48B003CED5F /* UIColor+LTAdd.m in Sources */,
 			);

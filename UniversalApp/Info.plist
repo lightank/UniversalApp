@@ -12,6 +12,8 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -41,5 +43,51 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>蓝牙/Bluetooth</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>日历/Calendars</string>
+	<key>NSCameraUsageDescription</key>
+	<string>相机/Camera</string>
+	<key>NSContactsUsageDescription</key>
+	<string>通讯录/Contacts</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>FaceID</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>健康分享/HealthShare</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>健康更新/HealthUpdate</string>
+	<key>NSHomeKitUsageDescription</key>
+	<string>HomeKit</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>始终/使用期间使用位置信息/LocationAlwaysAndWhenInUse</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>使用期间访问位置</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>始终使用位置信息/LocationAlways</string>
+	<key>NSLocationUsageDescription</key>
+	<string>位置信息/Location</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>媒体资料库/Music</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>麦克风/Microphone</string>
+	<key>NSMotionUsageDescription</key>
+	<string>运动与健身/Motion</string>
+	<key>kTCCServiceMediaLibrary</key>
+	<string>MediaLibrary</string>
+	<key>NFCReaderUsageDescription</key>
+	<string>NFCReader</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>向相册添加/PhotoLibraryAdd</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>相册/PhotoLibrary</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>提醒事项/Reminders</string>
+	<key>NSSiriUsageDescription</key>
+	<string>Siri</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>语音识别/Speech Recognition</string>
+	<key>NSVideoSubscriberAccountUsageDescription</key>
+	<string>视频订阅账号/VideoSubscriberAccount</string>
 </dict>
 </plist>

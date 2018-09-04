@@ -13,7 +13,7 @@
     
     CC_MD5(str, (CC_LONG)strlen(str), buffer);
     
-    return [self stringFromBytes:buffer length:CC_MD5_DIGEST_LENGTH];
+    return [self lt_stringFromBytes:buffer length:CC_MD5_DIGEST_LENGTH];
 }
 
 - (NSString *)lt_sha1String
@@ -23,7 +23,7 @@
     
     CC_SHA1(str, (CC_LONG)strlen(str), buffer);
     
-    return [self stringFromBytes:buffer length:CC_SHA1_DIGEST_LENGTH];
+    return [self lt_stringFromBytes:buffer length:CC_SHA1_DIGEST_LENGTH];
 }
 
 - (NSString *)lt_sha224String
@@ -33,7 +33,7 @@
     
     CC_SHA224(str, (CC_LONG)strlen(str), buffer);
     
-    return [self stringFromBytes:buffer length:CC_SHA224_DIGEST_LENGTH];
+    return [self lt_stringFromBytes:buffer length:CC_SHA224_DIGEST_LENGTH];
 }
 
 - (NSString *)lt_sha256String
@@ -43,7 +43,7 @@
     
     CC_SHA256(str, (CC_LONG)strlen(str), buffer);
     
-    return [self stringFromBytes:buffer length:CC_SHA256_DIGEST_LENGTH];
+    return [self lt_stringFromBytes:buffer length:CC_SHA256_DIGEST_LENGTH];
 }
 
 - (NSString *)lt_sha384String
@@ -53,7 +53,7 @@
     
     CC_SHA384(str, (CC_LONG)strlen(str), buffer);
     
-    return [self stringFromBytes:buffer length:CC_SHA384_DIGEST_LENGTH];
+    return [self lt_stringFromBytes:buffer length:CC_SHA384_DIGEST_LENGTH];
 }
 
 - (NSString *)lt_sha512String
@@ -63,7 +63,7 @@
     
     CC_SHA512(str, (CC_LONG)strlen(str), buffer);
     
-    return [self stringFromBytes:buffer length:CC_SHA512_DIGEST_LENGTH];
+    return [self lt_stringFromBytes:buffer length:CC_SHA512_DIGEST_LENGTH];
 }
 
 #pragma mark - HMAC 散列函数
@@ -75,7 +75,7 @@
     
     CCHmac(kCCHmacAlgMD5, keyData, strlen(keyData), strData, strlen(strData), buffer);
     
-    return [self stringFromBytes:buffer length:CC_MD5_DIGEST_LENGTH];
+    return [self lt_stringFromBytes:buffer length:CC_MD5_DIGEST_LENGTH];
 }
 
 - (NSString *)lt_hmacSHA1StringWithKey:(NSString *)key
@@ -86,7 +86,7 @@
     
     CCHmac(kCCHmacAlgSHA1, keyData, strlen(keyData), strData, strlen(strData), buffer);
     
-    return [self stringFromBytes:buffer length:CC_SHA1_DIGEST_LENGTH];
+    return [self lt_stringFromBytes:buffer length:CC_SHA1_DIGEST_LENGTH];
 }
 
 - (NSString *)lt_hmacSHA256StringWithKey:(NSString *)key
@@ -97,7 +97,7 @@
     
     CCHmac(kCCHmacAlgSHA256, keyData, strlen(keyData), strData, strlen(strData), buffer);
     
-    return [self stringFromBytes:buffer length:CC_SHA256_DIGEST_LENGTH];
+    return [self lt_stringFromBytes:buffer length:CC_SHA256_DIGEST_LENGTH];
 }
 
 - (NSString *)lt_hmacSHA512StringWithKey:(NSString *)key
@@ -108,7 +108,7 @@
     
     CCHmac(kCCHmacAlgSHA512, keyData, strlen(keyData), strData, strlen(strData), buffer);
     
-    return [self stringFromBytes:buffer length:CC_SHA512_DIGEST_LENGTH];
+    return [self lt_stringFromBytes:buffer length:CC_SHA512_DIGEST_LENGTH];
 }
 
 #pragma mark - 文件散列函数
@@ -145,7 +145,7 @@
     uint8_t buffer[CC_MD5_DIGEST_LENGTH];
     CC_MD5_Final(buffer, &hashCtx);
     
-    return [self stringFromBytes:buffer length:CC_MD5_DIGEST_LENGTH];
+    return [self lt_stringFromBytes:buffer length:CC_MD5_DIGEST_LENGTH];
 }
 
 - (NSString *)lt_fileSHA1Hash
@@ -177,7 +177,7 @@
     uint8_t buffer[CC_SHA1_DIGEST_LENGTH];
     CC_SHA1_Final(buffer, &hashCtx);
     
-    return [self stringFromBytes:buffer length:CC_SHA1_DIGEST_LENGTH];
+    return [self lt_stringFromBytes:buffer length:CC_SHA1_DIGEST_LENGTH];
 }
 
 - (NSString *)lt_fileSHA256Hash
@@ -210,7 +210,7 @@
     uint8_t buffer[CC_SHA256_DIGEST_LENGTH];
     CC_SHA256_Final(buffer, &hashCtx);
     
-    return [self stringFromBytes:buffer length:CC_SHA256_DIGEST_LENGTH];
+    return [self lt_stringFromBytes:buffer length:CC_SHA256_DIGEST_LENGTH];
 }
 
 - (NSString *)lt_fileSHA512Hash
@@ -243,7 +243,7 @@
     uint8_t buffer[CC_SHA512_DIGEST_LENGTH];
     CC_SHA512_Final(buffer, &hashCtx);
     
-    return [self stringFromBytes:buffer length:CC_SHA512_DIGEST_LENGTH];
+    return [self lt_stringFromBytes:buffer length:CC_SHA512_DIGEST_LENGTH];
 }
 
 #pragma mark - 助手方法

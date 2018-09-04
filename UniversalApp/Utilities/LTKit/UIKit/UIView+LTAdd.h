@@ -41,9 +41,9 @@ typedef NS_ENUM(NSUInteger, LTOscillatoryAnimationType) {
 
 
 /**
- Returns the UIViewController object that manages the receiver.
+ Returns the view's view controller (may be nil).
  */
-@property (nullable, nonatomic, readonly, strong) UIViewController *lt_viewContainingController;
+@property (nullable, nonatomic, readonly) UIViewController *lt_viewController;
 /**  Returns the topMost UIViewController object in hierarchy.  */
 @property (nullable, nonatomic, readonly, strong) UIViewController *lt_topMostController;
 /**

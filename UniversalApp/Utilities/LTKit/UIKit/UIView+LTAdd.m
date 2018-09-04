@@ -194,19 +194,14 @@
     return nil;
 }
 
-- (UIViewController *)lt_viewContainingController
-{
-    UIResponder *nextResponder =  self;
-    
-    do
+- (UIViewController *)lt_viewController {
+    for (UIView *view = self; view; view = view.superview)
     {
-        nextResponder = [nextResponder nextResponder];
-        
-        if ([nextResponder isKindOfClass:[UIViewController class]])
-            return (UIViewController*)nextResponder;
-        
-    } while (nextResponder);
-    
+        UIResponder *nextResponder = [view nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
     return nil;
 }
 

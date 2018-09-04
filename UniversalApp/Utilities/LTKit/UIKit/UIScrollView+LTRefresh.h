@@ -43,6 +43,8 @@
 /**  是否自动调整scrollview的内间距  */
 @property (nonatomic, assign, getter=isContentInsetAdjust) BOOL lt_contentInsetAdjust;
 
+- (void)disableAdjustContentInset;
+
 @end
 
 
