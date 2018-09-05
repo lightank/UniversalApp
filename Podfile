@@ -18,6 +18,7 @@ target 'UniversalApp' do
     pod 'QMUIKit'
     pod 'FMDB'
     pod 'ReactiveObjC'
+    pod 'RTRootNavigationController'
     pod 'FDFullscreenPopGesture'
     pod 'Aspects'
     pod 'MBProgressHUD'

@@ -73,4 +73,7 @@
 + (instancetype)lt_stringWithCGFloat:(CGFloat)floatValue
                              decimal:(NSUInteger)decimal;
 
++ (NSString *)lt_decimalNumberWithNSNumber:(NSNumber *)number
+                          significantDigit:(NSUInteger)digit;
+
 @end

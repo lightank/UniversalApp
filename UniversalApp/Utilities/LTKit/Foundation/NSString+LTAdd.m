@@ -206,4 +206,13 @@
     return [NSString stringWithFormat:formatString, floatValue];
 }
 
++ (NSString *)lt_decimalNumberWithNSNumber:(NSNumber *)number
+                          significantDigit:(NSUInteger)digit
+{
+    NSString *format = [NSString stringWithFormat:@"%%.%lulf", (unsigned long)digit];
+    NSString *amount = [NSString stringWithFormat:format, number.doubleValue];
+    NSString *result = [NSDecimalNumber decimalNumberWithString:amount].stringValue;
+    return result;
+}
+
 @end

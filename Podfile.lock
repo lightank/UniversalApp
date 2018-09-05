@@ -281,6 +281,9 @@ PODS:
     - QMUIKit/QMUICore
   - QMUIKit/QMUIResources (2.6.1)
   - ReactiveObjC (3.1.0)
+  - RTRootNavigationController (0.6.7):
+    - RTRootNavigationController/Core (= 0.6.7)
+  - RTRootNavigationController/Core (0.6.7)
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
@@ -309,6 +312,7 @@ DEPENDENCIES:
   - MJRefresh
   - QMUIKit
   - ReactiveObjC
+  - RTRootNavigationController
   - SDWebImage
   - UMCAnalytics
   - UMCCommon
@@ -333,6 +337,7 @@ SPEC REPOS:
     - MJRefresh
     - QMUIKit
     - ReactiveObjC
+    - RTRootNavigationController
     - SDWebImage
     - UICKeyChainStore
     - UMCAnalytics
@@ -357,6 +362,7 @@ SPEC CHECKSUMS:
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   QMUIKit: 38bcdf7ba5e1868256ad9de4d60689e70f1caf48
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
+  RTRootNavigationController: d6aa6cbb78a3eaecea4f6e4df63f15dd887836b8
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
   UMCAnalytics: 4667788559a72f2fa5077117d1b8802a3b6eb6bb
@@ -365,6 +371,6 @@ SPEC CHECKSUMS:
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 5a980b3d9ba77625457eb1ca41cd1fb378b3b17a
+PODFILE CHECKSUM: c86acf0c0fba764671246ec0b6fa788928718a58
 
 COCOAPODS: 1.5.3
