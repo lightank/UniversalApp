@@ -54,7 +54,7 @@ typedef void(^CompletionBlock)(BOOL authorized, LTPrivacyPermissionAuthorization
                              completion:(CompletionBlock)completion;
 
 
-+ (void)openApplicationSettings;
++ (void)showOpenApplicationSettingsAlertWithTitle:(NSString *)title message:(NSString *)message;
 
 @end
 

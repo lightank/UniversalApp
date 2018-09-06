@@ -4,7 +4,7 @@
 //
 //  Created by huanyu.li on 2018/8/24.
 //  Copyright © 2018年 huanyu.li. All rights reserved.
-//  
+//
 
 #import "LTPrivacyPermission.h"
 @import Photos;
@@ -485,9 +485,34 @@ static double const kLTPrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
     }
 }
 
-+ (void)openApplicationSettings
++ (void)showOpenApplicationSettingsAlertWithTitle:(NSString *)title message:(NSString *)message
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction *settingAction = [UIAlertAction actionWithTitle:@"前往设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSURL *settingURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        if ([[UIApplication sharedApplication] canOpenURL:settingURL])
+        {
+            if (@available(iOS 10.0, *))
+            {
+                [[UIApplication sharedApplication] openURL:settingURL options:@{} completionHandler:nil];
+            }
+            else
+            {
+                [[UIApplication sharedApplication] openURL:settingURL];
+            }
+        }
+    }];
+    
+    [alertVC addAction:cancelAction];
+    [alertVC addAction:settingAction];
+    
+    [UIApplication.sharedApplication.keyWindow.rootViewController presentViewController:alertVC animated:YES completion:^{
+        
+    }];
 }
 
 #pragma mark - CLLocationManagerDelegate

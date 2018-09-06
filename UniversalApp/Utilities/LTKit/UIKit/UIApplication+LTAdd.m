@@ -26,13 +26,18 @@
 
 + (void)lt_openApplicationSettings
 {
-    if (@available(iOS 10.0, *))
+    NSURL *settingURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    if ([[UIApplication sharedApplication] canOpenURL:settingURL])
     {
-        // iOS 10 以后必须得有申请过一个权限才能打开app设置,不然打开的是系统设置
-        //UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-        //[[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+        if (@available(iOS 10.0, *)) // iOS 10 以后必须得有申请过一个权限才能打开app设置,不然打开的是系统设置
+        {
+            [[UIApplication sharedApplication] openURL:settingURL options:@{} completionHandler:nil];
+        }
+        else
+        {
+            [[UIApplication sharedApplication] openURL:settingURL];
+        }
     }
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
 }
 
 + (void)lt_openMessageWithPhoneNumber:(NSString *)phoneNumber
