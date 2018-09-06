@@ -1115,7 +1115,10 @@ static YYReachability *_reachability = nil;
 }
 
 #pragma mark - cookie相关
-+ (BOOL)addCookieWithName:(nonnull NSString *)name value:(nonnull NSString *)value domain:(nonnull NSString *)domain path:(nonnull NSString *)path
++ (BOOL)addCookieWithName:(nonnull NSString *)name
+                    value:(nonnull NSString *)value
+                   domain:(nonnull NSString *)domain
+                     path:(nonnull NSString *)path
 {
     /*
      [NSHTTPCookie cookieWithProperties:@{

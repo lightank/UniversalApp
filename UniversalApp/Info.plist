@@ -54,9 +54,9 @@
 	<key>NSFaceIDUsageDescription</key>
 	<string>FaceID</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>健康分享/HealthShare</string>
+	<string>健康数据分享/HealthShare</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>健康更新/HealthUpdate</string>
+	<string>健康数据更新/HealthUpdate</string>
 	<key>NSHomeKitUsageDescription</key>
 	<string>HomeKit</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
