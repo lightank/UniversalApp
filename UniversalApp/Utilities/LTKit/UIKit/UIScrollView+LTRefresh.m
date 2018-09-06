@@ -102,13 +102,15 @@ static char kAssociatedObjectKey_contentInsetAdjust;
     return ((NSNumber *)objc_getAssociatedObject(self, &kAssociatedObjectKey_contentInsetAdjust)).boolValue;
 }
 
-- (void)disableAdjustContentInset
+- (void)lt_disableAdjustContentInset
 {
     if (@available(iOS 11.0, *))
     {
         self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
-    self.lt_viewController.automaticallyAdjustsScrollViewInsets = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.lt_viewController.automaticallyAdjustsScrollViewInsets = NO;
+    });
 }
 
 
