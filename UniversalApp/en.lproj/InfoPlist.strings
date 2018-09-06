@@ -1,0 +1,23 @@
+/* 
+  InfoPlist.strings
+  UniversalApp
+
+  Created by huanyu.li on 2018/9/6.
+  Copyright © 2018年 huanyu.li. All rights reserved.
+*/
+
+NSBluetoothPeripheralUsageDescription = "BluetoothUsage";
+NSAppleMusicUsageDescription = "AppleMusicUsage";
+NSCalendarsUsageDescription = "CalendarsUsage";
+NSCameraUsageDescription = "CameraUsage";
+NSContactsUsageDescription = "ContactsUsage";
+NSHealthShareUsageDescription = "HealthShareUsage";
+NSHealthUpdateUsageDescription = "HealthUpdateUsage";
+NSLocationWhenInUseUsageDescription = "LocationWhenInUseUsage";
+NSLocationUsageDescription = "LocationUsage";
+NSLocationAlwaysUsageDescription = "LocationAlwaysUsage";
+NSMicrophoneUsageDescription = "MicrophoneUsage";
+NSMotionUsageDescription = "MotionUsage";
+NSPhotoLibraryUsageDescription = "PhotoLibraryUsage";
+NSRemindersUsageDescription = "RemindersUsage";
+NSSpeechRecognitionUsageDescription = "SpeechRecognitionUsage";

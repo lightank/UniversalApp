@@ -14,13 +14,15 @@ typedef NS_ENUM(NSUInteger, LTPrivacyPermissionType) {
     LTPrivacyPermissionTypeCamera,
     LTPrivacyPermissionTypeMedia,
     LTPrivacyPermissionTypeMicrophone,
-    LTPrivacyPermissionTypeLocation,
-    LTPrivacyPermissionTypeBluetooth,
+    LTPrivacyPermissionTypeLocationAlwaysAndWhenInUse,
+    LTPrivacyPermissionTypeLocationAlways,
+    LTPrivacyPermissionTypeLocationWhenInUse,
     LTPrivacyPermissionTypePushNotification,
     LTPrivacyPermissionTypeSpeech,
     LTPrivacyPermissionTypeEvent,
     LTPrivacyPermissionTypeContact,
     LTPrivacyPermissionTypeReminder,
+    LTPrivacyPermissionTypeNetwork,
 };
 
 typedef NS_ENUM(NSInteger, LTPrivacyPermissionAuthorizationStatus)
@@ -32,16 +34,32 @@ typedef NS_ENUM(NSInteger, LTPrivacyPermissionAuthorizationStatus)
     LTPrivacyPermissionAuthorizationStatusLocationAlways,
     LTPrivacyPermissionAuthorizationStatusLocationWhenInUse,
     LTPrivacyPermissionAuthorizationStatusUnkonwn,
+    LTPrivacyPermissionAuthorizationStatusServicesDisabled,
 };
+
+typedef void(^CompletionBlock)(BOOL authorized, LTPrivacyPermissionAuthorizationStatus status);
 
 @interface LTPrivacyPermission : NSObject
 
 /* Methods for creating LTPrivacyPermission instances. */
 @property (class, readonly, strong) LTPrivacyPermission *sharedPermission;
 
+
+/**
+ * @brief `Function for access the permissions` -> 获取权限函数
+ * @param type `The enumeration type for access permission` -> 获取权限枚举类型
+ * @param completion `A block for the permission result and the value of authorization status` -> 获取权限结果和对应权限状态的block
+ */
+- (void)accessPrivacyPermissionWithType:(LTPrivacyPermissionType)type
+                             completion:(CompletionBlock)completion;
+
+
++ (void)openApplicationSettings;
+
 @end
 
 /*
+ info.plist:
  
  <key>NSBluetoothPeripheralUsageDescription</key>
  <string>蓝牙/Bluetooth</string>
@@ -89,5 +107,41 @@ typedef NS_ENUM(NSInteger, LTPrivacyPermissionAuthorizationStatus)
  <string>语音识别/Speech Recognition</string>
  <key>NSVideoSubscriberAccountUsageDescription</key>
  <string>视频订阅账号/VideoSubscriberAccount</string>
+ 
+ 国际化:
+ 
+ en:
+ NSBluetoothPeripheralUsageDescription = "BluetoothUsage";
+ NSAppleMusicUsageDescription = "AppleMusicUsage";
+ NSCalendarsUsageDescription = "CalendarsUsage";
+ NSCameraUsageDescription = "CameraUsage";
+ NSContactsUsageDescription = "ContactsUsage";
+ NSHealthShareUsageDescription = "HealthShareUsage";
+ NSHealthUpdateUsageDescription = "HealthUpdateUsage";
+ NSLocationWhenInUseUsageDescription = "LocationWhenInUseUsage";
+ NSLocationUsageDescription = "LocationUsage";
+ NSLocationAlwaysUsageDescription = "LocationAlwaysUsage";
+ NSMicrophoneUsageDescription = "MicrophoneUsage";
+ NSMotionUsageDescription = "MotionUsage";
+ NSPhotoLibraryUsageDescription = "PhotoLibraryUsage";
+ NSRemindersUsageDescription = "RemindersUsage";
+ NSSpeechRecognitionUsageDescription = "SpeechRecognitionUsage";
+ 
+ zh:
+ NSBluetoothPeripheralUsageDescription = "需要你的同意,才能访问蓝牙";
+ NSAppleMusicUsageDescription = "需要你的同意,才能访问媒体资料库";
+ NSCalendarsUsageDescription = "需要你的同意,才能访问日历";
+ NSCameraUsageDescription = "需要你的同意,才能访问相机";
+ NSContactsUsageDescription = "需要你的同意,才能访问通讯录";
+ NSHealthShareUsageDescription = "需要你的同意,才能访问健康分享";
+ NSHealthUpdateUsageDescription = "需要你的同意,才能访问健康更新";
+ NSLocationWhenInUseUsageDescription = "需要你的同意,才能在使用期间访问位置";
+ NSLocationUsageDescription = "需要你的同意,才能访问位置";
+ NSLocationAlwaysUsageDescription = "需要你的同意,才能始终访问位置";
+ NSMicrophoneUsageDescription = "需要你的同意,才能访问麦克风";
+ NSMotionUsageDescription = "需要你的同意,才能访问运动与健身";
+ NSPhotoLibraryUsageDescription = "需要你的同意,才能媒体资料库";
+ NSRemindersUsageDescription = "需要你的同意,才能访问备忘录";
+ NSSpeechRecognitionUsageDescription = "需要你的同意,才能访问语音识别";
  
  */

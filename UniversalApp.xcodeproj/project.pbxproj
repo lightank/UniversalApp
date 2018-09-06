@@ -26,6 +26,8 @@
 		3D679305213D24000017891D /* UIBarButtonItem+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D679304213D24000017891D /* UIBarButtonItem+LTAdd.m */; };
 		3D67930D213E23160017891D /* LTFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D67930C213E23160017891D /* LTFirstViewController.m */; };
 		3D9E107F210EA48B003CED5F /* UIColor+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9E107E210EA48B003CED5F /* UIColor+LTAdd.m */; };
+		3DB0BB61214117EF00EA1B6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DB0BB63214117EF00EA1B6E /* InfoPlist.strings */; };
+		3DB0BB6721411A1700EA1B6E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DB0BB6921411A1700EA1B6E /* Localizable.strings */; };
 		3DB7193E212FFCE8004C5218 /* UITextView+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB7193D212FFCE8004C5218 /* UITextView+LTAdd.m */; };
 		3DB7194121302C43004C5218 /* UITableView+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB7194021302C43004C5218 /* UITableView+LTAdd.m */; };
 		3DB7194521302D89004C5218 /* LTPrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB7194421302D89004C5218 /* LTPrivacyPermission.m */; };
@@ -33,9 +35,7 @@
 		3DC328C120F84DFA0092C35C /* NSDictionary+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC328C020F84DFA0092C35C /* NSDictionary+LTAdd.m */; };
 		3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1220B006EF00CD476A /* AppDelegate.m */; };
 		3DCC9F1620B006EF00CD476A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1520B006EF00CD476A /* ViewController.m */; };
-		3DCC9F1920B006EF00CD476A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1720B006EF00CD476A /* Main.storyboard */; };
 		3DCC9F1B20B006F100CD476A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1A20B006F100CD476A /* Assets.xcassets */; };
-		3DCC9F1E20B006F100CD476A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1C20B006F100CD476A /* LaunchScreen.storyboard */; };
 		3DCC9F2120B006F100CD476A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F2020B006F100CD476A /* main.m */; };
 		3DCC9F2B20B006F100CD476A /* UniversalAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F2A20B006F100CD476A /* UniversalAppTests.m */; };
 		3DCC9F3620B006F100CD476A /* UniversalAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F3520B006F100CD476A /* UniversalAppUITests.m */; };
@@ -121,6 +121,10 @@
 		3D67930C213E23160017891D /* LTFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTFirstViewController.m; sourceTree = "<group>"; };
 		3D9E107D210EA48B003CED5F /* UIColor+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+LTAdd.h"; sourceTree = "<group>"; };
 		3D9E107E210EA48B003CED5F /* UIColor+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LTAdd.m"; sourceTree = "<group>"; };
+		3DB0BB62214117EF00EA1B6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DB0BB64214117F000EA1B6E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3DB0BB6821411A1700EA1B6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DB0BB6A21411A1800EA1B6E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3DB7193C212FFCE8004C5218 /* UITextView+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+LTAdd.h"; sourceTree = "<group>"; };
 		3DB7193D212FFCE8004C5218 /* UITextView+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LTAdd.m"; sourceTree = "<group>"; };
 		3DB7193F21302C43004C5218 /* UITableView+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+LTAdd.h"; sourceTree = "<group>"; };
@@ -136,9 +140,7 @@
 		3DCC9F1220B006EF00CD476A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3DCC9F1420B006EF00CD476A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		3DCC9F1520B006EF00CD476A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		3DCC9F1820B006EF00CD476A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3DCC9F1A20B006F100CD476A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3DCC9F1D20B006F100CD476A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3DCC9F1F20B006F100CD476A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DCC9F2020B006F100CD476A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3DCC9F2620B006F100CD476A /* UniversalAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniversalAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -360,10 +362,10 @@
 				3DCC9F1420B006EF00CD476A /* ViewController.h */,
 				3DCC9F1520B006EF00CD476A /* ViewController.m */,
 				3DCC9F4F20B01A8500CD476A /* PrefixHeader.pch */,
-				3DCC9F1720B006EF00CD476A /* Main.storyboard */,
 				3DCC9F1A20B006F100CD476A /* Assets.xcassets */,
-				3DCC9F1C20B006F100CD476A /* LaunchScreen.storyboard */,
 				3DCC9F1F20B006F100CD476A /* Info.plist */,
+				3DB0BB6921411A1700EA1B6E /* Localizable.strings */,
+				3DB0BB63214117EF00EA1B6E /* InfoPlist.strings */,
 				3DCC9F2020B006F100CD476A /* main.m */,
 			);
 			path = UniversalApp;
@@ -670,6 +672,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 3DCC9F0520B006EF00CD476A;
 			productRefGroup = 3DCC9F0F20B006EF00CD476A /* Products */;
@@ -688,9 +691,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DCC9F1E20B006F100CD476A /* LaunchScreen.storyboard in Resources */,
+				3DB0BB6721411A1700EA1B6E /* Localizable.strings in Resources */,
+				3DB0BB61214117EF00EA1B6E /* InfoPlist.strings in Resources */,
 				3DCC9F1B20B006F100CD476A /* Assets.xcassets in Resources */,
-				3DCC9F1920B006EF00CD476A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -872,20 +875,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3DCC9F1720B006EF00CD476A /* Main.storyboard */ = {
+		3DB0BB63214117EF00EA1B6E /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3DCC9F1820B006EF00CD476A /* Base */,
+				3DB0BB62214117EF00EA1B6E /* en */,
+				3DB0BB64214117F000EA1B6E /* zh-Hans */,
 			);
-			name = Main.storyboard;
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		3DCC9F1C20B006F100CD476A /* LaunchScreen.storyboard */ = {
+		3DB0BB6921411A1700EA1B6E /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3DCC9F1D20B006F100CD476A /* Base */,
+				3DB0BB6821411A1700EA1B6E /* en */,
+				3DB0BB6A21411A1800EA1B6E /* zh-Hans */,
 			);
-			name = LaunchScreen.storyboard;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -895,6 +900,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -953,6 +959,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1006,12 +1013,13 @@
 			baseConfigurationReference = D3DFBE58E24558FA94B0A339 /* Pods-UniversalApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92CYHZVC4M;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/UniversalApp/PrefixHeader.pch";
 				INFOPLIST_FILE = UniversalApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1022,7 +1030,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1031,12 +1039,13 @@
 			baseConfigurationReference = 1EE9DEC4E119EB53B93D5546 /* Pods-UniversalApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92CYHZVC4M;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/UniversalApp/PrefixHeader.pch";
 				INFOPLIST_FILE = UniversalApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1047,7 +1056,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
