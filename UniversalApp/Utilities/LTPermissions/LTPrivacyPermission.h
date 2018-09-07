@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, LTPrivacyPermissionAuthorizationStatus)
     LTPrivacyPermissionAuthorizationStatusLocationAlways,
     LTPrivacyPermissionAuthorizationStatusLocationWhenInUse,
     LTPrivacyPermissionAuthorizationStatusUnkonwn,
-    LTPrivacyPermissionAuthorizationStatusServicesDisabled,
+    LTPrivacyPermissionAuthorizationStatusServicesDisabled, // 服务不可用,或当前版本没有相应的api,这个时候 |CompletionBlock| 里的 |authorized| 默认返回NO,可以通过修改
 };
 
 typedef void(^CompletionBlock)(BOOL authorized, LTPrivacyPermissionAuthorizationStatus status);
@@ -44,6 +44,8 @@ typedef void(^CompletionBlock)(BOOL authorized, LTPrivacyPermissionAuthorization
 /* Methods for creating LTPrivacyPermission instances. */
 @property (class, readonly, strong) LTPrivacyPermission *sharedPermission;
 
+/**  当 |CompletionBlock| 返回 |status| 值为 LTPrivacyPermissionAuthorizationStatusServicesDisabled时的 |authorized| 值,默认是NO  */
+@property (nonatomic, assign, getter=isServicesDisabledAuthorize) BOOL servicesDisabledAuthorize;
 
 /**
  * @brief `Function for access the permissions` -> 获取权限函数

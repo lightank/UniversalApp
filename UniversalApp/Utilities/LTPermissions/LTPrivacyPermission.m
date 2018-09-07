@@ -129,7 +129,7 @@
             }
             else
             {
-                completion(NO, LTPrivacyPermissionAuthorizationStatusServicesDisabled);
+                completion(self.isServicesDisabledAuthorize, LTPrivacyPermissionAuthorizationStatusServicesDisabled);
             }
         }
             break;
@@ -166,7 +166,7 @@
         {
             if (![CLLocationManager locationServicesEnabled])
             {
-                completion(NO, LTPrivacyPermissionAuthorizationStatusServicesDisabled);
+                completion(self.isServicesDisabledAuthorize, LTPrivacyPermissionAuthorizationStatusServicesDisabled);
                 break;
             }
             
@@ -286,7 +286,7 @@
             }
             else
             {
-                completion(NO, LTPrivacyPermissionAuthorizationStatusServicesDisabled);
+                completion(self.isServicesDisabledAuthorize, LTPrivacyPermissionAuthorizationStatusServicesDisabled);
             }
         }
             break;
@@ -474,7 +474,7 @@
             }
             else
             {
-                completion(NO, LTPrivacyPermissionAuthorizationStatusServicesDisabled);
+                completion(self.isServicesDisabledAuthorize, LTPrivacyPermissionAuthorizationStatusServicesDisabled);
             }
         }
             break;
