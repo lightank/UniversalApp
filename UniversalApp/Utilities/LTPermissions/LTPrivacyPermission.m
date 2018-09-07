@@ -19,9 +19,6 @@
 @import CoreLocation;
 @import CoreTelephony;
 
-static LTPrivacyPermission *_instance = nil;
-static double const kLTPrivacyPermissionTypeLocationDistanceFilter = 10; //`Positioning accuracy` -> 定位精度
-
 @interface LTPrivacyPermission () <CLLocationManagerDelegate>
 
 /**  定位  */
@@ -174,50 +171,55 @@ static double const kLTPrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             }
             
             CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-            if (status == kCLAuthorizationStatusNotDetermined)
+            switch (status)
             {
-                self.locationCompletion = completion;
-                
-                switch (type)
+                case kCLAuthorizationStatusNotDetermined:
                 {
-                    case LTPrivacyPermissionTypeLocationAlways:
+                    self.locationCompletion = completion;
+                    
+                    switch (type)
                     {
-                        [self.locationManager requestAlwaysAuthorization];
+                        case LTPrivacyPermissionTypeLocationAlways:
+                        {
+                            [self.locationManager requestAlwaysAuthorization];
+                        }
+                            break;
+                            
+                        case LTPrivacyPermissionTypeLocationWhenInUse:
+                        {
+                            [self.locationManager requestWhenInUseAuthorization];
+                        }
+                            break;
+                            
+                        case LTPrivacyPermissionTypeLocationAlwaysAndWhenInUse:
+                        {
+                            [self.locationManager requestAlwaysAuthorization];
+                            [self.locationManager requestWhenInUseAuthorization];
+                        }
+                            break;
+                            
+                        default:
+                            break;
                     }
-                        break;
-                        
-                    case LTPrivacyPermissionTypeLocationWhenInUse:
-                    {
-                        [self.locationManager requestWhenInUseAuthorization];
-                    }
-                        break;
-                        
-                    case LTPrivacyPermissionTypeLocationAlwaysAndWhenInUse:
-                    {
-                        [self.locationManager requestAlwaysAuthorization];
-                        [self.locationManager requestWhenInUseAuthorization];
-                    }
-                        break;
-                        
-                    default:
-                        break;
+
                 }
-            }
-            else if (status == kCLAuthorizationStatusDenied)
-            {
-                completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
-            }
-            else if (status == kCLAuthorizationStatusAuthorizedAlways)
-            {
-                completion(YES, LTPrivacyPermissionAuthorizationStatusLocationAlways);
-            }
-            else if (status == kCLAuthorizationStatusAuthorizedWhenInUse)
-            {
-                completion(YES, LTPrivacyPermissionAuthorizationStatusLocationWhenInUse);
-            }
-            else if (status == kCLAuthorizationStatusRestricted)
-            {
-                completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
+                    break;
+                    
+                case kCLAuthorizationStatusDenied:
+                    completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
+                    break;
+                    
+                case kCLAuthorizationStatusAuthorizedAlways:
+                    completion(YES, LTPrivacyPermissionAuthorizationStatusLocationAlways);
+                    break;
+                    
+                case kCLAuthorizationStatusAuthorizedWhenInUse:
+                    completion(YES, LTPrivacyPermissionAuthorizationStatusLocationWhenInUse);
+                    break;
+                    
+                case kCLAuthorizationStatusRestricted:
+                    completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
+                    break;
             }
         }
             break;
@@ -262,21 +264,23 @@ static double const kLTPrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             if (@available(iOS 10, *))
             {
                 [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
-                    if (status == SFSpeechRecognizerAuthorizationStatusDenied)
+                    switch (status)
                     {
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
-                    }
-                    else if (status == SFSpeechRecognizerAuthorizationStatusNotDetermined)
-                    {
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
-                    }
-                    else if (status == SFSpeechRecognizerAuthorizationStatusRestricted)
-                    {
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
-                    }
-                    else if (status == SFSpeechRecognizerAuthorizationStatusAuthorized)
-                    {
-                        completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
+                        case SFSpeechRecognizerAuthorizationStatusDenied:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
+                            break;
+                            
+                        case SFSpeechRecognizerAuthorizationStatusNotDetermined:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
+                            break;
+                            
+                        case SFSpeechRecognizerAuthorizationStatusRestricted:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
+                            break;
+                            
+                        case SFSpeechRecognizerAuthorizationStatusAuthorized:
+                            completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
+                            break;
                     }
                 }];
             }
@@ -322,21 +326,15 @@ static double const kLTPrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
                 switch (status)
                 {
                     case CNAuthorizationStatusAuthorized:
-                    {
                         completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
-                    }
                         break;
                         
                     case CNAuthorizationStatusDenied:
-                    {
                         completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
-                    }
                         break;
                         
                     case CNAuthorizationStatusRestricted:
-                    {
                         completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
-                    }
                         break;
                         
                     case CNAuthorizationStatusNotDetermined:
@@ -396,24 +394,23 @@ static double const kLTPrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             EKEventStore *eventStore = [[EKEventStore alloc] init];
             [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError * _Nullable error) {
                 EKAuthorizationStatus status = [EKEventStore  authorizationStatusForEntityType:EKEntityTypeEvent];
-                if (granted)
+                switch (status)
                 {
-                    completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
-                }
-                else
-                {
-                    if (status == EKAuthorizationStatusDenied)
-                    {
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
-                    }
-                    else if (status == EKAuthorizationStatusNotDetermined)
-                    {
+                    case EKAuthorizationStatusNotDetermined:
                         completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
-                    }
-                    else if (status == EKAuthorizationStatusRestricted)
-                    {
+                        break;
+                        
+                    case EKAuthorizationStatusRestricted:
                         completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
-                    }
+                        break;
+                        
+                    case EKAuthorizationStatusDenied:
+                        completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
+                        break;
+                        
+                    case EKAuthorizationStatusAuthorized:
+                        completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
+                        break;
                 }
             }];
         }
@@ -481,7 +478,6 @@ static double const kLTPrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
             }
         }
             break;
-            
     }
 }
 
@@ -526,35 +522,27 @@ static double const kLTPrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
     switch (status)
     {
         case kCLAuthorizationStatusNotDetermined:
-        {
             // 默认会走一遍,所以这个默认什么都不做
-        }
             break;
+            
         case kCLAuthorizationStatusAuthorizedWhenInUse:
-        {
             self.locationCompletion(YES, LTPrivacyPermissionAuthorizationStatusLocationWhenInUse);
-            self.locationCompletion = nil;
-        }
             break;
+            
         case kCLAuthorizationStatusAuthorizedAlways:
-        {
             self.locationCompletion(YES, LTPrivacyPermissionAuthorizationStatusLocationAlways);
-            self.locationCompletion = nil;
-        }
             break;
+            
         case kCLAuthorizationStatusDenied:
-        {
             self.locationCompletion(YES, LTPrivacyPermissionAuthorizationStatusDenied);
-            self.locationCompletion = nil;
-        }
             break;
+            
         case kCLAuthorizationStatusRestricted:
-        {
             self.locationCompletion(YES, LTPrivacyPermissionAuthorizationStatusRestricted);
-            self.locationCompletion = nil;
-        }
             break;
     }
+    
+    self.locationCompletion = nil;
 }
 
 #pragma mark - setter and getter
@@ -564,8 +552,6 @@ static double const kLTPrivacyPermissionTypeLocationDistanceFilter = 10; //`Posi
     {
         _locationManager = [[CLLocationManager alloc] init];
         _locationManager.delegate = self;
-        _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-        _locationManager.distanceFilter = kLTPrivacyPermissionTypeLocationDistanceFilter;
     }
     return _locationManager;
 }
