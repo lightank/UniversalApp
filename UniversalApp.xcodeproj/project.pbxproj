@@ -30,7 +30,6 @@
 		3DB0BB6721411A1700EA1B6E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DB0BB6921411A1700EA1B6E /* Localizable.strings */; };
 		3DB7193E212FFCE8004C5218 /* UITextView+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB7193D212FFCE8004C5218 /* UITextView+LTAdd.m */; };
 		3DB7194121302C43004C5218 /* UITableView+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB7194021302C43004C5218 /* UITableView+LTAdd.m */; };
-		3DB7194521302D89004C5218 /* LTPrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB7194421302D89004C5218 /* LTPrivacyPermission.m */; };
 		3DC328BE20F84BF40092C35C /* NSObject+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC328BD20F84BF40092C35C /* NSObject+LTAdd.m */; };
 		3DC328C120F84DFA0092C35C /* NSDictionary+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC328C020F84DFA0092C35C /* NSDictionary+LTAdd.m */; };
 		3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1220B006EF00CD476A /* AppDelegate.m */; };
@@ -129,8 +128,6 @@
 		3DB7193D212FFCE8004C5218 /* UITextView+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LTAdd.m"; sourceTree = "<group>"; };
 		3DB7193F21302C43004C5218 /* UITableView+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+LTAdd.h"; sourceTree = "<group>"; };
 		3DB7194021302C43004C5218 /* UITableView+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LTAdd.m"; sourceTree = "<group>"; };
-		3DB7194321302D89004C5218 /* LTPrivacyPermission.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTPrivacyPermission.h; sourceTree = "<group>"; };
-		3DB7194421302D89004C5218 /* LTPrivacyPermission.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTPrivacyPermission.m; sourceTree = "<group>"; };
 		3DC328BC20F84BF40092C35C /* NSObject+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LTAdd.h"; sourceTree = "<group>"; };
 		3DC328BD20F84BF40092C35C /* NSObject+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LTAdd.m"; sourceTree = "<group>"; };
 		3DC328BF20F84DFA0092C35C /* NSDictionary+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LTAdd.h"; sourceTree = "<group>"; };
@@ -319,15 +316,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		3DB7194221302D6F004C5218 /* LTPermissions */ = {
-			isa = PBXGroup;
-			children = (
-				3DB7194321302D89004C5218 /* LTPrivacyPermission.h */,
-				3DB7194421302D89004C5218 /* LTPrivacyPermission.m */,
-			);
-			path = LTPermissions;
-			sourceTree = "<group>";
-		};
 		3DCC9F0520B006EF00CD476A = {
 			isa = PBXGroup;
 			children = (
@@ -442,7 +430,6 @@
 		3DCC9F4720B0183300CD476A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				3DB7194221302D6F004C5218 /* LTPermissions */,
 				3D48666420B1ADF5002BACA8 /* DeviceInfo */,
 				3D48665D20B1AAA3002BACA8 /* Encryption */,
 				3DCC9F5220B0237300CD476A /* LTKit */,
@@ -837,7 +824,6 @@
 				3DCC9F6620B0237300CD476A /* UIImage+LTAdd.m in Sources */,
 				3DCC9F6D20B0237300CD476A /* NSString+LTAdd.m in Sources */,
 				3D03D63B20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m in Sources */,
-				3DB7194521302D89004C5218 /* LTPrivacyPermission.m in Sources */,
 				3DFE3E7620EA533300A8832C /* AppDelegate+JPush.m in Sources */,
 				3D9E107F210EA48B003CED5F /* UIColor+LTAdd.m in Sources */,
 			);

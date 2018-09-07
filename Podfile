@@ -23,6 +23,7 @@ target 'UniversalApp' do
     pod 'Aspects'
     pod 'MBProgressHUD'
     pod 'iCarousel'
+    pod 'LTPrivacyPermission'
     
     # UMeng Analytics iOS SDK Begin .......
     #依赖库

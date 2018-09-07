@@ -102,7 +102,7 @@
         }
             break;
             
-        case LTPrivacyPermissionTypeMedia:
+        case LTPrivacyPermissionTypeMediaLibrary:
         {
             if (@available(iOS 9.3, *))
             {
@@ -232,20 +232,9 @@
                 UNAuthorizationOptions types = UNAuthorizationOptionBadge | UNAuthorizationOptionAlert |UNAuthorizationOptionSound;
                 [center requestAuthorizationWithOptions:types completionHandler:^(BOOL granted, NSError * _Nullable error) {
                     //Queue: com.apple.usernotifications.UNUserNotificationServiceConnection.call-out (serial) 非主队列回调
-                    if (granted)
-                    {
-                        [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
-                            });
-                        }];
-                    }
-                    else
-                    {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
-                        });
-                    }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completion(granted, granted ? LTPrivacyPermissionAuthorizationStatusAuthorized : LTPrivacyPermissionAuthorizationStatusDenied);
+                    });
                 }];
             }
             else
@@ -253,6 +242,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Wdeprecated-declarations"
                 [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge categories:nil]];
+                completion(NO, LTPrivacyPermissionAuthorizationStatusUnkonwn);
 #pragma clang diagnostic pop
             }
 
@@ -291,7 +281,7 @@
         }
             break;
             
-        case LTPrivacyPermissionTypeEvent:
+        case LTPrivacyPermissionTypeCalendarEvent:
         {
             EKEventStore *store = [[EKEventStore alloc] init];
             [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
@@ -416,6 +406,7 @@
         }
             break;
             
+            
         case LTPrivacyPermissionTypeNetwork:
         {
             if (@available(iOS 9, *))
@@ -481,34 +472,42 @@
     }
 }
 
-+ (void)showOpenApplicationSettingsAlertWithTitle:(NSString *)title message:(NSString *)message
++ (void)showOpenApplicationSettingsAlertWithTitle:(NSString *)title
+                                          message:(NSString *)message
+                                cancelActionTitle:(NSString *)cancelActionTitle
+                               settingActionTitle:(NSString *)settingActionTitle
 {
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelActionTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
     }];
-    UIAlertAction *settingAction = [UIAlertAction actionWithTitle:@"前往设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSURL *settingURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-        if ([[UIApplication sharedApplication] canOpenURL:settingURL])
-        {
-            if (@available(iOS 10.0, *))
-            {
-                [[UIApplication sharedApplication] openURL:settingURL options:@{} completionHandler:nil];
-            }
-            else
-            {
-                [[UIApplication sharedApplication] openURL:settingURL];
-            }
-        }
+    UIAlertAction *settingAction = [UIAlertAction actionWithTitle:settingActionTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self openApplicationSettings];
     }];
     
     [alertVC addAction:cancelAction];
     [alertVC addAction:settingAction];
     
-    [UIApplication.sharedApplication.keyWindow.rootViewController presentViewController:alertVC animated:YES completion:^{
+    [self.topmostKeyWindowController presentViewController:alertVC animated:YES completion:^{
         
     }];
+}
+
++ (void)openApplicationSettings
+{
+    NSURL *settingURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    if ([[UIApplication sharedApplication] canOpenURL:settingURL])
+    {
+        if (@available(iOS 10.0, *))
+        {
+            [[UIApplication sharedApplication] openURL:settingURL options:@{} completionHandler:nil];
+        }
+        else
+        {
+            [[UIApplication sharedApplication] openURL:settingURL];
+        }
+    }
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -526,23 +525,33 @@
             break;
             
         case kCLAuthorizationStatusAuthorizedWhenInUse:
+        {
             self.locationCompletion(YES, LTPrivacyPermissionAuthorizationStatusLocationWhenInUse);
+            self.locationCompletion = nil;
+        }
             break;
             
         case kCLAuthorizationStatusAuthorizedAlways:
+        {
             self.locationCompletion(YES, LTPrivacyPermissionAuthorizationStatusLocationAlways);
+            self.locationCompletion = nil;
+        }
             break;
             
         case kCLAuthorizationStatusDenied:
-            self.locationCompletion(YES, LTPrivacyPermissionAuthorizationStatusDenied);
+        {
+            self.locationCompletion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
+            self.locationCompletion = nil;
+        }
             break;
             
         case kCLAuthorizationStatusRestricted:
-            self.locationCompletion(YES, LTPrivacyPermissionAuthorizationStatusRestricted);
+        {
+            self.locationCompletion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
+            self.locationCompletion = nil;
+        }
             break;
     }
-    
-    self.locationCompletion = nil;
 }
 
 #pragma mark - setter and getter
@@ -554,6 +563,34 @@
         _locationManager.delegate = self;
     }
     return _locationManager;
+}
+
++ (UIViewController *)topmostKeyWindowController
+{
+    UIViewController *topController = UIApplication.sharedApplication.keyWindow.rootViewController;
+    while ([topController presentedViewController])
+    {
+        topController = [topController presentedViewController];
+    }
+    
+    while ([topController isKindOfClass:[UITabBarController class]]
+           && ((UITabBarController*)topController).selectedViewController)
+    {
+        topController = ((UITabBarController*)topController).selectedViewController;
+    }
+    
+    while ([topController isKindOfClass:[UINavigationController class]] && [(UINavigationController*)topController topViewController])
+    {
+        topController = [(UINavigationController*)topController topViewController];
+        
+        while ([topController isKindOfClass:[UITabBarController class]]
+               && ((UITabBarController*)topController).selectedViewController)
+        {
+            topController = ((UITabBarController*)topController).selectedViewController;
+        }
+    }
+    
+    return topController;
 }
 
 @end

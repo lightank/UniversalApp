@@ -12,14 +12,14 @@
 typedef NS_ENUM(NSUInteger, LTPrivacyPermissionType) {
     LTPrivacyPermissionTypePhoto = 0,
     LTPrivacyPermissionTypeCamera,
-    LTPrivacyPermissionTypeMedia,
+    LTPrivacyPermissionTypeMediaLibrary,
     LTPrivacyPermissionTypeMicrophone,
     LTPrivacyPermissionTypeLocationAlwaysAndWhenInUse,
     LTPrivacyPermissionTypeLocationAlways,
     LTPrivacyPermissionTypeLocationWhenInUse,
-    LTPrivacyPermissionTypePushNotification,
+    LTPrivacyPermissionTypePushNotification,    // 在iOS 10 以下,由于无法取得回调,故回调 |status| 返回 |Unkonwn|, |authorized| 返回 NO
     LTPrivacyPermissionTypeSpeech,
-    LTPrivacyPermissionTypeEvent,
+    LTPrivacyPermissionTypeCalendarEvent,   // 添加事件到系统日历中
     LTPrivacyPermissionTypeContact,
     LTPrivacyPermissionTypeReminder,
     LTPrivacyPermissionTypeNetwork,
@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, LTPrivacyPermissionAuthorizationStatus)
     LTPrivacyPermissionAuthorizationStatusLocationAlways,
     LTPrivacyPermissionAuthorizationStatusLocationWhenInUse,
     LTPrivacyPermissionAuthorizationStatusUnkonwn,
-    LTPrivacyPermissionAuthorizationStatusServicesDisabled, // 服务不可用,或当前版本没有相应的api,这个时候 |CompletionBlock| 里的 |authorized| 默认返回NO,可以通过修改
+    LTPrivacyPermissionAuthorizationStatusServicesDisabled, // 服务不可用,或当前版本没有相应的api,这个时候 |CompletionBlock| 里的 |authorized| 默认返回NO,可以通过 |servicesDisabledAuthorize| 来修改
 };
 
 typedef void(^CompletionBlock)(BOOL authorized, LTPrivacyPermissionAuthorizationStatus status);
@@ -43,6 +43,9 @@ typedef void(^CompletionBlock)(BOOL authorized, LTPrivacyPermissionAuthorization
 
 /* Methods for creating LTPrivacyPermission instances. */
 @property (class, readonly, strong) LTPrivacyPermission *sharedPermission;
+/**  Topmost KeyWindow Controller  */
+@property (class, readonly, strong) UIViewController *topmostKeyWindowController;
+
 
 /**  当 |CompletionBlock| 返回 |status| 值为 LTPrivacyPermissionAuthorizationStatusServicesDisabled时的 |authorized| 值,默认是NO  */
 @property (nonatomic, assign, getter=isServicesDisabledAuthorize) BOOL servicesDisabledAuthorize;
@@ -56,7 +59,12 @@ typedef void(^CompletionBlock)(BOOL authorized, LTPrivacyPermissionAuthorization
                              completion:(CompletionBlock)completion;
 
 
-+ (void)showOpenApplicationSettingsAlertWithTitle:(NSString *)title message:(NSString *)message;
++ (void)openApplicationSettings;
+
++ (void)showOpenApplicationSettingsAlertWithTitle:(NSString *)title
+                                          message:(NSString *)message
+                                cancelActionTitle:(NSString *)cancelActionTitle
+                               settingActionTitle:(NSString *)settingActionTitle;
 
 @end
 
@@ -96,7 +104,7 @@ typedef void(^CompletionBlock)(BOOL authorized, LTPrivacyPermissionAuthorization
  <key>kTCCServiceMediaLibrary</key>
  <string>MediaLibrary</string>
  <key>NFCReaderUsageDescription</key>
- <string>NFCReader</string>
+ <string>NFC Reader</string>
  <key>NSPhotoLibraryAddUsageDescription</key>
  <string>向相册添加/PhotoLibraryAdd</string>
  <key>NSPhotoLibraryUsageDescription</key>
@@ -113,37 +121,53 @@ typedef void(^CompletionBlock)(BOOL authorized, LTPrivacyPermissionAuthorization
  国际化:
  
  en:
- NSBluetoothPeripheralUsageDescription = "BluetoothUsage";
- NSAppleMusicUsageDescription = "AppleMusicUsage";
+ NSBluetoothPeripheralUsageDescription = "BluetoothPeripheralUsage";
  NSCalendarsUsageDescription = "CalendarsUsage";
  NSCameraUsageDescription = "CameraUsage";
  NSContactsUsageDescription = "ContactsUsage";
- NSHealthShareUsageDescription = "HealthShareUsage";
- NSHealthUpdateUsageDescription = "HealthUpdateUsage";
+ NSFaceIDUsageDescription = "FaceIDUsage";
+ NSHealthShareUsageDescription = "HealthShare";
+ NSHealthUpdateUsageDescription = "HealthUpdate";
+ NSHomeKitUsageDescription = "HomeKit";
+ NSLocationAlwaysAndWhenInUseUsageDescription = "LocationAlwaysAndWhenInUseUsage";
  NSLocationWhenInUseUsageDescription = "LocationWhenInUseUsage";
+ NSLocationAlwaysUsageDescription = "LocationAlways";
  NSLocationUsageDescription = "LocationUsage";
- NSLocationAlwaysUsageDescription = "LocationAlwaysUsage";
+ NSAppleMusicUsageDescription = "AppleMusicUsage";
  NSMicrophoneUsageDescription = "MicrophoneUsage";
  NSMotionUsageDescription = "MotionUsage";
+ kTCCServiceMediaLibrary = "MediaLibraryUsage";
+ NFCReaderUsageDescription = "NFCReaderUsage";
+ NSPhotoLibraryAddUsageDescription = "PhotoLibraryAddUsage";
  NSPhotoLibraryUsageDescription = "PhotoLibraryUsage";
  NSRemindersUsageDescription = "RemindersUsage";
+ NSSiriUsageDescription = "SiriUsage";
  NSSpeechRecognitionUsageDescription = "SpeechRecognitionUsage";
+ NSVideoSubscriberAccountUsageDescription = "VideoSubscriberAccount";
  
  zh:
  NSBluetoothPeripheralUsageDescription = "需要你的同意,才能访问蓝牙";
- NSAppleMusicUsageDescription = "需要你的同意,才能访问媒体资料库";
  NSCalendarsUsageDescription = "需要你的同意,才能访问日历";
  NSCameraUsageDescription = "需要你的同意,才能访问相机";
  NSContactsUsageDescription = "需要你的同意,才能访问通讯录";
+ NSFaceIDUsageDescription = "需要你的同意,才能访问FaceID";
  NSHealthShareUsageDescription = "需要你的同意,才能访问健康分享";
  NSHealthUpdateUsageDescription = "需要你的同意,才能访问健康更新";
+ NSHomeKitUsageDescription = "需要你的同意,才能访问HomeKit";
+ NSLocationAlwaysAndWhenInUseUsageDescription = "需要你的同意,才能始终访问位置";
  NSLocationWhenInUseUsageDescription = "需要你的同意,才能在使用期间访问位置";
- NSLocationUsageDescription = "需要你的同意,才能访问位置";
  NSLocationAlwaysUsageDescription = "需要你的同意,才能始终访问位置";
+ NSLocationUsageDescription = "需要你的同意,才能访问位置";
+ NSAppleMusicUsageDescription = "需要你的同意,才能访问媒体资料库";
  NSMicrophoneUsageDescription = "需要你的同意,才能访问麦克风";
  NSMotionUsageDescription = "需要你的同意,才能访问运动与健身";
- NSPhotoLibraryUsageDescription = "需要你的同意,才能媒体资料库";
- NSRemindersUsageDescription = "需要你的同意,才能访问备忘录";
+ kTCCServiceMediaLibrary = "需要你的同意,才能访问媒体库";
+ NFCReaderUsageDescription = "需要你的同意,才能访问NFC Reader";
+ NSPhotoLibraryAddUsageDescription = "需要你的同意,才能向相册添加图片";
+ NSPhotoLibraryUsageDescription = "需要你的同意,才能访问相册";
+ NSRemindersUsageDescription = "需要你的同意,才能访问提醒事项";
+ NSSiriUsageDescription = "需要你的同意,才能访问Siri";
  NSSpeechRecognitionUsageDescription = "需要你的同意,才能访问语音识别";
+ NSVideoSubscriberAccountUsageDescription = "需要你的同意,才能访问视频订阅账号";
  
  */
