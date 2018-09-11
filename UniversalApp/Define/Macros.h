@@ -8,20 +8,18 @@
 
 #define kAppStringPlaceholder @"none"
 
-//屏幕缩放因子
-#define kScale ([UIScreen mainScreen].scale)
+#define  kDisableAdjustsScrollViewInsets(scrollView, viewController)    \
+_Pragma("clang diagnostic push")    \
+_Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"")   \
+if (@available(iOS 11.0, *))  { \
+    scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;    \
+} else {    \
+    viewController.automaticallyAdjustsScrollViewInsets = NO;   \
+}   \
+_Pragma("clang diagnostic pop")
 
-#pragma mark - 系统版本/APP版本
-//如果是iOS11
-#define IF_IOS_10(Stuff) \
-if (@available(iOS 10.0, *)) {  \
-Stuff; \
-}
-//如果是iOS11
-#define IF_IOS_11(Stuff) \
-if (@available(iOS 11.0, *)) {  \
-Stuff; \
-}
+//屏幕缩放因子
+#define kScreenScale ([UIScreen mainScreen].scale)
 
 #pragma mark - 屏幕尺寸
 //需要横屏或者竖屏，获取屏幕宽度与高度
@@ -62,82 +60,25 @@ Stuff; \
 #define UIColorRGB(r, g, b) (UIColorRGBA(r, g, b, 1.0f))
 #define UIColorRandom ([UIColor colorWithRed:arc4random_uniform(256) / 255.0 green:arc4random_uniform(256) / 255.0 blue:arc4random_uniform(256) / 255.0 alpha:1.0])
 // 将16进制颜色转换成UIColor eg: UIColorWithHEX(0x5cacee)
-#define UIColorHEX_Alpha(hex, a) ([UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0 green:((float)((hex & 0xFF00) >> 8)) / 255.0 blue:((float)(hex & 0xFF)) / 255.0 alpha:a])
-#define UIColorHEX(hex) (UIColorHEX_Alpha(hex, 1.0f))
+//#define UIColorHEX_Alpha(hex, a) ([UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0 green:((float)((hex & 0xFF00) >> 8)) / 255.0 blue:((float)(hex & 0xFF)) / 255.0 alpha:a])
+//#define UIColorHEX(hex) (UIColorHEX_Alpha(hex, 1.0f))
 
-
-#pragma mark - 字体大小(常规/粗体)
-//常规
-#define kSystemFontOfSize(fontSize) ([UIFont systemFontOfSize:fontSize])
-//粗体
-#define KBoldSystemFontOfSize(fontSize) ([UIFont boldSystemFontOfSize:fontSize])
-//斜体
-#define KItalicSystemFontOfSize(fontSize) ([UIFont italicSystemFontOfSize:fontSize])
-#define kFont(name, fontSize) ([UIFont fontWithName:(name) size:(fontSize)])
-//中文字体
-#define kChineseFontName (@"Heiti SC")
-#define kChineseFontWithSize(x) ([UIFont fontWithName:kChineseFontName size:x])
 
 #pragma mark - 字符串相关
-#define kStringIsNULL(string) ([string isKindOfClass:[NSNull class]] || (string.length < 1))
-//拼接字符串
-#define NSStringWithFormat(format,...) [NSString stringWithFormat:format,##__VA_ARGS__]
 //BOOL值转字符串
 #define NSStringFromBOOL(_flag) (_flag ? @"YES" : @"NO")
 //数值转字符串
 #define NSStringFromValue(value) (@(value).stringValue)
 //ASCII数值转字符串
 #define NSStringFromASCIICode(asciiCode) ([NSString stringWithFormat:@"%C", asciiCode])
-//数据验证
-#define NSStringValid(string) (string != nil && [string isKindOfClass:[NSString class]] && ![string isEqualToString:@""])
-#define NSStringSafe(string) (ValidString(string) ? string : kAppStringPlaceholder)
-#define NSStringContainsString(string, key) ([string rangeOfString:key].location != NSNotFound)
+
 
 #pragma mark -  编译相关
 //消除performSelector:警告
-#define SuppressPerformSelectorLeakWarning(Stuff) \
-do { \
-    _Pragma("clang diagnostic push") \
-    _Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
-    Stuff; \
-    _Pragma("clang diagnostic pop") \
-} while (0)
-
-#pragma mark - 弱引用/强引用
-#define kWeakSelf(type)  __weak typeof(type) weak##type = type
-#define kStrongSelf(type)  __strong typeof(type) type = weak##type
-
-#ifndef weakify
-#if DEBUG
-#if __has_feature(objc_arc)
-#define weakify(object) autoreleasepool{} __weak __typeof__(object) weak##_##object = object;
-#else
-#define weakify(object) autoreleasepool{} __block __typeof__(object) block##_##object = object;
-#endif
-#else
-#if __has_feature(objc_arc)
-#define weakify(object) try{} @finally{} {} __weak __typeof__(object) weak##_##object = object;
-#else
-#define weakify(object) try{} @finally{} {} __block __typeof__(object) block##_##object = object;
-#endif
-#endif
-#endif
-
-#ifndef strongify
-#if DEBUG
-#if __has_feature(objc_arc)
-#define strongify(object) autoreleasepool{} __typeof__(object) object = weak##_##object;
-#else
-#define strongify(object) autoreleasepool{} __typeof__(object) object = block##_##object;
-#endif
-#else
-#if __has_feature(objc_arc)
-#define strongify(object) try{} @finally{} __typeof__(object) object = weak##_##object;
-#else
-#define strongify(object) try{} @finally{} __typeof__(object) object = block##_##object;
-#endif
-#endif
-#endif
+#define kBeginSuppressPerformSelectorLeakWarning    \
+_Pragma("clang diagnostic push")    \
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"")
+#define kEndSuppressPerformSelectorLeakWarning  _Pragma("clang diagnostic pop")
 
 
 #pragma mark - 自定义高效率的 NSLog
@@ -147,24 +88,12 @@ do { \
 #define NSLog(...)
 #endif
 
-#pragma mark - 设置 view 圆角和边框
-#define kViewBorderRadius(View, Radius, Width, Color)\
-\
-[View.layer setCornerRadius:(Radius)];\
-[View.layer setMasksToBounds:YES];\
-[View.layer setBorderWidth:(Width)];\
-[View.layer setBorderColor:[Color CGColor]]
-#define ViewRadius(View, Radius)\
-\
-[View.layer setCornerRadius:(Radius)];\
-[View.layer setMasksToBounds:YES]
-
 #pragma mark - 由角度转换弧度 由弧度转换角度
 #define kDegreesToRadian(x) (M_PI * (x) / 180.0)
 #define kRadianToDegrees(radian) (radian * 180.0)/(M_PI)
 
+
 #pragma mark - 获取图片资源
-#define UIImageWithName(imageName) ([UIImage imageNamed:imageName])
 #define UIImageWithPathName(imageName) ([UIImage imageNamed:([[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", imageName]])])
 #define UIImageWithPathNameAndType(imageName, type) ([UIImage imageNamed:([[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", imageName, type]])])
 #pragma mark - 获取当前语言
@@ -178,8 +107,6 @@ do { \
 #define kAPPVersion ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"])
 //app展示的名字
 #define kAPPDisplayName ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"])
-//打开系统app设置页面
-#define kOpenApplicationSettings ([[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]])
 
 
 #pragma mark - 判断是真机还是模拟器
@@ -189,13 +116,6 @@ do { \
 
 #if TARGET_IPHONE_SIMULATOR
 //iPhone Simulator
-#endif
-
-// 判断当前是否debug编译模式
-#ifdef DEBUG
-#define IS_DEBUG YES
-#else
-#define IS_DEBUG NO
 #endif
 
 #pragma mark - 沙盒目录文件
@@ -246,36 +166,4 @@ do { \
 //主线程
 #define kMainThread ([NSThread mainThread])
 //根控制器
-#define krootViewController (kKeyWindow.rootViewController)
-
-
-#pragma mark - APP跳转
-// 需要到 Targets ->Info ->URL Type 的 URL Schemes 添加跳转的唯一标识
-//打开一个url字符串
-#define kOpenURLString(urlString) ([kApplication openURL:[NSURL URLWithString:(urlString)]])
-//拨打电话
-#define kOpenTelPhone(phoneNum) ([kApplication openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", (phoneNum)]]])
-// 发短信
-#define kOpenMassage(massage) ([kApplication openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@", (massage)]]])
-
-//单例化一个类
-#define SINGLETON_FOR_H \
-\
-+ (instancetype)sharedInstance;
-
-#define SINGLETON_FOR_M \
-\
-+ (instancetype)sharedInstance  \
-{ \
-    static id instance = nil; \
-    static dispatch_once_t onceToken; \
-    dispatch_once(&onceToken, ^{ \
-        instance = [[self alloc] init]; \
-    }); \
-    return instance; \
-}
-
-//发送通知
-#define KPostNotification(name) ([[NSNotificationCenter defaultCenter] postNotificationName:name object:nil])
-#define KPostNotificationWithObject(name,obj) ([[NSNotificationCenter defaultCenter] postNotificationName:name object:obj])
-
+#define kRootViewController (kKeyWindow.rootViewController)

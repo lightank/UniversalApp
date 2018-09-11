@@ -86,33 +86,5 @@
 
 @implementation UIScrollView (LTAdd)
 
-//contentInsetAdjust
-static char kAssociatedObjectKey_contentInsetAdjust;
-- (void)setLt_contentInsetAdjust:(BOOL)lt_contentInsetAdjust
-{
-    objc_setAssociatedObject(self, &kAssociatedObjectKey_contentInsetAdjust, @(lt_contentInsetAdjust), OBJC_ASSOCIATION_ASSIGN);
-    self.viewController.automaticallyAdjustsScrollViewInsets = lt_contentInsetAdjust;
-    if (@available(iOS 11.0, *))
-    {
-        self.contentInsetAdjustmentBehavior = lt_contentInsetAdjust ? : UIScrollViewContentInsetAdjustmentNever;
-    }
-}
-- (BOOL)isContentInsetAdjust
-{
-    return ((NSNumber *)objc_getAssociatedObject(self, &kAssociatedObjectKey_contentInsetAdjust)).boolValue;
-}
-
-- (void)lt_disableAdjustContentInset
-{
-    if (@available(iOS 11.0, *))
-    {
-        self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.lt_viewController.automaticallyAdjustsScrollViewInsets = NO;
-    });
-}
-
-
 
 @end
