@@ -38,9 +38,6 @@
 @interface LTDeviceInfo : NSObject
 
 #pragma mark - 设备相关
-/**  设备唯一标识码  */
-@property (nonatomic, readonly) NSString *uuid;
-@property (class, nonatomic, readonly) NSString *uuid;
 /**  系统设备类型(如iPhone, iPod touch)  */
 @property (nonatomic, readonly) NSString *deviceModel;
 @property (class, nonatomic, readonly) NSString *deviceModel;

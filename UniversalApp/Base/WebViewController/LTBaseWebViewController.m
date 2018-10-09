@@ -385,9 +385,7 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     SEL sel = NSSelectorFromString(self.jsMethodsDictionary[message.name]);
     if (sel && [self respondsToSelector:sel])
     {
-        SuppressPerformSelectorLeakWarning(
-                                           [self performSelector:sel withObject:message];
-                                           );
+        [self performSelector:sel withObject:message];
     }
 }
 

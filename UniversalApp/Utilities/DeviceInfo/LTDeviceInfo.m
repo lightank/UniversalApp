@@ -8,12 +8,6 @@
 
 #import "LTDeviceInfo.h"
 
-#if __has_include(<FCUUID/UIDevice+FCUUID.h>)
-#import <FCUUID/UIDevice+FCUUID.h>
-#else
-#import "UIDevice+FCUUID.h"
-#endif
-
 // utsname
 #import <sys/utsname.h>
 #import <LocalAuthentication/LAContext.h>
@@ -29,21 +23,9 @@
 #include <arpa/inet.h>
 #include <ifaddrs.h>
 
-#if __has_include(<YYKit/YYReachability.h>)
-#import <YYKit/YYReachability.h>
-#else
-#import "YYReachability.h"
-#endif
-
-
 #define kDeviceInfoPlaceHolder @"none"
 
 @implementation LTDeviceInfo
-
-+ (NSString *)uuid
-{
-    return [UIDevice currentDevice].uuid;
-}
 
 + (NSString *)deviceModel
 {
@@ -109,8 +91,14 @@
                               @"Watch3,2" : @"Apple Watch Series 3 42mm",
                               @"Watch3,3" : @"Apple Watch Series 3 38mm",
                               @"Watch3,4" : @"Apple Watch Series 3 42mm",
+                              @"Watch4,1" : @"Apple Watch Series 4 40mm",
+                              @"Watch4,2" : @"Apple Watch Series 4 44mm",
+                              @"Watch4,3" : @"Apple Watch Series 4 40mm",
+                              @"Watch4,4" : @"Apple Watch Series 4 44mm",
                               
                               @"AudioAccessory1,1" : @"HomePod",
+                              
+                              @"AirPods1,1" : @"AirPods",
                               
                               @"iPod1,1" : @"iPod touch 1",
                               @"iPod2,1" : @"iPod touch 2",
@@ -147,6 +135,10 @@
                               @"iPhone10,4" : @"iPhone 8",
                               @"iPhone10,5" : @"iPhone 8 Plus",
                               @"iPhone10,6" : @"iPhone X",
+                              @"iPhone11,2" : @"iPhone XS",
+                              @"iPhone11,4" : @"iPhone XS Max",
+                              @"iPhone11,6" : @"iPhone XS Max",
+                              @"iPhone11,8" : @"iPhone XR",
                               
                               @"iPad1,1" : @"iPad 1",
                               @"iPad2,1" : @"iPad 2 (WiFi)",
@@ -185,6 +177,8 @@
                               @"iPad7,2" : @"iPad Pro (12.9-inch, 2nd generation)",
                               @"iPad7,3" : @"iPad Pro (10.5-inch)",
                               @"iPad7,4" : @"iPad Pro (10.5-inch)",
+                              @"iPad7,5" : @"iPad 6",
+                              @"iPad7,6" : @"iPad 6",
                               
                               @"AppleTV2,1" : @"Apple TV 2",
                               @"AppleTV3,1" : @"Apple TV 3",
@@ -847,15 +841,15 @@ static YYReachability *_reachability = nil;
 // @see https://github.com/nst/iOS-Runtime-Headers/blob/master/Frameworks/MobileCoreServices.framework/LSApplicationProxy.h
 + (NSString *)appVersion
 {
-    return [NSString stringWithFormat:@"%@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
+    return [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
 }
 + (NSString *)appDisplayName
 {
-    return [NSString stringWithFormat:@"%@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]];
+    return [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]];
 }
 + (NSString *)appBuildVersion
 {
-    return [NSString stringWithFormat:@"%@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
+    return [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
 }
 
 #pragma mark - 磁盘与内存
@@ -1171,7 +1165,6 @@ static YYReachability *_reachability = nil;
     if (self)
     {
         // 设备相关
-        _uuid = [LTDeviceInfo uuid];
         _deviceModel =[LTDeviceInfo deviceModel];
         _deviceName = [LTDeviceInfo deviceName];
         _machineModel = [LTDeviceInfo machineModel];
