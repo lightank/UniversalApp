@@ -16,8 +16,16 @@
 #define IOS10_OR_LATER ([LTDeviceInfo iOS10OrLater])
 // 判断当前编译使用的 Base SDK 版本是否为 iOS 11.0 及以上
 #define IOS11_OR_LATER ([LTDeviceInfo iOS11OrLater])
+// 判断当前编译使用的 Base SDK 版本是否为 iOS 11.0 及以上
+#define IOS12_OR_LATER ([LTDeviceInfo iOS12OrLater])
 
-// 判断是否为 5.8英寸 iPhone X pt:375x812，px:1125x2436，@3x
+/**  判断是否为 iPhone X 系列刘海设计  */
+#define IPHONE_X_SERIES ([LTDeviceInfo isIPhoneXSeries])
+// 判断是否为 6.5英寸 iPhone XS Max pt:414x896，px:1242x2688 ，@3x
+#define IPHONE_SIZE_65INCH ([LTDeviceInfo is65InchScreen])
+// 判断是否为 6.1英寸 iPhone XR pt:414x896，px:828x1792，@2x
+#define IPHONE_SIZE_61INCH ([LTDeviceInfo is61InchScreen])
+// 判断是否为 5.8英寸 iPhone X/XS pt:375x812，px:1125x2436，@3x
 #define IPHONE_SIZE_58INCH ([LTDeviceInfo is58InchScreen])
 // 判断是否为 5.5英寸 iPhone 6Plus/6sPlus pt:414x736，px:1242x2208，@3x
 #define IPHONE_SIZE_55INCH ([LTDeviceInfo is55InchScreen])
@@ -94,7 +102,16 @@
 /**  状态栏高度(来电等情况下，状态栏高度会发生变化，所以应该实时计算)  */
 @property (nonatomic, readonly) CGFloat statusBarHeight;
 @property (class, nonatomic, readonly) CGFloat statusBarHeight;
-/**  判断是否为 5.8英寸 iPhone X pt:375x812，px:1125x2436，@3x  */
+/**  判断是否为 iPhone X 系列刘海设计  */
+@property (nonatomic, readonly) BOOL isIPhoneXSeries;
+@property (class, nonatomic, readonly) BOOL isIPhoneXSeries;
+/**  判断是否为 6.5英寸 iPhone XR pt:414x896，px:1242x2688，@3x  */
+@property (nonatomic, readonly) BOOL is65InchScreen;
+@property (class, nonatomic, readonly) BOOL is65InchScreen;
+/**  判断是否为 6.1英寸 iPhone XR pt:414x896，px:828x1792，@2x  */
+@property (nonatomic, readonly) BOOL is61InchScreen;
+@property (class, nonatomic, readonly) BOOL is61InchScreen;
+/**  判断是否为 5.8英寸 iPhone X/XS pt:375x812，px:1125x2436，@3x  */
 @property (nonatomic, readonly) BOOL is58InchScreen;
 @property (class, nonatomic, readonly) BOOL is58InchScreen;
 /**  判断是否为 5.5英寸 iPhone 6Plus/6sPlus pt:414x736，px:1242x2208，@3x  */
@@ -109,6 +126,12 @@
 /**  判断是否为 3.5英寸 iPhone 4/4S pt:320x480，px:640x960，@2x  */
 @property (nonatomic, readonly) BOOL is35InchScreen;
 @property (class, nonatomic, readonly) BOOL is35InchScreen;
+/**  6.5英寸 屏幕尺寸414x896   */
+@property (nonatomic, readonly) CGSize screenSizeFor65Inch;
+@property (class, nonatomic, readonly) CGSize screenSizeFor65Inch;
+/**  6.1英寸 屏幕尺寸414x896   */
+@property (nonatomic, readonly) CGSize screenSizeFor61Inch;
+@property (class, nonatomic, readonly) CGSize screenSizeFor61Inch;
 /**  5.8英寸 屏幕尺寸375x812   */
 @property (nonatomic, readonly) CGSize screenSizeFor58Inch;
 @property (class, nonatomic, readonly) CGSize screenSizeFor58Inch;
@@ -153,6 +176,9 @@
 /**  系统版本是否是iOS 11及以上  */
 @property (nonatomic, readonly) BOOL iOS11OrLater;
 @property (class, nonatomic, readonly) BOOL iOS11OrLater;
+/**  系统版本是否是iOS 12及以上  */
+@property (nonatomic, readonly) BOOL iOS12OrLater;
+@property (class, nonatomic, readonly) BOOL iOS12OrLater;
 /**  剪切板上内容  */
 @property (nonatomic, readonly) NSString *clipboardContent;
 @property (class, nonatomic, readonly) NSString *clipboardContent;
@@ -187,12 +213,6 @@
 /**  运营商是否允许VOIP  */
 @property (nonatomic, readonly) BOOL carrierAllowsVOIP;
 @property (class, nonatomic, readonly) BOOL carrierAllowsVOIP;
-/**  连接的网络类型:(如:移动网络,WIFI)  */
-@property (nonatomic, readonly) NSString *networkStatus;
-@property (class, nonatomic, readonly) NSString *networkStatus;
-/**  连接的是否WIFI  */
-@property (nonatomic, readonly) BOOL isConnectedToWiFi;
-@property (class, nonatomic, readonly) BOOL isConnectedToWiFi;
 /**  当前WIFI名称  */
 @property (nonatomic, readonly) NSString *WIFIName;
 @property (class, nonatomic, readonly) NSString *WIFIName;

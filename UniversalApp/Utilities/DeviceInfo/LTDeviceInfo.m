@@ -137,7 +137,7 @@
                               @"iPhone10,6" : @"iPhone X",
                               @"iPhone11,2" : @"iPhone XS",
                               @"iPhone11,4" : @"iPhone XS Max",
-                              @"iPhone11,6" : @"iPhone XS Max",
+                              @"iPhone11,6" : @"iPhone XS Max China",
                               @"iPhone11,8" : @"iPhone XR",
                               
                               @"iPad1,1" : @"iPad 1",
@@ -326,6 +326,42 @@
     return [[UIApplication sharedApplication] statusBarFrame].size.height;
 }
 
++ (BOOL)isIPhoneXSeries
+{
+    BOOL iPhoneXSeries = NO;
+    if (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPhone)
+    {
+        return iPhoneXSeries;
+    }
+    
+    if (@available(iOS 11.0, *))
+    {
+        iPhoneXSeries = [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom > 0.f;
+    }
+    
+    return iPhoneXSeries;
+}
+
++ (BOOL)is65InchScreen
+{
+    static BOOL size = NO;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        size = CGSizeEqualToSize([self screenSizeFor65Inch], CGSizeMake([self deviceWidth], [self deviceHeight])) && ([[LTDeviceInfo machineModel] isEqualToString:@"iPhone11,4"] || [[LTDeviceInfo machineModel] isEqualToString:@"iPhone11,6"]);
+    });
+    return size;
+}
+
++ (BOOL)is61InchScreen
+{
+    static BOOL size = NO;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        size = CGSizeEqualToSize([self screenSizeFor61Inch], CGSizeMake([self deviceWidth], [self deviceHeight])) && [[LTDeviceInfo machineModel] isEqualToString:@"iPhone11,8"];
+    });
+    return size;
+}
+
 + (BOOL)is58InchScreen
 {
     static BOOL size = NO;
@@ -373,6 +409,16 @@
         size = CGSizeEqualToSize([self screenSizeFor35Inch], CGSizeMake([self deviceWidth], [self deviceHeight]));
     });
     return size;
+}
+
++ (CGSize)screenSizeFor65Inch
+{
+    return CGSizeMake(414.f, 896.f);
+}
+
++ (CGSize)screenSizeFor61Inch
+{
+    return CGSizeMake(414.f, 896.f);
 }
 
 + (CGSize)screenSizeFor58Inch
@@ -539,6 +585,20 @@
     });
     return version;
 }
+/**  系统版本是否是iOS 11及以上  */
++ (BOOL)iOS12OrLater
+{
+    static BOOL version = NO;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (@available(iOS 12.0, *))
+        {
+            version = YES;
+        }
+    });
+    return version;
+}
+
 + (NSString *)clipboardContent
 {
     // Get the Pasteboard
@@ -692,73 +752,6 @@
     
     // Return the VOIP Status
     return CarrierVOIP;
-}
-
-static YYReachability *_reachability = nil;
-+ (NSString *)networkStatus
-{
-    if (!_reachability) _reachability = [YYReachability reachability];
-    YYReachabilityStatus status = _reachability.status;
-    YYReachabilityWWANStatus wwanStatus = _reachability.wwanStatus;
-    NSString *net = nil;
-    
-    switch (status)
-    {
-        case YYReachabilityStatusNone: //无网络
-        {
-            net = @"notReachable";
-        }
-            break;
-            
-        case YYReachabilityStatusWWAN: //蜂窝网络
-        {
-            switch (wwanStatus)
-            {
-                case YYReachabilityWWANStatusNone:
-                {
-                    net = @"notReachable";
-                }
-                    break;
-                    
-                case YYReachabilityWWANStatus2G:
-                {
-                    net = @"2G";
-                }
-                    break;
-                    
-                case YYReachabilityWWANStatus3G:
-                {
-                    net = @"3G";
-                }
-                    break;
-                    
-                case YYReachabilityWWANStatus4G:
-                {
-                    net = @"4G";
-                }
-                    break;
-            }
-        }
-            break;
-            
-        case YYReachabilityStatusWiFi: //WIFI
-        {
-            net = @"WiFi";
-        }
-            break;
-    }
-    
-    return net;
-}
-
-+ (BOOL)isConnectedToWiFi
-{
-    if (!_reachability) _reachability = [YYReachability reachability];
-    YYReachabilityStatus status = _reachability.status;
-    BOOL wifi = NO;    
-    if (status == YYReachabilityStatusWiFi) wifi = YES;
-
-    return wifi;
 }
 
 + (NSString *)WIFIName
@@ -1182,11 +1175,16 @@ static YYReachability *_reachability = nil;
         _screenWidth = [LTDeviceInfo screenWidth];
         _screenHeight = [LTDeviceInfo screenHeight];
         _statusBarHeight = [LTDeviceInfo statusBarHeight];
+        _isIPhoneXSeries = [LTDeviceInfo isIPhoneXSeries];
+        _is65InchScreen = [LTDeviceInfo is65InchScreen];
+        _is61InchScreen = [LTDeviceInfo is61InchScreen];
         _is58InchScreen = [LTDeviceInfo is58InchScreen];
         _is55InchScreen = [LTDeviceInfo is55InchScreen];
         _is47InchScreen = [LTDeviceInfo is47InchScreen];
         _is40InchScreen = [LTDeviceInfo is40InchScreen];
         _is35InchScreen = [LTDeviceInfo is35InchScreen];
+        _screenSizeFor65Inch = [LTDeviceInfo screenSizeFor65Inch];
+        _screenSizeFor61Inch = [LTDeviceInfo screenSizeFor61Inch];
         _screenSizeFor58Inch = [LTDeviceInfo screenSizeFor58Inch];
         _screenSizeFor55Inch = [LTDeviceInfo screenSizeFor55Inch];
         _screenSizeFor47Inch = [LTDeviceInfo screenSizeFor47Inch];
@@ -1203,6 +1201,7 @@ static YYReachability *_reachability = nil;
         _iOS9OrLater = [LTDeviceInfo iOS9OrLater];
         _iOS10OrLater = [LTDeviceInfo iOS10OrLater];
         _iOS11OrLater = [LTDeviceInfo iOS11OrLater];
+        _iOS12OrLater = [LTDeviceInfo iOS12OrLater];
         _clipboardContent = [LTDeviceInfo clipboardContent];
         
         // 本地区域相关
@@ -1216,8 +1215,6 @@ static YYReachability *_reachability = nil;
         _carrierCountry = [LTDeviceInfo carrierCountry];
         _carrierISOCountryCode = [LTDeviceInfo carrierISOCountryCode];
         _carrierAllowsVOIP = [LTDeviceInfo carrierAllowsVOIP];
-        _networkStatus = [LTDeviceInfo networkStatus];
-        _isConnectedToWiFi = [LTDeviceInfo isConnectedToWiFi];
         _WIFIName = [LTDeviceInfo WIFIName];
         _ipAddressWIFI = [LTDeviceInfo ipAddressWIFI];
         _ipAddressCell = [LTDeviceInfo ipAddressCell];
