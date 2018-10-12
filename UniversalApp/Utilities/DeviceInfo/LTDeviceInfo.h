@@ -16,7 +16,7 @@
 #define IOS10_OR_LATER ([LTDeviceInfo iOS10OrLater])
 // 判断当前编译使用的 Base SDK 版本是否为 iOS 11.0 及以上
 #define IOS11_OR_LATER ([LTDeviceInfo iOS11OrLater])
-// 判断当前编译使用的 Base SDK 版本是否为 iOS 11.0 及以上
+// 判断当前编译使用的 Base SDK 版本是否为 iOS 12.0 及以上
 #define IOS12_OR_LATER ([LTDeviceInfo iOS12OrLater])
 
 /**  判断是否为 iPhone X 系列刘海设计  */
