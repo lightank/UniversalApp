@@ -328,17 +328,20 @@
 
 + (BOOL)isIPhoneXSeries
 {
-    BOOL iPhoneXSeries = NO;
-    if (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPhone)
-    {
-        return iPhoneXSeries;
-    }
+    static BOOL iPhoneXSeries = NO;
     
-    if (@available(iOS 11.0, *))
-    {
-        iPhoneXSeries = [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom > 0.f;
-    }
-    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (@available(iOS 11.0, *))
+        {
+            iPhoneXSeries = [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom > 0.f;
+        }
+        
+        if (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPhone)
+        {
+            iPhoneXSeries = NO;
+        }
+    });
     return iPhoneXSeries;
 }
 
@@ -347,7 +350,8 @@
     static BOOL size = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        size = CGSizeEqualToSize([self screenSizeFor65Inch], CGSizeMake([self deviceWidth], [self deviceHeight])) && ([[LTDeviceInfo machineModel] isEqualToString:@"iPhone11,4"] || [[LTDeviceInfo machineModel] isEqualToString:@"iPhone11,6"]);
+        NSSet *inchScreenSet = [NSSet setWithObjects:@"iPhone11,4", @"iPhone11,6", nil];
+        size = CGSizeEqualToSize([self screenSizeFor65Inch], CGSizeMake([self deviceWidth], [self deviceHeight])) && [inchScreenSet containsObject:[self machineModel]];
     });
     return size;
 }
@@ -357,7 +361,8 @@
     static BOOL size = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        size = CGSizeEqualToSize([self screenSizeFor61Inch], CGSizeMake([self deviceWidth], [self deviceHeight])) && [[LTDeviceInfo machineModel] isEqualToString:@"iPhone11,8"];
+        NSSet *inchScreenSet = [NSSet setWithObjects:@"iPhone11,8", nil];
+        size = CGSizeEqualToSize([self screenSizeFor61Inch], CGSizeMake([self deviceWidth], [self deviceHeight])) && [inchScreenSet containsObject:[self machineModel]];
     });
     return size;
 }
