@@ -33,7 +33,7 @@
         return;
     }
     
-    [self.arguments setObject:value forKey:key];
+    self.arguments[key] = value;
 }
 
 /** 请求头部设置 */

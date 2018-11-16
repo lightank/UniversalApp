@@ -50,7 +50,7 @@
         case LTGradientImageDirectionLeft:
         {
             layer.startPoint = CGPointMake(1.f, 0.5f);
-            layer.endPoint = CGPointMake(.0f, 0.5f);
+            layer.endPoint = CGPointMake(0.f, 0.5f);
         }
             break;
         case LTGradientImageDirectionBottom:
@@ -61,7 +61,7 @@
             break;
         case LTGradientImageDirectionRight:
         {
-            layer.startPoint = CGPointMake(.0f, 0.5f);
+            layer.startPoint = CGPointMake(0.f, 0.5f);
             layer.endPoint = CGPointMake(1.f, 0.5f);
         }
             break;

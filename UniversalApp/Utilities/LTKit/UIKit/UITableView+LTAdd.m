@@ -20,4 +20,12 @@
     }
 }
 
+- (void)lt_cleanTopAndBottomMargin
+{
+    if (!self.tableHeaderView) self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 0.f, 0.00001f)];
+    if (!self.tableFooterView) self.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 0.f, 0.00001f)];
+    self.sectionHeaderHeight = 0.f;
+    self.sectionFooterHeight = 0.f;
+}
+
 @end

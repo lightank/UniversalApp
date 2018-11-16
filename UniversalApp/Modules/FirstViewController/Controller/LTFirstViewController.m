@@ -7,12 +7,12 @@
 //
 
 #import "LTFirstViewController.h"
-#import "LTPrivacyPermission.h"
 
 @interface LTFirstViewController ()
 
 @end
 
 @implementation LTFirstViewController
+
 
 @end
