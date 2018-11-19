@@ -20,6 +20,7 @@
 #import "UIWindow+LTAdd.h"
 #import "UIApplication+LTAdd.h"
 #import "UITextView+LTAdd.h"
+#import "UITableViewCell+LTAdd.h"
 
 // Foundation
 #import "NSObject+LTAdd.h"

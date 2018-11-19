@@ -20,6 +20,9 @@
 		3D48667E20B1B1C5002BACA8 /* LTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48667D20B1B1C5002BACA8 /* LTUser.m */; };
 		3D48668120B1B34D002BACA8 /* LTSandboxTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48668020B1B34D002BACA8 /* LTSandboxTool.m */; };
 		3D48668420B1B4C0002BACA8 /* NSArray+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48668320B1B4C0002BACA8 /* NSArray+LTAdd.m */; };
+		3D4A2F9C21A2585A00817536 /* LTLocalizations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A2F9B21A2585A00817536 /* LTLocalizations.m */; };
+		3D4A2F9F21A2640600817536 /* LTLanguageSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A2F9E21A2640600817536 /* LTLanguageSettingViewController.m */; };
+		3D4A2FA321A2DF3900817536 /* LTLanguageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A2FA221A2DF3900817536 /* LTLanguageTableViewCell.m */; };
 		3D50913F20C6790F00A21655 /* PrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D50913D20C6790F00A21655 /* PrivacyPermission.m */; };
 		3D5B93362134F29D00B8599C /* UITableViewCell+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B93352134F29D00B8599C /* UITableViewCell+LTAdd.m */; };
 		3D655756210F195300E6A3CD /* UINavigationBar+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D655755210F195300E6A3CD /* UINavigationBar+LTAdd.m */; };
@@ -115,6 +118,12 @@
 		3D48668020B1B34D002BACA8 /* LTSandboxTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTSandboxTool.m; sourceTree = "<group>"; };
 		3D48668220B1B4C0002BACA8 /* NSArray+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+LTAdd.h"; sourceTree = "<group>"; };
 		3D48668320B1B4C0002BACA8 /* NSArray+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LTAdd.m"; sourceTree = "<group>"; };
+		3D4A2F9A21A2585A00817536 /* LTLocalizations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTLocalizations.h; sourceTree = "<group>"; };
+		3D4A2F9B21A2585A00817536 /* LTLocalizations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTLocalizations.m; sourceTree = "<group>"; };
+		3D4A2F9D21A2640600817536 /* LTLanguageSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTLanguageSettingViewController.h; sourceTree = "<group>"; };
+		3D4A2F9E21A2640600817536 /* LTLanguageSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTLanguageSettingViewController.m; sourceTree = "<group>"; };
+		3D4A2FA121A2DF3900817536 /* LTLanguageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTLanguageTableViewCell.h; sourceTree = "<group>"; };
+		3D4A2FA221A2DF3900817536 /* LTLanguageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTLanguageTableViewCell.m; sourceTree = "<group>"; };
 		3D50913D20C6790F00A21655 /* PrivacyPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyPermission.m; sourceTree = "<group>"; };
 		3D50913E20C6790F00A21655 /* PrivacyPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyPermission.h; sourceTree = "<group>"; };
 		3D5B93342134F29D00B8599C /* UITableViewCell+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+LTAdd.h"; sourceTree = "<group>"; };
@@ -309,6 +318,24 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		3D4A2F9921A256D100817536 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3D4A2F9D21A2640600817536 /* LTLanguageSettingViewController.h */,
+				3D4A2F9E21A2640600817536 /* LTLanguageSettingViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3D4A2FA021A2DF1100817536 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3D4A2FA121A2DF3900817536 /* LTLanguageTableViewCell.h */,
+				3D4A2FA221A2DF3900817536 /* LTLanguageTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3D50913C20C6790400A21655 /* PrivacyPermission */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +386,17 @@
 				3DACBB2F219EAD610077E262 /* LTLoginViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		3DACBB34219EBE980077E262 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				3D4A2F9A21A2585A00817536 /* LTLocalizations.h */,
+				3D4A2F9B21A2585A00817536 /* LTLocalizations.m */,
+				3D4A2FA021A2DF1100817536 /* View */,
+				3D4A2F9921A256D100817536 /* Controller */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		3DCC9F0520B006EF00CD476A = {
@@ -442,6 +480,7 @@
 		3DCC9F4420B00E8100CD476A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				3DACBB34219EBE980077E262 /* Localization */,
 				3DACBB2C219EAD380077E262 /* Login */,
 				3D679309213E23160017891D /* FirstViewController */,
 				3D48667820B1B197002BACA8 /* User */,
@@ -525,10 +564,10 @@
 				3DCC9F7620B02F3A00CD476A /* UIViewController+LTAdd.m */,
 				3DB7193F21302C43004C5218 /* UITableView+LTAdd.h */,
 				3DB7194021302C43004C5218 /* UITableView+LTAdd.m */,
-				3D679303213D24000017891D /* UIBarButtonItem+LTAdd.h */,
-				3D679304213D24000017891D /* UIBarButtonItem+LTAdd.m */,
 				3D5B93342134F29D00B8599C /* UITableViewCell+LTAdd.h */,
 				3D5B93352134F29D00B8599C /* UITableViewCell+LTAdd.m */,
+				3D679303213D24000017891D /* UIBarButtonItem+LTAdd.h */,
+				3D679304213D24000017891D /* UIBarButtonItem+LTAdd.m */,
 				3D655754210F195300E6A3CD /* UINavigationBar+LTAdd.h */,
 				3D655755210F195300E6A3CD /* UINavigationBar+LTAdd.m */,
 				3DCC9F7720B02F3A00CD476A /* UINavigationController+LTAdd.h */,
@@ -847,10 +886,12 @@
 				3DE5B31A20B047CF009719D0 /* LTNetworkTools.m in Sources */,
 				3DCC9F6920B0237300CD476A /* UIScrollView+LTRefresh.m in Sources */,
 				3DB7194121302C43004C5218 /* UITableView+LTAdd.m in Sources */,
+				3D4A2F9F21A2640600817536 /* LTLanguageSettingViewController.m in Sources */,
 				3D48668120B1B34D002BACA8 /* LTSandboxTool.m in Sources */,
 				3D50913F20C6790F00A21655 /* PrivacyPermission.m in Sources */,
 				3DC328C120F84DFA0092C35C /* NSDictionary+LTAdd.m in Sources */,
 				3D03D64420B80C27006F6F75 /* UINavigationBar+Awesome.m in Sources */,
+				3D4A2F9C21A2585A00817536 /* LTLocalizations.m in Sources */,
 				3DACBB30219EAD610077E262 /* LTLoginViewController.m in Sources */,
 				3DCC9F6820B0237300CD476A /* UIButton+LTAdd.m in Sources */,
 				3D48667320B1AE0F002BACA8 /* LTDeviceInfo.m in Sources */,
@@ -884,6 +925,7 @@
 				3DCC9F6620B0237300CD476A /* UIImage+LTAdd.m in Sources */,
 				3DCC9F6D20B0237300CD476A /* NSString+LTAdd.m in Sources */,
 				3D03D63B20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m in Sources */,
+				3D4A2FA321A2DF3900817536 /* LTLanguageTableViewCell.m in Sources */,
 				3D7A8C322191368700BBA770 /* CAGradientLayer+LTAdd.m in Sources */,
 				3DDDBEC621941CCF004D68F6 /* LTExampleCode.m in Sources */,
 				3DFE3E7620EA533300A8832C /* AppDelegate+JPush.m in Sources */,

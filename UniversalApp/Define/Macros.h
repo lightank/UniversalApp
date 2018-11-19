@@ -8,7 +8,7 @@
 
 #define kAppStringPlaceholder @"none"
 
-#define  kDisableAdjustsScrollViewInsets(scrollView, viewController)    \
+#define  kScrollViewDisableAdjustsInsets(scrollView, viewController)    \
 _Pragma("clang diagnostic push")    \
 _Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"")   \
 if (@available(iOS 11.0, *))  { \

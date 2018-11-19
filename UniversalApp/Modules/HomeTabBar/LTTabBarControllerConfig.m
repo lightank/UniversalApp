@@ -62,22 +62,22 @@
 - (NSArray *)tabBarItemsAttributesForController
 {
     NSDictionary *firstTabBarItemsAttributes = @{
-                                                 CYLTabBarItemTitle : @"第一个",
+                                                 CYLTabBarItemTitle : LTLocalizedString(@"TabBar.FirstTitle"),
                                                  CYLTabBarItemImage : @"image1",  /* NSString and UIImage are supported*/
                                                  CYLTabBarItemSelectedImage : @"image1_sel", /* NSString and UIImage are supported*/
                                                  };
     NSDictionary *secondTabBarItemsAttributes = @{
-                                                  CYLTabBarItemTitle : @"第二个",
+                                                  CYLTabBarItemTitle : LTLocalizedString(@"TabBar.SecondTitle"),
                                                   CYLTabBarItemImage : @"image2",
                                                   CYLTabBarItemSelectedImage : @"image2_sel",
                                                   };
     NSDictionary *thirdTabBarItemsAttributes = @{
-                                                 CYLTabBarItemTitle : @"第三个",
+                                                 CYLTabBarItemTitle : LTLocalizedString(@"TabBar.ThirdTitle"),
                                                  CYLTabBarItemImage : @"image3",
                                                  CYLTabBarItemSelectedImage : @"image3_sel",
                                                  };
     NSDictionary *fourthTabBarItemsAttributes = @{
-                                                  CYLTabBarItemTitle : @"第四个",
+                                                  CYLTabBarItemTitle : LTLocalizedString(@"TabBar.FourthTitle"),
                                                   CYLTabBarItemImage : @"image4",
                                                   CYLTabBarItemSelectedImage : @"image4_sel"
                                                   };

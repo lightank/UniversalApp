@@ -14,10 +14,20 @@ LTUserManager *LTUserManagerInstance = nil;
 
 /**  导航控制器  */
 @property (nonatomic, strong) UINavigationController *navigationController;
+/**  完成回调  */
+@property (nonatomic, copy) LTUserManagerCompletionBlock completionBlock;
 
 @end
 
 @implementation LTUserManager
+
++ (void)initialize
+{
+    if (self == [LTUserManager class])
+    {
+        [self sharedInstance];
+    }
+}
 
 + (void)initializeUserManager
 {
@@ -54,12 +64,12 @@ LTUserManager *LTUserManagerInstance = nil;
     return [[NSClassFromString(@"LTLoginViewController") alloc] init];
 }
 
-+ (void)showLoginPage
++ (void)showLoginPageWithCompletion:(LTUserManagerCompletionBlock)completionBlock
 {
-    static NSString *title = @"lt_login_page_navigation_controller_title";
     // 先清空登录用户相关信息
     [self signOutCurrentUser];
     // 如果当前页面就是登录页面就不用跳转了
+    static NSString *title = @"lt_login_page_navigation_controller_title";
     if (kCurrentViewController.navigationController.title == title)
     {
         return;
@@ -68,18 +78,34 @@ LTUserManager *LTUserManagerInstance = nil;
     UIViewController *loginController = [self loginViewController];
     NSAssert([loginController isKindOfClass:[UIViewController class]], @"尚未设置登录界面");
     
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[self loginViewController]];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginController];
     navigationController.title = title;
-    LTUserManagerInstance.navigationController = navigationController;
     [kCurrentViewController presentViewController:navigationController animated:YES completion:^{
         
     }];
+    
+    LTUserManagerInstance.navigationController = navigationController;
+    LTUserManagerInstance.completionBlock = completionBlock;
 }
 
-+ (void)hiddenLoginPge
++ (void)showLoginPage
+{
+    [self showLoginPageWithCompletion:nil];
+}
+
++ (void)hiddenLoginPageWithLoginStatus:(BOOL)isLoginSuccess
 {
     [LTUserManagerInstance.navigationController dismissViewControllerAnimated:YES completion:^{
         LTUserManagerInstance.navigationController = nil;
+        if (LTUserManagerInstance.completionBlock)
+        {
+            LTUserManagerInstance.completionBlock(isLoginSuccess);
+            LTUserManagerInstance.completionBlock = nil;
+        }
+        if (isLoginSuccess)
+        {
+            [self postLoginSuccessNotification];
+        }
     }];
 }
 
@@ -114,11 +140,23 @@ LTUserManager *LTUserManagerInstance = nil;
 {
     LTUserManagerInstance.currentUser = nil;
     [LTUserManagerInstance storageCurrentUserInfo];
-    
+    // 发出退出登录通知
+    [self postSignOutSuccessNotification];
     return YES;
 }
 
+#pragma mark - 登录/退出通知
++ (void)postLoginSuccessNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:LTUserDidLoginSuccessNotification object:self];
+}
 
++ (void)postSignOutSuccessNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:LTUserDidSignOutSuccessNotification object:self];
+}
+
+#pragma mark - 数据库
 - (YYCache *)userInfoCache
 {
     return [[YYCache alloc] initWithPath:[self pathForUserInfo]];
@@ -132,3 +170,10 @@ LTUserManager *LTUserManagerInstance = nil;
 }
 
 @end
+
+// 登录成功
+NSString * const LTUserDidLoginSuccessNotification = @"LTUserDidLoginSuccessNotification";
+// 退出登录成功通知
+NSString * const LTUserDidSignOutSuccessNotification = @"LTUserDidSignOutSuccessNotification";
+
+

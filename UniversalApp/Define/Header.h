@@ -8,6 +8,8 @@
 
 #pragma mark - 常用工具
 #import "LTKit.h"
+#import "LTUserManager.h"
+#import "LTLocalizations.h"
 
 #pragma mark - 全局定义
 #import "Macros.h"

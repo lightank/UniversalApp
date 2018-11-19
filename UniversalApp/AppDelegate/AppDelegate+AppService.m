@@ -29,6 +29,8 @@
     [self initAppServiceWithOptions:launchOptions];
     //For Debug
     [self somethingForDebug];
+    // 监听语言变化
+    [self monitorLanguageChange];
 }
 
 /**  初始化服务  */
@@ -38,7 +40,7 @@
     [LTNetworkTools configureNetwork];
     // ========== 上方不能插入代码 ==========
     //设置IQKeyboard
-//    [self configureBoardManager];
+    //[self configureBoardManager];
     //设置根控制器
     [self setupTabBarController];
 }
@@ -83,28 +85,40 @@
     [self.window setRootViewController:tabBarController];
 }
 
-// 设置app语言
-- (void)setAppLanguage:(NSString *)language
+- (void)monitorLanguageChange
+{
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:LTLanguageDidSettingSuccessNotification object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+        [self reloadControllerWhenLanguageChanged];
+    }];
+}
+
+- (void)reloadControllerWhenLanguageChanged
 {
     CYLTabBarController *currentTabBarController = (CYLTabBarController *)(self.window.rootViewController);
     if (![currentTabBarController isKindOfClass:[CYLTabBarController class]]) return;
     NSUInteger selectedIndex = currentTabBarController.selectedIndex;
     UINavigationController *currentNavigationController = currentTabBarController.selectedViewController;
-    NSMutableArray *viewControllers = currentNavigationController.viewControllers.mutableCopy;
+    NSArray<UIViewController *> *viewControllers = currentNavigationController.viewControllers;
     
     LTTabBarControllerConfig *tabBarControllerConfig = [[LTTabBarControllerConfig alloc] init];
     CYLTabBarController *tabBarController = tabBarControllerConfig.tabBarController;
     tabBarController.selectedIndex = selectedIndex;
-    UINavigationController *navigationController = currentTabBarController.selectedViewController;
+    UINavigationController *navigationController = tabBarController.selectedViewController;
+    [viewControllers enumerateObjectsUsingBlock:^(UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIViewController *vc = [[[obj class] alloc] init];
+        vc.hidesBottomBarWhenPushed = idx != 0 ? YES : NO;
+        if (idx != 0)
+        {
+            [navigationController pushViewController:vc animated:YES];
+        }
+    }];
     
-    
-    //解决奇怪的动画bug。异步执行
+    //解决奇怪的动画bug,异步执行
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.window setRootViewController:tabBarController];
-        navigationController.viewControllers = viewControllers;
-        NSLog(@"已切换到语言");
     });
 }
+
 
 #pragma mark ————— FPS 监测 —————
 - (void)showFPS
