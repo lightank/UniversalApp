@@ -10,7 +10,6 @@
 
 @interface UINavigationBar (LTAdd)
 
-
 - (void)lt_setBackgroundColor:(UIColor *)backgroundColor;
 - (void)lt_setTranslationY:(CGFloat)translationY;
 - (void)lt_reset;

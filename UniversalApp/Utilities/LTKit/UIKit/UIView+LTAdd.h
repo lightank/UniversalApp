@@ -40,6 +40,9 @@ typedef NS_ENUM(NSUInteger, LTOscillatoryAnimationType) {
                                         type:(LTOscillatoryAnimationType)type;
 
 
+/**  检测任意view的subviews的关系树  */
+- (void)lt_printSubviewsWithIndentation:(int)indentation;
+
 /**
  Returns the view's view controller (may be nil).
  */

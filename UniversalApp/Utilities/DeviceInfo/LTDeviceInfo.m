@@ -328,21 +328,21 @@
 
 + (BOOL)isNotchedScreen
 {
-    static BOOL iPhoneXSeries = NO;
+    static BOOL isNotchedScreen = NO;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         if (@available(iOS 11.0, *))
         {
-            iPhoneXSeries = [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom > 0.f;
+            isNotchedScreen = [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom > 0.f;
         }
         
         if (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPhone)
         {
-            iPhoneXSeries = NO;
+            isNotchedScreen = NO;
         }
     });
-    return iPhoneXSeries;
+    return isNotchedScreen;
 }
 
 + (BOOL)is65InchScreen

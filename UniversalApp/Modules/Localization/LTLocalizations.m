@@ -12,6 +12,9 @@ LTLocalizations *LTLocalizationsInstance = nil;
 
 
 @interface LTLocalizations ()
+{
+    dispatch_semaphore_t _lock;
+}
 
 /**  导航控制器  */
 @property (nonatomic, strong) UINavigationController *navigationController;
@@ -45,6 +48,16 @@ LTLocalizations *LTLocalizationsInstance = nil;
     return [self sharedInstance];
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        _lock = dispatch_semaphore_create(1);
+    }
+    return self;
+}
+
 + (void)initializeLocalization
 {
     [self sharedInstance];
@@ -58,11 +71,13 @@ LTLocalizations *LTLocalizationsInstance = nil;
 /**  显示语言设置页面  */
 + (void)showLanguageSettingPage
 {
-    static NSString *title = @"lt_language_setting_page_navigation_controller_title";
+    dispatch_semaphore_wait(LTLocalizationsInstance->_lock, DISPATCH_TIME_FOREVER);
 
     // 如果当前页面就是登录页面就不用跳转了
-    if (kCurrentViewController.navigationController.title == title)
+    UIViewController *controller = kCurrentViewController.navigationController.viewControllers.firstObject;
+    if ([controller isKindOfClass:[[self languageSettingViewController] class]])
     {
+        dispatch_semaphore_signal(LTLocalizationsInstance->_lock);
         return;
     }
     
@@ -70,12 +85,11 @@ LTLocalizations *LTLocalizationsInstance = nil;
     NSAssert([languageSettingViewController isKindOfClass:[UIViewController class]], @"尚未设置登录界面");
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:languageSettingViewController];
-    navigationController.title = title;
     LTLocalizationsInstance.navigationController = navigationController;
     [kCurrentViewController presentViewController:navigationController animated:YES completion:^{
         
     }];
-
+    dispatch_semaphore_signal(LTLocalizationsInstance->_lock);
 }
 /**  隐藏语言设置页面  */
 + (void)hiddenLanguageSettingPage

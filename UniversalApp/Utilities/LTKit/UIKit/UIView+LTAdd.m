@@ -139,6 +139,30 @@
     }];
 }
 
+// @see https://www.jianshu.com/p/8b0d27f93619
+- (void)lt_printSubviewsWithIndentation:(int)indentation
+{
+    NSArray *subviews = [self subviews];
+    
+    for (int i = 0; i < [subviews count]; i++)
+    {
+        
+        UIView *currentSubview = [subviews objectAtIndex:i];
+        NSMutableString *currentViewDescription = [[NSMutableString alloc] init];
+        
+        for (int j = 0; j <= indentation; j++)
+        {
+            [currentViewDescription appendString:@"   "];
+        }
+        
+        [currentViewDescription appendFormat:@"[%d]: class: '%@', frame=(%.1f, %.1f, %.1f, %.1f), opaque=%i, hidden=%i, userInterfaction=%i", i, NSStringFromClass([currentSubview class]), currentSubview.frame.origin.x, currentSubview.frame.origin.y, currentSubview.frame.size.width, currentSubview.frame.size.height, currentSubview.opaque, currentSubview.hidden, currentSubview.userInteractionEnabled];
+
+        fprintf(stderr,"%s\n", [currentViewDescription UTF8String]);
+        
+        [currentSubview lt_printSubviewsWithIndentation:indentation+1];
+    }
+}
+
 - (UIView *)lt_subviewOfClassType:(Class)classType
 {
     __block UIView *subview = nil;

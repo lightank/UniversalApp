@@ -11,6 +11,9 @@
 LTUserManager *LTUserManagerInstance = nil;
 
 @interface LTUserManager ()
+{
+    dispatch_semaphore_t _lock;
+}
 
 /**  导航控制器  */
 @property (nonatomic, strong) UINavigationController *navigationController;
@@ -54,6 +57,7 @@ LTUserManager *LTUserManagerInstance = nil;
     if (self)
     {
         [self restoreCurrentUserInfo];
+        _lock = dispatch_semaphore_create(1);
         _currentUser = _currentUser ? : [[LTUser alloc] init];
     }
     return self;
@@ -66,12 +70,14 @@ LTUserManager *LTUserManagerInstance = nil;
 
 + (void)showLoginPageWithCompletion:(LTUserManagerCompletionBlock)completionBlock
 {
+    dispatch_semaphore_wait(LTUserManagerInstance->_lock, DISPATCH_TIME_FOREVER);
     // 先清空登录用户相关信息
     [self signOutCurrentUser];
     // 如果当前页面就是登录页面就不用跳转了
-    static NSString *title = @"lt_login_page_navigation_controller_title";
-    if (kCurrentViewController.navigationController.title == title)
+    UIViewController *controller = kCurrentViewController.navigationController.viewControllers.firstObject;
+    if ([controller isKindOfClass:[[self loginViewController] class]])
     {
+        dispatch_semaphore_signal(LTUserManagerInstance->_lock);
         return;
     }
     
@@ -79,13 +85,13 @@ LTUserManager *LTUserManagerInstance = nil;
     NSAssert([loginController isKindOfClass:[UIViewController class]], @"尚未设置登录界面");
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginController];
-    navigationController.title = title;
     [kCurrentViewController presentViewController:navigationController animated:YES completion:^{
         
     }];
     
     LTUserManagerInstance.navigationController = navigationController;
     LTUserManagerInstance.completionBlock = completionBlock;
+    dispatch_semaphore_signal(LTUserManagerInstance->_lock);
 }
 
 + (void)showLoginPage
