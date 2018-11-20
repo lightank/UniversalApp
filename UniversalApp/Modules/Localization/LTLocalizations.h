@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**  显示语言设置页面  */
 + (void)showLanguageSettingPage;
 /**  隐藏语言设置页面  */
-+ (void)hiddenLanguageSettingPage
++ (void)hiddenLanguageSettingPage;
 
 @end
 

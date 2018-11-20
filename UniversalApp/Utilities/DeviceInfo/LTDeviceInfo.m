@@ -326,7 +326,7 @@
     return [[UIApplication sharedApplication] statusBarFrame].size.height;
 }
 
-+ (BOOL)isIPhoneXSeries
++ (BOOL)isNotchedScreen
 {
     static BOOL iPhoneXSeries = NO;
     
@@ -1180,7 +1180,7 @@
         _screenWidth = [LTDeviceInfo screenWidth];
         _screenHeight = [LTDeviceInfo screenHeight];
         _statusBarHeight = [LTDeviceInfo statusBarHeight];
-        _isIPhoneXSeries = [LTDeviceInfo isIPhoneXSeries];
+        _isNotchedScreen = [LTDeviceInfo isNotchedScreen];
         _is65InchScreen = [LTDeviceInfo is65InchScreen];
         _is61InchScreen = [LTDeviceInfo is61InchScreen];
         _is58InchScreen = [LTDeviceInfo is58InchScreen];

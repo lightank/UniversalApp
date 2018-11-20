@@ -20,7 +20,7 @@
 #define IOS12_OR_LATER ([LTDeviceInfo iOS12OrLater])
 
 /**  判断是否为 iPhone X 系列刘海设计  */
-#define IPHONE_X_SERIES ([LTDeviceInfo isIPhoneXSeries])
+#define IPHONE_Notched_Screen ([LTDeviceInfo isNotchedScreen])
 // 判断是否为 6.5英寸 iPhone XS Max pt:414x896，px:1242x2688 ，@3x
 #define IPHONE_SIZE_65INCH ([LTDeviceInfo is65InchScreen])
 // 判断是否为 6.1英寸 iPhone XR pt:414x896，px:828x1792，@2x
@@ -103,8 +103,8 @@
 @property (nonatomic, readonly) CGFloat statusBarHeight;
 @property (class, nonatomic, readonly) CGFloat statusBarHeight;
 /**  判断是否为 iPhone X 系列刘海设计  */
-@property (nonatomic, readonly) BOOL isIPhoneXSeries;
-@property (class, nonatomic, readonly) BOOL isIPhoneXSeries;
+@property (nonatomic, readonly) BOOL isNotchedScreen;
+@property (class, nonatomic, readonly) BOOL isNotchedScreen;
 /**  判断是否为 6.5英寸 iPhone XR pt:414x896，px:1242x2688，@3x  */
 @property (nonatomic, readonly) BOOL is65InchScreen;
 @property (class, nonatomic, readonly) BOOL is65InchScreen;
