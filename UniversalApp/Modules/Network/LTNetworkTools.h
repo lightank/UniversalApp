@@ -26,6 +26,8 @@ extern LTNetworkTools *LTNetworkToolsInstance;
 
 /**  网络库配置,必须调用  */
 + (void)configureNetwork;
+/**  显示网络环境配置 */
++ (void)showNetworkOption;
 /**  网络是否可用  */
 + (BOOL)isNetworkReachable;
 /**  处理无网络事件  */

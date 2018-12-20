@@ -16,11 +16,11 @@
 
 //0:生产 1:dev 2:sit 3:uat 4:开发人员1的名字
 #if DEBUG
-static BOOL showEnvironmentViewController = YES;
-static NSInteger NetworkType = 1;
+static BOOL kShowEnvironmentViewController = YES;
+static NSInteger kDefaultNetworkType = 1;
 #else
-static BOOL showEnvironmentViewController = NO;
-static NSInteger NetworkType = 0;
+static BOOL kShowEnvironmentViewController = NO;
+static NSInteger kDefaultNetworkType = 0;
 #endif
 
 LTNetworkTools *LTNetworkToolsInstance = nil;
@@ -68,7 +68,7 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
     //是否展示环境选择器
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        if (showEnvironmentViewController)
+        if (kShowEnvironmentViewController)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self showNetworkOption];
@@ -191,7 +191,7 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         LTNetworkToolsInstance = [[LTNetworkTools alloc] init];
-        LTNetworkToolsInstance.environmentType = NetworkType;
+        LTNetworkToolsInstance.environmentType = kDefaultNetworkType;
     });
     return LTNetworkToolsInstance;
 }
