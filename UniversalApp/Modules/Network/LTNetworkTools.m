@@ -16,64 +16,54 @@
 
 //0:生产 1:dev 2:sit 3:uat 4:开发人员1的名字
 #if DEBUG
-static BOOL showEnvironmentViewController = NO;
+static BOOL showEnvironmentViewController = YES;
 static NSInteger NetworkType = 1;
 #else
 static BOOL showEnvironmentViewController = NO;
 static NSInteger NetworkType = 0;
 #endif
 
-static NSString *const kConnectPortName = @"name";
-static NSString *const kConnectPortBaseURL = @"base_url_path";
-static NSString *const kConnectPortBaseURLH5 = @"base_url_path_h5";
-static NSString *const kConnectPortBaseURLImage = @"base_url_path_image";
-
 LTNetworkTools *LTNetworkToolsInstance = nil;
 
 @interface LTNetworkTools ()
 
 /**  环境数组  */
-@property (nonatomic, strong) NSArray<NSDictionary *> *environmentArray;
+@property (nonatomic, strong) NSArray<LTConnectPort *> *environmentArray;
 /**  环境数组中下标  */
 @property (nonatomic, assign) NSUInteger environmentType;
-/**  域名  */
-@property (nonatomic, copy) NSString *baseURL;
-/**  H5页面baseURL  */
-@property (nonatomic, copy) NSString *H5BaseURL;
-/**  图片的baseURL  */
-@property (nonatomic, copy) NSString *imageBaseURL;
 
 @end
 
 @implementation LTNetworkTools
 
++ (void)initialize
+{
+    if (self == [LTNetworkTools class])
+    {
+        [self sharedInstance];
+    }
+}
+
 /**  拼接URL路径  */
 + (NSString *)URL:(NSString *)urlString
 {
-    return [NSURL URLWithString:urlString relativeToURL:[NSURL URLWithString:LTNetworkToolsInstance.baseURL]].absoluteString;
+    return [NSURL URLWithString:urlString relativeToURL:[NSURL URLWithString:LTNetworkToolsInstance.connectPort.requestBaseURL]].absoluteString;
 }
 
 /**  拼接H5 URL路径  */
 + (NSString *)HTML5URL:(NSString *)urlString
 {
-    return [NSURL URLWithString:urlString relativeToURL:[NSURL URLWithString:LTNetworkToolsInstance.H5BaseURL]].absoluteString;
+    return [NSURL URLWithString:urlString relativeToURL:[NSURL URLWithString:LTNetworkToolsInstance.connectPort.webBaseURL]].absoluteString;
 }
 /**  拼接图片 URL路径  */
 + (NSURL *)imageURL:(NSString *)urlString
 {
-    return [NSURL URLWithString:urlString relativeToURL:[NSURL URLWithString:LTNetworkToolsInstance.H5BaseURL]];
+    return [NSURL URLWithString:urlString relativeToURL:[NSURL URLWithString:LTNetworkToolsInstance.connectPort.resourceBaseURL]];
 }
 #pragma mark - 网络监听
 /**  网络库配置  */
 + (void)configureNetwork
 {
-    {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            [LTNetworkTools sharedInstance];
-        });
-    }
-
 #if DEBUG
     //是否展示环境选择器
     static dispatch_once_t onceToken;
@@ -86,11 +76,6 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
         }
     });
 #endif
-}
-
-+ (void)configureNetworkBaseURL
-{
-    [YTKNetworkConfig sharedConfig].baseUrl = LTNetworkToolsInstance.baseURL;
 }
 
 /**  显示网络显示选项  */
@@ -132,8 +117,8 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
     }];
     [alertController addAction:diyAction];
     
-    [LTNetworkToolsInstance.environmentArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *titleName = obj[kConnectPortName];
+    [LTNetworkToolsInstance.environmentArray enumerateObjectsUsingBlock:^(LTConnectPort * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *titleName = obj.name;
         titleName = titleName ? titleName : @"无名称，联系开发";
         UIAlertAction *action = [UIAlertAction actionWithTitle:titleName style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSUInteger index = idx;
@@ -196,8 +181,8 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
 /**  手动设置网络跟H5的baseURL  */
 + (void)DIYBaseURL:(NSString *)baseURL H5BaseURL:(NSString *)H5BaseURL
 {
-    LTNetworkToolsInstance.baseURL = baseURL;
-    LTNetworkToolsInstance.H5BaseURL = H5BaseURL;
+    LTNetworkToolsInstance.connectPort.requestBaseURL = baseURL;
+    LTNetworkToolsInstance.connectPort.webBaseURL = H5BaseURL;
 }
 
 /**  单例  */
@@ -215,37 +200,43 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
 {
     if (self = [super init])
     {
+        LTConnectPort *release = [[LTConnectPort alloc] init];
+        release.name = @"生产环境";
+        release.requestBaseURL = @"https://127.0.0.1/";
+        release.webBaseURL = @"https://127.0.0.1/";
+        release.resourceBaseURL = @"https://127.0.0.1/";
+        
+        LTConnectPort *dev = [[LTConnectPort alloc] init];
+        dev.name = @"DEV开发环境";
+        dev.requestBaseURL = @"https://127.0.0.2/";
+        dev.webBaseURL = @"https://127.0.0.2/";
+        dev.resourceBaseURL = @"https://127.0.0.2/";
+        
+        LTConnectPort *sit = [[LTConnectPort alloc] init];
+        sit.name = @"SIT开发环境";
+        sit.requestBaseURL = @"https://127.0.0.3/";
+        sit.webBaseURL = @"https://127.0.0.3/";
+        sit.resourceBaseURL = @"https://127.0.0.3/";
+        
+        LTConnectPort *uat = [[LTConnectPort alloc] init];
+        uat.name = @"UAT预生产";
+        uat.requestBaseURL = @"https://127.0.0.4/";
+        uat.webBaseURL = @"https://127.0.0.4/";
+        uat.resourceBaseURL = @"https://127.0.0.4/";
+        
+        LTConnectPort *javaer1 = [[LTConnectPort alloc] init];
+        javaer1.name = @"开发人员1的名字";
+        javaer1.requestBaseURL = @"https://127.0.0.5/";
+        javaer1.webBaseURL = @"https://127.0.0.5/";
+        javaer1.resourceBaseURL = @"https://127.0.0.5/";
+        
         _environmentArray = @[
-                              @{//0 第一个位置（也就是下标为0的位置）必须为生产环境，不可以为其他环境！
-                                  kConnectPortName : @"生产环境",
-                                  kConnectPortBaseURL : @"https://127.0.0.1/",
-                                  kConnectPortBaseURLH5   : @"https://127.0.0.1/",
-                                  kConnectPortBaseURLImage : @"https://127.0.0.1/",
-                                  },
-                              @{//1
-                                  kConnectPortName    : @"DEV开发环境",
-                                  kConnectPortBaseURL : @"http://127.0.0.2/",
-                                  kConnectPortBaseURLH5   : @"http://127.0.0.2/",
-                                  kConnectPortBaseURLImage : @"https://127.0.0.2/",
-                                  },
-                              @{//2
-                                  kConnectPortName    : @"SIT开发环境",
-                                  kConnectPortBaseURL : @"https://127.0.0.3/",
-                                  kConnectPortBaseURLH5   : @"https://127.0.0.3/",
-                                  kConnectPortBaseURLImage : @"https://127.0.0.3/",
-                                  },
-                              @{//3
-                                  kConnectPortName    : @"UAT预生产",
-                                  kConnectPortBaseURL : @"https://127.0.0.4/",
-                                  kConnectPortBaseURLH5   : @"https://127.0.0.4/",
-                                  kConnectPortBaseURLImage : @"https://127.0.0.4/",
-                                  },
-                              @{//4
-                                  kConnectPortName    : @"开发人员1的名字",
-                                  kConnectPortBaseURL : @"http://127.0.0.5",
-                                  kConnectPortBaseURLH5   : @"https://127.0.0.5/",
-                                  kConnectPortBaseURLImage : @"https://127.0.0.5/",
-                                  },
+                              //0 第一个位置（也就是下标为0的位置）必须为生产环境，不可以为其他环境！
+                              release,
+                              dev,
+                              sit,
+                              uat,
+                              javaer1,
                               ];
     }
     return self;
@@ -254,12 +245,21 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
 - (void)setEnvironmentType:(NSUInteger)environmentType
 {
     _environmentType = environmentType;
-    NSDictionary *dict = [self.environmentArray objectAtIndex:environmentType];
-    self.baseURL = dict[kConnectPortBaseURL];
-    self.H5BaseURL = dict[kConnectPortBaseURLH5];
-    self.imageBaseURL = dict[kConnectPortBaseURLImage];
-    [LTNetworkTools configureNetworkBaseURL];
+    self.connectPort = self.environmentArray[environmentType];
 }
+
+#pragma mark - setter and getter
+- (void)setConnectPort:(LTConnectPort *)connectPort
+{
+    _connectPort = connectPort;
+    [YTKNetworkConfig sharedConfig].baseUrl = LTNetworkToolsInstance.connectPort.requestBaseURL;
+}
+
+@end
+
+
+@implementation LTConnectPort
+
 
 @end
 

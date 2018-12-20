@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-@class LTNetworkTools;
+@class LTNetworkTools, LTConnectPort;
 extern LTNetworkTools *LTNetworkToolsInstance;
 
 @interface LTNetworkTools : NSObject
+
+/**  当前连接url对象  */
+@property (nonatomic, strong) LTConnectPort *connectPort;
 
 /**  拼接URL路径  */
 + (NSString *)URL:(NSString *)urlString;
@@ -29,6 +32,20 @@ extern LTNetworkTools *LTNetworkToolsInstance;
 + (void)handleNetWorkCannotAccessEvent;
 /**  处理有网络事件  */
 + (void)handleNetWorAccessEvent;
+
+@end
+
+
+@interface LTConnectPort : NSObject
+
+/**  中文名字  */
+@property (nonatomic, copy) NSString *name;
+/**  网络请求 baseURL  */
+@property (nonatomic, copy) NSString *requestBaseURL;
+/**  网页 H5 baseURL  */
+@property (nonatomic, copy) NSString *webBaseURL;
+/**  资源（如：图片等） baseURL  */
+@property (nonatomic, copy) NSString *resourceBaseURL;
 
 @end
 
