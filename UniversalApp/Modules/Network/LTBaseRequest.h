@@ -7,21 +7,19 @@
 //
 
 #if __has_include(<YTKNetwork/YTKBaseRequest.h>)
-#import <YTKNetwork/YTKBaseRequest.h>
+#import <YTKNetwork/YTKNetwork.h>
 #else
-#import "YTKBaseRequest.h"
+#import "YTKNetwork.h"
 #endif
+
+@class LTBaseResponse;
 
 @interface LTBaseRequest : YTKBaseRequest
 
+/**  响应内容  */
+@property (nonatomic, strong) LTBaseResponse *responseModel;
 /**  后台返回的数据是否aes加密,默认为否  */
-@property (nonatomic, assign) BOOL isAESEncrypted;
-/**  是否请求成功,即状态码是否为200  */
-@property (nonatomic, assign) BOOL isSuccess;
-/**  服务器返回的对接口的描述信息  */
-@property (nonatomic, copy) NSString *message;
-/**  服务器返回的数据,如果是aes加密的话,那么已解密  */
-@property (nonatomic, strong) NSDictionary *result;
+@property (nonatomic, assign, getter=isAESEncrypted) BOOL AESEncrypted;
 /**  请求头字段  */
 @property (nonatomic, strong) NSMutableDictionary *arguments;
 
@@ -32,5 +30,18 @@
  */
 - (void)setArgument:(id)value forKey:(NSString*)key;
 
+@end
+
+@interface LTBaseResponse : NSObject
+
+/**  code  */
+@property (nonatomic, copy) NSString *code;
+/**  数据  */
+@property (nonatomic, copy) id data;
+/**  消息内容  */
+@property (nonatomic, copy) NSString *message;
+
+/**  状态码是是否为200  */
+@property (nonatomic, assign, getter=isSuccess) BOOL success;
 
 @end

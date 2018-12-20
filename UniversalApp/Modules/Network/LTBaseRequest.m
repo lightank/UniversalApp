@@ -8,11 +8,6 @@
 
 #import "LTBaseRequest.h"
 
-//后台返回的通用表示状态码的字段
-#define kStatusKey @"status"
-//后台返回的通用表示消息的字段
-#define kMessageKey @"message"
-
 @implementation LTBaseRequest
 
 - (instancetype)init
@@ -39,8 +34,6 @@
 /** 请求头部设置 */
 - (NSDictionary *)requestHeaderFieldValueDictionary
 {
-    //uuid   => 设备ID值
-    //version => app当前版本
     NSDictionary *headerDictionary=@{
                                      @"uuid": @"uuid", //把value自行替换为设备uuid
                                      @"version": @"version", //把value自行替换为app版本号
@@ -79,32 +72,13 @@
 /** 请求成功过滤器 */
 - (void)requestCompleteFilter
 {
-    NSDictionary *info = self.responseJSONObject;
-    //NSString *status= ((NSNumber *)info[kStatusKey]).stringValue;  //status为与后台商定好的状态码key
-    NSString *status= info[kStatusKey];  //status为与后台商定好的状态码key
-    if ([status isEqualToString:@"200"])
+    self.responseModel = [LTBaseResponse modelWithJSON:self.responseJSONObject];
+    if (!self.responseModel) return;
+    if (self.responseModel.isSuccess)
     {
-        self.isSuccess = YES;
         if (self.isAESEncrypted)
         {
-            //把返回的结果aes解密
-            
-        }
-        else
-        {
-            self.result = self.responseJSONObject;
-        }
-    }
-    else
-    {
-        self.message = info[kMessageKey];
-        if ([status integerValue] == 9999)   //与后台协商好的,当前用户登录状态实现时的状态码456
-        {
-            //当前用户登录失效时要做的事
-        }
-        else
-        {
-            
+            // 进行内容解密
         }
     }
 }
@@ -114,6 +88,22 @@
 {
     //当前请求失效时要做的事
     
+}
+
+- (BOOL)statusCodeValidator
+{
+    return YES;
+}
+
+@end
+
+
+@implementation LTBaseResponse
+
+- (BOOL)isSuccess
+{
+    // 跟后台约定的ok状态码
+    return self.code.integerValue == 200;
 }
 
 @end
