@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LTListTableViewController.h"
 
-@interface LTFirstViewController : UIViewController
+@interface LTFirstViewController : LTListTableViewController
 
 @end
