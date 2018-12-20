@@ -16,7 +16,7 @@
 
 //0:生产 1:dev 2:sit 3:uat 4:开发人员1的名字
 #if DEBUG
-static BOOL kShowEnvironmentViewController = YES;
+static BOOL kShowEnvironmentViewController = NO;
 static NSInteger kDefaultNetworkType = 1;
 #else
 static BOOL kShowEnvironmentViewController = NO;
