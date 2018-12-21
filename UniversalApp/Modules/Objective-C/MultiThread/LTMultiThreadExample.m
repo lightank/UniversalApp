@@ -195,7 +195,7 @@
     //[self semaphoreSyncTask];
     
     // Dispatch Semaphore 线程锁
-    [self semaphoreLockTask];
+    //[self semaphoreLockTask];
 }
 
 - (void)syncTaskWithQueue:(dispatch_queue_t)queue

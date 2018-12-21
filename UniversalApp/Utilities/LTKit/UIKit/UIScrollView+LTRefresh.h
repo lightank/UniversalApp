@@ -36,6 +36,9 @@
 
 - (void)lt_endRefresh;
 
+/**  是否展示:已经全部加载完毕  */
+@property (nonatomic, assign, getter=isLt_NoMoreData) BOOL lt_noMoreData;
+
 @end
 
 @interface UIScrollView (LTAdd)

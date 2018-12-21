@@ -11,10 +11,6 @@
 
 @interface LTBaseWebViewController : UIViewController
 
-/**  滚动视图  */
-@property (nonatomic, weak) UIScrollView *scrollView;
-/**  内容视图  */
-@property (nonatomic, weak) UIView *contentView;
 /**  webView  */
 @property(nonatomic, weak) WKWebView *webView;
 /**  进度条  */
@@ -31,10 +27,8 @@
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSString *> *cookieDictionary;
 
 
-/**  首页URL,如果是请求链接,可带baseURL,也可不带  */
+/**  全路径URL  */
 @property (nonatomic, copy) NSString *homeURL;
-/**  h5的全路径  */
-- (NSString *)HTML5FullPath;
 /**  设置导航栏按钮,默认什么都不干  */
 - (void)setupNavigationBarButtonItem;
 /**  添加js方法到数组中  */

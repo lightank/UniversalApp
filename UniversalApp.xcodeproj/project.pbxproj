@@ -35,6 +35,7 @@
 		3DB0BB6721411A1700EA1B6E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DB0BB6921411A1700EA1B6E /* Localizable.strings */; };
 		3DB7193E212FFCE8004C5218 /* UITextView+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB7193D212FFCE8004C5218 /* UITextView+LTAdd.m */; };
 		3DB7194121302C43004C5218 /* UITableView+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB7194021302C43004C5218 /* UITableView+LTAdd.m */; };
+		3DBD184B21CCD36400E98730 /* LTWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBD184A21CCD36400E98730 /* LTWKWebView.m */; };
 		3DC328BE20F84BF40092C35C /* NSObject+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC328BD20F84BF40092C35C /* NSObject+LTAdd.m */; };
 		3DC328C120F84DFA0092C35C /* NSDictionary+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC328C020F84DFA0092C35C /* NSDictionary+LTAdd.m */; };
 		3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1220B006EF00CD476A /* AppDelegate.m */; };
@@ -152,6 +153,8 @@
 		3DB7193D212FFCE8004C5218 /* UITextView+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LTAdd.m"; sourceTree = "<group>"; };
 		3DB7193F21302C43004C5218 /* UITableView+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+LTAdd.h"; sourceTree = "<group>"; };
 		3DB7194021302C43004C5218 /* UITableView+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LTAdd.m"; sourceTree = "<group>"; };
+		3DBD184921CCD36400E98730 /* LTWKWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTWKWebView.h; sourceTree = "<group>"; };
+		3DBD184A21CCD36400E98730 /* LTWKWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTWKWebView.m; sourceTree = "<group>"; };
 		3DC328BC20F84BF40092C35C /* NSObject+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LTAdd.h"; sourceTree = "<group>"; };
 		3DC328BD20F84BF40092C35C /* NSObject+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LTAdd.m"; sourceTree = "<group>"; };
 		3DC328BF20F84DFA0092C35C /* NSDictionary+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LTAdd.h"; sourceTree = "<group>"; };
@@ -283,15 +286,17 @@
 			path = LTNavigationBar;
 			sourceTree = "<group>";
 		};
-		3D20AC4020B3B0CD00BDE45D /* WebViewController */ = {
+		3D20AC4020B3B0CD00BDE45D /* WebView */ = {
 			isa = PBXGroup;
 			children = (
+				3DBD184921CCD36400E98730 /* LTWKWebView.h */,
+				3DBD184A21CCD36400E98730 /* LTWKWebView.m */,
 				3D20AC4120B3B0EC00BDE45D /* LTBaseWebViewController.h */,
 				3D20AC4220B3B0EC00BDE45D /* LTBaseWebViewController.m */,
 				3D03D63920B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.h */,
 				3D03D63A20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m */,
 			);
-			path = WebViewController;
+			path = WebView;
 			sourceTree = "<group>";
 		};
 		3D48665D20B1AAA3002BACA8 /* Encryption */ = {
@@ -618,7 +623,7 @@
 			isa = PBXGroup;
 			children = (
 				3DCC9F7920B030CC00CD476A /* NavigationController */,
-				3D20AC4020B3B0CD00BDE45D /* WebViewController */,
+				3D20AC4020B3B0CD00BDE45D /* WebView */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -940,6 +945,7 @@
 				3D679305213D24000017891D /* UIBarButtonItem+LTAdd.m in Sources */,
 				3D655756210F195300E6A3CD /* UINavigationBar+LTAdd.m in Sources */,
 				3DCC9F7120B02D4500CD476A /* LTTabBarControllerConfig.m in Sources */,
+				3DBD184B21CCD36400E98730 /* LTWKWebView.m in Sources */,
 				3DCC9F4A20B018F900CD476A /* AppDelegate+AppService.m in Sources */,
 				3DCC9F7520B02E0A00CD476A /* LTNavigationController.m in Sources */,
 				3D38625E20EE075000CE4CB0 /* UIApplication+LTAdd.m in Sources */,

@@ -7,7 +7,6 @@
 //
 
 #import "UIScrollView+LTRefresh.h"
-#import "UIView+LTAdd.h"
 
 @implementation UIScrollView (LTRefresh)
 
@@ -77,8 +76,26 @@
 
 - (void)lt_endRefresh
 {
-    [self.mj_header endRefreshing];
-    [self.mj_footer endRefreshing];
+    if (self.mj_header.isRefreshing) [self.mj_header endRefreshing];
+    if (self.mj_footer.isRefreshing) [self.mj_footer endRefreshing];
+}
+
+- (void)setLt_noMoreData:(BOOL)lt_noMoreData
+{
+    if (lt_noMoreData)
+    {
+        [self lt_endRefresh];
+        self.mj_footer.state = MJRefreshStateNoMoreData;
+    }
+    else
+    {
+        [self.mj_footer resetNoMoreData];
+    }
+}
+
+- (BOOL)isLt_NoMoreData
+{
+    return self.mj_footer.state == MJRefreshStateNoMoreData;
 }
 
 @end

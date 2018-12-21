@@ -8,7 +8,6 @@
 
 #import "LTBaseWebViewController.h"
 #import "LTDeviceInfo.h"
-#import "LTNetworkTools.h"
 
 typedef NSString * LTObserverKey;
 static LTObserverKey const kEstimatedProgressKey = @"estimatedProgress";
@@ -33,26 +32,12 @@ static LTObserverKey const kContentSize = @"contentSize";
 }
 
 #pragma mark - 生命周期
-- (void)loadView
-{
-    [super loadView];
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:kKeyWindow.bounds];
-    _scrollView = scrollView;
-    [self.view addSubview:scrollView];
-    
-    UIView *contentView = [[UIView alloc] initWithFrame:kKeyWindow.bounds];
-    _contentView = contentView;
-    self.contentView.backgroundColor = UIColorHex(F4F5F6);
-    [scrollView addSubview:contentView];
-    
-    self.navigationController.navigationBar.tintColor = UIColorHex(050505);
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     [self setupUI];
     //加载HTML
     [self loadHomeURL];
@@ -136,7 +121,7 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     config.processPool = self.processPool;
     
     WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
-    webView.frame = self.contentView.bounds;
+    webView.frame = self.view.bounds;
     webView.height = [self contentViewHeight];
     if (@available(iOS 9, *))
     {
@@ -156,7 +141,7 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     webView.navigationDelegate = self;
     webView.UIDelegate = self;
     //webView.scrollView.delegate = self;
-    [self.contentView addSubview:webView];
+    [self.view addSubview:webView];
     
     [webView.scrollView lt_addHeaderRefreshTarget:self refreshingAction:@selector(reload)];
     
@@ -171,11 +156,11 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
 {
     UIProgressView *progressView = [[UIProgressView alloc] initWithFrame:CGRectZero];
     self.progressView = progressView;
-    [self.contentView addSubview:progressView];
+    [self.view addSubview:progressView];
     progressView.tintColor = [UIColor blueColor];
     progressView.trackTintColor = [UIColor whiteColor];
     [progressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self.contentView);
+        make.top.left.right.equalTo(self.view);
         make.height.equalTo(3.f);
     }];
 }
@@ -194,7 +179,7 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
 #pragma mark - 事件处理
 - (void)loadHomeURL
 {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.HTML5FullPath]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.homeURL]];
 //    [req setValue:@"0" forHTTPHeaderField:@"type"];
 //    [req setValue:kAppStringPlaceholder forHTTPHeaderField:@"type"];
 //    [req setValue:kAppStringPlaceholder forHTTPHeaderField:@"isH5"];
@@ -208,13 +193,6 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
 /**  刷新页面  */
 - (void)reload
 {
-    if (![LTNetworkTools isNetworkReachable])
-    {
-        [LTNetworkTools handleNetWorkCannotAccessEvent];
-        [self.webView.scrollView lt_endRefresh];
-        return;
-    }
-    
     if (self.webView.URL)
     {
         [self.webView reload];
@@ -244,7 +222,7 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
 - (void)addCookie
 {
     // 例如
-    // self.cookieDictionary[@"name"] = @"value";
+    // self.jsMethodsDictionary[@"name"] = @"value";
 }
 
 /**  此方法建议在开始加载页面(WKNavigationDelegate中的:webView:didStartProvisionalNavigation:方法)时及之前执行,建议在初始化webview的时候调用  */
@@ -518,16 +496,7 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     _webTitle = webTitle.copy;
     self.title = webTitle.copy;
 }
-- (NSString *)HTML5FullPath
-{
-    if (!self.homeURL)
-    {
-        NSLog(@"WebView加载了一个nil路径");
-    }
-    BOOL isFullPath = [self.homeURL.lowercaseString hasPrefix:@"http://"] || [self.homeURL.lowercaseString hasPrefix:@"https://"];
-    NSString *fullPath = isFullPath ? self.homeURL : [LTNetworkTools HTML5URL:self.homeURL];
-    return fullPath;
-}
+
 + (WKProcessPool *)sharedProcessPool
 {
     static WKProcessPool *processPool = nil;
