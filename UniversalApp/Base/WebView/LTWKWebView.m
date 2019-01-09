@@ -23,7 +23,8 @@
 #pragma mark - setter and getter
 - (NSString *)currentURL
 {
-    return self.webView.URL.absoluteString;
+//    return self.webView.URL.absoluteString;
+    return nil;
 }
 
 

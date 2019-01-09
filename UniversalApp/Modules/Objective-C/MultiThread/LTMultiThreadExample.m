@@ -7,8 +7,16 @@
 //
 
 #import "LTMultiThreadExample.h"
+#import <pthread.h>
 
 @interface LTMultiThreadExample ()
+
+/**  剩余票数  */
+@property(nonatomic, assign) NSUInteger ticketSurplusCount;
+/**  销售窗口1  */
+@property (nonatomic, strong) NSThread *ticketSaleWindow1;
+/**  销售窗口2  */
+@property (nonatomic, strong) NSThread *ticketSaleWindow2;
 
 @end
 
@@ -19,7 +27,14 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = UIColor.whiteColor;
     
-    [self GCDQueue];
+    // GCD
+    [self GCD];
+    
+    // pthread
+    [self pthread];
+    
+    // NSThread
+    [self NSThread];
 }
 
 // @see https://bujige.net/blog/iOS-Complete-learning-GCD.html
@@ -66,7 +81,7 @@
      创建一个队列（串行队列或并发队列）
      将任务追加到任务的等待队列中，然后系统就会根据任务类型执行任务（同步执行或异步执行）
  */
-- (void)GCDQueue
+- (void)GCD
 {
     /*
      创建一个队列
@@ -818,11 +833,203 @@ static dispatch_semaphore_t semaphoreLock = nil;
 
 #pragma mark - ---------------- GCD End ----------------
 
-
 #pragma mark - ---------------- pthread Begain ----------------
+/*
+ @see https://bujige.net/blog/iOS-Complete-learning-pthread-and-NSThread.html
+ 
+ pthread 是一套通用的多线程的 API，可以在Unix / Linux / Windows 等系统跨平台使用，使用 C 语言编写，需要程序员自己管理线程的生命周期，使用难度较大，我们在 iOS 开发中几乎不使用 pthread，但是还是来可以了解一下的。
+ 
+     引自 百度百科(https://baike.baidu.com/item/Pthread)
+     POSIX 线程（POSIX threads），简称 Pthreads，是线程的 POSIX 标准。该标准定义了创建和操纵线程的一整套 API。在类Unix操作系统（Unix、Linux、Mac OS X等）中，都使用 Pthreads 作为操作系统的线程。Windows 操作系统也有其移植版 pthreads-win32。
+ 
+     引自 维基百科(https://zh.wikipedia.org/wiki/POSIX线程)
+     POSIX 线程（英语：POSIX Threads，常被缩写 为 Pthreads）是 POSIX 的线程标准，定义了创建和操纵线程的一套 API。
+     实现 POSIX 线程标准的库常被称作 Pthreads，一般用于 Unix-like POSIX 系统，如 Linux、Solaris。但是 Microsoft Windows 上的实现也存在，例如直接使用 Windows API 实现的第三方库 pthreads-w32；而利用 Windows 的 SFU/SUA 子系统，则可以使用微软提供的一部分原生 POSIX API。
+ 
+ */
+
+
+
+
+
+- (void)pthread
+{
+    // 0.首先要包含头文件#import <pthread.h>
+    // 1. 创建线程: 定义一个pthread_t类型变量
+    pthread_t thread;
+    // 2. 开启线程: 执行任务
+    pthread_create(&thread, NULL, pthreadRun, NULL);
+    // 3. 设置子线程的状态设置为 detached，该线程运行结束后会自动释放所有资源
+    pthread_detach(thread);
+}
+
+void * pthreadRun(void *param)    // 新线程调用方法，里边为需要执行的任务
+{
+    //NSLog(@"%@", [NSThread currentThread]);
+    
+    return NULL;
+    
+    /*
+     打印结果：
+     <NSThread: 0x600000f28400>{number = 3, name = (null)}
+     
+     在另一个线程中执行任务
+     */
+    
+    /*
+     pthread 其他相关方法:
+     pthread_create() 创建一个线程
+     pthread_exit() 终止当前线程
+     pthread_cancel() 中断另外一个线程的运行
+     pthread_join() 阻塞当前的线程，直到另外一个线程运行结束
+     pthread_attr_init() 初始化线程的属性
+     pthread_attr_setdetachstate() 设置脱离状态的属性（决定这个线程在终止时是否可以被结合）
+     pthread_attr_getdetachstate() 获取脱离状态的属性
+     pthread_attr_destroy() 删除线程的属性
+     pthread_kill() 向线程发送一个信号
+     */
+}
+
 #pragma mark - ---------------- pthread End ----------------
 
 #pragma mark - ---------------- NSThread Begain ----------------
+/*
+ @see https://bujige.net/blog/iOS-Complete-learning-pthread-and-NSThread.html
+ 
+ NSThread 是苹果官方提供的，使用起来比 pthread 更加面向对象，简单易用，可以直接操作线程对象。不过也需要需要程序员自己管理线程的生命周期(主要是创建)，我们在开发的过程中偶尔使用 NSThread。比如我们会经常调用[NSThread currentThread]来显示当前的进程信息。
+ 
+ */
+
+- (void)NSThread
+{
+    //[self createNSThread];
+    /*
+     线程间通讯
+     
+     // 在主线程上执行操作
+     - (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg waitUntilDone:(BOOL)wait;
+     - (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg waitUntilDone:(BOOL)wait modes:(NSArray<NSString *> *)array;
+     // equivalent to the first method with kCFRunLoopCommonModes
+     
+     // 在指定线程上执行操作
+     - (void)performSelector:(SEL)aSelector onThread:(NSThread *)thr withObject:(id)arg waitUntilDone:(BOOL)wait modes:(NSArray *)array NS_AVAILABLE(10_5, 2_0);
+     - (void)performSelector:(SEL)aSelector onThread:(NSThread *)thr withObject:(id)arg waitUntilDone:(BOOL)wait NS_AVAILABLE(10_5, 2_0);
+     
+     // 在当前线程上执行操作，调用 NSObject 的 performSelector:相关方法
+     - (id)performSelector:(SEL)aSelector;
+     - (id)performSelector:(SEL)aSelector withObject:(id)object;
+     - (id)performSelector:(SEL)aSelector withObject:(id)object1 withObject:(id)object2;
+     */
+    /*
+     下面通过一个经典的下载图片 DEMO 来展示线程之间的通信。具体步骤如下：
+         开启一个子线程，在子线程中下载图片。
+         回到主线程刷新 UI，将图片展示在 UIImageView 中。
+     */
+    //[self threadDownloadImage];
+    
+    /*
+     线程安全
+     
+     线程安全解决方案：可以给线程加锁，在一个线程执行该操作的时候，不允许其他线程进行操作。iOS 实现线程加锁有很多种方式。@synchronized、 NSLock、NSRecursiveLock、NSCondition、NSConditionLock、pthread_mutex、dispatch_semaphore、OSSpinLock、atomic(property) set/ge等等各种方式。为了简单起见，这里不对各种锁的解决方案和性能做分析，只用最简单的@synchronized来保证线程安全，从而解决线程同步问题。
+     */
+    [self saleTicketWithSafe:NO];
+    //[self saleTicketWithSafe:YES];
+}
+
+- (void)createNSThread
+{
+    // 先创建线程，再启动线程
+    // 1. 创建线程
+    NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
+    // 2. 启动线程
+    // 线程进入就绪状态 -> 运行状态。当线程任务执行完毕，自动进入死亡状态
+    [thread start];    // 线程一启动，就会在线程thread中执行self的run方法
+    
+    // 创建线程后自动启动线程
+    [NSThread detachNewThreadSelector:@selector(run) toTarget:self withObject:nil];
+
+    // 隐式创建并启动线程
+    [self performSelectorInBackground:@selector(run) withObject:nil];
+    
+    
+    // 判断是否为主线程
+    __unused BOOL isMainThread = [thread isMainThread];
+    // 获取主线程
+    __unused NSThread *mianThread = [NSThread mainThread];
+    // 获取当前线程
+    __unused NSThread *currentThread = [NSThread currentThread];
+    // 线程名字
+    thread.name = @"先创建线程，再启动的线程";
+    
+    // 阻塞（暂停）线!程方法
+    //[NSThread sleepUntilDate:[NSDate date]];
+    //[NSThread sleepForTimeInterval:[[NSDate date] timeIntervalSince1970]];
+    
+    // 强制停止线程
+    //[NSThread exit];
+}
+
+// 新线程调用方法，里边为需要执行的任务
+- (void)run
+{
+    NSLog(@"%@", [NSThread currentThread]);
+}
+
+- (void)threadDownloadImage
+{
+    // 在创建的子线程中调用downloadImage下载图片
+    [NSThread detachNewThreadSelector:@selector(downloadImage) toTarget:self withObject:nil];
+}
+
+// 下载图片，下载完之后回到主线程进行 UI 刷新
+- (void)downloadImage
+{
+    NSLog(@"current thread -- %@", [NSThread currentThread]);
+    
+    // 1. 获取图片 imageUrl
+    NSURL *imageUrl = [NSURL URLWithString:@"https://www.baidu.com/img/bd_logo1.png"];
+    
+    // 2. 从 imageUrl 中读取数据(下载图片) -- 耗时操作
+    NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
+    // 通过二进制 data 创建 image
+    UIImage *image = [UIImage imageWithData:imageData];
+    
+    // 3. 回到主线程进行图片赋值和界面刷新
+    [self performSelectorOnMainThread:@selector(refreshOnMainThread:) withObject:image waitUntilDone:YES];
+}
+
+- (void)refreshOnMainThread:(UIImage *)image
+{
+    NSLog(@"current thread -- %@", [NSThread currentThread]);
+    
+    // 赋值图片到imageview
+    __unused UIImage *downloadImage = image;
+}
+
+- (void)saleTicketWithSafe:(BOOL)safe
+{
+    // 1. 设置剩余火车票为 50
+    self.ticketSurplusCount = 50;
+    
+    // 2. 设置北京火车票售卖窗口的线程
+    self.ticketSaleWindow1 = [[NSThread alloc] initWithTarget:self selector:@selector(saleTicketSafe:) object:@(safe)];
+    self.ticketSaleWindow1.name = @"北京火车票售票窗口";
+    
+    // 3. 设置上海火车票售卖窗口的线程
+    self.ticketSaleWindow2 = [[NSThread alloc] initWithTarget:self selector:@selector(saleTicketSafe:) object:@(safe)];
+    self.ticketSaleWindow2.name = @"上海火车票售票窗口";
+    
+    // 4. 开始售卖火车票
+    [self.ticketSaleWindow1 start];
+    [self.ticketSaleWindow2 start];
+}
+
+- (void)saleTicketSafe:(BOOL)safe
+{
+    
+}
+
+
 #pragma mark - ---------------- NSThread End ----------------
 
 @end

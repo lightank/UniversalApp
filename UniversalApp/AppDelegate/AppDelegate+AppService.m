@@ -152,6 +152,26 @@
     [recognizer setTranslation:CGPointZero inView:recognizer.view.superview];
 }
 
+#pragma mark - 开启点击空白处隐藏键盘功能
+/** 开启点击空白处隐藏键盘功能 */
+- (void)openTouchOutsideDismissKeyboard
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addDismissKeyboardGesture) name:UIKeyboardDidShowNotification object:nil];
+}
+- (void)addDismissKeyboardGesture
+{
+    [self.window addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(disappearKeyboard)]];
+}
+- (void)disappearKeyboard
+{
+    [self.window endEditing:YES];
+    //[self.window removeGestureRecognizer:self.window.gestureRecognizers.lastObject];
+}
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - 属性相关
 //appStartupNumber
 static char kAssociatedObjectKey_appStartupNumber;

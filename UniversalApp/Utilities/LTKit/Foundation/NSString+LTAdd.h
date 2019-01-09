@@ -76,4 +76,12 @@
 + (NSString *)lt_decimalNumberWithNSNumber:(NSNumber *)number
                           significantDigit:(NSUInteger)digit;
 
+
+#pragma mark - Regular
+/**  根据正则语句, 返回第一个匹配的结果的范围  */
+- (NSRange)lt_firstRangeByReuglarWithPattern:(NSString *)pattern;
+/**  根据正则语句, 返回第一个匹配的字符串  */
+- (NSString *)lt_firstStringByRegularWithPattern:(NSString *)pattern;
+
+
 @end

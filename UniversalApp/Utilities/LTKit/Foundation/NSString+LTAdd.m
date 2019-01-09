@@ -215,4 +215,41 @@
     return result;
 }
 
+#pragma mark - Regular
+- (NSRange)lt_firstRangeByReuglarWithPattern:(NSString *)pattern
+{
+    NSTextCheckingResult *result = [self lt_firstMatchWithPattern:pattern];
+    if (result == nil) {
+        return NSMakeRange(0, 0);
+    }
+    
+    return result.range;
+}
+
+- (NSString *)lt_firstStringByRegularWithPattern:(NSString *)pattern
+{
+    NSTextCheckingResult *result = [self lt_firstMatchWithPattern:pattern];
+    if (result == nil) {
+        return nil;
+    }
+    
+    return [self substringWithRange:result.range];
+}
+
+- (NSTextCheckingResult *)lt_firstMatchWithPattern:(NSString *)pattern
+{
+    NSError *error;
+    NSRegularExpression *regular = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
+    if (error)
+    {
+        return nil;
+    }
+    
+    NSTextCheckingResult *result = [regular firstMatchInString:self options:0 range:NSMakeRange(0, self.length)];
+    
+    return result;
+}
+
+
+
 @end
