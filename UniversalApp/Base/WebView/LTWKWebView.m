@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        
+        _useSharedProcessPool = YES;
     }
     return self;
 }
@@ -23,8 +23,26 @@
 #pragma mark - setter and getter
 - (NSString *)currentURL
 {
-//    return self.webView.URL.absoluteString;
-    return nil;
+    return self.URL.absoluteString;
+}
+
+- (WKProcessPool *)processPool
+{
+    if (!_processPool)
+    {
+        _processPool = self.isUseSharedProcessPool ? [self.class sharedProcessPool] : [[WKProcessPool alloc] init];
+    }
+    return _processPool;
+}
+
++ (WKProcessPool *)sharedProcessPool
+{
+    static WKProcessPool *processPool = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        processPool = [[WKProcessPool alloc] init];
+    });
+    return processPool;
 }
 
 

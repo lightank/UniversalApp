@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**  代理  */
 @property(nonatomic, weak) id<LTWKWebViewDelegate> delegate;
+/**  是否使用公共进展池,默认是YES  */
+@property (nonatomic, assign, getter=isUseSharedProcessPool) BOOL useSharedProcessPool;
 /**  首页URL  */
 @property (nonatomic, copy) NSString *homeURL;
 /**  当前显示的URL  */
@@ -33,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSString *> *jsMethodsDictionary;
 /**  cookie字典  */
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSString *> *cookieDictionary;
+/**  公共进展池  */
+@property (nonatomic, readonly, class) WKProcessPool *sharedProcessPool;
 
 @end
 

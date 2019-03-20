@@ -120,6 +120,9 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     config.processPool = self.processPool;
     
+//    WKUserScript *cookieInScript = [[WKUserScript alloc] initWithSource:@"" injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
+//    [config.userContentController addUserScript:cookieInScript];
+    
     WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
     webView.frame = self.view.bounds;
     webView.height = [self contentViewHeight];
