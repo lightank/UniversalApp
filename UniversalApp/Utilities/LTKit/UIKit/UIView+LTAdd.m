@@ -246,7 +246,7 @@
         [controllersHierarchy addObject:topController];
     }
     
-    UIViewController *matchController = [self viewContainingController];
+    UIViewController *matchController = [self lt_viewContainingController];
     
     while (matchController && [controllersHierarchy containsObject:matchController] == NO)
     {
@@ -260,9 +260,25 @@
     return matchController;
 }
 
+- (UIViewController*)lt_viewContainingController
+{
+    UIResponder *nextResponder =  self;
+    
+    do
+    {
+        nextResponder = [nextResponder nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UIViewController class]])
+            return (UIViewController*)nextResponder;
+        
+    } while (nextResponder);
+    
+    return nil;
+}
+
 - (UIViewController *)lt_parentContainerViewController
 {
-    UIViewController *matchController = [self viewContainingController];
+    UIViewController *matchController = [self lt_viewContainingController];
     
     if (matchController.navigationController)
     {

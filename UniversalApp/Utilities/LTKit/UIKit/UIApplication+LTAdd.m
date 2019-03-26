@@ -7,6 +7,7 @@
 //
 
 #import "UIApplication+LTAdd.h"
+#import "UIWindow+LTAdd.h"
 @import SafariServices;
 @import MessageUI;
 

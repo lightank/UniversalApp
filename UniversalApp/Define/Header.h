@@ -38,7 +38,7 @@
 #endif
 
 #pragma mark - SDWebImage
-#if __has_include(<YYKit/YYKit.h>)
+#if __has_include(<SDWebImage/SDWebImageManager.h>)
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SDWebImage/SDWebImageManager.h>
 #else

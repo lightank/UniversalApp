@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define kCurrentViewController (([UIApplication sharedApplication].keyWindow).lt_currentViewController)
+#define kCurrentViewController ((([UIApplication sharedApplication].keyWindow) ? : ([UIApplication sharedApplication].delegate.window)).lt_currentViewController)
 
 @interface UIWindow (LTAdd)
 
