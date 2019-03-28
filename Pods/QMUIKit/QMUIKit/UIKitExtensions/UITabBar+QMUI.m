@@ -1,9 +1,16 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  UITabBar+QMUI.m
 //  qmui
 //
-//  Created by MoLice on 2017/2/14.
-//  Copyright © 2017年 QMUI Team. All rights reserved.
+//  Created by QMUI Team on 2017/2/14.
 //
 
 #import "UITabBar+QMUI.h"
@@ -22,12 +29,70 @@ NSInteger const kLastTouchedTabBarItemIndexNone = -1;
 
 @implementation UITabBar (QMUI)
 
+QMUISynthesizeBOOLProperty(canItemRespondDoubleTouch, setCanItemRespondDoubleTouch)
+QMUISynthesizeNSIntegerProperty(lastTouchedTabBarItemViewIndex, setLastTouchedTabBarItemViewIndex)
+QMUISynthesizeNSIntegerProperty(tabBarItemViewTouchCount, setTabBarItemViewTouchCount)
+
+- (UIView *)qmui_backgroundView {
+    return [self valueForKey:@"_backgroundView"];
+}
+
+- (UIImageView *)qmui_shadowImageView {
+    if (@available(iOS 10, *)) {
+        // iOS 10 及以后，在 UITabBar 初始化之后就能获取到 backgroundView 和 shadowView 了
+        return [self.qmui_backgroundView valueForKey:@"_shadowView"];
+    }
+    // iOS 9 及以前，shadowView 要在 UITabBar 第一次 layoutSubviews 之后才会被创建，直至 UITabBarController viewWillAppear: 时仍未能获取到 shadowView，所以为了省去调用时机的考虑，这里获取不到的时候会主动触发一次 tabBar 的布局
+    UIImageView *shadowView = [self valueForKey:@"_shadowView"];
+    if (!shadowView) {
+        [self setNeedsLayout];
+        [self layoutIfNeeded];
+        shadowView = [self valueForKey:@"_shadowView"];
+    }
+    return shadowView;
+}
+
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         ExchangeImplementations([self class], @selector(setItems:animated:), @selector(qmui_setItems:animated:));
         ExchangeImplementations([self class], @selector(setSelectedItem:), @selector(qmui_setSelectedItem:));
-        ExchangeImplementations([self class], @selector(setFrame:), @selector(qmui_setFrame:));
+        ExchangeImplementations([self class], @selector(setFrame:), @selector(qmuiTabBar_setFrame:));
+        
+        // 以下代码修复两个仅存在于 12.1.0 版本的系统 bug，实测 12.1.1 苹果已经修复
+        if (@available(iOS 12.1, *)) {
+            
+            OverrideImplementation(NSClassFromString(@"UITabBarButton"), @selector(setFrame:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP originIMP) {
+                return ^(UIView *selfObject, CGRect firstArgv) {
+                    
+                    if ([selfObject isKindOfClass:originClass]) {
+                        // Fixed: UITabBar layout is broken on iOS 12.1
+                        // https://github.com/Tencent/QMUI_iOS/issues/410
+                        
+                        if (IOS_VERSION_NUMBER < 120101 || (QMUICMIActivated && ShouldFixTabBarButtonBugForAll)) {
+                            if (!CGRectIsEmpty(selfObject.frame) && CGRectIsEmpty(firstArgv)) {
+                                return;
+                            }
+                        }
+                        
+                        if (IOS_VERSION_NUMBER < 120101) {
+                            // Fixed: iOS 12.1 UITabBarItem positioning issue during swipe back gesture (when UINavigationBar is hidden)
+                            // https://github.com/Tencent/QMUI_iOS/issues/422
+                            if (IS_NOTCHED_SCREEN) {
+                                if ((CGRectGetHeight(selfObject.frame) == 48 && CGRectGetHeight(firstArgv) == 33) || (CGRectGetHeight(selfObject.frame) == 31 && CGRectGetHeight(firstArgv) == 20)) {
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                    
+                    // call super
+                    void (*originSelectorIMP)(id, SEL, CGRect);
+                    originSelectorIMP = (void (*)(id, SEL, CGRect))originIMP;
+                    originSelectorIMP(selfObject, originCMD, firstArgv);
+                };
+            });
+        }
     });
 }
 
@@ -91,54 +156,28 @@ NSInteger const kLastTouchedTabBarItemIndexNone = -1;
     self.tabBarItemViewTouchCount = 0;
 }
 
-- (void)qmui_setFrame:(CGRect)frame {
+- (void)qmuiTabBar_setFrame:(CGRect)frame {
     if (IOS_VERSION < 11.2 && IS_58INCH_SCREEN && ShouldFixTabBarTransitionBugInIPhoneX) {
         if (CGRectGetHeight(frame) == TabBarHeight && CGRectGetMaxY(frame) < CGRectGetHeight(self.superview.bounds)) {
             // iOS 11 在界面 push 的过程中 tabBar 会瞬间往上跳，所以做这个修复。这个 bug 在 iOS 11.2 里已被系统修复。
-            // https://github.com/QMUI/QMUI_iOS/issues/217
+            // https://github.com/Tencent/QMUI_iOS/issues/217
             frame = CGRectSetY(frame, CGRectGetHeight(self.superview.bounds) - CGRectGetHeight(frame));
         }
     }
     
-    // 修复这个 bug：https://github.com/QMUI/QMUI_iOS/issues/309
+    // 修复这个 bug：https://github.com/Tencent/QMUI_iOS/issues/309
     if (@available(iOS 11, *)) {
-        if ((CGRectGetHeight(self.bounds) == 49 || CGRectGetHeight(self.bounds) == 32)) {
+        if (IS_NOTCHED_SCREEN && ((CGRectGetHeight(frame) == 49 || CGRectGetHeight(frame) == 32))) {// 只关注全面屏设备下的这两种非正常的 tabBar 高度即可
             CGFloat bottomSafeAreaInsets = self.safeAreaInsets.bottom > 0 ? self.safeAreaInsets.bottom : self.superview.safeAreaInsets.bottom;// 注意，如果只是拿 self.safeAreaInsets 判断，会肉眼看到高度的跳变，因此引入 superview 的值（虽然理论上 tabBar 不一定都会布局到 UITabBarController.view 的底部）
+            if (bottomSafeAreaInsets == CGRectGetHeight(self.frame)) {
+                return;// 由于这个系统 bug https://github.com/Tencent/QMUI_iOS/issues/446，这里先暂时屏蔽本次 frame 变化
+            }
             frame.size.height += bottomSafeAreaInsets;
             frame.origin.y -= bottomSafeAreaInsets;
         }
     }
     
-    [self qmui_setFrame:frame];
-}
-
-#pragma mark - Swizzle Property Getter/Setter
-
-static char kAssociatedObjectKey_canItemRespondDoubleTouch;
-- (void)setCanItemRespondDoubleTouch:(BOOL)canItemRespondDoubleTouch {
-    objc_setAssociatedObject(self, &kAssociatedObjectKey_canItemRespondDoubleTouch, @(canItemRespondDoubleTouch), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (BOOL)canItemRespondDoubleTouch {
-    return [((NSNumber *)objc_getAssociatedObject(self, &kAssociatedObjectKey_canItemRespondDoubleTouch)) boolValue];
-}
-
-static char kAssociatedObjectKey_lastTouchedTabBarItemViewIndex;
-- (void)setLastTouchedTabBarItemViewIndex:(NSInteger)lastTouchedTabBarItemViewIndex {
-    objc_setAssociatedObject(self, &kAssociatedObjectKey_lastTouchedTabBarItemViewIndex, @(lastTouchedTabBarItemViewIndex), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSInteger)lastTouchedTabBarItemViewIndex {
-    return [((NSNumber *)objc_getAssociatedObject(self, &kAssociatedObjectKey_lastTouchedTabBarItemViewIndex)) integerValue];
-}
-
-static char kAssociatedObjectKey_tabBarItemViewTouchCount;
-- (void)setTabBarItemViewTouchCount:(NSInteger)tabBarItemViewTouchCount {
-    objc_setAssociatedObject(self, &kAssociatedObjectKey_tabBarItemViewTouchCount, @(tabBarItemViewTouchCount), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSInteger)tabBarItemViewTouchCount {
-    return [((NSNumber *)objc_getAssociatedObject(self, &kAssociatedObjectKey_tabBarItemViewTouchCount)) integerValue];
+    [self qmuiTabBar_setFrame:frame];
 }
 
 @end

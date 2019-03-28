@@ -1,9 +1,16 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  QMUISearchController.m
 //  Test
 //
-//  Created by MoLice on 16/5/25.
-//  Copyright © 2016年 MoLice. All rights reserved.
+//  Created by QMUI Team on 16/5/25.
 //
 
 #import "QMUISearchController.h"
@@ -136,9 +143,7 @@ BeginIgnoreDeprecatedWarning
 - (void)viewDidLoad {
     [super viewDidLoad];
     // 主动触发 loadView，如果不这么做，那么有可能直到 QMUISearchController 被销毁，这期间 self.searchController 都没有被触发 loadView，然后在 dealloc 时就会报错，提示尝试在释放 self.searchController 时触发了 self.searchController 的 loadView
-    BeginIgnoreAvailabilityWarning
     [self.searchController loadViewIfNeeded];
-    EndIgnoreAvailabilityWarning
 }
 
 - (void)setSearchResultsDelegate:(id<QMUISearchControllerDelegate>)searchResultsDelegate {
@@ -254,6 +259,9 @@ EndIgnoreDeprecatedWarning
 
 @implementation QMUICommonTableViewController (Search)
 
+QMUISynthesizeIdStrongProperty(searchController, setSearchController)
+QMUISynthesizeIdStrongProperty(searchBar, setSearchBar)
+
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -286,7 +294,7 @@ EndIgnoreDeprecatedWarning
     if (self.shouldShowSearchBar && [self shouldHideSearchBarWhenEmptyViewShowing] && self.tableView.tableHeaderView == nil) {
         [self initSearchController];
         // 隐藏 emptyView 后重新设置 tableHeaderView，会导致原先 shouldHideTableHeaderViewInitial 隐藏头部的操作被重置，所以下面的 force 参数要传 YES
-        // https://github.com/QMUI/QMUI_iOS/issues/128
+        // https://github.com/Tencent/QMUI_iOS/issues/128
         self.tableView.tableHeaderView = self.searchBar;
         [self hideTableHeaderViewInitialIfCanWithAnimated:NO force:YES];
     }
@@ -322,28 +330,8 @@ static char kAssociatedObjectKey_shouldShowSearchBar;
     return [((NSNumber *)objc_getAssociatedObject(self, &kAssociatedObjectKey_shouldShowSearchBar)) boolValue];
 }
 
-static char kAssociatedObjectKey_searchController;
-- (void)setSearchController:(QMUISearchController *)searchController {
-    objc_setAssociatedObject(self, &kAssociatedObjectKey_searchController, searchController, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (QMUISearchController *)searchController {
-    return (QMUISearchController *)objc_getAssociatedObject(self, &kAssociatedObjectKey_searchController);
-}
-
-static char kAssociatedObjectKey_searchBar;
-- (void)setSearchBar:(UISearchBar *)searchBar {
-    objc_setAssociatedObject(self, &kAssociatedObjectKey_searchBar, searchBar, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (UISearchBar *)searchBar {
-    return (QMUISearchBar *)objc_getAssociatedObject(self, &kAssociatedObjectKey_searchBar);
-}
-
 - (void)initSearchController {
-BeginIgnoreDeprecatedWarning
     if ([self isViewLoaded] && self.shouldShowSearchBar && !self.searchController) {
-EndIgnoreDeprecatedWarning
         self.searchController = [[QMUISearchController alloc] initWithContentsViewController:self];
         self.searchController.searchResultsDelegate = self;
         self.searchController.searchBar.placeholder = @"搜索";
@@ -361,12 +349,6 @@ EndIgnoreDeprecatedWarning
 
 - (void)searchController:(QMUISearchController *)searchController updateResultsForSearchString:(NSString *)searchString {
     
-}
-
-#pragma mark - <QMUINavigationControllerDelegate>
-
-- (BOOL)preferredNavigationBarHidden {
-    return self.searchController.active ? YES : [super preferredNavigationBarHidden];
 }
 
 @end

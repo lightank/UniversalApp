@@ -3,7 +3,7 @@
 //  CYLTabBarController
 //
 //  v1.16.0 Created by 微博@iOS程序犭袁 ( http://weibo.com/luohanchenyilong/ ) on 10/20/15.
-//  Copyright © 2015 https://github.com/ChenYilong . All rights reserved.
+//  Copyright © 2018 https://github.com/ChenYilong . All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -77,9 +77,10 @@
     }
     NSArray<__kindof UIView *> *backgroundSubviews = subview.subviews;
     if (backgroundSubviews.count > 1) {
-        UIView *tabBadgeBackgroundSeparator = backgroundSubviews[1];
-        if (CGRectGetHeight(tabBadgeBackgroundSeparator.bounds) < 1.0 ) {
-            return tabBadgeBackgroundSeparator;
+        for (UIView *tabBadgeBackgroundSeparator in backgroundSubviews) {
+            if (CGRectGetHeight(tabBadgeBackgroundSeparator.bounds) <= 1.0 ) {
+                return tabBadgeBackgroundSeparator;
+            }
         }
     }
     return nil;

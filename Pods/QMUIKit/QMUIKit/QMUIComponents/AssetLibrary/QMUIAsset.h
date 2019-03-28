@@ -1,35 +1,41 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  QMUIAsset.h
 //  qmui
 //
-//  Created by Kayo Lee on 15/6/30.
-//  Copyright (c) 2015年 QMUI Team. All rights reserved.
+//  Created by QMUI Team on 15/6/30.
 //
 
 #import <UIKit/UIKit.h>
 #import <Photos/PHImageManager.h>
 
-/// Asset 的类型
 typedef NS_ENUM(NSUInteger, QMUIAssetType) {
-    QMUIAssetTypeUnknow,                                    // 未知类型的 Asset
-    QMUIAssetTypeImage,                                     // 图片类型的 Asset
-    QMUIAssetTypeVideo,                                     // 视频类型的 Asset
-    QMUIAssetTypeAudio                                      // 音频类型的 Asset
+    QMUIAssetTypeUnknow,
+    QMUIAssetTypeImage,
+    QMUIAssetTypeVideo,
+    QMUIAssetTypeAudio
 };
 
 typedef NS_ENUM(NSUInteger, QMUIAssetSubType) {
-    QMUIAssetSubTypeUnknow,                                 // 未知类型
-    QMUIAssetSubTypeImage,                                  // 静态图片类型
-    QMUIAssetSubTypeLivePhoto NS_ENUM_AVAILABLE_IOS(9_1),   // Live Photo 类型
-    QMUIAssetSubTypeGIF                                     // GIF类型
+    QMUIAssetSubTypeUnknow,
+    QMUIAssetSubTypeImage,
+    QMUIAssetSubTypeLivePhoto NS_ENUM_AVAILABLE_IOS(9_1),
+    QMUIAssetSubTypeGIF
 };
 
-/// 从 iCloud 请求 Asset 大图的状态
+/// Status when download asset from iCloud
 typedef NS_ENUM(NSUInteger, QMUIAssetDownloadStatus) {
-    QMUIAssetDownloadStatusSucceed,     // 下载成功或资源本来已经在本地
-    QMUIAssetDownloadStatusDownloading, // 下载中
-    QMUIAssetDownloadStatusCanceled,    // 取消下载
-    QMUIAssetDownloadStatusFailed,      // 下载失败
+    QMUIAssetDownloadStatusSucceed,
+    QMUIAssetDownloadStatusDownloading,
+    QMUIAssetDownloadStatusCanceled,
+    QMUIAssetDownloadStatusFailed
 };
 
 

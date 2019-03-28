@@ -1,9 +1,16 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  QMUIMoreOperationController.h
 //  qmui
 //
-//  Created by zhoon, MoLice on 17/11/15.
-//  Copyright (c) 2017年 QMUI Team. All rights reserved.
+//  Created by QMUI Team on 17/11/15.
 //
 
 #import <Foundation/Foundation.h>
@@ -41,7 +48,7 @@
  *  2. 默认自带取消按钮，也可自行隐藏。
  *  3. 支持以 UIAppearance 的方式配置样式皮肤。
  */
-@interface QMUIMoreOperationController : UIViewController <QMUIModalPresentationContentViewControllerProtocol, QMUIModalPresentationViewControllerDelegate>
+@interface QMUIMoreOperationController : UIViewController <QMUIModalPresentationContentViewControllerProtocol, QMUIModalPresentationViewControllerDelegate, QMUIModalPresentationComponentProtocol>
 
 @property(nonatomic, strong) UIColor *contentBackgroundColor UI_APPEARANCE_SELECTOR;// 面板上半部分（不包含取消按钮）背景色
 @property(nonatomic, assign) CGFloat contentEdgeMargin UI_APPEARANCE_SELECTOR;// 面板距离屏幕的上下左右间距
@@ -110,14 +117,14 @@
 
 @interface QMUIMoreOperationController (UIAppearance)
 
-+ (instancetype)appearance;
++ (nonnull instancetype)appearance;
 
 @end
 
 
 @interface QMUIMoreOperationItemView : QMUIButton
 
-@property(nonatomic, assign, readonly) NSIndexPath *indexPath;
+@property(nonatomic, strong, readonly) NSIndexPath *indexPath;
 @property(nonatomic, assign) NSInteger tag;
 
 + (instancetype)itemViewWithImage:(UIImage *)image

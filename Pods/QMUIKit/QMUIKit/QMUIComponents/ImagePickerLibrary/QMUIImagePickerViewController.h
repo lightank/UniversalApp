@@ -1,9 +1,16 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  QMUIImagePickerViewController.h
 //  qmui
 //
-//  Created by Kayo Lee on 15/5/2.
-//  Copyright (c) 2015年 QMUI Team. All rights reserved.
+//  Created by QMUI Team on 15/5/2.
 //
 
 #import <UIKit/UIKit.h>
@@ -47,6 +54,9 @@
  */
 - (void)imagePickerViewController:(QMUIImagePickerViewController *)imagePickerViewController didSelectImageWithImagesAsset:(QMUIAsset *)imageAsset afterImagePickerPreviewViewControllerUpdate:(QMUIImagePickerPreviewViewController *)imagePickerPreviewViewController;
 
+/// 是否能够选中 checkbox
+- (BOOL)imagePickerViewController:(QMUIImagePickerViewController *)imagePickerViewController shouldCheckImageAtIndex:(NSInteger)index;
+
 /// 即将选中 checkbox 时调用
 - (void)imagePickerViewController:(QMUIImagePickerViewController *)imagePickerViewController willCheckImageAtIndex:(NSInteger)index;
 
@@ -81,7 +91,7 @@
 @end
 
 
-@interface QMUIImagePickerViewController : QMUICommonViewController<UICollectionViewDataSource, UICollectionViewDelegate, QMUIImagePickerPreviewViewControllerDelegate>
+@interface QMUIImagePickerViewController : QMUICommonViewController <UICollectionViewDataSource, UICollectionViewDelegate, QMUIImagePickerPreviewViewControllerDelegate>
 
 @property(nonatomic, weak) id<QMUIImagePickerViewControllerDelegate> imagePickerViewControllerDelegate;
 
@@ -131,6 +141,6 @@
 
 @interface QMUIImagePickerViewController (UIAppearance)
 
-+ (instancetype)appearance;
++ (nonnull instancetype)appearance;
 
 @end

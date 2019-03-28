@@ -1,9 +1,16 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  QMUIModalPresentationViewController.h
 //  qmui
 //
-//  Created by MoLice on 16/7/6.
-//  Copyright © 2016年 QMUI Team. All rights reserved.
+//  Created by QMUI Team on 16/7/6.
 //
 
 #import <UIKit/UIKit.h>
@@ -22,12 +29,13 @@ typedef NS_ENUM(NSUInteger, QMUIModalPresentationAnimationStyle) {
 @optional
 
 /**
- *  当浮层以 UIViewController 的形式展示（而非 UIView），并且使用 modalController 提供的默认布局时，则可通过这个方法告诉 modalController 当前浮层期望的大小
+ *  当浮层以 UIViewController 的形式展示（而非 UIView），并且使用 modalController 提供的默认布局时，则可通过这个方法告诉 modalController 当前浮层期望的大小。如果 modalController 实现了自己的 layoutBlock，则可不实现这个方法，实现了也不一定按照这个方法的返回值来布局，完全取决于 layoutBlock。
  *  @param  controller  当前的modalController
- *  @param  limitSize   浮层最大的宽高，由当前 modalController 的大小及 `contentViewMargins`、`maximumContentViewWidth` 决定
+ *  @param  keyboardHeight 当前的键盘高度，如果键盘降下，则为0
+ *  @param  limitSize   浮层最大的宽高，由当前 modalController 的大小及 `contentViewMargins`、`maximumContentViewWidth` 和键盘高度决定
  *  @return 返回浮层在 `limitSize` 限定内的大小，如果业务自身不需要限制宽度/高度，则为 width/height 返回 `CGFLOAT_MAX` 即可
  */
-- (CGSize)preferredContentSizeInModalPresentationViewController:(QMUIModalPresentationViewController *)controller limitSize:(CGSize)limitSize;
+- (CGSize)preferredContentSizeInModalPresentationViewController:(QMUIModalPresentationViewController *)controller keyboardHeight:(CGFloat)keyboardHeight limitSize:(CGSize)limitSize;
 
 @end
 
@@ -54,8 +62,6 @@ typedef NS_ENUM(NSUInteger, QMUIModalPresentationAnimationStyle) {
  *  @param  controller  当前的modalController
  */
 - (void)didHideModalPresentationViewController:(QMUIModalPresentationViewController *)controller;
-
-- (void)requestHideAllModalPresentationViewController;
 
 @end
 
@@ -84,8 +90,8 @@ typedef NS_ENUM(NSUInteger, QMUIModalPresentationAnimationStyle) {
  *  @endcode
  *
  *  默认的布局会将浮层居中显示，浮层的大小可通过接口控制：
- *  1. 如果是用 `contentViewController`，则可通过 `preferredContentSizeInModalPresentationViewController:limitSize:` 来设置
- *  2. 如果使用 `contentView`，或者使用 `contentViewController` 但没实现 `preferredContentSizeInModalPresentationViewController:limitSize:`，则调用`contentView`的`sizeThatFits:`方法获取大小。
+ *  1. 如果是用 `contentViewController`，则可通过 `preferredContentSizeInModalPresentationViewController:keyboardHeight:limitSize:` 来设置
+ *  2. 如果使用 `contentView`，或者使用 `contentViewController` 但没实现 `preferredContentSizeInModalPresentationViewController:keyboardHeight:limitSize:`，则调用`contentView`的`sizeThatFits:`方法获取大小。
  *  3. 浮层大小会受 `maximumContentViewWidth` 属性的限制，以及 `contentViewMargins` 属性的影响。
  *
  *  通过`layoutBlock`、`showingAnimation`、`hidingAnimation`可设置自定义的布局、打开及隐藏的动画，并允许你适配键盘升起时的场景。
@@ -100,10 +106,7 @@ typedef NS_ENUM(NSUInteger, QMUIModalPresentationAnimationStyle) {
  *  @see QMUIDialogViewController
  *  @see QMUIMoreOperationController
  */
-@interface QMUIModalPresentationViewController : UIViewController {
-    UITapGestureRecognizer      *_dimmingViewTapGestureRecognizer;
-    CGFloat                     _keyboardHeight;
-}
+@interface QMUIModalPresentationViewController : UIViewController
 
 @property(nonatomic, weak) IBOutlet id<QMUIModalPresentationViewControllerDelegate> delegate;
 
@@ -127,7 +130,7 @@ typedef NS_ENUM(NSUInteger, QMUIModalPresentationAnimationStyle) {
 @property(nonatomic, assign) UIEdgeInsets contentViewMargins UI_APPEARANCE_SELECTOR;
 
 /**
- *  限制`contentView`布局时的最大宽度，默认为iPhone 6竖屏下的屏幕宽度减去`contentViewMargins`在水平方向的值，也即浮层在iPhone 6 Plus或iPad上的宽度以iPhone 6上的宽度为准。
+ *  限制`contentView`布局时的最大宽度，默认为 CGFLOAT_MAX，也即无限制。
  *  @warning 当设置了`layoutBlock`属性时，此属性不生效
  */
 @property(nonatomic, assign) CGFloat maximumContentViewWidth UI_APPEARANCE_SELECTOR;
@@ -175,6 +178,10 @@ typedef NS_ENUM(NSUInteger, QMUIModalPresentationAnimationStyle) {
 
 /// 是否以 addSubview 的方式显示，建议在显示之后才使用，否则可能不准确。
 @property(nonatomic, assign, readonly, getter=isShownInSubviewMode) BOOL shownInSubviewMode;
+
+/// 只响应 modal.view 上的 view 所产生的键盘事件，当为 NO 时，只要有键盘事件产生，浮层都会重新计算布局。
+/// 默认为 YES，也即只响应浮层上的 view 引起的键盘位置变化。
+@property(nonatomic, assign) BOOL onlyRespondsToKeyboardEventFromDescendantViews;
 
 /**
  *  管理自定义的浮层布局，将会在浮层显示前、控件的容器大小发生变化时（例如横竖屏、来电状态栏）被调用
@@ -247,6 +254,17 @@ typedef NS_ENUM(NSUInteger, QMUIModalPresentationAnimationStyle) {
 @end
 
 
+/**
+ *  如果你有一个控件，内部通过 QMUIModalPresentationViewController 实现显隐功能，那么这个控件建议实现这个协议，这样当 + [QMUIModalPresentationViewController hideAllVisibleModalPresentationViewControllerIfCan] 被调用的时候，可以通过 hideModalPresentationComponent 来隐藏你的控件，否则会直接调用 QMUIModalPresentationViewController 的 hide 方法，那样可能导致你的控件无法正确被隐藏。
+ */
+@protocol QMUIModalPresentationComponentProtocol <NSObject>
+
+@required
+- (void)hideModalPresentationComponent;
+
+@end
+
+
 @interface QMUIModalPresentationViewController (Manager)
 
 /**
@@ -259,13 +277,15 @@ typedef NS_ENUM(NSUInteger, QMUIModalPresentationAnimationStyle) {
  *  把所有正在显示的并且允许被隐藏的modalViewController都隐藏掉
  *  @return 只要遇到一个正在显示的并且不能被隐藏的浮层，就会返回NO，否则都返回YES，表示成功隐藏掉所有可视浮层
  *  @see    shouldHideModalPresentationViewController:
+ *  @see    QMUIModalPresentationComponentProtocol
+ *  @warning 当要隐藏一个 modalPresentationViewController 时，如果这个 modal 有实现 QMUIModalPresentationComponentProtocol 协议，则会调用它的 hideModalPresentationComponent 方法来隐藏，否则直接用 QMUIModalPresentationViewController 的 hideWithAnimated:completion:
  */
 + (BOOL)hideAllVisibleModalPresentationViewControllerIfCan;
 @end
 
 @interface QMUIModalPresentationViewController (UIAppearance)
 
-+ (instancetype)appearance;
++ (nonnull instancetype)appearance;
 
 @end
 

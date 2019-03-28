@@ -1,15 +1,44 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  CALayer+QMUI.h
 //  qmui
 //
-//  Created by MoLice on 16/8/12.
-//  Copyright © 2016年 QMUI Team. All rights reserved.
+//  Created by QMUI Team on 16/8/12.
 //
 
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 
+typedef NS_OPTIONS (NSUInteger, QMUICornerMask) {
+    QMUILayerMinXMinYCorner = 1U << 0,
+    QMUILayerMaxXMinYCorner = 1U << 1,
+    QMUILayerMinXMaxYCorner = 1U << 2,
+    QMUILayerMaxXMaxYCorner = 1U << 3,
+};
+
 @interface CALayer (QMUI)
+
+/// 暂停/恢复当前 layer 上的所有动画
+@property(nonatomic, assign) BOOL qmui_pause;
+
+/**
+ *  设置四个角是否支持圆角的，iOS11 及以上会调用系统的接口，否则 QMUI 额外实现
+ *  @warning 如果对应的 layer 有圆角，则请使用 QMUI_Border，否则系统的 border 会被 clip 掉
+ *  @warning 使用 qmui 方法，则超出 layer 范围内的内容都会被 clip 掉，系统的则不会
+ *  @warning 如果使用这个接口设置圆角，那么需要获取圆角的值需要用 qmui_originCornerRadius，否则 iOS 11 以下获取到的都是 0
+ */
+@property(nonatomic, assign) QMUICornerMask qmui_maskedCorners;
+
+/// iOS11 以下 layer 自身的 cornerRadius 一直都是 0，圆角的是通过 mask 做的，qmui_originCornerRadius 保存了当前的圆角
+@property(nonatomic, assign, readonly) CGFloat qmui_originCornerRadius;
 
 /**
  *  把某个 sublayer 移动到当前所有 sublayers 的最后面
@@ -39,8 +68,7 @@
  * @param isHorizontal 是否横向，因为画虚线的缘故，需要指定横向或纵向，横向是 YES，纵向是 NO。
  * 注意：暂不支持 dashPhase 和 dashPattens 数组设置，因为这些都定制性太强，如果用到则自己调用系统方法即可。
  */
-
-+ (CAShapeLayer *)qmui_seperatorDashLayerWithLineLength:(NSInteger)lineLength
++ (CAShapeLayer *)qmui_separatorDashLayerWithLineLength:(NSInteger)lineLength
                                             lineSpacing:(NSInteger)lineSpacing
                                               lineWidth:(CGFloat)lineWidth
                                               lineColor:(CGColorRef)lineColor
@@ -53,10 +81,9 @@
  * 其中，InHorizon 是横向；InVertical 是纵向。
  
  */
++ (CAShapeLayer *)qmui_separatorDashLayerInHorizontal;
 
-+ (CAShapeLayer *)qmui_seperatorDashLayerInHorizontal;
-
-+ (CAShapeLayer *)qmui_seperatorDashLayerInVertical;
++ (CAShapeLayer *)qmui_separatorDashLayerInVertical;
 
 /**
  * 产生一个适用于做通用分隔线的 layer，高度为 PixelOne，默认会移除动画，并且背景色用 UIColorSeparator

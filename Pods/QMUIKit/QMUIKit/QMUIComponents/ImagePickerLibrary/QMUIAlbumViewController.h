@@ -1,26 +1,22 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  QMUIAlbumViewController.h
 //  qmui
 //
-//  Created by Kayo Lee on 15/5/3.
-//  Copyright (c) 2015年 QMUI Team. All rights reserved.
+//  Created by QMUI Team on 15/5/3.
 //
 
 #import <UIKit/UIKit.h>
 #import "QMUICommonTableViewController.h"
 #import "QMUITableViewCell.h"
 #import "QMUIAssetsGroup.h"
-
-// 相册预览图的大小默认值
-extern const CGFloat QMUIAlbumViewControllerDefaultAlbumTableViewCellHeight;
-// 相册预览大小（正方形）
-extern const CGFloat QMUIAlbumViewControllerDefaultAlbumImageSize;
-// 相册名称的字号默认值
-extern const CGFloat QMUIAlbumTableViewCellDefaultAlbumNameFontSize;
-// 相册资源数量的字号默认值
-extern const CGFloat QMUIAlbumTableViewCellDefaultAlbumAssetsNumberFontSize;
-// 相册名称的 insets 默认值
-extern const UIEdgeInsets QMUIAlbumTableViewCellDefaultAlbumNameInsets;
 
 
 @class QMUIImagePickerViewController;
@@ -58,11 +54,13 @@ extern const UIEdgeInsets QMUIAlbumTableViewCellDefaultAlbumNameInsets;
 
 @interface QMUIAlbumTableViewCell : QMUITableViewCell
 
-@property(nonatomic, assign) CGFloat albumImageSize UI_APPEARANCE_SELECTOR; // 相册缩略图的 insets
-@property(nonatomic, assign) CGFloat albumImageMarginLeft UI_APPEARANCE_SELECTOR; // 相册缩略图的 left
-@property(nonatomic, assign) CGFloat albumNameFontSize UI_APPEARANCE_SELECTOR; // 相册名称的字号
-@property(nonatomic, assign) UIEdgeInsets albumNameInsets UI_APPEARANCE_SELECTOR; // 相册名称的 insets
-@property(nonatomic, assign) CGFloat albumAssetsNumberFontSize UI_APPEARANCE_SELECTOR; // 相册资源数量的字号
+@property(nonatomic, assign) CGFloat albumImageSize UI_APPEARANCE_SELECTOR; // 相册缩略图的大小
+@property(nonatomic, assign) CGFloat albumImageMarginLeft UI_APPEARANCE_SELECTOR; // 相册缩略图的 left，-1 表示自动保持与上下 margin 相等
+@property(nonatomic, assign) UIEdgeInsets albumNameInsets UI_APPEARANCE_SELECTOR; // 相册名称的上下左右间距
+@property(nonatomic, strong) UIFont *albumNameFont UI_APPEARANCE_SELECTOR; // 相册名的字体
+@property(nonatomic, strong) UIColor *albumNameColor UI_APPEARANCE_SELECTOR; // 相册名的颜色
+@property(nonatomic, strong) UIFont *albumAssetsNumberFont UI_APPEARANCE_SELECTOR; // 相册资源数量的字体
+@property(nonatomic, strong) UIColor *albumAssetsNumberColor UI_APPEARANCE_SELECTOR; // 相册资源数量的颜色
 
 @end
 
@@ -101,6 +99,6 @@ extern const UIEdgeInsets QMUIAlbumTableViewCellDefaultAlbumNameInsets;
 
 @interface QMUIAlbumViewController (UIAppearance)
 
-+ (instancetype)appearance;
++ (nonnull instancetype)appearance;
 
 @end

@@ -1,9 +1,16 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  QMUIConfiguration.m
 //  qmui
 //
 //  Created by QMUI Team on 15/3/29.
-//  Copyright (c) 2015年 QMUI Team. All rights reserved.
 //
 
 #import "QMUIConfiguration.h"
@@ -11,9 +18,12 @@
 #import "UIImage+QMUI.h"
 #import "NSString+QMUI.h"
 #import "UIViewController+QMUI.h"
+#import "QMUIKit.h"
 #import <objc/runtime.h>
 
-const CGSize kUINavigationBarBackIndicatorImageSize = {13, 21}; // 在iOS 8-11 上实际测量得到
+// 在 iOS 8 - 11 上实际测量得到
+// Measured on iOS 8 - 11
+const CGSize kUINavigationBarBackIndicatorImageSize = {13, 21};
 
 @implementation QMUIConfiguration
 
@@ -40,8 +50,9 @@ static BOOL QMUI_hasAppliedInitialTemplate;
         return;
     }
     
-    // 自动寻找并应用模板的解释参照这里 https://github.com/QMUI/QMUI_iOS/issues/264
-    
+    // 自动寻找并应用模板
+    // Automatically look for templates and apply them
+    // @see https://github.com/Tencent/QMUI_iOS/issues/264
     Protocol *protocol = @protocol(QMUIConfigurationTemplateProtocol);
     int numberOfClasses = objc_getClassList(NULL, 0);
     if (numberOfClasses > 0) {
@@ -50,13 +61,16 @@ static BOOL QMUI_hasAppliedInitialTemplate;
         for (int i = 0; i < numberOfClasses; i++) {
             Class class = classes[i];
             // 这里用 containsString 是考虑到 Swift 里 className 由“项目前缀+class 名”组成，如果用 hasPrefix 就无法判断了
+            // Use `containsString` instead of `hasPrefix` because class names in Swift have project prefix prepended
             if ([NSStringFromClass(class) containsString:@"QMUIConfigurationTemplate"] && [class conformsToProtocol:protocol]) {
                 if ([class instancesRespondToSelector:@selector(shouldApplyTemplateAutomatically)]) {
                     id<QMUIConfigurationTemplateProtocol> template = [[class alloc] init];
                     if ([template shouldApplyTemplateAutomatically]) {
                         QMUI_hasAppliedInitialTemplate = YES;
                         [template applyConfigurationTemplate];
+                        _active = YES;// 标志配置表已生效
                         // 只应用第一个 shouldApplyTemplateAutomatically 的主题
+                        // Only apply the first template returned
                         break;
                     }
                 }
@@ -65,10 +79,28 @@ static BOOL QMUI_hasAppliedInitialTemplate;
         free(classes);
     }
     
+    if (IS_DEBUG && self.sendAnalyticsToQMUITeam) {
+        [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue new] usingBlock:^(NSNotification * _Nonnull note) {
+            [self sendAnalytics];
+        }];
+    }
+    
     QMUI_hasAppliedInitialTemplate = YES;
 }
 
-#pragma mark - 初始化默认值
+- (void)sendAnalytics {
+    NSString *identifier = [NSBundle mainBundle].bundleIdentifier.qmui_stringByEncodingUserInputQuery;
+    NSString *displayName = ((NSString *)([NSBundle mainBundle].infoDictionary[@"CFBundleDisplayName"] ?: [NSBundle mainBundle].infoDictionary[@"CFBundleName"])).qmui_stringByEncodingUserInputQuery;
+    NSString *QMUIVersion = QMUI_VERSION.qmui_stringByEncodingUserInputQuery;// 如果不以 framework 方式引入 QMUI 的话，是无法通过 CFBundleShortVersionString 获取到 QMUI 所在的 bundle 的版本号的，所以这里改为用脚本生成的变量来获取
+    NSString *appInfo = [NSString stringWithFormat:@"appId=%@&appName=%@&version=%@&platform=iOS", identifier, displayName, QMUIVersion];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://qmuiteam.com/analytics/usageReport"]];
+    request.HTTPMethod = @"POST";
+    request.HTTPBody = [appInfo dataUsingEncoding:NSUTF8StringEncoding];
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithRequest:request] resume];
+}
+
+#pragma mark - Initialize default values
 
 - (void)initDefaultConfiguration {
     
@@ -232,7 +264,6 @@ static BOOL QMUI_hasAppliedInitialTemplate;
     
     #pragma mark - UIWindowLevel
     self.windowLevelQMUIAlertView = UIWindowLevelAlert - 4.0;
-    self.windowLevelQMUIImagePreviewView = UIWindowLevelStatusBar + 1;
     
     #pragma mark - QMUILog
     self.shouldPrintDefaultLog = YES;
@@ -241,7 +272,8 @@ static BOOL QMUI_hasAppliedInitialTemplate;
     
     #pragma mark - Others
     
-    self.supportedOrientationMask = UIInterfaceOrientationMaskPortrait;
+    self.automaticCustomNavigationBarTransitionStyle = NO;
+    self.supportedOrientationMask = UIInterfaceOrientationMaskAll;
     self.automaticallyRotateDeviceOrientation = NO;
     self.statusbarStyleLightInitially = NO;
     self.needsBackBarButtonItemTitle = NO;
@@ -249,16 +281,22 @@ static BOOL QMUI_hasAppliedInitialTemplate;
     self.preventConcurrentNavigationControllerTransitions = YES;
     self.navigationBarHiddenInitially = NO;
     self.shouldFixTabBarTransitionBugInIPhoneX = NO;
+    self.shouldFixTabBarButtonBugForAll = NO;
+    self.shouldPrintQMUIWarnLogToConsole = IS_DEBUG;
+    self.sendAnalyticsToQMUITeam = YES;
 }
 
 - (void)setNavBarButtonFont:(UIFont *)navBarButtonFont {
     _navBarButtonFont = navBarButtonFont;
     // by molice 2017-08-04 只要用 appearence 的方式修改 UIBarButtonItem 的 font，就会导致界面切换时 UIBarButtonItem 抖动，系统的问题，所以暂时不修改 appearance。
-//    if (navBarButtonFont) {
-//        UIBarButtonItem *barButtonItemAppearance = [UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil];
-//        [barButtonItemAppearance setTitleTextAttributes:@{NSFontAttributeName: navBarButtonFont} forState:UIControlStateNormal];
-//        [barButtonItemAppearance setTitleTextAttributes:[barButtonItemAppearance titleTextAttributesForState:UIControlStateNormal] forState:UIControlStateHighlighted];
-//    }
+    // by molice 2018-06-14 iOS 11 观察貌似又没抖动了，先试试看
+    if (navBarButtonFont) {
+        UIBarButtonItem *barButtonItemAppearance = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]];
+        NSDictionary<NSAttributedStringKey,id> *attributes = @{NSFontAttributeName: navBarButtonFont};
+        [barButtonItemAppearance setTitleTextAttributes:attributes forState:UIControlStateNormal];
+        [barButtonItemAppearance setTitleTextAttributes:attributes forState:UIControlStateHighlighted];
+        [barButtonItemAppearance setTitleTextAttributes:attributes forState:UIControlStateDisabled];
+    }
 }
 
 - (void)setNavBarTintColor:(UIColor *)navBarTintColor {
@@ -304,12 +342,15 @@ static BOOL QMUI_hasAppliedInitialTemplate;
 
 - (void)updateNavigationBarTitleAttributesIfNeeded {
     if (self.navBarTitleFont || self.navBarTitleColor) {
-        NSMutableDictionary<NSString *, id> *titleTextAttributes = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary<NSAttributedStringKey, id> *titleTextAttributes = [UINavigationBar appearance].titleTextAttributes.mutableCopy;
+        if (!titleTextAttributes) {
+            titleTextAttributes = [[NSMutableDictionary alloc] init];
+        }
         if (self.navBarTitleFont) {
-            [titleTextAttributes setValue:self.navBarTitleFont forKey:NSFontAttributeName];
+            titleTextAttributes[NSFontAttributeName] = self.navBarTitleFont;
         }
         if (self.navBarTitleColor) {
-            [titleTextAttributes setValue:self.navBarTitleColor forKey:NSForegroundColorAttributeName];
+            titleTextAttributes[NSForegroundColorAttributeName] = self.navBarTitleColor;
         }
         [UINavigationBar appearance].titleTextAttributes = titleTextAttributes;
         [QMUIHelper visibleViewController].navigationController.navigationBar.titleTextAttributes = titleTextAttributes;
@@ -357,6 +398,7 @@ static BOOL QMUI_hasAppliedInitialTemplate;
         UINavigationBar *navigationBar = [QMUIHelper visibleViewController].navigationController.navigationBar;
         
         // 返回按钮的图片frame是和系统默认的返回图片的大小一致的（13, 21），所以用自定义返回箭头时要保证图片大小与系统的箭头大小一样，否则无法对齐
+        // Make sure custom back button image is the same size as the system's back button image, i.e. (13, 21), due to the same frame size they share.
         if (self.sizeNavBarBackIndicatorImageAutomatically) {
             CGSize systemBackIndicatorImageSize = kUINavigationBarBackIndicatorImageSize;
             CGSize customBackIndicatorImageSize = _navBarBackIndicatorImage.size;

@@ -1,14 +1,22 @@
+/*****
+ * Tencent is pleased to support the open source community by making QMUI_iOS available.
+ * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://opensource.org/licenses/MIT
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ *****/
+
 //
 //  UITableView+QMUI.m
 //  qmui
 //
-//  Created by ZhoonChen on 15/7/20.
-//  Copyright (c) 2015年 QMUI Team. All rights reserved.
+//  Created by QMUI Team on 15/7/20.
 //
 
 #import "UITableView+QMUI.h"
 #import "QMUICore.h"
 #import "UIScrollView+QMUI.h"
+#import "QMUILog.h"
 
 const NSUInteger kFloatValuePrecision = 4;// 统一一个小数点运算精度
 
@@ -19,6 +27,7 @@ const NSUInteger kFloatValuePrecision = 4;// 统一一个小数点运算精度
     dispatch_once(&onceToken, ^{
         ExchangeImplementations([self class], @selector(initWithFrame:style:), @selector(qmui_initWithFrame:style:));
         ExchangeImplementations([self class], @selector(sizeThatFits:), @selector(qmui_sizeThatFits:));
+        ExchangeImplementations([self class], @selector(scrollToRowAtIndexPath:atScrollPosition:animated:), @selector(qmui_scrollToRowAtIndexPath:atScrollPosition:animated:));
     });
 }
 
@@ -26,7 +35,7 @@ const NSUInteger kFloatValuePrecision = 4;// 统一一个小数点运算精度
     [self qmui_initWithFrame:frame style:style];
     
     // iOS 11 之后 estimatedRowHeight 如果值为 UITableViewAutomaticDimension，estimate 效果也会生效（iOS 11 以前要 > 0 才会生效）。
-    // 而当使用 estimate 效果时，会导致 contentSize 之类的计算不准确，所以这里给一个途径让项目可以方便地控制 QMUITableView（及其子类） 和 UITableView（不包含子类，例如 UIPickerTableView）的 estimatedRowHeight 效果的开关 https://github.com/QMUI/QMUI_iOS/issues/313
+    // 而当使用 estimate 效果时，会导致 contentSize 之类的计算不准确，所以这里给一个途径让项目可以方便地控制 QMUITableView（及其子类） 和 UITableView（不包含子类，例如 UIPickerTableView）的 estimatedRowHeight 效果的开关 https://github.com/Tencent/QMUI_iOS/issues/313
     if ([self isKindOfClass:NSClassFromString(@"QMUITableView")] || [NSStringFromClass(self.class) isEqualToString:@"UITableView"]) {
         if (TableViewEstimatedHeightEnabled) {
             self.estimatedRowHeight = TableViewCellNormalHeight;
@@ -67,6 +76,18 @@ const NSUInteger kFloatValuePrecision = 4;// 统一一个小数点运算精度
     self.sectionIndexColor = TableSectionIndexColor;
     self.sectionIndexTrackingBackgroundColor = TableSectionIndexTrackingBackgroundColor;
     self.sectionIndexBackgroundColor = TableSectionIndexBackgroundColor;
+}
+
+static char kAssociatedObjectKey_initialContentInset;
+- (void)setQmui_initialContentInset:(UIEdgeInsets)qmui_initialContentInset {
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_initialContentInset, [NSValue valueWithUIEdgeInsets:qmui_initialContentInset], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    self.contentInset = qmui_initialContentInset;
+    self.scrollIndicatorInsets = qmui_initialContentInset;
+    [self qmui_scrollToTopUponContentInsetTopChange];
+}
+
+- (UIEdgeInsets)qmui_initialContentInset {
+    return [((NSValue *)objc_getAssociatedObject(self, &kAssociatedObjectKey_initialContentInset)) UIEdgeInsetsValue];
 }
 
 - (NSIndexPath *)qmui_indexPathForRowAtView:(UIView *)view {
@@ -206,6 +227,9 @@ const NSUInteger kFloatValuePrecision = 4;// 统一一个小数点运算精度
     }
     
     CGRect rectForRow = [self rectForRowAtIndexPath:indexPath];
+    if (CGRectEqualToRect(rectForRow, CGRectZero)) {
+        return;
+    }
     
     // 如果要滚到的row在列表尾部，则这个row是不可能滚到顶部的（因为列表尾部已经不够空间了），所以要判断一下
     BOOL canScrollRowToTop = CGRectGetMaxY(rectForRow) + CGRectGetHeight(self.frame) - (offsetY + CGRectGetHeight(rectForRow)) <= self.contentSize.height;
@@ -252,6 +276,30 @@ const NSUInteger kFloatValuePrecision = 4;// 统一一个小数点运算精度
     }
 }
 
+// 防止 release 版本滚动到不合法的 indexPath 会 crash
+- (void)qmui_scrollToRowAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated {
+    if (!indexPath) {
+        return;
+    }
+    
+    BOOL isIndexPathLegal = YES;
+    NSInteger numberOfSections = [self numberOfSections];
+    if (indexPath.section >= numberOfSections) {
+        isIndexPathLegal = NO;
+    } else if (indexPath.row != NSNotFound) {
+        NSInteger rows = [self numberOfRowsInSection:indexPath.section];
+        isIndexPathLegal = indexPath.row < rows;
+    }
+    if (!isIndexPathLegal) {
+        QMUILogWarn(@"UITableView (QMUI)", @"%@ - target indexPath : %@ ，不合法的indexPath。\n%@", self, indexPath, [NSThread callStackSymbols]);
+        if (QMUICMIActivated && !ShouldPrintQMUIWarnLogToConsole) {
+            NSAssert(NO, @"出现不合法的indexPath");
+        }
+    } else {
+        [self qmui_scrollToRowAtIndexPath:indexPath atScrollPosition:scrollPosition animated:animated];
+    }
+}
+
 - (void)alertEstimatedHeightUsageIfDetected {
     BOOL usingEstimatedRowHeight = self.estimatedRowHeight == UITableViewAutomaticDimension;
     BOOL usingEstimatedSectionHeaderHeight = self.estimatedSectionHeaderHeight == UITableViewAutomaticDimension;
@@ -263,7 +311,7 @@ const NSUInteger kFloatValuePrecision = 4;// 统一一个小数点运算精度
 }
 
 - (void)QMUISymbolicUsingTableViewEstimatedHeightMakeWarning {
-    NSLog(@"UITableView 的 estimatedRow(SectionHeader / SectionFooter)Height 属性会影响 contentSize、sizeThatFits:、rectForXxx 等方法的计算，导致计算结果不准确，建议重新考虑是否要使用 estimated。可添加 '%@' 的 Symbolic Breakpoint 以捕捉此类信息\n%@", NSStringFromSelector(_cmd), [NSThread callStackSymbols]);
+    QMUILog(@"UITableView 的 estimatedRow(SectionHeader / SectionFooter)Height 属性会影响 contentSize、sizeThatFits:、rectForXxx 等方法的计算，导致计算结果不准确，建议重新考虑是否要使用 estimated。可添加 '%@' 的 Symbolic Breakpoint 以捕捉此类信息\n%@", NSStringFromSelector(_cmd), [NSThread callStackSymbols]);
 }
 
 @end

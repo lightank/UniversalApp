@@ -3,15 +3,52 @@
 //  CYLTabBarController
 //
 //  v1.16.0 Created by 微博@iOS程序犭袁 ( http://weibo.com/luohanchenyilong/ ) on 10/20/15.
-//  Copyright © 2015 https://github.com/ChenYilong . All rights reserved.
+//  Copyright © 2018 https://github.com/ChenYilong . All rights reserved.
 //
 
 #import "UIControl+CYLTabBarControllerExtention.h"
 #import <objc/runtime.h>
 #import "UIView+CYLTabBarControllerExtention.h"
 #import "CYLConstants.h"
+#import "CYLTabBarController.h"
 
 @implementation UIControl (CYLTabBarControllerExtention)
+
+- (BOOL)cyl_shouldNotSelect {
+    NSNumber *shouldNotSelectObject = objc_getAssociatedObject(self, @selector(cyl_shouldNotSelect));
+    return [shouldNotSelectObject boolValue];
+}
+
+- (void)cyl_setShouldNotSelect:(BOOL)shouldNotSelect {
+    NSNumber *shouldNotSelectObject = @(shouldNotSelect);
+    objc_setAssociatedObject(self, @selector(cyl_shouldNotSelect), shouldNotSelectObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSInteger)cyl_tabBarItemVisibleIndex {
+    if (!self.cyl_isTabButton && !self.cyl_isPlusButton ) {
+        return NSNotFound;
+    }
+    NSNumber *tabBarItemVisibleIndexObject = objc_getAssociatedObject(self, @selector(cyl_tabBarItemVisibleIndex));
+    return [tabBarItemVisibleIndexObject integerValue];
+}
+
+- (void)cyl_setTabBarItemVisibleIndex:(NSInteger)tabBarItemVisibleIndex {
+    NSNumber *tabBarItemVisibleIndexObject = [NSNumber numberWithInteger:tabBarItemVisibleIndex];
+    objc_setAssociatedObject(self, @selector(cyl_tabBarItemVisibleIndex), tabBarItemVisibleIndexObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSInteger)cyl_tabBarChildViewControllerIndex {
+    if (!self.cyl_isTabButton && !self.cyl_isPlusButton ) {
+        return NSNotFound;
+    }
+    NSNumber *tabBarChildViewControllerIndexObject = objc_getAssociatedObject(self, @selector(cyl_tabBarChildViewControllerIndex));
+    return [tabBarChildViewControllerIndexObject integerValue];
+}
+
+- (void)cyl_setTabBarChildViewControllerIndex:(NSInteger)tabBarChildViewControllerIndex {
+    NSNumber *tabBarChildViewControllerIndexObject = [NSNumber numberWithInteger:tabBarChildViewControllerIndex];
+    objc_setAssociatedObject(self, @selector(cyl_tabBarChildViewControllerIndex), tabBarChildViewControllerIndexObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
 - (void)cyl_showTabBadgePoint {
     [self cyl_setShowTabBadgePointIfNeeded:YES];

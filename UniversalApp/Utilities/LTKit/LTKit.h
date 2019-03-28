@@ -21,6 +21,7 @@
 #import "UIApplication+LTAdd.h"
 #import "UITextView+LTAdd.h"
 #import "UITableViewCell+LTAdd.h"
+#import "UINavigationBar+LTAdd.h"
 
 // Foundation
 #import "NSObject+LTAdd.h"
