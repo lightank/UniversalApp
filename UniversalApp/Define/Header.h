@@ -12,7 +12,7 @@
 #import "LTLocalizations.h"
 
 #pragma mark - 全局定义
-#import "Macros.h"
+#import "LTMacros.h"
 #import "ColorMacros.h"
 #import "URLString.h"
 

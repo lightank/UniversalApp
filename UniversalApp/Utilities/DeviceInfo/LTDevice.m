@@ -1,12 +1,12 @@
 //
-//  LTDeviceInfo.m
+//  LTDevice.m
 //  UniversalApp
 //
 //  Created by huanyu.li on 2018/5/20.
 //  Copyright © 2018年 huanyu.li. All rights reserved.
 //
 
-#import "LTDeviceInfo.h"
+#import "LTDevice.h"
 
 // utsname
 #import <sys/utsname.h>
@@ -25,17 +25,20 @@
 
 #define kDeviceInfoPlaceHolder @"none"
 
-@implementation LTDeviceInfo
+@implementation LTDevice
 
 + (NSString *)deviceModel
 {
     // Get the device model
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(model)]) {
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(model)])
+    {
         // Make a string for the device model
         NSString *deviceModel = [[UIDevice currentDevice] model];
         // Set the output to the device model
         return deviceModel;
-    } else {
+    }
+    else
+    {
         // Device model not found
         return kDeviceInfoPlaceHolder;
     }
@@ -44,12 +47,15 @@
 + (NSString *)deviceName
 {
     // Get the current device name
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(name)]) {
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(name)])
+    {
         // Make a string for the device name
         NSString *deviceName = [[UIDevice currentDevice] name];
         // Set the output to the device name
         return deviceName;
-    } else {
+    }
+    else
+    {
         // Device name not found
         return kDeviceInfoPlaceHolder;
     }
@@ -235,7 +241,8 @@
     }
     
     NSString *path = [NSString stringWithFormat:@"/private/%@", [NSString stringWithUUID]];
-    if ([@"test" writeToFile : path atomically : YES encoding : NSUTF8StringEncoding error : NULL]) {
+    if ([@"test" writeToFile : path atomically : YES encoding : NSUTF8StringEncoding error : NULL])
+    {
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
         return YES;
     }
@@ -302,12 +309,13 @@
 {
     return UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]);
 }
+
 + (CGFloat)deviceWidth
 {
     static CGFloat width = 0.f;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        width = (IOS8_OR_LATER ? ([LTDeviceInfo isLandscape] ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width) : [[UIScreen mainScreen] bounds].size.width);
+        width = (IOS8_OR_LATER ? ([self.class isLandscape] ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width) : [[UIScreen mainScreen] bounds].size.width);
     });
     return width;
 }
@@ -316,17 +324,17 @@
     static CGFloat height = 0.f;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        height = ((IOS8_OR_LATER ? ([LTDeviceInfo isLandscape] ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height) : [[UIScreen mainScreen] bounds].size.height));
+        height = ((IOS8_OR_LATER ? ([self.class isLandscape] ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height) : [[UIScreen mainScreen] bounds].size.height));
     });
     return height;
 }
 + (CGFloat)screenWidth
 {
-    return ((IOS8_OR_LATER ? [[UIScreen mainScreen] bounds].size.width : ([LTDeviceInfo isLandscape] ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)));
+    return ((IOS8_OR_LATER ? [[UIScreen mainScreen] bounds].size.width : ([self.class isLandscape] ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)));
 }
 + (CGFloat)screenHeight
 {
-    return ((IOS8_OR_LATER ? [[UIScreen mainScreen] bounds].size.height : ([LTDeviceInfo isLandscape] ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height)));
+    return ((IOS8_OR_LATER ? [[UIScreen mainScreen] bounds].size.height : ([self.class isLandscape] ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height)));
 }
 
 + (CGFloat)statusBarHeight
@@ -342,10 +350,49 @@
     dispatch_once(&onceToken, ^{
         if (@available(iOS 11.0, *))
         {
-            isNotchedScreen = [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom > 0.f;
+            if (@available(iOS 12.0, *))
+            {
+                /*
+                 检测方式解释/测试要点：
+                 1. iOS 11 与 iOS 12 可能行为不同，所以要分别测试。
+                 2. 与触发 [QMUIHelper isNotchedScreen] 方法时的进程有关，例如 https://github.com/Tencent/QMUI_iOS/issues/482#issuecomment-456051738 里提到的 [NSObject performSelectorOnMainThread:withObject:waitUntilDone:NO] 就会导致较多的异常。
+                 3. iOS 12 下，在非第2点里提到的情况下，iPhone、iPad 均可通过 UIScreen -_peripheryInsets 方法的返回值区分，但如果满足了第2点，则 iPad 无法使用这个方法，这种情况下要依赖第4点。
+                 4. iOS 12 下，不管是否满足第2点，不管是什么设备类型，均可以通过一个满屏的 UIWindow 的 rootViewController.view.frame.origin.y 的值来区分，如果是非全面屏，这个值必定为20，如果是全面屏，则可能是24或44等不同的值。但由于创建 UIWindow、UIViewController 等均属于较大消耗，所以只在前面的步骤无法区分的情况下才会使用第4点。
+                 5. 对于第4点，经测试与当前设备的方向、是否有勾选 project 里的 General - Hide status bar、当前是否处于来电模式的状态栏这些都没关系。
+                 */
+                SEL peripheryInsetsSelector = NSSelectorFromString([NSString stringWithFormat:@"_%@%@", @"periphery", @"Insets"]);
+                UIEdgeInsets peripheryInsets = UIEdgeInsetsZero;
+            
+                NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[[UIScreen mainScreen] methodSignatureForSelector:peripheryInsetsSelector]];
+                [invocation setTarget:[UIScreen mainScreen]];
+                [invocation setSelector:peripheryInsetsSelector];
+                [invocation invoke];
+                [invocation getReturnValue:&peripheryInsets];
+                
+                [[UIScreen mainScreen] qmui_performSelector:peripheryInsetsSelector withReturnValue:&peripheryInsets];
+                if (peripheryInsets.bottom <= 0)
+                {
+                    UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+                    peripheryInsets = window.safeAreaInsets;
+                    if (peripheryInsets.bottom <= 0)
+                    {
+                        UIViewController *viewController = [UIViewController new];
+                        [viewController loadViewIfNeeded];
+                        window.rootViewController = viewController;
+                        if (CGRectGetMinY(viewController.view.frame) > 20)
+                        {
+                            peripheryInsets.bottom = 1;
+                        }
+                    }
+                }
+                isNotchedScreen = peripheryInsets.bottom > 0;
+            }
+            else
+            {
+                isNotchedScreen = [QMUIHelper is58InchScreen];
+            }
         }
-        
-        if (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPhone)
+        else
         {
             isNotchedScreen = NO;
         }
@@ -478,6 +525,50 @@
     });
     return pixelOne;
 }
+
++ (CGFloat)homeIndicatorHeight
+{
+    CGFloat homeIndicatorHeight = 0.f;
+    
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    switch (orientation)
+    {
+        case UIInterfaceOrientationPortrait:
+        case UIInterfaceOrientationPortraitUpsideDown:
+            homeIndicatorHeight = 34.f;
+            break;
+            
+        case UIInterfaceOrientationLandscapeLeft:
+        case UIInterfaceOrientationLandscapeRight:
+            homeIndicatorHeight = 21.f;
+            break;
+            
+        case UIInterfaceOrientationUnknown:
+        default:
+            homeIndicatorHeight = 34.f;
+            break;
+    }
+    
+    return homeIndicatorHeight;
+}
+
++ (CGFloat)tabBarHeight
+{
+    CGFloat tabBarHeight = 49.f + [self homeIndicatorHeight];
+    return tabBarHeight;
+}
+
++ (CGFloat)navigationBarHeigh
+{
+    return 44.f;
+}
+
++ (CGFloat)navigationPlusStatusBarHeight
+{
+    return 44.f + [self statusBarHeight];
+}
+
+
 
 #pragma mark - 系统版本,软件相关
 + (NSString *)systemName
@@ -1171,77 +1262,81 @@
     if (self)
     {
         // 设备相关
-        _deviceModel =[LTDeviceInfo deviceModel];
-        _deviceName = [LTDeviceInfo deviceName];
-        _machineModel = [LTDeviceInfo machineModel];
-        _machineModelName = [LTDeviceInfo machineModelName];
-        _isSimulator = [LTDeviceInfo isSimulator];
-        _isJailbroken = [LTDeviceInfo isJailbroken];
-        _isEnableTouchID = [LTDeviceInfo isEnableTouchID];
-        _resolutionRatio = [LTDeviceInfo resolutionRatio];
+        _deviceModel =[self.class deviceModel];
+        _deviceName = [self.class deviceName];
+        _machineModel = [self.class machineModel];
+        _machineModelName = [self.class machineModelName];
+        _isSimulator = [self.class isSimulator];
+        _isJailbroken = [self.class isJailbroken];
+        _isEnableTouchID = [self.class isEnableTouchID];
+        _resolutionRatio = [self.class resolutionRatio];
         
-        // 屏幕相关
-        _isLandscape = [LTDeviceInfo isLandscape];
-        _isDeviceLandscape = [LTDeviceInfo isDeviceLandscape];
-        _deviceWidth = [LTDeviceInfo deviceWidth];
-        _deviceHeight = [LTDeviceInfo deviceHeight];
-        _screenWidth = [LTDeviceInfo screenWidth];
-        _screenHeight = [LTDeviceInfo screenHeight];
-        _statusBarHeight = [LTDeviceInfo statusBarHeight];
-        _isNotchedScreen = [LTDeviceInfo isNotchedScreen];
-        _is65InchScreen = [LTDeviceInfo is65InchScreen];
-        _is61InchScreen = [LTDeviceInfo is61InchScreen];
-        _is58InchScreen = [LTDeviceInfo is58InchScreen];
-        _is55InchScreen = [LTDeviceInfo is55InchScreen];
-        _is47InchScreen = [LTDeviceInfo is47InchScreen];
-        _is40InchScreen = [LTDeviceInfo is40InchScreen];
-        _is35InchScreen = [LTDeviceInfo is35InchScreen];
-        _screenSizeFor65Inch = [LTDeviceInfo screenSizeFor65Inch];
-        _screenSizeFor61Inch = [LTDeviceInfo screenSizeFor61Inch];
-        _screenSizeFor58Inch = [LTDeviceInfo screenSizeFor58Inch];
-        _screenSizeFor55Inch = [LTDeviceInfo screenSizeFor55Inch];
-        _screenSizeFor47Inch = [LTDeviceInfo screenSizeFor47Inch];
-        _screenSizeFor40Inch = [LTDeviceInfo screenSizeFor40Inch];
-        _screenSizeFor35Inch = [LTDeviceInfo screenSizeFor35Inch];
-        _isRetinaScreen = [LTDeviceInfo isRetinaScreen];
-        _pixelOne = [LTDeviceInfo pixelOne];
+        // 屏幕/尺寸相关
+        _isLandscape = [self.class isLandscape];
+        _isDeviceLandscape = [self.class isDeviceLandscape];
+        _deviceWidth = [self.class deviceWidth];
+        _deviceHeight = [self.class deviceHeight];
+        _screenWidth = [self.class screenWidth];
+        _screenHeight = [self.class screenHeight];
+        _statusBarHeight = [self.class statusBarHeight];
+        _isNotchedScreen = [self.class isNotchedScreen];
+        _is65InchScreen = [self.class is65InchScreen];
+        _is61InchScreen = [self.class is61InchScreen];
+        _is58InchScreen = [self.class is58InchScreen];
+        _is55InchScreen = [self.class is55InchScreen];
+        _is47InchScreen = [self.class is47InchScreen];
+        _is40InchScreen = [self.class is40InchScreen];
+        _is35InchScreen = [self.class is35InchScreen];
+        _screenSizeFor65Inch = [self.class screenSizeFor65Inch];
+        _screenSizeFor61Inch = [self.class screenSizeFor61Inch];
+        _screenSizeFor58Inch = [self.class screenSizeFor58Inch];
+        _screenSizeFor55Inch = [self.class screenSizeFor55Inch];
+        _screenSizeFor47Inch = [self.class screenSizeFor47Inch];
+        _screenSizeFor40Inch = [self.class screenSizeFor40Inch];
+        _screenSizeFor35Inch = [self.class screenSizeFor35Inch];
+        _isRetinaScreen = [self.class isRetinaScreen];
+        _pixelOne = [self.class pixelOne];
+        _homeIndicatorHeight = [self.class homeIndicatorHeight];
+        _tabBarHeight = [self.class tabBarHeight];
+        _navigationBarHeigh = [self.class navigationBarHeigh];
+        _navigationPlusStatusBarHeight = [self.class navigationPlusStatusBarHeight];
         
         // 系统版本,软件相关
-        _systemName = [LTDeviceInfo systemName];
-        _systemVersion = [LTDeviceInfo systemVersion];
-        _systemUptime = [LTDeviceInfo systemUptime];
-        _iOS8OrLater = [LTDeviceInfo iOS8OrLater];
-        _iOS9OrLater = [LTDeviceInfo iOS9OrLater];
-        _iOS10OrLater = [LTDeviceInfo iOS10OrLater];
-        _iOS11OrLater = [LTDeviceInfo iOS11OrLater];
-        _iOS12OrLater = [LTDeviceInfo iOS12OrLater];
-        _clipboardContent = [LTDeviceInfo clipboardContent];
+        _systemName = [self.class systemName];
+        _systemVersion = [self.class systemVersion];
+        _systemUptime = [self.class systemUptime];
+        _iOS8OrLater = [self.class iOS8OrLater];
+        _iOS9OrLater = [self.class iOS9OrLater];
+        _iOS10OrLater = [self.class iOS10OrLater];
+        _iOS11OrLater = [self.class iOS11OrLater];
+        _iOS12OrLater = [self.class iOS12OrLater];
+        _clipboardContent = [self.class clipboardContent];
         
         // 本地区域相关
-        _country = [LTDeviceInfo country];
-        _language = [LTDeviceInfo language];
-        _timeZone = [LTDeviceInfo timeZone];
-        _currency = [LTDeviceInfo currency];
+        _country = [self.class country];
+        _language = [self.class language];
+        _timeZone = [self.class timeZone];
+        _currency = [self.class currency];
         
         //网络相关
-        _carrierName = [LTDeviceInfo carrierName];
-        _carrierCountry = [LTDeviceInfo carrierCountry];
-        _carrierISOCountryCode = [LTDeviceInfo carrierISOCountryCode];
-        _carrierAllowsVOIP = [LTDeviceInfo carrierAllowsVOIP];
-        _WIFIName = [LTDeviceInfo WIFIName];
-        _ipAddressWIFI = [LTDeviceInfo ipAddressWIFI];
-        _ipAddressCell = [LTDeviceInfo ipAddressCell];
+        _carrierName = [self.class carrierName];
+        _carrierCountry = [self.class carrierCountry];
+        _carrierISOCountryCode = [self.class carrierISOCountryCode];
+        _carrierAllowsVOIP = [self.class carrierAllowsVOIP];
+        _WIFIName = [self.class WIFIName];
+        _ipAddressWIFI = [self.class ipAddressWIFI];
+        _ipAddressCell = [self.class ipAddressCell];
         
         //APP相关
-        _appVersion = [LTDeviceInfo appVersion];
-        _appDisplayName = [LTDeviceInfo appDisplayName];
-        _appBuildVersion = [LTDeviceInfo appBuildVersion];
+        _appVersion = [self.class appVersion];
+        _appDisplayName = [self.class appDisplayName];
+        _appBuildVersion = [self.class appBuildVersion];
         
         //磁盘与内存
-        _totalDiskSpace = [LTDeviceInfo totalDiskSpace];
-        _usedDiskSpace = [LTDeviceInfo usedDiskSpace];
-        _freeDiskSpace = [LTDeviceInfo freeDiskSpace];
-        _memoryTotal = [LTDeviceInfo memoryTotal];
+        _totalDiskSpace = [self.class totalDiskSpace];
+        _usedDiskSpace = [self.class usedDiskSpace];
+        _freeDiskSpace = [self.class freeDiskSpace];
+        _memoryTotal = [self.class memoryTotal];
     }
     return self;
 }

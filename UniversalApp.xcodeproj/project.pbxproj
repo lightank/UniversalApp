@@ -14,7 +14,7 @@
 		3D2E14B721087EA7003B3122 /* LTRequestHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2E14B621087EA7003B3122 /* LTRequestHeaderModel.m */; };
 		3D48666220B1AAC5002BACA8 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48666020B1AAC4002BACA8 /* NSString+Hash.m */; };
 		3D48666320B1AAC5002BACA8 /* LTEncryptorTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48666120B1AAC4002BACA8 /* LTEncryptorTools.m */; };
-		3D48667320B1AE0F002BACA8 /* LTDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48666720B1AE0F002BACA8 /* LTDeviceInfo.m */; };
+		3D48667320B1AE0F002BACA8 /* LTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48666720B1AE0F002BACA8 /* LTDevice.m */; };
 		3D48667B20B1B1B7002BACA8 /* LTUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48667A20B1B1B7002BACA8 /* LTUserManager.m */; };
 		3D48667E20B1B1C5002BACA8 /* LTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48667D20B1B1C5002BACA8 /* LTUser.m */; };
 		3D48668120B1B34D002BACA8 /* LTSandboxTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48668020B1B34D002BACA8 /* LTSandboxTool.m */; };
@@ -67,7 +67,6 @@
 		A073C309224A3F7B00B685A1 /* NSObject+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2F2224A3F7A00B685A1 /* NSObject+LTAdd.m */; };
 		A073C30A224A3F7B00B685A1 /* NSArray+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2F4224A3F7A00B685A1 /* NSArray+LTAdd.m */; };
 		A073C30B224A3F7B00B685A1 /* CAGradientLayer+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2F7224A3F7A00B685A1 /* CAGradientLayer+LTAdd.m */; };
-		A08C55E522421FB1006720CD /* LTURLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A08C55E422421FB1006720CD /* LTURLTool.m */; };
 		E263541D9C33F5DD3886B5D4 /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */; };
 		FB553A15234B274C38B6CE91 /* libPods-UniversalAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0296C350224E490362599AB1 /* libPods-UniversalAppTests.a */; };
 /* End PBXBuildFile section */
@@ -111,8 +110,8 @@
 		3D48665F20B1AAC4002BACA8 /* LTEncryptorTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTEncryptorTools.h; sourceTree = "<group>"; };
 		3D48666020B1AAC4002BACA8 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		3D48666120B1AAC4002BACA8 /* LTEncryptorTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTEncryptorTools.m; sourceTree = "<group>"; };
-		3D48666720B1AE0F002BACA8 /* LTDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTDeviceInfo.m; sourceTree = "<group>"; };
-		3D48666E20B1AE0F002BACA8 /* LTDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTDeviceInfo.h; sourceTree = "<group>"; };
+		3D48666720B1AE0F002BACA8 /* LTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTDevice.m; sourceTree = "<group>"; };
+		3D48666E20B1AE0F002BACA8 /* LTDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTDevice.h; sourceTree = "<group>"; };
 		3D48667920B1B1B7002BACA8 /* LTUserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTUserManager.h; sourceTree = "<group>"; };
 		3D48667A20B1B1B7002BACA8 /* LTUserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTUserManager.m; sourceTree = "<group>"; };
 		3D48667C20B1B1C5002BACA8 /* LTUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTUser.h; sourceTree = "<group>"; };
@@ -155,7 +154,7 @@
 		3DCC9F4C20B019F100CD476A /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
 		3DCC9F4D20B019F100CD476A /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
 		3DCC9F4F20B01A8500CD476A /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		3DCC9F5020B01AA300CD476A /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		3DCC9F5020B01AA300CD476A /* LTMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMacros.h; sourceTree = "<group>"; };
 		3DCC9F5120B01AA300CD476A /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		3DCC9F6F20B02D4500CD476A /* LTTabBarControllerConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTTabBarControllerConfig.h; sourceTree = "<group>"; };
 		3DCC9F7020B02D4500CD476A /* LTTabBarControllerConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTTabBarControllerConfig.m; sourceTree = "<group>"; };
@@ -227,8 +226,6 @@
 		A073C2F5224A3F7A00B685A1 /* LTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTKit.h; sourceTree = "<group>"; };
 		A073C2F7224A3F7A00B685A1 /* CAGradientLayer+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAGradientLayer+LTAdd.m"; sourceTree = "<group>"; };
 		A073C2F8224A3F7A00B685A1 /* CAGradientLayer+LTAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAGradientLayer+LTAdd.h"; sourceTree = "<group>"; };
-		A08C55E322421FB1006720CD /* LTURLTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTURLTool.h; sourceTree = "<group>"; };
-		A08C55E422421FB1006720CD /* LTURLTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTURLTool.m; sourceTree = "<group>"; };
 		A244D68607808162F3309FE0 /* Pods-UniversalAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppUITests/Pods-UniversalAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC8739C3BF6125C27952E091 /* Pods-UniversalAppTests.sit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppTests.sit.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppTests/Pods-UniversalAppTests.sit.xcconfig"; sourceTree = "<group>"; };
 		C88A913B462EFBFE7833C24D /* Pods-UniversalAppTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppTests/Pods-UniversalAppTests.dev.xcconfig"; sourceTree = "<group>"; };
@@ -316,8 +313,8 @@
 		3D48666420B1ADF5002BACA8 /* DeviceInfo */ = {
 			isa = PBXGroup;
 			children = (
-				3D48666E20B1AE0F002BACA8 /* LTDeviceInfo.h */,
-				3D48666720B1AE0F002BACA8 /* LTDeviceInfo.m */,
+				3D48666E20B1AE0F002BACA8 /* LTDevice.h */,
+				3D48666720B1AE0F002BACA8 /* LTDevice.m */,
 				3D48667F20B1B34C002BACA8 /* LTSandboxTool.h */,
 				3D48668020B1B34D002BACA8 /* LTSandboxTool.m */,
 			);
@@ -503,7 +500,7 @@
 			isa = PBXGroup;
 			children = (
 				3DCC9F5120B01AA300CD476A /* Header.h */,
-				3DCC9F5020B01AA300CD476A /* Macros.h */,
+				3DCC9F5020B01AA300CD476A /* LTMacros.h */,
 				3DE5B32020B0E94C009719D0 /* ColorMacros.h */,
 				3DE5B32120B11B19009719D0 /* URLString.h */,
 				3D6C03E5217441F000FB9672 /* ApplicationConfig.h */,
@@ -528,8 +525,6 @@
 				A073C2CE224A3F7900B685A1 /* LTKit */,
 				3DDDBEC421941CCF004D68F6 /* LTExampleCode.h */,
 				3DDDBEC521941CCF004D68F6 /* LTExampleCode.m */,
-				A08C55E322421FB1006720CD /* LTURLTool.h */,
-				A08C55E422421FB1006720CD /* LTURLTool.m */,
 				3D48666420B1ADF5002BACA8 /* DeviceInfo */,
 				3D48665D20B1AAA3002BACA8 /* Encryption */,
 			);
@@ -949,7 +944,7 @@
 				3DACBB30219EAD610077E262 /* LTLoginViewController.m in Sources */,
 				A073C2FF224A3F7B00B685A1 /* UIApplication+LTAdd.m in Sources */,
 				A073C301224A3F7B00B685A1 /* UIBarButtonItem+LTAdd.m in Sources */,
-				3D48667320B1AE0F002BACA8 /* LTDeviceInfo.m in Sources */,
+				3D48667320B1AE0F002BACA8 /* LTDevice.m in Sources */,
 				3DCC9F7120B02D4500CD476A /* LTTabBarControllerConfig.m in Sources */,
 				3DBD184B21CCD36400E98730 /* LTWKWebView.m in Sources */,
 				A073C303224A3F7B00B685A1 /* UINavigationBar+LTAdd.m in Sources */,
@@ -960,7 +955,6 @@
 				A035615821C3F6FD00DAAEE1 /* LTObjcViewController.m in Sources */,
 				3DCC9F2120B006F100CD476A /* main.m in Sources */,
 				A073C30B224A3F7B00B685A1 /* CAGradientLayer+LTAdd.m in Sources */,
-				A08C55E522421FB1006720CD /* LTURLTool.m in Sources */,
 				A073C306224A3F7B00B685A1 /* UIColor+LTAdd.m in Sources */,
 				A073C2FE224A3F7B00B685A1 /* UIScrollView+LTRefresh.m in Sources */,
 				A073C2FB224A3F7B00B685A1 /* UIViewController+LTAdd.m in Sources */,

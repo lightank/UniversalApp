@@ -7,7 +7,7 @@
 //
 
 #import "LTBaseWebViewController.h"
-#import "LTDeviceInfo.h"
+#import "LTDevice.h"
 
 typedef NSString * LTObserverKey;
 static LTObserverKey const kEstimatedProgressKey = @"estimatedProgress";
@@ -170,7 +170,7 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
 
 - (CGFloat)contentViewHeight
 {
-    CGFloat height = self.navigationController.navigationBar.isHidden ? kStatusBarHeight : (kNavigationToTopHeight);
+    CGFloat height = self.navigationController.navigationBar.isHidden ? kStatusBarHeight : (kNavigationPlusStatusBarHeight);
     return kScreenHeight - height;
 }
 

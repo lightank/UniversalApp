@@ -7,7 +7,7 @@
 //
 
 #import "UINavigationBar+LTAdd.h"
-#import "LTMacros.h"
+#import "LTDevice.h"
 
 @implementation UINavigationBar (LTAdd)
 

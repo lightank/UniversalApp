@@ -36,17 +36,6 @@ _Pragma("clang diagnostic pop")
 #define kScreenBounds [UIScreen mainScreen].bounds
 #endif
 
-//Home Indicator的高度
-#define kHomeIndicatorHeight (IPHONE_SIZE_58INCH ? 34.f : 0.f)
-//tabBar的高度
-#define kTabBarHeight (IPHONE_SIZE_58INCH ? (49.f + 34.f) : 49.f)
-//statusBar的高度
-#define kStatusBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height)
-//navigationBar高度
-#define kNavigationBarHeight (44.f)
-//导航栏到顶部的高度
-#define kNavigationToTopHeight (kStatusBarHeight + kNavigationBarHeight)
-
 
 //不同屏幕尺寸,字体适配（375 x 667是因为效果图为iPhone 6s 如果不是则根据实际情况修改）
 #define kScreenWidthRatio (kScreenWidth / 375.f)

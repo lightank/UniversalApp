@@ -1,5 +1,5 @@
 //
-//  LTDeviceInfo.h
+//  LTDevice.h
 //  UniversalApp
 //
 //  Created by huanyu.li on 2018/5/20.
@@ -9,32 +9,44 @@
 #import <Foundation/Foundation.h>
 
 // 判断当前编译使用的 Base SDK 版本是否为 iOS 8.0 及以上
-#define IOS8_OR_LATER ([LTDeviceInfo iOS8OrLater])
+#define IOS8_OR_LATER ([LTDevice iOS8OrLater])
 // 判断当前编译使用的 Base SDK 版本是否为 iOS 9.0 及以上
-#define IOS9_OR_LATER ([LTDeviceInfo iOS9OrLater])
+#define IOS9_OR_LATER ([LTDevice iOS9OrLater])
 // 判断当前编译使用的 Base SDK 版本是否为 iOS 10.0 及以上
-#define IOS10_OR_LATER ([LTDeviceInfo iOS10OrLater])
+#define IOS10_OR_LATER ([LTDevice iOS10OrLater])
 // 判断当前编译使用的 Base SDK 版本是否为 iOS 11.0 及以上
-#define IOS11_OR_LATER ([LTDeviceInfo iOS11OrLater])
+#define IOS11_OR_LATER ([LTDevice iOS11OrLater])
 // 判断当前编译使用的 Base SDK 版本是否为 iOS 12.0 及以上
-#define IOS12_OR_LATER ([LTDeviceInfo iOS12OrLater])
+#define IOS12_OR_LATER ([LTDevice iOS12OrLater])
 
 /**  判断是否为 iPhone X 系列刘海设计  */
-#define IPHONE_Notched_Screen ([LTDeviceInfo isNotchedScreen])
+#define IPHONE_Notched_Screen ([LTDevice isNotchedScreen])
 // 判断是否为 6.5英寸 iPhone XS Max pt:414x896，px:1242x2688 ，@3x
-#define IPHONE_SIZE_65INCH ([LTDeviceInfo is65InchScreen])
+#define IPHONE_SIZE_65INCH ([LTDevice is65InchScreen])
 // 判断是否为 6.1英寸 iPhone XR pt:414x896，px:828x1792，@2x
-#define IPHONE_SIZE_61INCH ([LTDeviceInfo is61InchScreen])
+#define IPHONE_SIZE_61INCH ([LTDevice is61InchScreen])
 // 判断是否为 5.8英寸 iPhone X/XS pt:375x812，px:1125x2436，@3x
-#define IPHONE_SIZE_58INCH ([LTDeviceInfo is58InchScreen])
+#define IPHONE_SIZE_58INCH ([LTDevice is58InchScreen])
 // 判断是否为 5.5英寸 iPhone 6Plus/6sPlus pt:414x736，px:1242x2208，@3x
-#define IPHONE_SIZE_55INCH ([LTDeviceInfo is55InchScreen])
+#define IPHONE_SIZE_55INCH ([LTDevice is55InchScreen])
 // 判断是否为 4.7英寸 iPhone 6/6s pt:375x667，px:750x1334，@2x
-#define IPHONE_SIZE_47INCH ([LTDeviceInfo is47InchScreen])
+#define IPHONE_SIZE_47INCH ([LTDevice is47InchScreen])
 // 判断是否为 4.0英寸 iPhone 5/SE pt:320x568，px:640x1136，@2x
-#define IPHONE_SIZE_40INCH ([LTDeviceInfo is40InchScreen])
+#define IPHONE_SIZE_40INCH ([LTDevice is40InchScreen])
 // 判断是否为 3.5英寸 iPhone 4/4S pt:320x480，px:640x960，@2x
-#define IPHONE_SIZE_35INCH ([LTDeviceInfo is35InchScreen])
+#define IPHONE_SIZE_35INCH ([LTDevice is35InchScreen])
+
+//Home Indicator的高度
+#define kHomeIndicatorHeight ([LTDevice homeIndicatorHeight])
+//tabBar的高度
+#define kTabBarHeight ([LTDevice tabBarHeight])
+//statusBar的高度
+#define kStatusBarHeight ([LTDevice statusBarHeight])
+//navigationBar高度
+#define kNavigationBarHeight ([LTDevice navigationBarHeigh])
+//导航栏到顶部的高度
+#define kNavigationPlusStatusBarHeight ([LTDevice navigationPlusStatusBarHeight])
+
 
 // 字体相关的宏，用于快速创建一个字体对象，更多创建宏可查看 UIFont+QMUI.h
 #define UIFontOfSize(size) ([UIFont systemFontOfSize:size]) //常规
@@ -43,7 +55,7 @@
 //#define UIFontBoldWithFont(_font) ([UIFont boldSystemFontOfSize:_font.pointSize])
 
 
-@interface LTDeviceInfo : NSObject
+@interface LTDevice : NSObject
 
 #pragma mark - 设备相关
 /**  系统设备类型(如iPhone, iPod touch)  */
@@ -80,7 +92,7 @@
 @property (nonatomic, readonly) BOOL isIPhone;
 @property (class, nonatomic, readonly) BOOL isIPhone;
 
-#pragma mark - 屏幕相关
+#pragma mark - 屏幕/尺寸相关
 /**  用户界面横屏了才会返回YES  */
 @property (nonatomic, readonly) BOOL isLandscape;
 @property (class, nonatomic, readonly) BOOL isLandscape;
@@ -99,7 +111,7 @@
 /**  屏幕高度，会根据横竖屏的变化而变化  */
 @property (nonatomic, readonly) CGFloat screenHeight;
 @property (class, nonatomic, readonly) CGFloat screenHeight;
-/**  状态栏高度(来电等情况下，状态栏高度会发生变化，所以应该实时计算)  */
+/**  状态栏高度(来电等情况下，状态栏高度会发生变化，所以应该实时计算),普通的是20pt,刘海屏是44pt.来电时普通的40pt,刘海屏还是44pt,状态栏高度变化会发送UIApplicationWillChangeStatusBarFrameNotification通知  */
 @property (nonatomic, readonly) CGFloat statusBarHeight;
 @property (class, nonatomic, readonly) CGFloat statusBarHeight;
 /**  判断是否为 iPhone X 系列刘海设计  */
@@ -153,6 +165,18 @@
 /**  获取一像素的大小  */
 @property (nonatomic, readonly) CGFloat pixelOne;
 @property (class, nonatomic, readonly) CGFloat pixelOne;
+/**  homeIndicator Height:竖屏为34pt,横屏为21pt */
+@property (nonatomic, readonly) CGFloat homeIndicatorHeight;
+@property (class, nonatomic, readonly) CGFloat homeIndicatorHeight;
+/**  tabBarHeight:固定高度49pt + homeIndicatorHeight  */
+@property (nonatomic, readonly) CGFloat tabBarHeight;
+@property (class, nonatomic, readonly) CGFloat tabBarHeight;
+/**  导航栏固定高度:44pt  */
+@property (nonatomic, readonly) CGFloat navigationBarHeigh;
+@property (class, nonatomic, readonly) CGFloat navigationBarHeigh;
+/**  导航栏 + 状态栏高度:固定高度44pt + statusBarHeight  */
+@property (nonatomic, readonly) CGFloat navigationPlusStatusBarHeight;
+@property (class, nonatomic, readonly) CGFloat navigationPlusStatusBarHeight;
 
 #pragma mark - 系统版本,软件相关
 /**  系统名称(如iOS)  */
