@@ -193,6 +193,10 @@
                               @"iPad8,6" : @"iPad Pro (12.9-inch) (3rd generation)",
                               @"iPad8,7" : @"iPad Pro (12.9-inch) (3rd generation)",
                               @"iPad8,8" : @"iPad Pro (12.9-inch) (3rd generation)",
+                              @"iPad11,1" : @"iPad mini (5th generation)",
+                              @"iPad11,2" : @"iPad mini (5th generation)",
+                              @"iPad11,3" : @"iPad Air (3rd generation)",
+                              @"iPad11,4" : @"iPad Air (3rd generation)",
                               
                               @"AppleTV2,1" : @"Apple TV 2",
                               @"AppleTV3,1" : @"Apple TV 3",

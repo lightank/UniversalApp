@@ -36,32 +36,6 @@ _Pragma("clang diagnostic pop")
 #define kScreenBounds [UIScreen mainScreen].bounds
 #endif
 
-
-//不同屏幕尺寸,字体适配（375 x 667是因为效果图为iPhone 6s 如果不是则根据实际情况修改）
-#define kScreenWidthRatio (kScreenWidth / 375.f)
-#define kScreenHeightRatio (kScreenHeight / 667.f)
-#define kAdaptedWidth(x) (ceilf((x) * kScreenWidthRatio))  //向上取整
-#define kAdaptedHeight(x) (ceilf((x) * kScreenHeightRatio))  //向上取整
-
-#pragma mark - 颜色相关
-//可使用YYKit中的UIColorHex宏定义,eg:UIColorHex(e1e8ed)
-#define UIColorRGBA(r, g, b, a) ([UIColor colorWithRed:r / 255.0f green:g / 255.0f blue:b / 255.0f alpha:a])
-#define UIColorRGB(r, g, b) (UIColorRGBA(r, g, b, 1.0f))
-#define UIColorRandom ([UIColor colorWithRed:arc4random_uniform(256) / 255.0 green:arc4random_uniform(256) / 255.0 blue:arc4random_uniform(256) / 255.0 alpha:1.0])
-// 将16进制颜色转换成UIColor eg: UIColorWithHEX(0x5cacee)
-//#define UIColorHEX_Alpha(hex, a) ([UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0 green:((float)((hex & 0xFF00) >> 8)) / 255.0 blue:((float)(hex & 0xFF)) / 255.0 alpha:a])
-//#define UIColorHEX(hex) (UIColorHEX_Alpha(hex, 1.0f))
-
-
-#pragma mark - 字符串相关
-//BOOL值转字符串
-#define NSStringFromBOOL(_flag) (_flag ? @"YES" : @"NO")
-//数值转字符串
-#define NSStringFromValue(value) (@(value).stringValue)
-//ASCII数值转字符串
-#define NSStringFromASCIICode(asciiCode) ([NSString stringWithFormat:@"%C", asciiCode])
-
-
 #pragma mark -  编译相关
 //消除performSelector:警告
 #define kBeginSuppressPerformSelectorLeakWarning    \

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#pragma mark - 系统版本相关
 // 判断当前编译使用的 Base SDK 版本是否为 iOS 8.0 及以上
 #define IOS8_OR_LATER ([LTDevice iOS8OrLater])
 // 判断当前编译使用的 Base SDK 版本是否为 iOS 9.0 及以上
@@ -19,6 +19,7 @@
 // 判断当前编译使用的 Base SDK 版本是否为 iOS 12.0 及以上
 #define IOS12_OR_LATER ([LTDevice iOS12OrLater])
 
+#pragma mark - 尺寸相关
 /**  判断是否为 iPhone X 系列刘海设计  */
 #define IPHONE_Notched_Screen ([LTDevice isNotchedScreen])
 // 判断是否为 6.5英寸 iPhone XS Max pt:414x896，px:1242x2688 ，@3x
@@ -47,12 +48,37 @@
 //导航栏到顶部的高度
 #define kNavigationPlusStatusBarHeight ([LTDevice navigationPlusStatusBarHeight])
 
+//不同屏幕尺寸适配（375 x 667是因为效果图为iPhone 6s 如果不是则根据实际情况修改）
+#define kScreenWidthRatio (kScreenWidth / 375.f)
+#define kScreenHeightRatio (kScreenHeight / 667.f)
+#define kAdaptedWidth(x) ((x) * kScreenWidthRatio)  //不向上取整
+#define kAdaptedHeight(x) ((x) * kScreenHeightRatio)  //不向上取整
+//#define kAdaptedWidth(x) (ceilf((x) * kScreenWidthRatio))  //向上取整
+//#define kAdaptedHeight(x) (ceilf((x) * kScreenHeightRatio))  //向上取整
 
+#pragma mark - 字体相关
 // 字体相关的宏，用于快速创建一个字体对象，更多创建宏可查看 UIFont+QMUI.h
 #define UIFontOfSize(size) ([UIFont systemFontOfSize:size]) //常规
 #define UIFontItalicOfSize(size) ([UIFont italicSystemFontOfSize:size]) //斜体,只对数字和字母有效，中文无效
 #define UIFontBoldOfSize(size) ([UIFont boldSystemFontOfSize:size]) //粗体
 //#define UIFontBoldWithFont(_font) ([UIFont boldSystemFontOfSize:_font.pointSize])
+
+#pragma mark - 字符串相关
+//BOOL值转字符串
+#define NSStringFromBOOL(_flag) (_flag ? @"YES" : @"NO")
+//数值转字符串
+#define NSStringFromValue(value) (@(value).stringValue)
+//ASCII数值转字符串
+#define NSStringFromASCIICode(asciiCode) ([NSString stringWithFormat:@"%C", asciiCode])
+
+#pragma mark - 颜色相关
+//可使用YYKit中的UIColorHex宏定义,eg:UIColorHex(e1e8ed)
+#define UIColorRGBA(r, g, b, a) ([UIColor colorWithRed:r / 255.0f green:g / 255.0f blue:b / 255.0f alpha:a])
+#define UIColorRGB(r, g, b) (UIColorRGBA(r, g, b, 1.0f))
+#define UIColorRandom ([UIColor colorWithRed:arc4random_uniform(256) / 255.0 green:arc4random_uniform(256) / 255.0 blue:arc4random_uniform(256) / 255.0 alpha:1.0])
+// 将16进制颜色转换成UIColor eg: UIColorWithHEX(0x5cacee)
+//#define UIColorHEX_Alpha(hex, a) ([UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0 green:((float)((hex & 0xFF00) >> 8)) / 255.0 blue:((float)(hex & 0xFF)) / 255.0 alpha:a])
+//#define UIColorWithHEX(hex) (UIColorHEX_Alpha(hex, 1.0f))
 
 
 @interface LTDevice : NSObject
