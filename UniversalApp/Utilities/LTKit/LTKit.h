@@ -28,3 +28,5 @@
 #import "NSString+LTAdd.h"
 #import "NSArray+LTAdd.h"
 #import "NSDictionary+LTAdd.h"
+
+#import "LTDevice.h"

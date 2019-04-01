@@ -373,7 +373,6 @@
                 [invocation invoke];
                 [invocation getReturnValue:&peripheryInsets];
                 
-                [[UIScreen mainScreen] qmui_performSelector:peripheryInsetsSelector withReturnValue:&peripheryInsets];
                 if (peripheryInsets.bottom <= 0)
                 {
                     UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
@@ -393,7 +392,7 @@
             }
             else
             {
-                isNotchedScreen = [QMUIHelper is58InchScreen];
+                isNotchedScreen = [self.class is58InchScreen];
             }
         }
         else

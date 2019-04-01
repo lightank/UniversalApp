@@ -313,8 +313,6 @@
 		3D48666420B1ADF5002BACA8 /* DeviceInfo */ = {
 			isa = PBXGroup;
 			children = (
-				3D48666E20B1AE0F002BACA8 /* LTDevice.h */,
-				3D48666720B1AE0F002BACA8 /* LTDevice.m */,
 				3D48667F20B1B34C002BACA8 /* LTSandboxTool.h */,
 				3D48668020B1B34D002BACA8 /* LTSandboxTool.m */,
 			);
@@ -644,6 +642,7 @@
 		A073C2CE224A3F7900B685A1 /* LTKit */ = {
 			isa = PBXGroup;
 			children = (
+				A0A9A3A42251EBC700C2188E /* Device */,
 				A073C2CF224A3F7900B685A1 /* UIKit */,
 				A073C2EC224A3F7900B685A1 /* Foundation */,
 				A073C2F5224A3F7A00B685A1 /* LTKit.h */,
@@ -709,6 +708,15 @@
 				A073C2F8224A3F7A00B685A1 /* CAGradientLayer+LTAdd.h */,
 			);
 			path = QuartzCore;
+			sourceTree = "<group>";
+		};
+		A0A9A3A42251EBC700C2188E /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				3D48666E20B1AE0F002BACA8 /* LTDevice.h */,
+				3D48666720B1AE0F002BACA8 /* LTDevice.m */,
+			);
+			path = Device;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
