@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #pragma mark - 系统版本相关
-// 手机系统版本是否是iOS 8.0
+// 手机系统版本是否为 iOS 8.0 及以上
 #define IOS8_OR_LATER ([LTDevice iOS8OrLater])
 // 手机系统版本是否为 iOS 9.0 及以上
 #define IOS9_OR_LATER ([LTDevice iOS9OrLater])
