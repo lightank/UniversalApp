@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #pragma mark - 系统版本相关
-// 判断当前编译使用的 Base SDK 版本是否为 iOS 8.0 及以上
+// 手机系统版本是否是iOS 8.0
 #define IOS8_OR_LATER ([LTDevice iOS8OrLater])
-// 判断当前编译使用的 Base SDK 版本是否为 iOS 9.0 及以上
+// 手机系统版本是否为 iOS 9.0 及以上
 #define IOS9_OR_LATER ([LTDevice iOS9OrLater])
-// 判断当前编译使用的 Base SDK 版本是否为 iOS 10.0 及以上
+// 手机系统版本是否为 iOS 10.0 及以上
 #define IOS10_OR_LATER ([LTDevice iOS10OrLater])
-// 判断当前编译使用的 Base SDK 版本是否为 iOS 11.0 及以上
+// 手机系统版本是否为 iOS 11.0 及以上
 #define IOS11_OR_LATER ([LTDevice iOS11OrLater])
-// 判断当前编译使用的 Base SDK 版本是否为 iOS 12.0 及以上
+// 手机系统版本是否为 iOS 12.0 及以上
 #define IOS12_OR_LATER ([LTDevice iOS12OrLater])
 
 #pragma mark - 尺寸相关

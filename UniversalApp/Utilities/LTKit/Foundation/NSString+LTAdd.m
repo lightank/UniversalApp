@@ -10,6 +10,30 @@
 
 @implementation NSString (LTAdd)
 
+
+- (NSString *)lt_phoneSeparatedTo344
+{
+    return [self lt_phoneSeparatedTo344UseStarOnMiddle:NO];
+}
+
+- (NSString *)lt_phoneSeparatedTo344UseStarOnMiddle:(BOOL)useStar
+{
+    NSString *string = [self stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if (string.length == 11 && useStar)
+    {
+        string = [string stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+    }
+    NSMutableString *tempStr = [NSMutableString stringWithString:string];
+    if ([string length] > 3 &&[string length] <= 7) {
+        [tempStr insertString:@" " atIndex:3];
+    } else if ([string length] > 7) {
+        [tempStr insertString:@" " atIndex:3];
+        [tempStr insertString:@" " atIndex:8];
+    }
+    return tempStr;
+}
+
+
 - (NSString *)lt_numbersToChinese
 {
     return [NSString lt_numbersToChinese:self.doubleValue];

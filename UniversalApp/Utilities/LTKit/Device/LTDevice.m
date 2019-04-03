@@ -643,67 +643,27 @@
 /**  系统版本是否是iOS 8及以上  */
 + (BOOL)iOS8OrLater
 {
-    static BOOL version = NO;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        if (@available(iOS 8.0, *))
-        {
-            version = YES;
-        }
-    });
-    return version;
+    return [self systemVersion].doubleValue >= 8.0;
 }
 /**  系统版本是否是iOS 9及以上  */
 + (BOOL)iOS9OrLater
 {
-    static BOOL version = NO;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        if (@available(iOS 9.0, *))
-        {
-            version = YES;
-        }
-    });
-    return version;
+    return [self systemVersion].doubleValue >= 9.0;
 }
 /**  系统版本是否是iOS 10及以上  */
 + (BOOL)iOS10OrLater
 {
-    static BOOL version = NO;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        if (@available(iOS 10.0, *))
-        {
-            version = YES;
-        }
-    });
-    return version;
+    return [self systemVersion].doubleValue >= 10.0;
 }
 /**  系统版本是否是iOS 11及以上  */
 + (BOOL)iOS11OrLater
 {
-    static BOOL version = NO;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        if (@available(iOS 11.0, *))
-        {
-            version = YES;
-        }
-    });
-    return version;
+    return [self systemVersion].doubleValue >= 11.0;
 }
 /**  系统版本是否是iOS 11及以上  */
 + (BOOL)iOS12OrLater
 {
-    static BOOL version = NO;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        if (@available(iOS 12.0, *))
-        {
-            version = YES;
-        }
-    });
-    return version;
+    return [self systemVersion].doubleValue >= 12.0;
 }
 
 + (NSString *)clipboardContent

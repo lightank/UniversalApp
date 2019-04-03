@@ -67,6 +67,7 @@
 		A073C309224A3F7B00B685A1 /* NSObject+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2F2224A3F7A00B685A1 /* NSObject+LTAdd.m */; };
 		A073C30A224A3F7B00B685A1 /* NSArray+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2F4224A3F7A00B685A1 /* NSArray+LTAdd.m */; };
 		A073C30B224A3F7B00B685A1 /* CAGradientLayer+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2F7224A3F7A00B685A1 /* CAGradientLayer+LTAdd.m */; };
+		A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */; };
 		E263541D9C33F5DD3886B5D4 /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */; };
 		FB553A15234B274C38B6CE91 /* libPods-UniversalAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0296C350224E490362599AB1 /* libPods-UniversalAppTests.a */; };
 /* End PBXBuildFile section */
@@ -226,6 +227,8 @@
 		A073C2F5224A3F7A00B685A1 /* LTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTKit.h; sourceTree = "<group>"; };
 		A073C2F7224A3F7A00B685A1 /* CAGradientLayer+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAGradientLayer+LTAdd.m"; sourceTree = "<group>"; };
 		A073C2F8224A3F7A00B685A1 /* CAGradientLayer+LTAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAGradientLayer+LTAdd.h"; sourceTree = "<group>"; };
+		A0C2CFB12254A31F00190314 /* NSURL+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+LTAdd.h"; sourceTree = "<group>"; };
+		A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+LTAdd.m"; sourceTree = "<group>"; };
 		A244D68607808162F3309FE0 /* Pods-UniversalAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppUITests/Pods-UniversalAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC8739C3BF6125C27952E091 /* Pods-UniversalAppTests.sit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppTests.sit.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppTests/Pods-UniversalAppTests.sit.xcconfig"; sourceTree = "<group>"; };
 		C88A913B462EFBFE7833C24D /* Pods-UniversalAppTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppTests/Pods-UniversalAppTests.dev.xcconfig"; sourceTree = "<group>"; };
@@ -654,34 +657,34 @@
 		A073C2CF224A3F7900B685A1 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				A073C2D0224A3F7900B685A1 /* UITableView+LTAdd.h */,
+				A073C2E2224A3F7900B685A1 /* UIImage+LTAdd.h */,
 				A073C2D1224A3F7900B685A1 /* UIImage+LTAdd.m */,
 				A073C2D2224A3F7900B685A1 /* UITableViewCell+LTAdd.m */,
 				A073C2D3224A3F7900B685A1 /* UIViewController+LTAdd.m */,
 				A073C2D4224A3F7900B685A1 /* UIApplication+LTAdd.h */,
+				A073C2DE224A3F7900B685A1 /* UIApplication+LTAdd.m */,
 				A073C2D5224A3F7900B685A1 /* UINavigationController+LTAdd.h */,
+				A073C2E6224A3F7900B685A1 /* UINavigationController+LTAdd.m */,
 				A073C2D6224A3F7900B685A1 /* UINavigationBar+LTAdd.h */,
-				A073C2D7224A3F7900B685A1 /* UIView+LTAdd.h */,
+				A073C2E5224A3F7900B685A1 /* UINavigationBar+LTAdd.m */,
 				A073C2D8224A3F7900B685A1 /* UIBarButtonItem+LTAdd.h */,
+				A073C2E3224A3F7900B685A1 /* UIBarButtonItem+LTAdd.m */,
+				A073C2D7224A3F7900B685A1 /* UIView+LTAdd.h */,
+				A073C2E4224A3F7900B685A1 /* UIView+LTAdd.m */,
+				A073C2E9224A3F7900B685A1 /* UIButton+LTAdd.h */,
 				A073C2D9224A3F7900B685A1 /* UIButton+LTAdd.m */,
 				A073C2DA224A3F7900B685A1 /* UIWindow+LTAdd.h */,
 				A073C2DB224A3F7900B685A1 /* UITextView+LTAdd.m */,
 				A073C2DC224A3F7900B685A1 /* UIColor+LTAdd.h */,
+				A073C2EB224A3F7900B685A1 /* UIColor+LTAdd.m */,
+				A073C2EA224A3F7900B685A1 /* UIScrollView+LTRefresh.h */,
 				A073C2DD224A3F7900B685A1 /* UIScrollView+LTRefresh.m */,
-				A073C2DE224A3F7900B685A1 /* UIApplication+LTAdd.m */,
 				A073C2DF224A3F7900B685A1 /* UIViewController+LTAdd.h */,
 				A073C2E0224A3F7900B685A1 /* UITableViewCell+LTAdd.h */,
+				A073C2D0224A3F7900B685A1 /* UITableView+LTAdd.h */,
 				A073C2E1224A3F7900B685A1 /* UITableView+LTAdd.m */,
-				A073C2E2224A3F7900B685A1 /* UIImage+LTAdd.h */,
-				A073C2E3224A3F7900B685A1 /* UIBarButtonItem+LTAdd.m */,
-				A073C2E4224A3F7900B685A1 /* UIView+LTAdd.m */,
-				A073C2E5224A3F7900B685A1 /* UINavigationBar+LTAdd.m */,
-				A073C2E6224A3F7900B685A1 /* UINavigationController+LTAdd.m */,
 				A073C2E7224A3F7900B685A1 /* UITextView+LTAdd.h */,
 				A073C2E8224A3F7900B685A1 /* UIWindow+LTAdd.m */,
-				A073C2E9224A3F7900B685A1 /* UIButton+LTAdd.h */,
-				A073C2EA224A3F7900B685A1 /* UIScrollView+LTRefresh.h */,
-				A073C2EB224A3F7900B685A1 /* UIColor+LTAdd.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -689,13 +692,15 @@
 		A073C2EC224A3F7900B685A1 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				A0C2CFB12254A31F00190314 /* NSURL+LTAdd.h */,
+				A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */,
+				A073C2F1224A3F7A00B685A1 /* NSString+LTAdd.h */,
 				A073C2ED224A3F7900B685A1 /* NSString+LTAdd.m */,
 				A073C2EE224A3F7900B685A1 /* NSObject+LTAdd.h */,
-				A073C2EF224A3F7900B685A1 /* NSDictionary+LTAdd.m */,
-				A073C2F0224A3F7900B685A1 /* NSArray+LTAdd.h */,
-				A073C2F1224A3F7A00B685A1 /* NSString+LTAdd.h */,
 				A073C2F2224A3F7A00B685A1 /* NSObject+LTAdd.m */,
 				A073C2F3224A3F7A00B685A1 /* NSDictionary+LTAdd.h */,
+				A073C2EF224A3F7900B685A1 /* NSDictionary+LTAdd.m */,
+				A073C2F0224A3F7900B685A1 /* NSArray+LTAdd.h */,
 				A073C2F4224A3F7A00B685A1 /* NSArray+LTAdd.m */,
 			);
 			path = Foundation;
@@ -979,6 +984,7 @@
 				A073C300224A3F7B00B685A1 /* UITableView+LTAdd.m in Sources */,
 				3D48666320B1AAC5002BACA8 /* LTEncryptorTools.m in Sources */,
 				A073C307224A3F7B00B685A1 /* NSString+LTAdd.m in Sources */,
+				A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */,
 				A035615F21C3F8B400DAAEE1 /* LTBlockExample.m in Sources */,
 				3D03D63B20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m in Sources */,
 				3D4A2FA321A2DF3900817536 /* LTLanguageTableViewCell.m in Sources */,

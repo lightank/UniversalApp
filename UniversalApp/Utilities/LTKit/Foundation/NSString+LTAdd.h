@@ -10,6 +10,11 @@
 
 @interface NSString (LTAdd)
 
+/**  把手机号码转为334  */
+- (NSString *)lt_phoneSeparatedTo344;
+/**  把手机号码转为334,如果是11位则把中间4位转为*  */
+- (NSString *)lt_phoneSeparatedTo344UseStarOnMiddle:(BOOL)useStar;
+
 /**  阿拉伯数字转中文  */
 - (NSString *)lt_numbersToChinese;
 + (NSString *)lt_numbersToChinese:(double)number;
