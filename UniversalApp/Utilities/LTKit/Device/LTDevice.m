@@ -23,7 +23,7 @@
 #include <arpa/inet.h>
 #include <ifaddrs.h>
 
-#define kDeviceInfoPlaceHolder @"none"
+#define kDeviceInfoPlaceHolder nil
 
 @implementation LTDevice
 
@@ -821,26 +821,64 @@
     return CarrierVOIP;
 }
 
-+ (NSString *)WIFIName
+// Connected to Cellular Network?
++ (BOOL)connectedToCellNetwork
+{
+    // Check if we're connected to cell network
+    NSString *cellAddress = [self ipAddressCell];
+    // Check if the string is populated
+    if (cellAddress == nil || cellAddress.length <= 0)
+    {
+        // Nothing found
+        return false;
+    }
+    else
+    {
+        // Cellular Network in use
+        return true;
+    }
+}
+
+// Connected to WiFi?
++ (BOOL)connectedToWiFi
+{
+    // Check if we're connected to WiFi
+    NSString *wiFiAddress = [self ipAddressWiFi];
+    // Check if the string is populated
+    if (wiFiAddress == nil || wiFiAddress.length <= 0)
+    {
+        // Nothing found
+        return false;
+    }
+    else
+    {
+        // WiFi in use
+        return true;
+    }
+}
+
++ (NSString *)WiFiName
 {
     NSString *wifiName = nil;
     
     CFArrayRef wifiInterfaces = CNCopySupportedInterfaces();
     
-    if (!wifiInterfaces) {
+    if (!wifiInterfaces)
+    {
         return kDeviceInfoPlaceHolder;
     }
     
     NSArray *interfaces = (__bridge NSArray *)wifiInterfaces;
     
-    for (NSString *interfaceName in interfaces) {
+    for (NSString *interfaceName in interfaces)
+    {
         CFDictionaryRef dictRef = CNCopyCurrentNetworkInfo((__bridge CFStringRef)(interfaceName));
         
-        if (dictRef) {
+        if (dictRef)
+        {
             NSDictionary *networkInfo = (__bridge NSDictionary *)dictRef;
             NSLog(@"network info -> %@", networkInfo);
             wifiName = [networkInfo objectForKey:(__bridge NSString *)kCNNetworkInfoKeySSID];
-            
             CFRelease(dictRef);
         }
     }
@@ -849,7 +887,7 @@
     return wifiName;
 }
 
-+ (NSString *)ipAddressWIFI
++ (NSString *)ipAddressWiFi
 {
     return [self ipAddressWithIfaName:@"en0"];
 }
@@ -895,6 +933,47 @@
     freeifaddrs(addrs);
     return address;
 }
+
+// Get the External IP Address
++ (nullable NSString *)externalIPAddress
+{
+    @try {
+        // Check if we have an internet connection then try to get the External IP Address
+        if (![self connectedToCellNetwork] && ![self connectedToWiFi])
+        {
+            // Not connected to anything, return nil
+            return kDeviceInfoPlaceHolder;
+        }
+        
+        // Get the external IP Address based on icanhazip.com
+        NSError *error = nil;
+        
+        // Using https://icanhazip.com
+        NSString *externalIP = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"https://icanhazip.com/"] encoding:NSUTF8StringEncoding error:&error];
+        
+        if (!error)
+        {
+            // Format the IP Address
+            externalIP = [externalIP stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+            // Check that you get something back
+            if (externalIP == nil || externalIP.length <= 0) {
+                // Error, no address found
+                return kDeviceInfoPlaceHolder;
+            }
+            
+            // Return External IP
+            return externalIP;
+        } else {
+            // Error, no address found
+            return kDeviceInfoPlaceHolder;
+        }
+    }
+    @catch (NSException *exception) {
+        // Error, no address found
+        return kDeviceInfoPlaceHolder;
+    }
+}
+
 
 
 #pragma mark - APP相关
@@ -1286,9 +1365,12 @@
         _carrierCountry = [self.class carrierCountry];
         _carrierISOCountryCode = [self.class carrierISOCountryCode];
         _carrierAllowsVOIP = [self.class carrierAllowsVOIP];
-        _WIFIName = [self.class WIFIName];
-        _ipAddressWIFI = [self.class ipAddressWIFI];
+        _connectedToCellNetwork = [self.class connectedToCellNetwork];
+        _connectedToWiFi = [self.class connectedToWiFi];
+        _WiFiName = [self.class WiFiName];
+        _ipAddressWiFi = [self.class ipAddressWiFi];
         _ipAddressCell = [self.class ipAddressCell];
+        _externalIPAddress = [self.class externalIPAddress];
         
         //APP相关
         _appVersion = [self.class appVersion];

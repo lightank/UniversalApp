@@ -21,8 +21,6 @@ extern LTNetworkTools *LTNetworkToolsInstance;
 + (NSString *)HTML5URL:(NSString *)urlString;
 /**  拼接图片 URL路径  */
 + (NSURL *)imageURL:(NSString *)urlString;
-/**  手动设置网络跟H5的baseURL  */
-+ (void)DIYBaseURL:(NSString *)baseURL H5BaseURL:(NSString *)H5BaseURL;
 
 /**  网络库配置,必须调用  */
 + (void)configureNetwork;

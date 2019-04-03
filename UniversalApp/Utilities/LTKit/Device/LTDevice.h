@@ -263,15 +263,25 @@
 /**  运营商是否允许VOIP  */
 @property (nonatomic, readonly) BOOL carrierAllowsVOIP;
 @property (class, nonatomic, readonly) BOOL carrierAllowsVOIP;
+/**  是否连接到蜂窝网络  */
+@property (nonatomic, readonly) BOOL connectedToCellNetwork;
+@property (class, nonatomic, readonly) BOOL connectedToCellNetwork;
+/**  是否连接到WIFI  */
+@property (nonatomic, readonly) BOOL connectedToWiFi;
+@property (class, nonatomic, readonly) BOOL connectedToWiFi;
 /**  当前WIFI名称  */
-@property (nonatomic, readonly) NSString *WIFIName;
-@property (class, nonatomic, readonly) NSString *WIFIName;
+@property (nonatomic, readonly) NSString *WiFiName;
+@property (class, nonatomic, readonly) NSString *WiFiName;
 /**  WIFI IP address of this device (can be nil). e.g. @"192.168.1.111"  */
-@property (nullable, nonatomic, readonly) NSString *ipAddressWIFI;
-@property (class, nullable, nonatomic, readonly) NSString *ipAddressWIFI;
+@property (nullable, nonatomic, readonly) NSString *ipAddressWiFi;
+@property (class, nullable, nonatomic, readonly) NSString *ipAddressWiFi;
 /**  Cell IP address of this device (can be nil). e.g. @"10.2.2.222"  */
 @property (nullable, nonatomic, readonly) NSString *ipAddressCell;
 @property (class, nullable, nonatomic, readonly) NSString *ipAddressCell;
+/**  外网IP地址 (can be nil). e.g. @"10.2.2.222"  */
+@property (nullable, nonatomic, readonly) NSString *externalIPAddress;
+@property (class, nullable, nonatomic, readonly) NSString *externalIPAddress;
+
 
 #pragma mark - APP相关
 /**  app版本  */

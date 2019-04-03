@@ -178,13 +178,6 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
     
 }
 
-/**  手动设置网络跟H5的baseURL  */
-+ (void)DIYBaseURL:(NSString *)baseURL H5BaseURL:(NSString *)H5BaseURL
-{
-    LTNetworkToolsInstance.connectPort.requestBaseURL = baseURL;
-    LTNetworkToolsInstance.connectPort.webBaseURL = H5BaseURL;
-}
-
 /**  单例  */
 + (LTNetworkTools *)sharedInstance
 {
