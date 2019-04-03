@@ -61,7 +61,7 @@
     }
 }
 
-//@see http://theiphonewiki.com/wiki/Models
+/// @see http://theiphonewiki.com/wiki/Models
 + (NSString *)machineModel
 {
     // Set up a Device Type String
@@ -78,7 +78,7 @@
     return model;
 }
 
-//@see http://theiphonewiki.com/wiki/Models
+/// @see http://theiphonewiki.com/wiki/Models
 + (NSString *)machineModelName
 {
     static dispatch_once_t one;
