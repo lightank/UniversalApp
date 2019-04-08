@@ -66,7 +66,6 @@
 		A073C308224A3F7B00B685A1 /* NSDictionary+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2EF224A3F7900B685A1 /* NSDictionary+LTAdd.m */; };
 		A073C309224A3F7B00B685A1 /* NSObject+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2F2224A3F7A00B685A1 /* NSObject+LTAdd.m */; };
 		A073C30A224A3F7B00B685A1 /* NSArray+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2F4224A3F7A00B685A1 /* NSArray+LTAdd.m */; };
-		A073C30B224A3F7B00B685A1 /* CAGradientLayer+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2F7224A3F7A00B685A1 /* CAGradientLayer+LTAdd.m */; };
 		A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */; };
 		E263541D9C33F5DD3886B5D4 /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */; };
 		FB553A15234B274C38B6CE91 /* libPods-UniversalAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0296C350224E490362599AB1 /* libPods-UniversalAppTests.a */; };
@@ -225,8 +224,6 @@
 		A073C2F3224A3F7A00B685A1 /* NSDictionary+LTAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LTAdd.h"; sourceTree = "<group>"; };
 		A073C2F4224A3F7A00B685A1 /* NSArray+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LTAdd.m"; sourceTree = "<group>"; };
 		A073C2F5224A3F7A00B685A1 /* LTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTKit.h; sourceTree = "<group>"; };
-		A073C2F7224A3F7A00B685A1 /* CAGradientLayer+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAGradientLayer+LTAdd.m"; sourceTree = "<group>"; };
-		A073C2F8224A3F7A00B685A1 /* CAGradientLayer+LTAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAGradientLayer+LTAdd.h"; sourceTree = "<group>"; };
 		A0C2CFB12254A31F00190314 /* NSURL+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+LTAdd.h"; sourceTree = "<group>"; };
 		A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+LTAdd.m"; sourceTree = "<group>"; };
 		A244D68607808162F3309FE0 /* Pods-UniversalAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppUITests/Pods-UniversalAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -649,7 +646,6 @@
 				A073C2CF224A3F7900B685A1 /* UIKit */,
 				A073C2EC224A3F7900B685A1 /* Foundation */,
 				A073C2F5224A3F7A00B685A1 /* LTKit.h */,
-				A073C2F6224A3F7A00B685A1 /* QuartzCore */,
 			);
 			path = LTKit;
 			sourceTree = "<group>";
@@ -704,15 +700,6 @@
 				A073C2F4224A3F7A00B685A1 /* NSArray+LTAdd.m */,
 			);
 			path = Foundation;
-			sourceTree = "<group>";
-		};
-		A073C2F6224A3F7A00B685A1 /* QuartzCore */ = {
-			isa = PBXGroup;
-			children = (
-				A073C2F7224A3F7A00B685A1 /* CAGradientLayer+LTAdd.m */,
-				A073C2F8224A3F7A00B685A1 /* CAGradientLayer+LTAdd.h */,
-			);
-			path = QuartzCore;
 			sourceTree = "<group>";
 		};
 		A0A9A3A42251EBC700C2188E /* Device */ = {
@@ -967,7 +954,6 @@
 				3D48667E20B1B1C5002BACA8 /* LTUser.m in Sources */,
 				A035615821C3F6FD00DAAEE1 /* LTObjcViewController.m in Sources */,
 				3DCC9F2120B006F100CD476A /* main.m in Sources */,
-				A073C30B224A3F7B00B685A1 /* CAGradientLayer+LTAdd.m in Sources */,
 				A073C306224A3F7B00B685A1 /* UIColor+LTAdd.m in Sources */,
 				A073C2FE224A3F7B00B685A1 /* UIScrollView+LTRefresh.m in Sources */,
 				A073C2FB224A3F7B00B685A1 /* UIViewController+LTAdd.m in Sources */,

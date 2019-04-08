@@ -319,7 +319,7 @@
     static CGFloat width = 0.f;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        width = (IOS8_OR_LATER ? ([self.class isLandscape] ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width) : [[UIScreen mainScreen] bounds].size.width);
+        width = ([self iOS8OrLater] ? ([self.class isLandscape] ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width) : [[UIScreen mainScreen] bounds].size.width);
     });
     return width;
 }
@@ -328,17 +328,17 @@
     static CGFloat height = 0.f;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        height = ((IOS8_OR_LATER ? ([self.class isLandscape] ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height) : [[UIScreen mainScreen] bounds].size.height));
+        height = (([self iOS8OrLater]  ? ([self.class isLandscape] ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height) : [[UIScreen mainScreen] bounds].size.height));
     });
     return height;
 }
 + (CGFloat)screenWidth
 {
-    return ((IOS8_OR_LATER ? [[UIScreen mainScreen] bounds].size.width : ([self.class isLandscape] ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)));
+    return (([self iOS8OrLater]  ? [[UIScreen mainScreen] bounds].size.width : ([self.class isLandscape] ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)));
 }
 + (CGFloat)screenHeight
 {
-    return ((IOS8_OR_LATER ? [[UIScreen mainScreen] bounds].size.height : ([self.class isLandscape] ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height)));
+    return (([self iOS8OrLater]  ? [[UIScreen mainScreen] bounds].size.height : ([self.class isLandscape] ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height)));
 }
 
 + (CGFloat)statusBarHeight

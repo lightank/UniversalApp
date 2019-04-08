@@ -28,7 +28,7 @@ static char kAssociatedObjectKey_navigationBarOverlayKey;
     if (!self.lt_overlay)
     {
         [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-        self.lt_overlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + kStatusBarHeight)];
+        self.lt_overlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + kLTStatusBarHeight)];
         self.lt_overlay.userInteractionEnabled = NO;
         self.lt_overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth;    // Should not set `UIViewAutoresizingFlexibleHeight`
         [[self.subviews firstObject] insertSubview:self.lt_overlay atIndex:0];

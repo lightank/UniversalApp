@@ -9,50 +9,50 @@
 #import <Foundation/Foundation.h>
 #pragma mark - 系统版本相关
 // 手机系统版本是否为 iOS 8.0 及以上
-#define IOS8_OR_LATER ([LTDevice iOS8OrLater])
+#define LT_IOS8_OR_LATER ([LTDevice iOS8OrLater])
 // 手机系统版本是否为 iOS 9.0 及以上
-#define IOS9_OR_LATER ([LTDevice iOS9OrLater])
+#define LT_IOS9_OR_LATER ([LTDevice iOS9OrLater])
 // 手机系统版本是否为 iOS 10.0 及以上
-#define IOS10_OR_LATER ([LTDevice iOS10OrLater])
+#define LT_IOS10_OR_LATER ([LTDevice iOS10OrLater])
 // 手机系统版本是否为 iOS 11.0 及以上
-#define IOS11_OR_LATER ([LTDevice iOS11OrLater])
+#define LT_IOS11_OR_LATER ([LTDevice iOS11OrLater])
 // 手机系统版本是否为 iOS 12.0 及以上
-#define IOS12_OR_LATER ([LTDevice iOS12OrLater])
+#define LT_IOS12_OR_LATER ([LTDevice iOS12OrLater])
 
 #pragma mark - 尺寸相关
 /**  判断是否为 iPhone X 系列刘海设计  */
-#define IPHONE_Notched_Screen ([LTDevice isNotchedScreen])
+#define LT_IPHONE_Notched_Screen ([LTDevice isNotchedScreen])
 // 判断是否为 6.5英寸 iPhone XS Max pt:414x896，px:1242x2688 ，@3x
-#define IPHONE_SIZE_65INCH ([LTDevice is65InchScreen])
+#define LT_IPHONE_SIZE_65INCH ([LTDevice is65InchScreen])
 // 判断是否为 6.1英寸 iPhone XR pt:414x896，px:828x1792，@2x
-#define IPHONE_SIZE_61INCH ([LTDevice is61InchScreen])
+#define LT_IPHONE_SIZE_61INCH ([LTDevice is61InchScreen])
 // 判断是否为 5.8英寸 iPhone X/XS pt:375x812，px:1125x2436，@3x
-#define IPHONE_SIZE_58INCH ([LTDevice is58InchScreen])
+#define LT_IPHONE_SIZE_58INCH ([LTDevice is58InchScreen])
 // 判断是否为 5.5英寸 iPhone 6Plus/6sPlus pt:414x736，px:1242x2208，@3x
-#define IPHONE_SIZE_55INCH ([LTDevice is55InchScreen])
+#define LT_IPHONE_SIZE_55INCH ([LTDevice is55InchScreen])
 // 判断是否为 4.7英寸 iPhone 6/6s pt:375x667，px:750x1334，@2x
-#define IPHONE_SIZE_47INCH ([LTDevice is47InchScreen])
+#define LT_IPHONE_SIZE_47INCH ([LTDevice is47InchScreen])
 // 判断是否为 4.0英寸 iPhone 5/SE pt:320x568，px:640x1136，@2x
-#define IPHONE_SIZE_40INCH ([LTDevice is40InchScreen])
+#define LT_IPHONE_SIZE_40INCH ([LTDevice is40InchScreen])
 // 判断是否为 3.5英寸 iPhone 4/4S pt:320x480，px:640x960，@2x
-#define IPHONE_SIZE_35INCH ([LTDevice is35InchScreen])
+#define LT_IPHONE_SIZE_35INCH ([LTDevice is35InchScreen])
 
 //Home Indicator的高度
-#define kHomeIndicatorHeight ([LTDevice homeIndicatorHeight])
+#define kLTHomeIndicatorHeight ([LTDevice homeIndicatorHeight])
 //tabBar的高度
-#define kTabBarHeight ([LTDevice tabBarHeight])
+#define kLTTabBarHeight ([LTDevice tabBarHeight])
 //statusBar的高度
-#define kStatusBarHeight ([LTDevice statusBarHeight])
+#define kLTStatusBarHeight ([LTDevice statusBarHeight])
 //navigationBar高度
-#define kNavigationBarHeight ([LTDevice navigationBarHeigh])
+#define kLTNavigationBarHeight ([LTDevice navigationBarHeigh])
 //导航栏到顶部的高度
-#define kNavigationPlusStatusBarHeight ([LTDevice navigationPlusStatusBarHeight])
+#define kLTNavigationPlusStatusBarHeight ([LTDevice navigationPlusStatusBarHeight])
 
 //不同屏幕尺寸适配（375 x 667是因为效果图为iPhone 6s 如果不是则根据实际情况修改）
-#define kScreenWidthRatio (kScreenWidth / 375.f)
-#define kScreenHeightRatio (kScreenHeight / 667.f)
-#define kAdaptedWidth(x) ((x) * kScreenWidthRatio)  //不向上取整
-#define kAdaptedHeight(x) ((x) * kScreenHeightRatio)  //不向上取整
+#define kLTScreenWidthRatio (kScreenWidth / 375.f)
+#define kLTScreenHeightRatio (kScreenHeight / 667.f)
+#define kLTAdaptedWidth(x) ((x) * kScreenWidthRatio)  //不向上取整
+#define kLTAdaptedHeight(x) ((x) * kScreenHeightRatio)  //不向上取整
 //#define kAdaptedWidth(x) (ceilf((x) * kScreenWidthRatio))  //向上取整
 //#define kAdaptedHeight(x) (ceilf((x) * kScreenHeightRatio))  //向上取整
 

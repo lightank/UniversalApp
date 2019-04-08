@@ -170,7 +170,7 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
 
 - (CGFloat)contentViewHeight
 {
-    CGFloat height = self.navigationController.navigationBar.isHidden ? kStatusBarHeight : (kNavigationPlusStatusBarHeight);
+    CGFloat height = self.navigationController.navigationBar.isHidden ? kLTStatusBarHeight : (kLTNavigationPlusStatusBarHeight);
     return kScreenHeight - height;
 }
 
