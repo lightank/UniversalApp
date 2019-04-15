@@ -214,6 +214,141 @@
     return name;
 }
 
+/// @see http://theiphonewiki.com/wiki/Models
++ (NSString *)inchSize
+{
+    static dispatch_once_t one;
+    static NSString *inchSize;
+    dispatch_once(&one, ^{
+        NSString *model = [self machineModel];
+        
+        NSDictionary *dic = @{
+                              @"Watch1,1" : @"Apple Watch (1st generation) 38mm",
+                              @"Watch1,2" : @"Apple Watch (1st generation) 42mm",
+                              @"Watch2,3" : @"Apple Watch Series 2 38mm",
+                              @"Watch2,4" : @"Apple Watch Series 2 42mm",
+                              @"Watch2,6" : @"Apple Watch Series 1 38mm",
+                              @"Watch2,7" : @"Apple Watch Series 1 42mm",
+                              @"Watch3,1" : @"Apple Watch Series 3 38mm",
+                              @"Watch3,2" : @"Apple Watch Series 3 42mm",
+                              @"Watch3,3" : @"Apple Watch Series 3 38mm",
+                              @"Watch3,4" : @"Apple Watch Series 3 42mm",
+                              @"Watch4,1" : @"Apple Watch Series 4 40mm",
+                              @"Watch4,2" : @"Apple Watch Series 4 44mm",
+                              @"Watch4,3" : @"Apple Watch Series 4 40mm",
+                              @"Watch4,4" : @"Apple Watch Series 4 44mm",
+                              
+                              @"AudioAccessory1,1" : @"HomePod",
+                              
+                              @"AirPods1,1" : @"AirPods",
+                              
+                              @"iPod1,1" : @"3.5",//@"iPod touch 1",
+                              @"iPod2,1" : @"3.5",//@"iPod touch 2",
+                              @"iPod3,1" : @"3.5",//@"iPod touch 3",
+                              @"iPod4,1" : @"3.5",//@"iPod touch 4",
+                              @"iPod5,1" : @"4.0",//@"iPod touch 5",
+                              @"iPod7,1" : @"4.0",//@"iPod touch 6",
+                              
+                              @"iPhone1,1" : @"3.5",//@"iPhone 1G",
+                              @"iPhone1,2" : @"3.5",//@"iPhone 3G",
+                              @"iPhone2,1" : @"3.5",//@"iPhone 3GS",
+                              @"iPhone3,1" : @"3.5",//@"iPhone 4 (GSM)",
+                              @"iPhone3,2" : @"3.5",//@"iPhone 4",
+                              @"iPhone3,3" : @"3.5",//@"iPhone 4 (CDMA)",
+                              @"iPhone4,1" : @"3.5",//@"iPhone 4S",
+                              @"iPhone5,1" : @"4.0",//@"iPhone 5",
+                              @"iPhone5,2" : @"4.0",//@"iPhone 5",
+                              @"iPhone5,3" : @"4.0",//@"iPhone 5c",
+                              @"iPhone5,4" : @"4.0",//@"iPhone 5c",
+                              @"iPhone6,1" : @"4.0",//@"iPhone 5s",
+                              @"iPhone6,2" : @"4.0",//@"iPhone 5s",
+                              @"iPhone7,1" : @"5.5",//@"iPhone 6 Plus",
+                              @"iPhone7,2" : @"4.7",//@"iPhone 6",
+                              @"iPhone8,1" : @"4.7",//@"iPhone 6s",
+                              @"iPhone8,2" : @"5.5",//@"iPhone 6s Plus",
+                              @"iPhone8,4" : @"4.0",//@"iPhone SE",
+                              @"iPhone9,1" : @"4.7",//@"iPhone 7",
+                              @"iPhone9,2" : @"5.5",//@"iPhone 7 Plus",
+                              @"iPhone9,3" : @"4.7",//@"iPhone 7",
+                              @"iPhone9,4" : @"5.5",//@"iPhone 7 Plus",
+                              @"iPhone10,1" : @"4.7",//@"iPhone 8",
+                              @"iPhone10,2" : @"5.5",//@"iPhone 8 Plus",
+                              @"iPhone10,3" : @"5.8",//@"iPhone X",
+                              @"iPhone10,4" : @"4.7",//@"iPhone 8",
+                              @"iPhone10,5" : @"5.5",//@"iPhone 8 Plus",
+                              @"iPhone10,6" : @"5.8",//@"iPhone X",
+                              @"iPhone11,2" : @"5.8",//@"iPhone XS",
+                              @"iPhone11,4" : @"6.5",//@"iPhone XS Max",
+                              @"iPhone11,6" : @"6.5",//@"iPhone XS Max China",
+                              @"iPhone11,8" : @"6.1",//@"iPhone XR",
+                              
+                              @"iPad1,1" : @"9.7",//@"iPad 1",
+                              @"iPad2,1" : @"9.7",//@"iPad 2 (WiFi)",
+                              @"iPad2,2" : @"9.7",//@"iPad 2 (GSM)",
+                              @"iPad2,3" : @"9.7",//@"iPad 2 (CDMA)",
+                              @"iPad2,4" : @"9.7",//@"iPad 2",
+                              @"iPad2,5" : @"7.9",//@"iPad mini 1",
+                              @"iPad2,6" : @"7.9",//@"iPad mini 1",
+                              @"iPad2,7" : @"7.9",//@"iPad mini 1",
+                              @"iPad3,1" : @"9.7",//@"iPad 3 (WiFi)",
+                              @"iPad3,2" : @"9.7",//@"iPad 3 (4G)",
+                              @"iPad3,3" : @"9.7",//@"iPad 3 (4G)",
+                              @"iPad3,4" : @"9.7",//@"iPad 4",
+                              @"iPad3,5" : @"9.7",//@"iPad 4",
+                              @"iPad3,6" : @"9.7",//@"iPad 4",
+                              @"iPad4,1" : @"9.7",//@"iPad Air",
+                              @"iPad4,2" : @"9.7",//@"iPad Air",
+                              @"iPad4,3" : @"9.7",//@"iPad Air",
+                              @"iPad4,4" : @"7.9",//@"iPad mini 2",
+                              @"iPad4,5" : @"7.9",//@"iPad mini 2",
+                              @"iPad4,6" : @"7.9",//@"iPad mini 2",
+                              @"iPad4,7" : @"7.9",//@"iPad mini 3",
+                              @"iPad4,8" : @"7.9",//@"iPad mini 3",
+                              @"iPad4,9" : @"7.9",//@"iPad mini 3",
+                              @"iPad5,1" : @"7.9",//@"iPad mini 4",
+                              @"iPad5,2" : @"7.9",//@"iPad mini 4",
+                              @"iPad5,3" : @"9.7",//@"iPad Air 2",
+                              @"iPad5,4" : @"9.7",//@"iPad Air 2",
+                              @"iPad6,3" : @"9.7",//@"iPad Pro (9.7 inch)",
+                              @"iPad6,4" : @"9.7",//@"iPad Pro (9.7 inch)",
+                              @"iPad6,7" : @"12.9",//@"iPad Pro (12.9 inch)",
+                              @"iPad6,8" : @"12.9",//@"iPad Pro (12.9 inch)",
+                              @"iPad6,11" : @"9.7",//@"iPad 5",
+                              @"iPad6,12" : @"9.7",//@"iPad 5",
+                              @"iPad7,1" : @"12.9",//@"iPad Pro (12.9-inch, 2nd generation)",
+                              @"iPad7,2" : @"12.9",//@"iPad Pro (12.9-inch, 2nd generation)",
+                              @"iPad7,3" : @"10.5",//@"iPad Pro (10.5-inch)",
+                              @"iPad7,4" : @"10.5",//@"iPad Pro (10.5-inch)",
+                              @"iPad7,5" : @"9.7",//@"iPad 6",
+                              @"iPad7,6" : @"9.7",//@"iPad 6",
+                              @"iPad8,1" : @"11.0",//@"iPad Pro (11-inch)",
+                              @"iPad8,2" : @"11.0",//@"iPad Pro (11-inch)",
+                              @"iPad8,3" : @"11.0",//@"iPad Pro (11-inch)",
+                              @"iPad8,4" : @"11.0",//@"iPad Pro (11-inch)",
+                              @"iPad8,5" : @"12.9",//@"iPad Pro (12.9-inch) (3rd generation)",
+                              @"iPad8,6" : @"12.9",//@"iPad Pro (12.9-inch) (3rd generation)",
+                              @"iPad8,7" : @"12.9",//@"iPad Pro (12.9-inch) (3rd generation)",
+                              @"iPad8,8" : @"12.9",//@"iPad Pro (12.9-inch) (3rd generation)",
+                              @"iPad11,1" : @"7.9",//@"iPad mini (5th generation)",
+                              @"iPad11,2" : @"7.9",//@"iPad mini (5th generation)",
+                              @"iPad11,3" : @"10.5",//@"iPad Air (3rd generation)",
+                              @"iPad11,4" : @"10.5",//@"iPad Air (3rd generation)",
+                              
+                              @"AppleTV2,1" : @"Apple TV 2",
+                              @"AppleTV3,1" : @"Apple TV 3",
+                              @"AppleTV3,2" : @"Apple TV 3",
+                              @"AppleTV5,3" : @"Apple TV 4",
+                              @"AppleTV6,2" : @"Apple TV 4K",
+                              
+                              @"i386" : @"Simulator x86",
+                              @"x86_64" : @"Simulator x64",
+                              };
+        inchSize = dic[model];
+        if (!inchSize) inchSize = model;
+    });
+    return inchSize;
+}
+
 + (NSString *)CUPType
 {
     // Set up a Device Type String
@@ -1538,6 +1673,7 @@
         _deviceName = [self.class deviceName];
         _machineModel = [self.class machineModel];
         _machineModelName = [self.class machineModelName];
+        _inchSize = [self.class inchSize];
         _CUPType = [self.class CUPType];
         _SIMType = [self.class SIMType];
         _batteryState = [self.class batteryState];
