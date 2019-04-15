@@ -300,6 +300,16 @@
     return SIMType;
 }
 
++ (UIDeviceBatteryState)batteryState
+{
+    return [UIDevice currentDevice].batteryState;;
+}
+
++ (CGFloat)batteryLevel
+{
+    return [[UIDevice currentDevice] batteryLevel];
+}
+
 + (BOOL)isSimulator
 {
 #if TARGET_OS_SIMULATOR
@@ -1530,6 +1540,8 @@
         _machineModelName = [self.class machineModelName];
         _CUPType = [self.class CUPType];
         _SIMType = [self.class SIMType];
+        _batteryState = [self.class batteryState];
+        _batteryLevel = [self.class batteryLevel];
         _isSimulator = [self.class isSimulator];
         _isJailbroken = [self.class isJailbroken];
         _isEnableTouchID = [self.class isEnableTouchID];

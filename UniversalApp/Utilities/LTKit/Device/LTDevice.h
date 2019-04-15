@@ -105,6 +105,12 @@
 /**  SIM卡类型:Micro Nano, iPhone 4s之后都是Nano卡  */
 @property (nonatomic, readonly) NSString *SIMType;
 @property (class, nonatomic, readonly) NSString *SIMType;
+/**  电池状态:充电,放电,充满100%等  */
+@property(nonatomic, readonly) UIDeviceBatteryState batteryState;
+@property(class, nonatomic, readonly) UIDeviceBatteryState batteryState;
+/**  电池电量,0 .. 1.0. -1.0 if UIDeviceBatteryStateUnknown  */
+@property (nonatomic, readonly) CGFloat batteryLevel;
+@property (class, nonatomic, readonly) CGFloat batteryLevel;
 /**  是否为模拟器  */
 @property (nonatomic, readonly) BOOL isSimulator;
 @property (class, nonatomic, readonly) BOOL isSimulator;
