@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+@import CFNetwork;
+@import CoreFoundation;
+
 #pragma mark - 系统版本相关
 // 手机系统版本是否为 iOS 8.0 及以上
 #define LT_IOS8_OR_LATER ([LTDevice iOS8OrLater])
@@ -51,8 +54,8 @@
 //不同屏幕尺寸适配（375 x 667是因为效果图为iPhone 6s 如果不是则根据实际情况修改）
 #define kLTScreenWidthRatio (kScreenWidth / 375.f)
 #define kLTScreenHeightRatio (kScreenHeight / 667.f)
-#define kLTAdaptedWidth(x) ((x) * kScreenWidthRatio)  //不向上取整
-#define kLTAdaptedHeight(x) ((x) * kScreenHeightRatio)  //不向上取整
+#define kLTAdaptedWidth(x) ((x) * kLTScreenWidthRatio)  //不向上取整
+#define kLTAdaptedHeight(x) ((x) * kLTScreenHeightRatio)  //不向上取整
 //#define kAdaptedWidth(x) (ceilf((x) * kScreenWidthRatio))  //向上取整
 //#define kAdaptedHeight(x) (ceilf((x) * kScreenHeightRatio))  //向上取整
 
@@ -96,6 +99,12 @@
 /**  格式化的系统设备类型(如:iPhone 6s, iPhone 6s Plus)  */
 @property (nonatomic, readonly) NSString *machineModelName;
 @property (class, nonatomic, readonly) NSString *machineModelName;
+/**  CPU类型:arm arm64 x86 x86_64  */
+@property (nonatomic, readonly) NSString *CUPType;
+@property (class, nonatomic, readonly) NSString *CUPType;
+/**  SIM卡类型:Micro Nano, iPhone 4s之后都是Nano卡  */
+@property (nonatomic, readonly) NSString *SIMType;
+@property (class, nonatomic, readonly) NSString *SIMType;
 /**  是否为模拟器  */
 @property (nonatomic, readonly) BOOL isSimulator;
 @property (class, nonatomic, readonly) BOOL isSimulator;
@@ -119,6 +128,9 @@
 @property (class, nonatomic, readonly) BOOL isIPhone;
 
 #pragma mark - 屏幕/尺寸相关
+/**  屏幕亮度,系统取值是0-1,这里取值在系统基础上 *100 取值范围为0-100  */
+@property (nonatomic, readonly) CGFloat screenBrightness;
+@property (class, nonatomic, readonly) CGFloat screenBrightness;
 /**  用户界面横屏了才会返回YES  */
 @property (nonatomic, readonly) BOOL isLandscape;
 @property (class, nonatomic, readonly) BOOL isLandscape;
@@ -263,15 +275,24 @@
 /**  运营商是否允许VOIP  */
 @property (nonatomic, readonly) BOOL carrierAllowsVOIP;
 @property (class, nonatomic, readonly) BOOL carrierAllowsVOIP;
+/**  是否开启代理  */
+@property (nonatomic, readonly) BOOL isOpenProxy;
+@property (class, nonatomic, readonly) BOOL isOpenProxy;
+/**  是否开启VPN  */
+@property (nonatomic, readonly) BOOL isOpenVPN;
+@property (class, nonatomic, readonly) BOOL isOpenVPN;
 /**  是否连接到蜂窝网络  */
-@property (nonatomic, readonly) BOOL connectedToCellNetwork;
-@property (class, nonatomic, readonly) BOOL connectedToCellNetwork;
+@property (nonatomic, readonly) BOOL isConnectedToCellNetwork;
+@property (class, nonatomic, readonly) BOOL isConnectedToCellNetwork;
 /**  是否连接到WIFI  */
-@property (nonatomic, readonly) BOOL connectedToWiFi;
-@property (class, nonatomic, readonly) BOOL connectedToWiFi;
+@property (nonatomic, readonly) BOOL isConnectedToWiFi;
+@property (class, nonatomic, readonly) BOOL isConnectedToWiFi;
 /**  当前WIFI名称  */
 @property (nonatomic, readonly) NSString *WiFiName;
 @property (class, nonatomic, readonly) NSString *WiFiName;
+/**  当前连接WIFI MAC 地址  */
+@property (nonatomic, readonly, nullable) NSString *WiFiMacAddress;
+@property (class, nonatomic, readonly, nullable) NSString *WiFiMacAddress;
 /**  WIFI IP address of this device (can be nil). e.g. @"192.168.1.111"  */
 @property (nullable, nonatomic, readonly) NSString *ipAddressWiFi;
 @property (class, nullable, nonatomic, readonly) NSString *ipAddressWiFi;

@@ -15,6 +15,7 @@
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
 
+
 #include <sys/socket.h>
 #include <sys/sysctl.h>
 #include <net/if.h>
@@ -213,6 +214,92 @@
     return name;
 }
 
++ (NSString *)CUPType
+{
+    // Set up a Device Type String
+    static NSString *CUPType = @"CPU_TYPE_ARM64";
+    static dispatch_once_t one;
+    dispatch_once(&one, ^{
+        host_basic_info_data_t hostInfo;
+        mach_msg_type_number_t infoCount;
+        infoCount = HOST_BASIC_INFO_COUNT;
+        host_info(mach_host_self(), HOST_BASIC_INFO, (host_info_t)&hostInfo, &infoCount);
+        switch (hostInfo.cpu_type)
+        {
+            case CPU_TYPE_ARM:
+            {
+                CUPType = @"CPU_TYPE_ARM";
+            }
+                break;
+            case CPU_TYPE_ARM64:
+            {
+                CUPType = @"CPU_TYPE_ARM64";
+            }
+                break;
+            case CPU_TYPE_ARM64_32:
+            {
+                CUPType = @"CPU_TYPE_ARM64_32";
+            }
+                break;
+                
+            case CPU_TYPE_X86:
+            {
+                CUPType = @"CPU_TYPE_X86";
+            }
+                break;
+                
+            case CPU_TYPE_X86_64:
+            {
+                CUPType = @"CPU_TYPE_X86_64";
+            }
+                break;
+                
+            default:
+                break;
+        }
+    });
+    return CUPType;
+}
+
++ (NSString *)SIMType
+{
+    // Set up a Device Type String
+    static NSString *SIMType = @"";
+    static dispatch_once_t one;
+    dispatch_once(&one, ^{
+        if ([self isIPhone])
+        {
+            NSString *machineModel = [self machineModel];
+            NSString *iPhone4s = @"iPhone4,1";
+            NSComparisonResult result =[iPhone4s compare:machineModel];
+            switch (result)
+            {
+                case NSOrderedAscending:
+                {
+                    SIMType = @"Nano";
+                }
+                    break;
+                 
+                case NSOrderedSame:
+                {
+                    SIMType = @"Micro";
+                }
+                    break;
+                    
+                case NSOrderedDescending:
+                {
+                    SIMType = @"Micro";
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+    });
+    return SIMType;
+}
+
 + (BOOL)isSimulator
 {
 #if TARGET_OS_SIMULATOR
@@ -305,6 +392,11 @@
 
 
 #pragma mark - 屏幕相关
++ (CGFloat)screenBrightness
+{
+    return [UIScreen mainScreen].brightness * 100;
+}
+
 + (BOOL)isLandscape
 {
     return UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]);
@@ -343,7 +435,40 @@
 
 + (CGFloat)statusBarHeight
 {
-    return [[UIApplication sharedApplication] statusBarFrame].size.height;
+    CGFloat height = [[UIApplication sharedApplication] statusBarFrame].size.height;
+    
+    if (height <= 0)
+    {
+        static CGFloat staticHeight = 20.f;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            if (@available(iOS 11.0, *))
+            {
+                if (@available(iOS 12.0, *))
+                {
+                    UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+                    UIEdgeInsets peripheryInsets = window.safeAreaInsets;
+                    if (peripheryInsets.bottom <= 0)
+                    {
+                        UIViewController *viewController = [UIViewController new];
+                        [viewController loadViewIfNeeded];
+                        window.rootViewController = viewController;
+                        if (CGRectGetMinY(viewController.view.frame) > 20)
+                        {
+                            staticHeight = peripheryInsets.bottom;
+                        }
+                    }
+                }
+                else
+                {
+                    staticHeight = [self.class is58InchScreen] ? 44.f : 20.f;
+                }
+            }
+        });
+        height = staticHeight;
+    }
+    return height;
+
 }
 
 + (BOOL)isNotchedScreen
@@ -821,8 +946,73 @@
     return CarrierVOIP;
 }
 
++ (BOOL)isOpenProxy
+{
+    CFDictionaryRef proxySettings = CFNetworkCopySystemProxySettings();
+    NSDictionary *dictProxy = (__bridge_transfer id)proxySettings;
+    //NSString *proxyAddress = [dictProxy objectForKey:@"HTTPProxy"]; //代理地址
+    //NSInteger proxyPort = [[dictProxy objectForKey:@"HTTPPort"] integerValue];  //代理端口号
+    //是否开启了http代理
+    return [[dictProxy objectForKey:@"HTTPEnable"] boolValue];
+}
+
++ (BOOL)isOpenVPN
+{
+    BOOL flag = NO;
+    NSString *version = [UIDevice currentDevice].systemVersion;
+    // need two ways to judge this.
+    if (version.doubleValue >= 9.0)
+    {
+        NSDictionary *dict = CFBridgingRelease(CFNetworkCopySystemProxySettings());
+        NSArray *keys = [dict[@"__SCOPED__"] allKeys];
+        for (NSString *key in keys)
+        {
+            if ([key rangeOfString:@"tap"].location != NSNotFound ||
+                [key rangeOfString:@"tun"].location != NSNotFound ||
+                [key rangeOfString:@"ipsec"].location != NSNotFound ||
+                [key rangeOfString:@"ppp"].location != NSNotFound)
+            {
+                flag = YES;
+                break;
+            }
+        }
+    }
+    else
+    {
+        struct ifaddrs *interfaces = NULL;
+        struct ifaddrs *temp_addr = NULL;
+        int success = 0;
+        
+        // retrieve the current interfaces - returns 0 on success
+        success = getifaddrs(&interfaces);
+        if (success == 0)
+        {
+            // Loop through linked list of interfaces
+            temp_addr = interfaces;
+            while (temp_addr != NULL)
+            {
+                NSString *string = [NSString stringWithFormat:@"%s" , temp_addr->ifa_name];
+                if ([string rangeOfString:@"tap"].location != NSNotFound ||
+                    [string rangeOfString:@"tun"].location != NSNotFound ||
+                    [string rangeOfString:@"ipsec"].location != NSNotFound ||
+                    [string rangeOfString:@"ppp"].location != NSNotFound)
+                {
+                    flag = YES;
+                    break;
+                }
+                temp_addr = temp_addr->ifa_next;
+            }
+        }
+        
+        // Free memory
+        freeifaddrs(interfaces);
+    }
+    return flag;
+}
+
+
 // Connected to Cellular Network?
-+ (BOOL)connectedToCellNetwork
++ (BOOL)isConnectedToCellNetwork
 {
     // Check if we're connected to cell network
     NSString *cellAddress = [self ipAddressCell];
@@ -840,7 +1030,7 @@
 }
 
 // Connected to WiFi?
-+ (BOOL)connectedToWiFi
++ (BOOL)isConnectedToWiFi\
 {
     // Check if we're connected to WiFi
     NSString *wiFiAddress = [self ipAddressWiFi];
@@ -877,7 +1067,7 @@
         if (dictRef)
         {
             NSDictionary *networkInfo = (__bridge NSDictionary *)dictRef;
-            NSLog(@"network info -> %@", networkInfo);
+            //NSLog(@"network info -> %@", networkInfo);
             wifiName = [networkInfo objectForKey:(__bridge NSString *)kCNNetworkInfoKeySSID];
             CFRelease(dictRef);
         }
@@ -885,6 +1075,36 @@
     
     CFRelease(wifiInterfaces);
     return wifiName;
+}
+
++ (NSString *)WiFiMacAddress
+{
+    NSString *wifiMacAddress = nil;
+    
+    CFArrayRef wifiInterfaces = CNCopySupportedInterfaces();
+    
+    if (!wifiInterfaces)
+    {
+        return kDeviceInfoPlaceHolder;
+    }
+    
+    NSArray *interfaces = (__bridge NSArray *)wifiInterfaces;
+    
+    for (NSString *interfaceName in interfaces)
+    {
+        CFDictionaryRef dictRef = CNCopyCurrentNetworkInfo((__bridge CFStringRef)(interfaceName));
+        
+        if (dictRef)
+        {
+            NSDictionary *networkInfo = (__bridge NSDictionary *)dictRef;
+            //NSLog(@"network info -> %@", networkInfo);
+            wifiMacAddress = [networkInfo objectForKey:(__bridge NSString *)kCNNetworkInfoKeyBSSID];
+            CFRelease(dictRef);
+        }
+    }
+    
+    CFRelease(wifiInterfaces);
+    return wifiMacAddress;
 }
 
 + (NSString *)ipAddressWiFi
@@ -939,7 +1159,7 @@
 {
     @try {
         // Check if we have an internet connection then try to get the External IP Address
-        if (![self connectedToCellNetwork] && ![self connectedToWiFi])
+        if (![self isConnectedToCellNetwork] && ![self isConnectedToWiFi])
         {
             // Not connected to anything, return nil
             return kDeviceInfoPlaceHolder;
@@ -1308,12 +1528,15 @@
         _deviceName = [self.class deviceName];
         _machineModel = [self.class machineModel];
         _machineModelName = [self.class machineModelName];
+        _CUPType = [self.class CUPType];
+        _SIMType = [self.class SIMType];
         _isSimulator = [self.class isSimulator];
         _isJailbroken = [self.class isJailbroken];
         _isEnableTouchID = [self.class isEnableTouchID];
         _resolutionRatio = [self.class resolutionRatio];
         
         // 屏幕/尺寸相关
+        _screenBrightness = [self.class screenBrightness];
         _isLandscape = [self.class isLandscape];
         _isDeviceLandscape = [self.class isDeviceLandscape];
         _deviceWidth = [self.class deviceWidth];
@@ -1365,9 +1588,12 @@
         _carrierCountry = [self.class carrierCountry];
         _carrierISOCountryCode = [self.class carrierISOCountryCode];
         _carrierAllowsVOIP = [self.class carrierAllowsVOIP];
-        _connectedToCellNetwork = [self.class connectedToCellNetwork];
-        _connectedToWiFi = [self.class connectedToWiFi];
+        _isOpenProxy = [self.class isOpenProxy];
+        _isOpenVPN = [self.class isOpenVPN];
+        _isConnectedToCellNetwork = [self.class isConnectedToCellNetwork];
+        _isConnectedToWiFi = [self.class isConnectedToWiFi];
         _WiFiName = [self.class WiFiName];
+        _WiFiMacAddress = [self.class WiFiMacAddress];
         _ipAddressWiFi = [self.class ipAddressWiFi];
         _ipAddressCell = [self.class ipAddressCell];
         _externalIPAddress = [self.class externalIPAddress];
