@@ -100,8 +100,8 @@
 @property (nonatomic, readonly) NSString *machineModelName;
 @property (class, nonatomic, readonly) NSString *machineModelName;
 /**  屏幕尺寸:3.5 4.0 4.7 5.5 ...  */
-@property (nonatomic, readonly) NSString *inchSize;
-@property (class, nonatomic, readonly) NSString *inchSize;
+@property (nonatomic, readonly) NSString *screenInchSize;
+@property (class, nonatomic, readonly) NSString *screenInchSize;
 /**  CPU类型:arm arm64 x86 x86_64  */
 @property (nonatomic, readonly) NSString *CUPType;
 @property (class, nonatomic, readonly) NSString *CUPType;

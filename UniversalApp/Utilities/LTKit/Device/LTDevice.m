@@ -215,7 +215,7 @@
 }
 
 /// @see http://theiphonewiki.com/wiki/Models
-+ (NSString *)inchSize
++ (NSString *)screenInchSize
 {
     static dispatch_once_t one;
     static NSString *inchSize;
@@ -1673,7 +1673,7 @@
         _deviceName = [self.class deviceName];
         _machineModel = [self.class machineModel];
         _machineModelName = [self.class machineModelName];
-        _inchSize = [self.class inchSize];
+        _screenInchSize = [self.class screenInchSize];
         _CUPType = [self.class CUPType];
         _SIMType = [self.class SIMType];
         _batteryState = [self.class batteryState];
