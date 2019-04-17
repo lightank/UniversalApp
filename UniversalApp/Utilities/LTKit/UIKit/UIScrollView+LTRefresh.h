@@ -43,6 +43,7 @@
 
 @interface UIScrollView (LTAdd)
 
+- (void)lt_disableContentInsetAdjustment;
 
 @end
 

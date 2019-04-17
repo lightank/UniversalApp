@@ -103,5 +103,12 @@
 
 @implementation UIScrollView (LTAdd)
 
+- (void)lt_disableContentInsetAdjustment
+{
+    if (@available(iOS 11.0, *))
+    {
+        self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+}
 
 @end
