@@ -10,6 +10,47 @@
 
 @implementation NSObject (LTAdd)
 
+/**
+ * 返回对象中属性的类型
+ * @return NSString 返回属性的类型
+ **/
++ (nullable NSString *)lt_classNameForProperty:(NSString *)propertyName
+{
+    NSString* propertyType = nil;
+    
+    unsigned int propertyCount;
+    objc_property_t* properties = class_copyPropertyList([self class], &propertyCount);
+    for (int i = 0; i < propertyCount; i++)
+    {
+        objc_property_t property = properties[i];
+        //属性名称
+        const char* propertyNameChar = property_getName(property);
+        NSString* propertyNameStr = [NSString stringWithUTF8String:propertyNameChar];
+        
+        //属性对应的类型名字
+        char *typeEncoding = property_copyAttributeValue(property,"T");
+        NSString* typeEncodingStr = [NSString stringWithUTF8String:typeEncoding];
+        typeEncodingStr = [typeEncodingStr stringByReplacingOccurrencesOfString:@"@" withString:@""];
+        typeEncodingStr = [typeEncodingStr stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+        typeEncodingStr = [typeEncodingStr stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        
+        if ([propertyName isEqualToString:propertyNameStr])
+        {
+            propertyType = typeEncodingStr;
+            break;
+        }
+    }
+    free(properties);
+    
+    return propertyType;
+}
+
+- (nullable NSString *)lt_classNameForProperty:(NSString *)propertyName
+{
+    return [self.class lt_classNameForProperty:propertyName];
+}
+
+
 //将obj转换成json字符串。如果失败则返回nil.
 - (NSString *)lt_JSONString
 {
