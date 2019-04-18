@@ -14,5 +14,7 @@
 - (void)lt_setSectionMargin:(CGFloat)margin;
 /**  通过设置tableHeaderView,tableFooterView,sectionHeaderHeight,sectionFooterHeight的高度为0,来消除tableview上下的间距  */
 - (void)lt_cleanTopAndBottomMargin;
+/**  隐藏分割线  */
+- (void)lt_hiddenSeparatorLine;
 
 @end

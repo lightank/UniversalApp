@@ -28,4 +28,9 @@
     self.sectionFooterHeight = 0.f;
 }
 
+- (void)lt_hiddenSeparatorLine
+{
+    self.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
 @end
