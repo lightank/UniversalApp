@@ -44,6 +44,7 @@
 		3DFE3E7320EA532500A8832C /* AppDelegate+OpenInstallSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE3E7220EA532500A8832C /* AppDelegate+OpenInstallSDK.m */; };
 		3DFE3E7620EA533300A8832C /* AppDelegate+JPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE3E7520EA533300A8832C /* AppDelegate+JPush.m */; };
 		7B06541542D17252DD1BA4D2 /* libPods-UniversalAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D3A5DAA64B035CDF219C8B /* libPods-UniversalAppUITests.a */; };
+		A01255EF22680D0C009223E1 /* CALayer+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A01255EE22680D0C009223E1 /* CALayer+LTAdd.m */; };
 		A035615521C3859C00DAAEE1 /* LTListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A035615421C3859C00DAAEE1 /* LTListTableViewController.m */; };
 		A035615821C3F6FD00DAAEE1 /* LTObjcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A035615721C3F6FD00DAAEE1 /* LTObjcViewController.m */; };
 		A035615B21C3F76400DAAEE1 /* LTMultiThreadExample.m in Sources */ = {isa = PBXBuildFile; fileRef = A035615A21C3F76400DAAEE1 /* LTMultiThreadExample.m */; };
@@ -179,6 +180,8 @@
 		3DFE3E7520EA533300A8832C /* AppDelegate+JPush.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+JPush.m"; sourceTree = "<group>"; };
 		4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UniversalApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		461DB11EE24A791480763032 /* Pods-UniversalApp.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalApp.dev.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp.dev.xcconfig"; sourceTree = "<group>"; };
+		A01255ED22680D0C009223E1 /* CALayer+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+LTAdd.h"; sourceTree = "<group>"; };
+		A01255EE22680D0C009223E1 /* CALayer+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+LTAdd.m"; sourceTree = "<group>"; };
 		A035615321C3859C00DAAEE1 /* LTListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTListTableViewController.h; sourceTree = "<group>"; };
 		A035615421C3859C00DAAEE1 /* LTListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTListTableViewController.m; sourceTree = "<group>"; };
 		A035615621C3F6FD00DAAEE1 /* LTObjcViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTObjcViewController.h; sourceTree = "<group>"; };
@@ -610,6 +613,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A01255E922680C6F009223E1 /* QuartzCore */ = {
+			isa = PBXGroup;
+			children = (
+				A01255ED22680D0C009223E1 /* CALayer+LTAdd.h */,
+				A01255EE22680D0C009223E1 /* CALayer+LTAdd.m */,
+			);
+			path = QuartzCore;
+			sourceTree = "<group>";
+		};
 		A035615121C35C7E00DAAEE1 /* Objective-C */ = {
 			isa = PBXGroup;
 			children = (
@@ -642,6 +654,7 @@
 		A073C2CE224A3F7900B685A1 /* LTKit */ = {
 			isa = PBXGroup;
 			children = (
+				A01255E922680C6F009223E1 /* QuartzCore */,
 				A0A9A3A42251EBC700C2188E /* Device */,
 				A073C2CF224A3F7900B685A1 /* UIKit */,
 				A073C2EC224A3F7900B685A1 /* Foundation */,
@@ -935,6 +948,7 @@
 				3D50913F20C6790F00A21655 /* PrivacyPermission.m in Sources */,
 				3D03D64420B80C27006F6F75 /* UINavigationBar+Awesome.m in Sources */,
 				A035615521C3859C00DAAEE1 /* LTListTableViewController.m in Sources */,
+				A01255EF22680D0C009223E1 /* CALayer+LTAdd.m in Sources */,
 				3D4A2F9C21A2585A00817536 /* LTLocalizations.m in Sources */,
 				A073C30A224A3F7B00B685A1 /* NSArray+LTAdd.m in Sources */,
 				A073C305224A3F7B00B685A1 /* UIWindow+LTAdd.m in Sources */,
