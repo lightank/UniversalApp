@@ -803,6 +803,11 @@
 {
     CGFloat homeIndicatorHeight = 0.f;
     
+    if (![self isNotchedScreen])
+    {
+        return homeIndicatorHeight;
+    }
+    
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     switch (orientation)
     {
@@ -1155,6 +1160,40 @@
     return flag;
 }
 
++ (NSString *)networkType
+{
+    NSString *netWorkType = @"unknown";
+    NSArray *typeStrings2G = @[CTRadioAccessTechnologyEdge,
+                               CTRadioAccessTechnologyGPRS,
+                               CTRadioAccessTechnologyCDMA1x,];
+    NSArray *typeStrings3G = @[CTRadioAccessTechnologyHSDPA,
+                               CTRadioAccessTechnologyWCDMA,
+                               CTRadioAccessTechnologyHSUPA,
+                               CTRadioAccessTechnologyCDMAEVDORev0,
+                               CTRadioAccessTechnologyCDMAEVDORevA,
+                               CTRadioAccessTechnologyCDMAEVDORevB,
+                               CTRadioAccessTechnologyeHRPD,];
+    NSArray *typeStrings4G = @[CTRadioAccessTechnologyLTE,];
+
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+    {
+        CTTelephonyNetworkInfo *teleInfo= [[CTTelephonyNetworkInfo alloc] init];
+        NSString *accessString = teleInfo.currentRadioAccessTechnology;
+        if ([typeStrings4G containsObject:accessString])
+        {
+            netWorkType = @"4G";
+        }
+        else if ([typeStrings3G containsObject:accessString])
+        {
+            netWorkType = @"3G";
+        }
+        else if ([typeStrings2G containsObject:accessString])
+        {
+            netWorkType = @"2G";
+        }
+    }
+    return netWorkType;
+}
 
 // Connected to Cellular Network?
 + (BOOL)isConnectedToCellNetwork
@@ -1738,6 +1777,7 @@
         _carrierAllowsVOIP = [self.class carrierAllowsVOIP];
         _isOpenProxy = [self.class isOpenProxy];
         _isOpenVPN = [self.class isOpenVPN];
+        _networkType = [self.class networkType];
         _isConnectedToCellNetwork = [self.class isConnectedToCellNetwork];
         _isConnectedToWiFi = [self.class isConnectedToWiFi];
         _WiFiName = [self.class WiFiName];
