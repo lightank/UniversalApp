@@ -223,12 +223,12 @@
         NSString *model = [self machineModel];
         
         NSDictionary *dic = @{
-                              @"Watch1,1" : @"Apple Watch (1st generation) 38mm",
-                              @"Watch1,2" : @"Apple Watch (1st generation) 42mm",
+                              @"Watch1,1" : @"1.5",//@"Apple Watch (1st generation) 38mm",
+                              @"Watch1,2" : @"1.65",//@"Apple Watch (1st generation) 42mm",
                               @"Watch2,3" : @"Apple Watch Series 2 38mm",
                               @"Watch2,4" : @"Apple Watch Series 2 42mm",
-                              @"Watch2,6" : @"Apple Watch Series 1 38mm",
-                              @"Watch2,7" : @"Apple Watch Series 1 42mm",
+                              @"Watch2,6" : @"1.5",//@"Apple Watch Series 1 38mm",
+                              @"Watch2,7" : @"1.65",//@"Apple Watch Series 1 42mm",
                               @"Watch3,1" : @"Apple Watch Series 3 38mm",
                               @"Watch3,2" : @"Apple Watch Series 3 42mm",
                               @"Watch3,3" : @"Apple Watch Series 3 38mm",
@@ -1160,7 +1160,7 @@
     return flag;
 }
 
-+ (NSString *)networkType
++ (NSString *)cellNetworkType
 {
     NSString *netWorkType = @"unknown";
     NSArray *typeStrings2G = @[CTRadioAccessTechnologyEdge,
@@ -1777,7 +1777,7 @@
         _carrierAllowsVOIP = [self.class carrierAllowsVOIP];
         _isOpenProxy = [self.class isOpenProxy];
         _isOpenVPN = [self.class isOpenVPN];
-        _networkType = [self.class networkType];
+        _cellNetworkType = [self.class cellNetworkType];
         _isConnectedToCellNetwork = [self.class isConnectedToCellNetwork];
         _isConnectedToWiFi = [self.class isConnectedToWiFi];
         _WiFiName = [self.class WiFiName];

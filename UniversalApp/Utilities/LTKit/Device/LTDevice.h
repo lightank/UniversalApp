@@ -291,8 +291,8 @@
 @property (nonatomic, readonly) BOOL isOpenVPN;
 @property (class, nonatomic, readonly) BOOL isOpenVPN;
 /**  当前蜂窝网络类型:2G/3G/4G等  */
-@property (nonatomic, readonly) NSString *networkType;
-@property (class, nonatomic, readonly) NSString *networkType;
+@property (nonatomic, readonly) NSString *cellNetworkType;
+@property (class, nonatomic, readonly) NSString *cellNetworkType;
 /**  是否连接到蜂窝网络  */
 @property (nonatomic, readonly) BOOL isConnectedToCellNetwork;
 @property (class, nonatomic, readonly) BOOL isConnectedToCellNetwork;
