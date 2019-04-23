@@ -15,7 +15,7 @@
     self = [super init];
     if (self)
     {
-        self.arguments = [[NSMutableDictionary alloc] init];
+        self.argumentsDictionary = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -28,7 +28,7 @@
         return;
     }
     
-    self.arguments[key] = value;
+    self.argumentsDictionary[key] = value;
 }
 
 /** 请求头部设置 */
@@ -44,7 +44,7 @@
 /** 请求参数 */
 - (nullable id)requestArgument
 {
-    return self.arguments;
+    return self.argumentsDictionary;
 }
 
 /** 请求方式,默认为post */

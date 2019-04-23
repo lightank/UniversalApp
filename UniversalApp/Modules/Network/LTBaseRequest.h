@@ -20,8 +20,8 @@
 @property (nonatomic, strong) LTBaseResponse *responseModel;
 /**  后台返回的数据是否aes加密,默认为否  */
 @property (nonatomic, assign, getter=isAESEncrypted) BOOL AESEncrypted;
-/**  请求头字段  */
-@property (nonatomic, strong) NSMutableDictionary *arguments;
+/**  参数字典  */
+@property (nonatomic, strong) NSMutableDictionary *argumentsDictionary;
 
 /*
  安全的设置arguments 字典内容.

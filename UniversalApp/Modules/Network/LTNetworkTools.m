@@ -64,18 +64,20 @@ LTNetworkTools *LTNetworkToolsInstance = nil;
 /**  网络库配置  */
 + (void)configureNetwork
 {
-#if DEBUG
-    //是否展示环境选择器
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+ #if DEBUG
+        //是否展示环境选择器
         if (kShowEnvironmentViewController)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self showNetworkOption];
             });
         }
+ #endif
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/xml", @"text/plain", nil];
     });
-#endif
 }
 
 /**  显示网络显示选项  */
