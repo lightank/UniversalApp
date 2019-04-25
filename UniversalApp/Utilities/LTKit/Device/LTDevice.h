@@ -88,26 +88,26 @@
 
 #pragma mark - 设备相关
 /**  系统设备类型(如iPhone, iPod touch)  */
-@property (nonatomic, readonly) NSString *deviceModel;
-@property (class, nonatomic, readonly) NSString *deviceModel;
+@property (nonatomic, readonly, nullable) NSString *deviceModel;
+@property (class, nonatomic, readonly, nullable) NSString *deviceModel;
 /**  设备名称(如xxx的iPhone)  */
-@property (nonatomic, readonly) NSString *deviceName;
-@property (class, nonatomic, readonly) NSString *deviceName;
+@property (nonatomic, readonly, nullable) NSString *deviceName;
+@property (class, nonatomic, readonly, nullable) NSString *deviceName;
 /**  无格式的系统设备类型(如:i386, iPhone6,1)  */
-@property (nonatomic, readonly) NSString *machineModel;
-@property (class, nonatomic, readonly) NSString *machineModel;
+@property (nonatomic, readonly, nullable) NSString *machineModel;
+@property (class, nonatomic, readonly, nullable) NSString *machineModel;
 /**  格式化的系统设备类型(如:iPhone 6s, iPhone 6s Plus)  */
-@property (nonatomic, readonly) NSString *machineModelName;
-@property (class, nonatomic, readonly) NSString *machineModelName;
+@property (nonatomic, readonly, nullable) NSString *machineModelName;
+@property (class, nonatomic, readonly, nullable) NSString *machineModelName;
 /**  屏幕尺寸:3.5 4.0 4.7 5.5 ...  */
-@property (nonatomic, readonly) NSString *screenInchSize;
-@property (class, nonatomic, readonly) NSString *screenInchSize;
+@property (nonatomic, readonly, nullable) NSString *screenInchSize;
+@property (class, nonatomic, readonly, nullable) NSString *screenInchSize;
 /**  CPU类型:arm arm64 x86 x86_64  */
-@property (nonatomic, readonly) NSString *CUPType;
-@property (class, nonatomic, readonly) NSString *CUPType;
+@property (nonatomic, readonly, nullable) NSString *CUPType;
+@property (class, nonatomic, readonly, nullable) NSString *CUPType;
 /**  SIM卡类型:Micro Nano, iPhone 4s之后都是Nano卡  */
-@property (nonatomic, readonly) NSString *SIMType;
-@property (class, nonatomic, readonly) NSString *SIMType;
+@property (nonatomic, readonly, nullable) NSString *SIMType;
+@property (class, nonatomic, readonly, nullable) NSString *SIMType;
 /**  电池状态:充电,放电,充满100%等  */
 @property(nonatomic, readonly) UIDeviceBatteryState batteryState;
 @property(class, nonatomic, readonly) UIDeviceBatteryState batteryState;
@@ -124,8 +124,8 @@
 @property (nonatomic, readonly) BOOL isEnableTouchID;
 @property (class, nonatomic, readonly) BOOL isEnableTouchID;
 /**  屏幕分辨率  */
-@property (nonatomic, readonly) NSString *resolutionRatio;
-@property (class, nonatomic, readonly) NSString *resolutionRatio;;
+@property (nonatomic, readonly, nullable) NSString *resolutionRatio;
+@property (class, nonatomic, readonly, nullable) NSString *resolutionRatio;;
 /**  是否是iPad  */
 @property (nonatomic, readonly) BOOL isIPad;
 @property (class, nonatomic, readonly) BOOL isIPad;
@@ -227,14 +227,14 @@
 
 #pragma mark - 系统版本,软件相关
 /**  系统名称(如iOS)  */
-@property (nonatomic, readonly) NSString *systemName;
-@property (class, nonatomic, readonly) NSString *systemName;
+@property (nonatomic, readonly, nullable) NSString *systemName;
+@property (class, nonatomic, readonly, nullable) NSString *systemName;
 /**  系统版本(如iOS 10.3)  */
-@property (nonatomic, readonly) NSString *systemVersion;
-@property (class, nonatomic, readonly) NSString *systemVersion;
+@property (nonatomic, readonly, nullable) NSString *systemVersion;
+@property (class, nonatomic, readonly, nullable) NSString *systemVersion;
 /**  系统正常待机时间  */
-@property (nonatomic, readonly) NSString *systemUptime;
-@property (class, nonatomic, readonly) NSString *systemUptime;
+@property (nonatomic, readonly, nullable) NSString *systemUptime;
+@property (class, nonatomic, readonly, nullable) NSString *systemUptime;
 /**  系统版本是否是iOS 8及以上  */
 @property (nonatomic, readonly) BOOL iOS8OrLater;
 @property (class, nonatomic, readonly) BOOL iOS8OrLater;
@@ -251,36 +251,36 @@
 @property (nonatomic, readonly) BOOL iOS12OrLater;
 @property (class, nonatomic, readonly) BOOL iOS12OrLater;
 /**  剪切板上内容  */
-@property (nonatomic, readonly) NSString *clipboardContent;
-@property (class, nonatomic, readonly) NSString *clipboardContent;
+@property (nonatomic, readonly, nullable) NSString *clipboardContent;
+@property (class, nonatomic, readonly, nullable) NSString *clipboardContent;
 
 
 #pragma mark - 本地区域相关
 /**  所属国家  */
-@property (nonatomic, readonly) NSString *country;
-@property (class, nonatomic, readonly) NSString *country;
+@property (nonatomic, readonly, nullable) NSString *country;
+@property (class, nonatomic, readonly, nullable) NSString *country;
 /**  本地语言  */
 @property (nonatomic, copy) NSString *language;
 @property (class, nonatomic, copy) NSString *language;
 + (void)resetLanguage;
 /**  时间区域  */
-@property (nonatomic, readonly) NSString *timeZone;
-@property (class, nonatomic, readonly) NSString *timeZone;
+@property (nonatomic, readonly, nullable) NSString *timeZone;
+@property (class, nonatomic, readonly, nullable) NSString *timeZone;
 /**  货币  */
-@property (nonatomic, readonly) NSString *currency;
-@property (class, nonatomic, readonly) NSString *currency;
+@property (nonatomic, readonly, nullable) NSString *currency;
+@property (class, nonatomic, readonly, nullable) NSString *currency;
 
 
 #pragma mark - 网络相关
 /**  运营商名字(如:中国移动)  */
-@property (nonatomic, readonly) NSString *carrierName;
-@property (class, nonatomic, readonly) NSString *carrierName;
+@property (nonatomic, readonly, nullable) NSString *carrierName;
+@property (class, nonatomic, readonly, nullable) NSString *carrierName;
 /**  运营商所属国家  */
-@property (nonatomic, readonly) NSString *carrierCountry;
-@property (class, nonatomic, readonly) NSString *carrierCountry;
+@property (nonatomic, readonly, nullable) NSString *carrierCountry;
+@property (class, nonatomic, readonly, nullable) NSString *carrierCountry;
 /**  运营商在所属国家的code  */
-@property (nonatomic, readonly) NSString *carrierISOCountryCode;
-@property (class, nonatomic, readonly) NSString *carrierISOCountryCode;
+@property (nonatomic, readonly, nullable) NSString *carrierISOCountryCode;
+@property (class, nonatomic, readonly, nullable) NSString *carrierISOCountryCode;
 /**  运营商是否允许VOIP  */
 @property (nonatomic, readonly) BOOL carrierAllowsVOIP;
 @property (class, nonatomic, readonly) BOOL carrierAllowsVOIP;
@@ -291,8 +291,8 @@
 @property (nonatomic, readonly) BOOL isOpenVPN;
 @property (class, nonatomic, readonly) BOOL isOpenVPN;
 /**  当前蜂窝网络类型:2G/3G/4G等  */
-@property (nonatomic, readonly) NSString *cellNetworkType;
-@property (class, nonatomic, readonly) NSString *cellNetworkType;
+@property (nonatomic, readonly, nullable) NSString *cellNetworkType;
+@property (class, nonatomic, readonly, nullable) NSString *cellNetworkType;
 /**  是否连接到蜂窝网络  */
 @property (nonatomic, readonly) BOOL isConnectedToCellNetwork;
 @property (class, nonatomic, readonly) BOOL isConnectedToCellNetwork;
@@ -300,46 +300,46 @@
 @property (nonatomic, readonly) BOOL isConnectedToWiFi;
 @property (class, nonatomic, readonly) BOOL isConnectedToWiFi;
 /**  当前WIFI名称  */
-@property (nonatomic, readonly) NSString *WiFiName;
-@property (class, nonatomic, readonly) NSString *WiFiName;
+@property (nonatomic, readonly, nullable) NSString *WiFiName;
+@property (class, nonatomic, readonly, nullable) NSString *WiFiName;
 /**  当前连接WIFI MAC 地址  */
 @property (nonatomic, readonly, nullable) NSString *WiFiMacAddress;
 @property (class, nonatomic, readonly, nullable) NSString *WiFiMacAddress;
 /**  WIFI IP address of this device (can be nil). e.g. @"192.168.1.111"  */
-@property (nullable, nonatomic, readonly) NSString *ipAddressWiFi;
-@property (class, nullable, nonatomic, readonly) NSString *ipAddressWiFi;
+@property (nonatomic, readonly, nullable) NSString *ipAddressWiFi;
+@property (class, nonatomic, readonly, nullable) NSString *ipAddressWiFi;
 /**  Cell IP address of this device (can be nil). e.g. @"10.2.2.222"  */
-@property (nullable, nonatomic, readonly) NSString *ipAddressCell;
-@property (class, nullable, nonatomic, readonly) NSString *ipAddressCell;
+@property (nonatomic, readonly, nullable) NSString *ipAddressCell;
+@property (class, nonatomic, readonly, nullable) NSString *ipAddressCell;
 /**  外网IP地址 (can be nil). e.g. @"10.2.2.222"  */
-@property (nullable, nonatomic, readonly) NSString *externalIPAddress;
-@property (class, nullable, nonatomic, readonly) NSString *externalIPAddress;
+@property (nonatomic, readonly, nullable) NSString *externalIPAddress;
+@property (class, nonatomic, readonly, nullable) NSString *externalIPAddress;
 
 
 #pragma mark - APP相关
 /**  app版本  */
-@property (nonatomic, readonly) NSString *appVersion;
-@property (class, nonatomic, readonly) NSString *appVersion;
+@property (nonatomic, readonly, nullable) NSString *appVersion;
+@property (class, nonatomic, readonly, nullable) NSString *appVersion;
 /**  app展示的名字  */
-@property (nonatomic, readonly) NSString *appDisplayName;
-@property (class, nonatomic, readonly) NSString *appDisplayName;
+@property (nonatomic, readonly, nullable) NSString *appDisplayName;
+@property (class, nonatomic, readonly, nullable) NSString *appDisplayName;
 /**  app build版本号  */
-@property (nonatomic, readonly) NSString *appBuildVersion;
-@property (class, nonatomic, readonly) NSString *appBuildVersion;
+@property (nonatomic, readonly, nullable) NSString *appBuildVersion;
+@property (class, nonatomic, readonly, nullable) NSString *appBuildVersion;
 
 #pragma mark - 磁盘与内存
 /**  总存储空间大小(如:16 GB)  */
-@property (nonatomic, readonly) NSString *totalDiskSpace;
-@property (class, nonatomic, readonly) NSString *totalDiskSpace;
+@property (nonatomic, readonly, nullable) NSString *totalDiskSpace;
+@property (class, nonatomic, readonly, nullable) NSString *totalDiskSpace;
 /**  已使用存储空间大小(如:7.5 GB)  */
-@property (nonatomic, readonly) NSString *usedDiskSpace;
-@property (class, nonatomic, readonly) NSString *usedDiskSpace;
+@property (nonatomic, readonly, nullable) NSString *usedDiskSpace;
+@property (class, nonatomic, readonly, nullable) NSString *usedDiskSpace;
 /**  空余存储空间大小(如:8.5 GB)  */
-@property (nonatomic, readonly) NSString *freeDiskSpace;
-@property (class, nonatomic, readonly) NSString *freeDiskSpace;
+@property (nonatomic, readonly, nullable) NSString *freeDiskSpace;
+@property (class, nonatomic, readonly, nullable) NSString *freeDiskSpace;
 /**  总运行内存大小(如 2 G)  */
-@property (nonatomic, readonly) NSString *memoryTotal;
-@property (class, nonatomic, readonly) NSString *memoryTotal;
+@property (nonatomic, readonly, nullable) NSString *memoryTotal;
+@property (class, nonatomic, readonly, nullable) NSString *memoryTotal;
 
 
 #pragma mark - 类方法
