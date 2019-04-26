@@ -31,6 +31,12 @@
     [self somethingForDebug];
     // 监听语言变化
     [self monitorLanguageChange];
+    
+    [LTDynamicDevice gyroData:^(BOOL isGyroAvailable, BOOL isGyroActive, double x, double y, double z) {
+        NSLog(@"==========开始获取陀螺仪");
+        [LTDynamicDevice stopGyroUpdates];
+        NSLog(@"==========结束获取陀螺仪");
+    } updateInterval:1 stopWhenSuccess:YES];
 }
 
 /**  初始化服务  */
