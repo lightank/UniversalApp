@@ -73,9 +73,7 @@
             // 是否停止陀螺仪
             if (stop)
             {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.class stopGyroUpdates];
-                });
+                [self.class stopGyroUpdates];
             }
             //获取陀螺仪数据
             double x = gyroData.rotationRate.x;
@@ -93,8 +91,10 @@
 
 + (void)stopGyroUpdates
 {
-    [[LTDynamicDevice sharedInstance].motionManager stopGyroUpdates];
-    [[LTDynamicDevice sharedInstance].gyroQueue waitUntilAllOperationsAreFinished];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[LTDynamicDevice sharedInstance].motionManager stopGyroUpdates];
+        [[LTDynamicDevice sharedInstance].gyroQueue waitUntilAllOperationsAreFinished];
+    });
 }
 
 #pragma mark - 蓝牙
