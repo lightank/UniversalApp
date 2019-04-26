@@ -256,7 +256,7 @@ THE SOFTWARE.
 ## QMUIKit
 
 Tencent is pleased to support the open source community by making QMUI_iOS available.  
-Copyright (C) 2016-2019 THL A29 Limited, a Tencent company.  All rights reserved.
+Copyright (C) 2016-2018 THL A29 Limited, a Tencent company.  All rights reserved.
 If you have downloaded a copy of the QMUI_iOS binary from Tencent, please note that the QMUI_iOS binary is licensed under the MIT License.
 If you have downloaded a copy of the QMUI_iOS source code from Tencent, please note that QMUI_iOS source code is licensed under the MIT License.  Your integration of QMUI_iOS into your own projects may require compliance with the MIT License.
 A copy of the MIT License is included in this file.
@@ -355,12 +355,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## UMCAnalytics
 
-Copyright 2011 - 2019 umeng.com. All rights reserved.
+Copyright 2011 - 2018 umeng.com. All rights reserved.
 
 
 ## UMCCommon
 
-Copyright 2011 - 2019 umeng.com. All rights reserved.
+Copyright 2011 - 2018 umeng.com. All rights reserved.
 
 
 ## UMCSecurityPlugins

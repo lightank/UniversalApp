@@ -211,6 +211,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  */
 @property (nonatomic, copy, nullable) NSString *label;
 
+#if LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -218,7 +219,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  @return 对象
  */
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue API_AVAILABLE(ios(9.0));
-
+#endif
 /**
  便利构造 （AddressBook）
  
@@ -243,6 +244,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  */
 @property (nonatomic, copy, nullable) NSString *label;
 
+#if LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -250,7 +252,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  @return 对象
  */
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue API_AVAILABLE(ios(9.0));
-
+#endif
 /**
  便利构造 （AddressBook）
  
@@ -305,6 +307,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  */
 @property (nonatomic, copy) NSString *formatterAddress NS_AVAILABLE_IOS(9_0);
 
+#if LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -312,6 +315,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  @return 对象
  */
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue API_AVAILABLE(ios(9.0));
+#endif
 
 /**
  便利构造 （AddressBook）
@@ -356,7 +360,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  日
  */
 @property (nonatomic, assign) NSInteger day;
-
+#if LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -364,7 +368,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  @return 对象
  */
 - (instancetype)initWithCNContact:(CNContact *)contact API_AVAILABLE(ios(9.0));
-
+#endif
 /**
  便利构造 （AddressBook）
  
@@ -387,7 +391,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  账号
  */
 @property (nonatomic, copy) NSString *userName;
-
+#if LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -395,7 +399,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  @return 对象
  */
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue API_AVAILABLE(ios(9.0));
-
+#endif
 /**
  便利构造 （AddressBook）
  
@@ -424,7 +428,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  url字符串
  */
 @property (nonatomic, copy) NSString *urlString;
-
+#if LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -432,7 +436,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  @return 对象
  */
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue API_AVAILABLE(ios(9.0));
-
+#endif
 /**
  便利构造 （AddressBook）
  
@@ -456,7 +460,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  url字符串
  */
 @property (nonatomic, copy) NSString *urlString;
-
+#if LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -464,7 +468,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  @return 对象
  */
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue API_AVAILABLE(ios(9.0));
-
+#endif
 /**
  便利构造 （AddressBook）
  
@@ -488,7 +492,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  名字
  */
 @property (nonatomic, copy) NSString *name;
-
+#if LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -496,7 +500,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
  @return 对象
  */
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue API_AVAILABLE(ios(9.0));
-
+#endif
 /**
  便利构造 （AddressBook）
  

@@ -1,6 +1,6 @@
 /*****
  * Tencent is pleased to support the open source community by making QMUI_iOS available.
- * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Copyright (C) 2016-2018 THL A29 Limited, a Tencent company. All rights reserved.
  * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
  * http://opensource.org/licenses/MIT
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
@@ -46,7 +46,7 @@
         if (CGRectGetHeight(titleView.bounds) != titleViewSize.height) {
 //            NSLog(@"【%@】修正布局前\ntitleView = %@", NSStringFromClass(titleView.class), titleView);
             CGFloat titleViewMinY = flat(CGRectGetMinY(titleView.frame) - ((titleViewSize.height - CGRectGetHeight(titleView.bounds)) / 2.0));// 系统对titleView的y值布局是flat，注意，不能改，改了要测试
-            titleView.frame = CGRectMake(CGRectGetMinX(titleView.frame), titleViewMinY, MIN(titleViewMaximumWidth, titleViewSize.width), titleViewSize.height);
+            titleView.frame = CGRectMake(CGRectGetMinX(titleView.frame), titleViewMinY, fmin(titleViewMaximumWidth, titleViewSize.width), titleViewSize.height);
 //            NSLog(@"【%@】修正布局后\ntitleView = %@", NSStringFromClass(titleView.class), titleView);
         }
         
@@ -231,7 +231,7 @@
             secondLineWidth += [self subAccessorySpacingSizeIfNeedesPlaceholder].width;
         }
         
-        size.width = MAX(firstLineWidth, secondLineWidth);
+        size.width = fmax(firstLineWidth, secondLineWidth);
         
         size.height = self.titleLabelSize.height + UIEdgeInsetsGetVerticalValue(self.titleEdgeInsetsIfShowingTitleLabel) + self.subtitleLabelSize.height + UIEdgeInsetsGetVerticalValue(self.subtitleEdgeInsetsIfShowingSubtitleLabel);
         return CGSizeFlatted(size);
@@ -239,16 +239,16 @@
         CGSize size = CGSizeZero;
         size.width = self.titleLabelSize.width + UIEdgeInsetsGetHorizontalValue(self.titleEdgeInsetsIfShowingTitleLabel) + self.subtitleLabelSize.width + UIEdgeInsetsGetHorizontalValue(self.subtitleEdgeInsetsIfShowingSubtitleLabel);
         size.width += [self loadingViewSpacingSizeIfNeedsPlaceholder].width + [self accessorySpacingSizeIfNeedesPlaceholder].width;
-        size.height = MAX(self.titleLabelSize.height + UIEdgeInsetsGetVerticalValue(self.titleEdgeInsetsIfShowingTitleLabel), self.subtitleLabelSize.height + UIEdgeInsetsGetVerticalValue(self.subtitleEdgeInsetsIfShowingSubtitleLabel));
-        size.height = MAX(size.height, [self loadingViewSpacingSizeIfNeedsPlaceholder].height);
-        size.height = MAX(size.height, [self accessorySpacingSizeIfNeedesPlaceholder].height);
+        size.height = fmax(self.titleLabelSize.height + UIEdgeInsetsGetVerticalValue(self.titleEdgeInsetsIfShowingTitleLabel), self.subtitleLabelSize.height + UIEdgeInsetsGetVerticalValue(self.subtitleEdgeInsetsIfShowingSubtitleLabel));
+        size.height = fmax(size.height, [self loadingViewSpacingSizeIfNeedsPlaceholder].height);
+        size.height = fmax(size.height, [self accessorySpacingSizeIfNeedesPlaceholder].height);
         return CGSizeFlatted(size);
     }
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
     CGSize resultSize = [self contentSize];
-    resultSize.width = MIN(resultSize.width, self.maximumWidth);
+    resultSize.width = fmin(resultSize.width, self.maximumWidth);
     return resultSize;
 }
 
@@ -268,8 +268,8 @@
     
     // 实际内容的size，小于等于maxSize
     CGSize contentSize = [self contentSize];
-    contentSize.width = MIN(maxSize.width, contentSize.width);
-    contentSize.height = MIN(maxSize.height, contentSize.height);
+    contentSize.width = fmin(maxSize.width, contentSize.width);
+    contentSize.height = fmin(maxSize.height, contentSize.height);
     
     // 计算左右两边的偏移值
     CGFloat offsetLeft = 0;
@@ -328,12 +328,12 @@
                 if (self.needsSubAccessoryPlaceholderSpace) {
                     // 副标题居中，accessoryView 在右边
                     CGFloat subtitleMaxWidth = subtitleWidth - [self subAccessorySpacingSizeIfNeedesPlaceholder].width;
-                    subtitleWidth = MIN(CGRectGetWidth(self.subtitleLabel.bounds), subtitleMaxWidth);
+                    subtitleWidth = fmin(CGRectGetWidth(self.subtitleLabel.bounds), subtitleMaxWidth);
                     subtitleMinX = (CGRectGetWidth(self.bounds) - subtitleWidth) / 2.0;
                 } else {
                     // 整体居中
                     CGFloat subtitleMaxWidth = subtitleWidth - [self subAccessorySpacingSize].width;
-                    subtitleWidth = MIN(CGRectGetWidth(self.subtitleLabel.bounds), subtitleMaxWidth);
+                    subtitleWidth = fmin(CGRectGetWidth(self.subtitleLabel.bounds), subtitleMaxWidth);
                     subtitleMinX = (CGRectGetWidth(self.bounds) - subtitleWidth - [self subAccessorySpacingSize].width) / 2.0;
                 }
             }
@@ -360,7 +360,7 @@
         if (isSubtitleLabelShowing) {
             maxX -= subtitleEdgeInsets.right;
             // 如果当前的 contentSize 就是以这个 label 的最大占位计算出来的，那么就不应该先计算 center 再计算偏移
-            BOOL shouldSubtitleLabelCenterVertically = self.subtitleLabelSize.height + UIEdgeInsetsGetVerticalValue(subtitleEdgeInsets) < contentSize.height;
+            CGFloat shouldSubtitleLabelCenterVertically = self.subtitleLabelSize.height + UIEdgeInsetsGetVerticalValue(subtitleEdgeInsets) < contentSize.height;
             CGFloat subtitleMinY = shouldSubtitleLabelCenterVertically ? CGFloatGetCenter(maxSize.height, self.subtitleLabelSize.height) + subtitleEdgeInsets.top - subtitleEdgeInsets.bottom : subtitleEdgeInsets.top;
             self.subtitleLabel.frame = CGRectFlatMake(maxX - self.subtitleLabelSize.width, subtitleMinY, self.subtitleLabelSize.width, self.subtitleLabelSize.height);
             maxX = CGRectGetMinX(self.subtitleLabel.frame) - subtitleEdgeInsets.left;
@@ -371,27 +371,13 @@
             minX += titleEdgeInsets.left;
             maxX -= titleEdgeInsets.right;
             // 如果当前的 contentSize 就是以这个 label 的最大占位计算出来的，那么就不应该先计算 center 再计算偏移
-            BOOL shouldTitleLabelCenterVertically = self.titleLabelSize.height + UIEdgeInsetsGetVerticalValue(titleEdgeInsets) < contentSize.height;
+            CGFloat shouldTitleLabelCenterVertically = self.titleLabelSize.height + UIEdgeInsetsGetVerticalValue(titleEdgeInsets) < contentSize.height;
             CGFloat titleLabelMinY = shouldTitleLabelCenterVertically ? CGFloatGetCenter(maxSize.height, self.titleLabelSize.height) + titleEdgeInsets.top - titleEdgeInsets.bottom : titleEdgeInsets.top;
             self.titleLabel.frame = CGRectFlatMake(minX, titleLabelMinY, maxX - minX, self.titleLabelSize.height);
         } else {
             self.titleLabel.frame = CGRectZero;
         }
     }
-    
-    // 上面的布局都是按 UIControlContentVerticalAlignmentTop 来计算的，所以这里根据实际的 contentVerticalAlignment 进行偏移
-    // 不支持 UIControlContentVerticalAlignmentFill
-    CGFloat offsetY = CGFloatGetCenter(maxSize.height, contentSize.height);
-    if (self.contentVerticalAlignment == UIControlContentVerticalAlignmentTop) {
-        offsetY = 0;
-    } else if (self.contentVerticalAlignment == UIControlContentVerticalAlignmentBottom) {
-        offsetY = maxSize.height - contentSize.height;
-    }
-    [self.subviews enumerateObjectsUsingBlock:^(UIView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (!CGRectIsEmpty(obj.frame)) {
-            obj.frame = CGRectSetY(obj.frame, CGRectGetMinY(obj.frame) + offsetY);
-        }
-    }];
 }
 
 

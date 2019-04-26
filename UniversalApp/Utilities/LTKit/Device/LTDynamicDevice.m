@@ -27,9 +27,9 @@
 
 
 @property (nonatomic, strong) dispatch_queue_t queue;
-@property (nonatomic, copy) NSArray *contactskeys;
 @property (nonatomic) ABAddressBookRef addressBook;
 #if LTContactAvailable
+@property (nonatomic, copy) NSArray *contactskeys;
 @property (nonatomic, strong) CNContactStore *contactStore API_AVAILABLE(ios(9.0));
 #endif
 @end
@@ -220,7 +220,7 @@
     return _contactStore;
 }
 
-#endif
+
 
 - (NSArray *)contactskeys
 {
@@ -251,6 +251,8 @@
     }
     return _contactskeys;
 }
+
+#endif
 
 - (ABAddressBookRef)addressBook
 {

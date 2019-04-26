@@ -1,6 +1,6 @@
 /*****
  * Tencent is pleased to support the open source community by making QMUI_iOS available.
- * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Copyright (C) 2016-2018 THL A29 Limited, a Tencent company. All rights reserved.
  * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
  * http://opensource.org/licenses/MIT
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
@@ -303,7 +303,7 @@ static NSUInteger const kTagForCenteredPlayButton = 1;
     self.scrollView.pinchGestureRecognizer.enabled = enabledZoomImageView;
     self.scrollView.minimumZoomScale = minimumZoomScale;
     self.scrollView.maximumZoomScale = maximumZoomScale;
-    self.contentView.frame = CGRectSetXY(self.contentView.frame, 0, 0);// 重置 origin 的目的是：https://github.com/Tencent/QMUI_iOS/issues/400
+    self.contentView.frame = CGRectSetXY(self.contentView.frame, 0, 0);// 重置 origin 的目的是：https://github.com/QMUI/QMUI_iOS/issues/400
     [self setZoomScale:zoomScale animated:NO];
     
     // 只有前后的 zoomScale 不相等，才会触发 UIScrollViewDelegate scrollViewDidZoom:，因此对于相等的情况要自己手动触发
@@ -422,11 +422,6 @@ static NSUInteger const kTagForCenteredPlayButton = 1;
             self.videoSize = CGSizeMake(fabs(size.width), fabs(size.height));
             break;
         }
-    }
-    
-    if (self.videoPlayer) {
-        // 移除旧的 videoPlayer 时，同时移除相应的 timeObserver
-        [self removePlayerTimeObserver];
     }
     
     self.videoPlayer = [AVPlayer playerWithPlayerItem:videoPlayerItem];

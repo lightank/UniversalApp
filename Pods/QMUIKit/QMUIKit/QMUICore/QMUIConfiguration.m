@@ -1,6 +1,6 @@
 /*****
  * Tencent is pleased to support the open source community by making QMUI_iOS available.
- * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Copyright (C) 2016-2018 THL A29 Limited, a Tencent company. All rights reserved.
  * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
  * http://opensource.org/licenses/MIT
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
@@ -52,7 +52,7 @@ static BOOL QMUI_hasAppliedInitialTemplate;
     
     // 自动寻找并应用模板
     // Automatically look for templates and apply them
-    // @see https://github.com/Tencent/QMUI_iOS/issues/264
+    // @see https://github.com/QMUI/QMUI_iOS/issues/264
     Protocol *protocol = @protocol(QMUIConfigurationTemplateProtocol);
     int numberOfClasses = objc_getClassList(NULL, 0);
     if (numberOfClasses > 0) {
@@ -281,8 +281,7 @@ static BOOL QMUI_hasAppliedInitialTemplate;
     self.preventConcurrentNavigationControllerTransitions = YES;
     self.navigationBarHiddenInitially = NO;
     self.shouldFixTabBarTransitionBugInIPhoneX = NO;
-    self.shouldFixTabBarButtonBugForAll = NO;
-    self.shouldPrintQMUIWarnLogToConsole = IS_DEBUG;
+    self.shouldAssertResizableImageCapInsetsError = NO;
     self.sendAnalyticsToQMUITeam = YES;
 }
 
@@ -291,7 +290,7 @@ static BOOL QMUI_hasAppliedInitialTemplate;
     // by molice 2017-08-04 只要用 appearence 的方式修改 UIBarButtonItem 的 font，就会导致界面切换时 UIBarButtonItem 抖动，系统的问题，所以暂时不修改 appearance。
     // by molice 2018-06-14 iOS 11 观察貌似又没抖动了，先试试看
     if (navBarButtonFont) {
-        UIBarButtonItem *barButtonItemAppearance = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]];
+        UIBarButtonItem *barButtonItemAppearance = [UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil];
         NSDictionary<NSAttributedStringKey,id> *attributes = @{NSFontAttributeName: navBarButtonFont};
         [barButtonItemAppearance setTitleTextAttributes:attributes forState:UIControlStateNormal];
         [barButtonItemAppearance setTitleTextAttributes:attributes forState:UIControlStateHighlighted];

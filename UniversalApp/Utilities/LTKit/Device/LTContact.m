@@ -312,7 +312,7 @@
 @end
 
 @implementation LTPhone
-
+#if LTContactAvailable
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
     self = [super init];
@@ -325,7 +325,7 @@
     }
     return self;
 }
-
+#endif
 - (instancetype)initWithMultiValue:(ABMultiValueRef)multiValue index:(CFIndex)index
 {
     self = [super init];
@@ -360,7 +360,7 @@
 @end
 
 @implementation LTEmail
-
+#if LTContactAvailable
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
     self = [super init];
@@ -371,6 +371,7 @@
     }
     return self;
 }
+#endif
 
 - (instancetype)initWithMultiValue:(ABMultiValueRef)multiValue index:(CFIndex)index
 {
@@ -396,6 +397,7 @@
 
 @implementation LTAddress
 
+#if LTContactAvailable
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
     self = [super init];
@@ -414,6 +416,7 @@
     }
     return self;
 }
+#endif
 
 - (instancetype)initWithMultiValue:(ABMultiValueRef)multiValue index:(CFIndex)index
 {
@@ -440,6 +443,7 @@
 
 @implementation LTBirthday
 
+#if LTContactAvailable
 - (instancetype)initWithCNContact:(CNContact *)contact
 {
     self = [super init];
@@ -461,6 +465,7 @@
     }
     return self;
 }
+#endif
 
 - (instancetype)initWithRecord:(ABRecordRef)record
 {
@@ -482,7 +487,7 @@
 @end
 
 @implementation LTMessage
-
+#if LTContactAvailable
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
     self = [super init];
@@ -494,7 +499,7 @@
     }
     return self;
 }
-
+#endif
 - (instancetype)initWithMultiValue:(ABMultiValueRef)multiValue index:(CFIndex)index
 {
     self = [super init];
@@ -510,7 +515,7 @@
 @end
 
 @implementation LTSocialProfile
-
+#if LTContactAvailable
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
     self = [super init];
@@ -523,6 +528,7 @@
     }
     return self;
 }
+#endif
 
 - (instancetype)initWithMultiValue:(ABMultiValueRef)multiValue index:(CFIndex)index
 {
@@ -540,7 +546,7 @@
 @end
 
 @implementation LTUrlAddress
-
+#if LTContactAvailable
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
     self = [super init];
@@ -551,7 +557,7 @@
     }
     return self;
 }
-
+#endif
 - (instancetype)initWithMultiValue:(ABMultiValueRef)multiValue index:(CFIndex)index
 {
     self = [super init];
@@ -569,7 +575,7 @@
 @end
 
 @implementation LTContactRelation
-
+#if LTContactAvailable
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
     self = [super init];
@@ -581,7 +587,7 @@
     }
     return self;
 }
-
+#endif
 - (instancetype)initWithMultiValue:(ABMultiValueRef)multiValue index:(CFIndex)index
 {
     self = [super init];

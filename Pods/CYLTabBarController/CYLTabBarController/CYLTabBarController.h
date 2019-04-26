@@ -8,17 +8,9 @@
 
 #import "CYLPlusButton.h"
 #import "UIViewController+CYLTabBarControllerExtention.h"
-#import "UIViewController+CYLNavigationControllerExtention.h"
 #import "UIView+CYLTabBarControllerExtention.h"
 #import "UITabBarItem+CYLTabBarControllerExtention.h"
 #import "UIControl+CYLTabBarControllerExtention.h"
-#import "CYLBaseViewController.h"
-#import "CYLBaseTableViewController.h"
-#import "CYLBaseNavigationController.h"
-#import "UITabBar+CYLTabBarControllerExtention.h"
-#import "UITabBarItem+CYLBadgeExtention.h"
-#import "UIBarButtonItem+CYLBadgeExtention.h"
-#import "UIView+CYLBadgeExtention.h"
 
 @class CYLTabBarController;
 typedef void(^CYLViewDidLayoutSubViewsBlock)(CYLTabBarController *tabBarController);
@@ -49,7 +41,7 @@ FOUNDATION_EXTERN CGFloat CYLTabBarHeight;
 @property (nonatomic, copy) CYLViewDidLayoutSubViewsBlock viewDidLayoutSubviewsBlock;
 
 - (void)setViewDidLayoutSubViewsBlock:(CYLViewDidLayoutSubViewsBlock)viewDidLayoutSubviewsBlock;
-- (void)setViewDidLayoutSubViewsBlockInvokeOnce:(BOOL)invokeOnce block:(CYLViewDidLayoutSubViewsBlock)viewDidLayoutSubviewsBlock;
+
 /*!
  * An array of the root view controllers displayed by the tab bar interface.
  */
@@ -109,8 +101,6 @@ FOUNDATION_EXTERN CGFloat CYLTabBarHeight;
 
 
 - (void)updateSelectionStatusIfNeededForTabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController;
-
-- (void)updateSelectionStatusIfNeededForTabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController shouldSelect:(BOOL)shouldSelect;
 
 - (void)hideTabBadgeBackgroundSeparator;
 

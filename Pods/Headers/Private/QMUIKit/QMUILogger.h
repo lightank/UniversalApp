@@ -1,1 +1,1 @@
-../../../QMUIKit/QMUIKit/QMUIComponents/QMUILog/QMUILogger.h
+../../../QMUIKit/QMUIKit/QMUIComponents/Log/QMUILogger.h

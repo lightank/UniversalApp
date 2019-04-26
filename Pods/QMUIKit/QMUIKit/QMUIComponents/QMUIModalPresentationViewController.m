@@ -1,6 +1,6 @@
 /*****
  * Tencent is pleased to support the open source community by making QMUI_iOS available.
- * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Copyright (C) 2016-2018 THL A29 Limited, a Tencent company. All rights reserved.
  * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
  * http://opensource.org/licenses/MIT
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
@@ -271,10 +271,10 @@ static QMUIModalPresentationViewController *appearance;
     void (^didHiddenCompletion)(BOOL finished) = ^(BOOL finished) {
         
         if (self.shownInWindowMode) {
-            // 恢复 keyWindow 之前做一下检查，避免这个问题 https://github.com/Tencent/QMUI_iOS/issues/90
+            // 恢复 keyWindow 之前做一下检查，避免这个问题 https://github.com/QMUI/QMUI_iOS/issues/90
             if ([[UIApplication sharedApplication] keyWindow] == self.containerWindow) {
                 if (self.previousKeyWindow.hidden) {
-                    // 保护了这个 issue 记录的情况，避免主 window 丢失 keyWindow https://github.com/Tencent/QMUI_iOS/issues/315
+                    // 保护了这个 issue 记录的情况，避免主 window 丢失 keyWindow https://github.com/QMUI/QMUI_iOS/issues/315
                     [[UIApplication sharedApplication].delegate.window makeKeyWindow];
                 } else {
                     [self.previousKeyWindow makeKeyWindow];
@@ -470,7 +470,9 @@ static QMUIModalPresentationViewController *appearance;
     self.previousKeyWindow = [UIApplication sharedApplication].keyWindow;
     if (!self.containerWindow) {
         self.containerWindow = [[QMUIModalPresentationWindow alloc] init];
-        self.containerWindow.qmui_capturesStatusBarAppearance = NO;// modalPrensetationViewController.contentViewController 默认无权管理状态栏的样式，如需修改状态栏，请业务自己将这个属性改为 YES
+        if (@available(iOS 10, *)) {
+            self.containerWindow.qmui_capturesStatusBarAppearance = NO;// modalPrensetationViewController.contentViewController 默认无权管理状态栏的样式，如需修改状态栏，请业务自己将这个属性改为 YES
+        }
         self.containerWindow.windowLevel = UIWindowLevelQMUIAlertView;
         self.containerWindow.backgroundColor = UIColorClear;// 避免横竖屏旋转时出现黑色
     }
@@ -531,7 +533,9 @@ static QMUIModalPresentationViewController *appearance;
 
 - (void)showInView:(UIView *)view animated:(BOOL)animated completion:(void (^)(BOOL))completion {
     self.appearCompletionBlock = completion;
+    BeginIgnoreAvailabilityWarning
     [self loadViewIfNeeded];
+    EndIgnoreAvailabilityWarning
     [self beginAppearanceTransition:YES animated:animated];
     [view addSubview:self.view];
     [self endAppearanceTransition];
@@ -694,7 +698,7 @@ static QMUIModalPresentationViewController *appearance;
 - (void)layoutSubviews {
     [super layoutSubviews];
     if (self.rootViewController) {
-        // https://github.com/Tencent/QMUI_iOS/issues/375
+        // https://github.com/QMUI/QMUI_iOS/issues/375
         UIView *rootView = self.rootViewController.view;
         if (CGRectGetMinY(rootView.frame) > 0 && ![UIApplication sharedApplication].statusBarHidden && StatusBarHeight > CGRectGetMinY(rootView.frame)) {
             rootView.frame = self.bounds;
@@ -706,6 +710,13 @@ static QMUIModalPresentationViewController *appearance;
 
 @implementation UIViewController (QMUIModalPresentationViewController)
 
-QMUISynthesizeIdWeakProperty(qmui_modalPresentationViewController, setQmui_modalPresentationViewController)
+static char kAssociatedObjectKey_ModalPresentationViewController;
+- (void)setQmui_modalPresentationViewController:(QMUIModalPresentationViewController *)modalPresentedViewController {
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_ModalPresentationViewController, modalPresentedViewController, OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (QMUIModalPresentationViewController *)qmui_modalPresentationViewController {
+    return (QMUIModalPresentationViewController *)objc_getAssociatedObject(self, &kAssociatedObjectKey_ModalPresentationViewController);
+}
 
 @end

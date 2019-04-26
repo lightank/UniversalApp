@@ -10,7 +10,6 @@
 #import "CYLTabBar.h"
 #import <objc/runtime.h>
 #import "UIViewController+CYLTabBarControllerExtention.h"
-#import "UIControl+CYLTabBarControllerExtention.h"
 
 NSString *const CYLTabBarItemTitle = @"CYLTabBarItemTitle";
 NSString *const CYLTabBarItemImage = @"CYLTabBarItemImage";
@@ -29,9 +28,8 @@ static void * const CYLTabImageViewDefaultOffsetContext = (void*)&CYLTabImageVie
 @interface CYLTabBarController () <UITabBarControllerDelegate>
 
 @property (nonatomic, assign, getter=isObservingTabImageViewDefaultOffset) BOOL observingTabImageViewDefaultOffset;
-@property (nonatomic, assign, getter=shouldInvokeOnceViewDidLayoutSubViewsBlock) BOOL invokeOnceViewDidLayoutSubViewsBlock;
-@end
 
+@end
 @implementation CYLTabBarController
 
 @synthesize viewControllers = _viewControllers;
@@ -56,21 +54,6 @@ static void * const CYLTabImageViewDefaultOffsetContext = (void*)&CYLTabImageVie
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
     [super setSelectedIndex:selectedIndex];
     [self updateSelectionStatusIfNeededForTabBarController:nil shouldSelectViewController:nil];
-    UIControl *selectedControl;
-    @try {
-        NSArray *subControls =  self.tabBar.cyl_visibleControls;
-        selectedControl = subControls[selectedIndex];
-    } @catch (NSException *exception) {
-        NSLog(@"🔴类名与方法名：%@（在第%@行），描述：%@", @(__PRETTY_FUNCTION__), @(__LINE__), exception.reason);
-    }
-    if (selectedControl) {
-        [self didSelectControl:selectedControl];
-    }
-}
-
-- (void)setViewDidLayoutSubViewsBlockInvokeOnce:(BOOL)invokeOnce block:(CYLViewDidLayoutSubViewsBlock)viewDidLayoutSubviewsBlock  {
-    self.viewDidLayoutSubviewsBlock = viewDidLayoutSubviewsBlock;
-    self.invokeOnceViewDidLayoutSubViewsBlock = YES;
 }
 
 - (void)setViewDidLayoutSubViewsBlock:(CYLViewDidLayoutSubViewsBlock)viewDidLayoutSubviewsBlock {
@@ -83,22 +66,11 @@ static void * const CYLTabImageViewDefaultOffsetContext = (void*)&CYLTabImageVie
         [self.tabBar layoutSubviews];//Fix issue #93
     }
     UITabBar *tabBar =  self.tabBar;
-    [tabBar.cyl_visibleControls enumerateObjectsUsingBlock:^(UIControl * _Nonnull control, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([control cyl_isPlusButton] && CYLPlusChildViewController.cyl_plusViewControllerEverAdded) {
-            return;
+    for (UIControl *control in tabBar.subviews) {
+        if ([control isKindOfClass:[UIControl class]]) {
+            SEL actin = @selector(didSelectControl:);
+            [control addTarget:self action:actin forControlEvents:UIControlEventTouchUpInside];
         }
-        SEL actin = @selector(didSelectControl:);
-        [control addTarget:self action:actin forControlEvents:UIControlEventTouchUpInside];
-    }];
-    if (self.shouldInvokeOnceViewDidLayoutSubViewsBlock) {
-        //在对象生命周期内，不添加 flag 属性的情况下，防止多次调进这个方法
-        if (objc_getAssociatedObject(self, _cmd)) {
-            return;
-        } else {
-            !self.viewDidLayoutSubviewsBlock ?: self.viewDidLayoutSubviewsBlock(self);
-            objc_setAssociatedObject(self, _cmd, @"shouldInvokeOnceViewDidLayoutSubViewsBlock", OBJC_ASSOCIATION_RETAIN);
-        }
-        return;
     }
     !self.viewDidLayoutSubviewsBlock ?: self.viewDidLayoutSubviewsBlock(self);
 }
@@ -332,10 +304,8 @@ static void * const CYLTabImageViewDefaultOffsetContext = (void*)&CYLTabImageVie
             [viewControllersWithPlusButton insertObject:CYLPlusChildViewController atIndex:CYLPlusButtonIndex];
             _viewControllers = [viewControllersWithPlusButton copy];
             [CYLPlusChildViewController cyl_setPlusViewControllerEverAdded:YES];
-            [CYLExternPlusButton cyl_setTabBarChildViewControllerIndex:CYLPlusButtonIndex];
         } else {
             _viewControllers = [viewControllers copy];
-            [CYLExternPlusButton cyl_setTabBarChildViewControllerIndex:NSNotFound];
         }
         CYLTabbarItemsCount = [viewControllers count];
         CYLTabBarItemWidth = ([UIScreen mainScreen].bounds.size.width - CYLPlusButtonWidth) / (CYLTabbarItemsCount);
@@ -383,10 +353,7 @@ static void * const CYLTabImageViewDefaultOffsetContext = (void*)&CYLTabImageVie
 
 - (void)setTintColor:(UIColor *)tintColor {
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.f) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         [self.tabBar setSelectedImageTintColor:tintColor];
-#pragma clang diagnostic pop
     }
     self.tabBar.tintColor = tintColor;
 }
@@ -490,22 +457,19 @@ static void * const CYLTabImageViewDefaultOffsetContext = (void*)&CYLTabImageVie
 }
 
 #pragma mark - delegate
-- (void)updateSelectionStatusIfNeededForTabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-    [self updateSelectionStatusIfNeededForTabBarController:tabBarController shouldSelectViewController:viewController shouldSelect:YES];
-}
 
-- (void)updateSelectionStatusIfNeededForTabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController shouldSelect:(BOOL)shouldSelect {
-    [[viewController.tabBarItem cyl_tabButton] cyl_setShouldNotSelect:!shouldSelect];
-    if (!shouldSelect) {
-        return;
-    }
+- (void)updateSelectionStatusIfNeededForTabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     UIButton *plusButton = CYLExternPlusButton;
     if (!viewController) {
         viewController = self.selectedViewController;
     }
-    BOOL isCurrentViewController = [self isEqualViewController:viewController compairedViewController:CYLPlusChildViewController];
+     BOOL isCurrentViewController = [self isEqualViewController:viewController compairedViewController:CYLPlusChildViewController];
     BOOL shouldConfigureSelectionStatus = (!isCurrentViewController);
-    plusButton.selected = !shouldConfigureSelectionStatus;
+    if (shouldConfigureSelectionStatus) {
+        plusButton.selected = NO;
+    } else {
+        plusButton.selected = YES;
+    }
 }
 
 - (BOOL)isEqualViewController:(UIViewController *)viewController compairedViewController:(UIViewController *)compairedViewController {
@@ -528,13 +492,7 @@ static void * const CYLTabImageViewDefaultOffsetContext = (void*)&CYLTabImageVie
 
 - (void)didSelectControl:(UIControl *)control {
     SEL actin = @selector(tabBarController:didSelectControl:);
-    BOOL shouldSelectViewController =  YES;
-    @try {
-       shouldSelectViewController = (!control.cyl_shouldNotSelect) &&  (!control.hidden) ;
-    } @catch (NSException *exception) {
-        NSLog(@"🔴类名与方法名：%@（在第%@行），描述：%@", @(__PRETTY_FUNCTION__), @(__LINE__), exception.reason);
-    }
-    if ([self.delegate respondsToSelector:actin] && shouldSelectViewController) {
+    if ([self.delegate respondsToSelector:actin]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self.delegate performSelector:actin withObject:self withObject:control ?: self.selectedViewController.tabBarItem.cyl_tabButton];
@@ -560,14 +518,14 @@ static void * const CYLTabImageViewDefaultOffsetContext = (void*)&CYLTabImageVie
 - (void)cyl_setTabBarController:(CYLTabBarController *)tabBarController {
     //OBJC_ASSOCIATION_ASSIGN instead of OBJC_ASSOCIATION_RETAIN_NONATOMIC to avoid retain circle
     id __weak weakObject = tabBarController;
-    id (^block)(void) = ^{ return weakObject; };
+    id (^block)() = ^{ return weakObject; };
     objc_setAssociatedObject(self, @selector(cyl_tabBarController),
                              block, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (CYLTabBarController *)cyl_tabBarController {
     CYLTabBarController *tabBarController;
-    id (^block)(void) = objc_getAssociatedObject(self, @selector(cyl_tabBarController));
+    id (^block)() = objc_getAssociatedObject(self, @selector(cyl_tabBarController));
     tabBarController = (block ? block() : nil);
     if (tabBarController && [tabBarController isKindOfClass:[CYLTabBarController class]]) {
         return tabBarController;

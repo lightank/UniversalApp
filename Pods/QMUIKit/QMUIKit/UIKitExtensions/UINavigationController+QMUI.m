@@ -1,6 +1,6 @@
 /*****
  * Tencent is pleased to support the open source community by making QMUI_iOS available.
- * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Copyright (C) 2016-2018 THL A29 Limited, a Tencent company. All rights reserved.
  * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
  * http://opensource.org/licenses/MIT
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
@@ -21,14 +21,21 @@
 @interface UINavigationController (BackButtonHandlerProtocol)
 
 // `UINavigationControllerBackButtonHandlerProtocol`的`canPopViewController`功能里面，当 A canPop = NO，B canPop = YES，那么从 B 手势返回到 A，也会触发 A 的 `canPopViewController` 方法，这是因为手势返回会去询问`gestureRecognizerShouldBegin:`和`qmuinav_navigationBar:shouldPopItem:`，而这两个方法里面的 self.topViewController 是不同的对象，所以导致这个问题。所以通过 tmp_topViewController 来记录 self.topViewController 从而保证两个地方的值是相等的。
-// 手势从 B 返回 A，如果 A 没有 navBar，那么`qmuinav_navigationBar:shouldPopItem:`是不会被调用的，所以导致 tmp_topViewController 没有被释放，所以 tmp_topViewController 需要使用 weak 来修饰（https://github.com/Tencent/QMUI_iOS/issues/251）
+// 手势从 B 返回 A，如果 A 没有 navBar，那么`qmuinav_navigationBar:shouldPopItem:`是不会被调用的，所以导致 tmp_topViewController 没有被释放，所以 tmp_topViewController 需要使用 weak 来修饰（https://github.com/QMUI/QMUI_iOS/issues/251）
 @property(nonatomic, weak) UIViewController *tmp_topViewController;
 
 @end
 
 @implementation UINavigationController (BackButtonHandlerProtocol)
 
-QMUISynthesizeIdWeakProperty(tmp_topViewController, setTmp_topViewController)
+- (UIViewController *)tmp_topViewController {
+    id object = [objc_getAssociatedObject(self, _cmd) object];
+    return (UIViewController *)object;
+}
+
+- (void)setTmp_topViewController:(UIViewController *)viewController {
+    objc_setAssociatedObject(self, @selector(tmp_topViewController), [[QMUIWeakObjectContainer alloc] initWithObject:viewController], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
 @end
 

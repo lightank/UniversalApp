@@ -1,6 +1,6 @@
 /*****
  * Tencent is pleased to support the open source community by making QMUI_iOS available.
- * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Copyright (C) 2016-2018 THL A29 Limited, a Tencent company. All rights reserved.
  * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
  * http://opensource.org/licenses/MIT
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
@@ -29,12 +29,15 @@ NSString *const QMUITabBarStyleChangedNotification = @"QMUITabBarStyleChangedNot
 
 @interface UIViewController ()
 
-@property(nonatomic, strong) UINavigationBar *transitionNavigationBar;// by molice 对应 UIViewController (NavigationBarTransition) 里的 transitionNavigationBar，为了让这个属性在这里可以被访问到，有点 hack，具体请查看 https://github.com/Tencent/QMUI_iOS/issues/268
+@property(nonatomic, strong) UINavigationBar *transitionNavigationBar;// by molice 对应 UIViewController (NavigationBarTransition) 里的 transitionNavigationBar，为了让这个属性在这里可以被访问到，有点 hack，具体请查看 https://github.com/QMUI/QMUI_iOS/issues/268
 @end
 
 @implementation UIViewController (QMUI)
 
-QMUISynthesizeIdCopyProperty(qmui_visibleStateDidChangeBlock, setQmui_visibleStateDidChangeBlock)
+void qmuivc_loadViewIfNeeded (id current_self, SEL current_cmd) {
+    // 主动调用 self.view，从而触发 loadView，以模拟 iOS 9.0 以下的系统 loadViewIfNeeded 行为
+    [((UIViewController *)current_self) view];
+}
 
 + (void)load {
     static dispatch_once_t onceToken;
@@ -56,8 +59,14 @@ QMUISynthesizeIdCopyProperty(qmui_visibleStateDidChangeBlock, setQmui_visibleSta
             ExchangeImplementations([self class], originalSelector, swizzledSelector);
         }
         
+        // 兼容 iOS 9.0 以下的版本对 loadViewIfNeeded 方法的调用
+        if (![[UIViewController class] instancesRespondToSelector:@selector(loadViewIfNeeded)]) {
+            Class metaclass = [UIViewController class];
+            class_addMethod(metaclass, @selector(loadViewIfNeeded), (IMP)qmuivc_loadViewIfNeeded, "v@:");
+        }
+        
         // 修复 iOS 11 scrollView 无法自动适配不透明的 tabBar，导致底部 inset 错误的问题
-        // https://github.com/Tencent/QMUI_iOS/issues/218
+        // https://github.com/QMUI/QMUI_iOS/issues/218
         if (@available(iOS 11, *)) {
             ExchangeImplementations([UIViewController class], @selector(initWithNibName:bundle:), @selector(qmuivc_initWithNibName:bundle:));
         }
@@ -104,6 +113,15 @@ static char kAssociatedObjectKey_visibleState;
 
 - (QMUIViewControllerVisibleState)qmui_visibleState {
     return [((NSNumber *)objc_getAssociatedObject(self, &kAssociatedObjectKey_visibleState)) unsignedIntegerValue];
+}
+
+static char kAssociatedObjectKey_visibleStateDidChangeBlock;
+- (void)setQmui_visibleStateDidChangeBlock:(void (^)(__kindof UIViewController *, QMUIViewControllerVisibleState))qmui_visibleStateDidChangeBlock {
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_visibleStateDidChangeBlock, qmui_visibleStateDidChangeBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void (^)(__kindof UIViewController *, QMUIViewControllerVisibleState))qmui_visibleStateDidChangeBlock {
+    return (void (^)(__kindof UIViewController *, QMUIViewControllerVisibleState))objc_getAssociatedObject(self, &kAssociatedObjectKey_visibleStateDidChangeBlock);
 }
 
 - (void)qmuivc_viewDidLoad {
@@ -161,7 +179,7 @@ static char kAssociatedObjectKey_visibleState;
         
         UITabBar *tabBar = self.tabBarController.tabBar;
         
-        // 这串判断条件来源于这个 issue：https://github.com/Tencent/QMUI_iOS/issues/218
+        // 这串判断条件来源于这个 issue：https://github.com/QMUI/QMUI_iOS/issues/218
         BOOL isOpaqueBarAndCanExtendedLayout = !tabBar.translucent && self.extendedLayoutIncludesOpaqueBars;
         if (!isOpaqueBarAndCanExtendedLayout) {
             return;
@@ -169,7 +187,7 @@ static char kAssociatedObjectKey_visibleState;
         
         BOOL tabBarHidden = tabBar.hidden;
         
-        // 这里直接用 CGRectGetHeight(tabBar.frame) 来计算理论上不准确，但因为系统有这个 bug（https://github.com/Tencent/QMUI_iOS/issues/217），所以暂时用 CGRectGetHeight(tabBar.frame) 来代替
+        // 这里直接用 CGRectGetHeight(tabBar.frame) 来计算理论上不准确，但因为系统有这个 bug（https://github.com/QMUI/QMUI_iOS/issues/217），所以暂时用 CGRectGetHeight(tabBar.frame) 来代替
         CGFloat correctSafeAreaInsetsBottom = tabBarHidden ? tabBar.safeAreaInsets.bottom : CGRectGetHeight(tabBar.frame);
         CGFloat additionalSafeAreaInsetsBottom = correctSafeAreaInsetsBottom - tabBar.safeAreaInsets.bottom;
         self.additionalSafeAreaInsets = UIEdgeInsetsSetBottom(self.additionalSafeAreaInsets, additionalSafeAreaInsetsBottom);
@@ -235,7 +253,7 @@ static char kAssociatedObjectKey_visibleState;
         return 0;
     }
     
-    // 这里为什么要把 transitionNavigationBar 考虑进去，请参考 https://github.com/Tencent/QMUI_iOS/issues/268
+    // 这里为什么要把 transitionNavigationBar 考虑进去，请参考 https://github.com/QMUI/QMUI_iOS/issues/268
     UINavigationBar *navigationBar = !self.navigationController.navigationBarHidden && self.navigationController.navigationBar ? self.navigationController.navigationBar : ([self respondsToSelector:@selector(transitionNavigationBar)] && self.transitionNavigationBar ? self.transitionNavigationBar : nil);
     
     if (!navigationBar) {
@@ -308,8 +326,6 @@ static char kAssociatedObjectKey_visibleState;
 
 @implementation UIViewController (Data)
 
-QMUISynthesizeIdCopyProperty(qmui_didAppearAndLoadDataBlock, setQmui_didAppearAndLoadDataBlock)
-
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -323,6 +339,15 @@ QMUISynthesizeIdCopyProperty(qmui_didAppearAndLoadDataBlock, setQmui_didAppearAn
         self.qmui_didAppearAndLoadDataBlock();
         self.qmui_didAppearAndLoadDataBlock = nil;
     }
+}
+
+static char kAssociatedObjectKey_didAppearAndLoadDataBlock;
+- (void)setQmui_didAppearAndLoadDataBlock:(void (^)(void))qmui_didAppearAndLoadDataBlock {
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_didAppearAndLoadDataBlock, qmui_didAppearAndLoadDataBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void (^)(void))qmui_didAppearAndLoadDataBlock {
+    return (void (^)(void))objc_getAssociatedObject(self, &kAssociatedObjectKey_didAppearAndLoadDataBlock);
 }
 
 static char kAssociatedObjectKey_dataLoaded;
@@ -388,7 +413,7 @@ static char kAssociatedObjectKey_dataLoaded;
         return;
     }
     
-    // 某些情况下的 UIViewController 不具备决定设备方向的权利，具体请看 https://github.com/Tencent/QMUI_iOS/issues/291
+    // 某些情况下的 UIViewController 不具备决定设备方向的权利，具体请看 https://github.com/QMUI/QMUI_iOS/issues/291
     if (![self qmui_shouldForceRotateDeviceOrientation]) {
         BOOL isRootViewController = [self isViewLoaded] && self.view.window.rootViewController == self;
         BOOL isChildViewController = [self.tabBarController.viewControllers containsObject:self] || [self.navigationController.viewControllers containsObject:self] || [self.splitViewController.viewControllers containsObject:self];
@@ -442,7 +467,7 @@ static char kAssociatedObjectKey_dataLoaded;
 @end
 
 // 为了 UIViewController 适配 iOS 11 下出现不透明的 tabBar 时底部 inset 错误的问题而创建的 Category
-// https://github.com/Tencent/QMUI_iOS/issues/218
+// https://github.com/QMUI/QMUI_iOS/issues/218
 @interface UITabBar (NavigationController)
 
 @end

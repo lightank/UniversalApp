@@ -21,7 +21,6 @@
 		3D4A2F9C21A2585A00817536 /* LTLocalizations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A2F9B21A2585A00817536 /* LTLocalizations.m */; };
 		3D4A2F9F21A2640600817536 /* LTLanguageSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A2F9E21A2640600817536 /* LTLanguageSettingViewController.m */; };
 		3D4A2FA321A2DF3900817536 /* LTLanguageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A2FA221A2DF3900817536 /* LTLanguageTableViewCell.m */; };
-		3D50913F20C6790F00A21655 /* PrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D50913D20C6790F00A21655 /* PrivacyPermission.m */; };
 		3D67930D213E23160017891D /* LTFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D67930C213E23160017891D /* LTFirstViewController.m */; };
 		3DACBB30219EAD610077E262 /* LTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DACBB2F219EAD610077E262 /* LTLoginViewController.m */; };
 		3DB0BB61214117EF00EA1B6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DB0BB63214117EF00EA1B6E /* InfoPlist.strings */; };
@@ -67,10 +66,12 @@
 		A073C308224A3F7B00B685A1 /* NSDictionary+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2EF224A3F7900B685A1 /* NSDictionary+LTAdd.m */; };
 		A073C309224A3F7B00B685A1 /* NSObject+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2F2224A3F7A00B685A1 /* NSObject+LTAdd.m */; };
 		A073C30A224A3F7B00B685A1 /* NSArray+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2F4224A3F7A00B685A1 /* NSArray+LTAdd.m */; };
+		A07830C72273CDB600771DA3 /* LTPrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = A07830C52273CDB600771DA3 /* LTPrivacyPermission.m */; };
+		A07830CA2273CDE000771DA3 /* LTContact.m in Sources */ = {isa = PBXBuildFile; fileRef = A07830C82273CDE000771DA3 /* LTContact.m */; };
+		A07830CD2273CDF500771DA3 /* LTDynamicDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = A07830CC2273CDF500771DA3 /* LTDynamicDevice.m */; };
 		A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */; };
-		A0E4D1CE2272A44F0091E66C /* LTDynamicDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E4D1CD2272A44F0091E66C /* LTDynamicDevice.m */; };
-		A0E4D1DD2272FD670091E66C /* LTContact.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E4D1DC2272FD670091E66C /* LTContact.m */; };
-		A0F53AE82273323D0059088D /* LTPrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F53AE72273323D0059088D /* LTPrivacyPermission.m */; };
+		A0D25DEA227350BF001168A5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DE9227350BF001168A5 /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A0D25DEC22735138001168A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DEB22735138001168A5 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E263541D9C33F5DD3886B5D4 /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */; };
 		FB553A15234B274C38B6CE91 /* libPods-UniversalAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0296C350224E490362599AB1 /* libPods-UniversalAppTests.a */; };
 /* End PBXBuildFile section */
@@ -128,8 +129,6 @@
 		3D4A2F9E21A2640600817536 /* LTLanguageSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTLanguageSettingViewController.m; sourceTree = "<group>"; };
 		3D4A2FA121A2DF3900817536 /* LTLanguageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTLanguageTableViewCell.h; sourceTree = "<group>"; };
 		3D4A2FA221A2DF3900817536 /* LTLanguageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTLanguageTableViewCell.m; sourceTree = "<group>"; };
-		3D50913D20C6790F00A21655 /* PrivacyPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyPermission.m; sourceTree = "<group>"; };
-		3D50913E20C6790F00A21655 /* PrivacyPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyPermission.h; sourceTree = "<group>"; };
 		3D67930B213E23160017891D /* LTFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTFirstViewController.h; sourceTree = "<group>"; };
 		3D67930C213E23160017891D /* LTFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTFirstViewController.m; sourceTree = "<group>"; };
 		3D6C03E5217441F000FB9672 /* ApplicationConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationConfig.h; sourceTree = "<group>"; };
@@ -230,14 +229,17 @@
 		A073C2F3224A3F7A00B685A1 /* NSDictionary+LTAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LTAdd.h"; sourceTree = "<group>"; };
 		A073C2F4224A3F7A00B685A1 /* NSArray+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LTAdd.m"; sourceTree = "<group>"; };
 		A073C2F5224A3F7A00B685A1 /* LTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTKit.h; sourceTree = "<group>"; };
+		A07830BD22735F3600771DA3 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		A07830C52273CDB600771DA3 /* LTPrivacyPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTPrivacyPermission.m; sourceTree = "<group>"; };
+		A07830C62273CDB600771DA3 /* LTPrivacyPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPrivacyPermission.h; sourceTree = "<group>"; };
+		A07830C82273CDE000771DA3 /* LTContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTContact.m; sourceTree = "<group>"; };
+		A07830C92273CDE000771DA3 /* LTContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTContact.h; sourceTree = "<group>"; };
+		A07830CB2273CDF500771DA3 /* LTDynamicDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTDynamicDevice.h; sourceTree = "<group>"; };
+		A07830CC2273CDF500771DA3 /* LTDynamicDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTDynamicDevice.m; sourceTree = "<group>"; };
 		A0C2CFB12254A31F00190314 /* NSURL+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+LTAdd.h"; sourceTree = "<group>"; };
 		A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+LTAdd.m"; sourceTree = "<group>"; };
-		A0E4D1CC2272A44F0091E66C /* LTDynamicDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTDynamicDevice.h; sourceTree = "<group>"; };
-		A0E4D1CD2272A44F0091E66C /* LTDynamicDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTDynamicDevice.m; sourceTree = "<group>"; };
-		A0E4D1DB2272FD670091E66C /* LTContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTContact.h; sourceTree = "<group>"; };
-		A0E4D1DC2272FD670091E66C /* LTContact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTContact.m; sourceTree = "<group>"; };
-		A0F53AE62273323D0059088D /* LTPrivacyPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPrivacyPermission.h; sourceTree = "<group>"; };
-		A0F53AE72273323D0059088D /* LTPrivacyPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTPrivacyPermission.m; sourceTree = "<group>"; };
+		A0D25DE9227350BF001168A5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		A0D25DEB22735138001168A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A244D68607808162F3309FE0 /* Pods-UniversalAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppUITests/Pods-UniversalAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC8739C3BF6125C27952E091 /* Pods-UniversalAppTests.sit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppTests.sit.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppTests/Pods-UniversalAppTests.sit.xcconfig"; sourceTree = "<group>"; };
 		C88A913B462EFBFE7833C24D /* Pods-UniversalAppTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppTests/Pods-UniversalAppTests.dev.xcconfig"; sourceTree = "<group>"; };
@@ -253,6 +255,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0D25DEC22735138001168A5 /* UIKit.framework in Frameworks */,
+				A0D25DEA227350BF001168A5 /* CoreFoundation.framework in Frameworks */,
 				3D20AC3F20B3B04200BDE45D /* JavaScriptCore.framework in Frameworks */,
 				E263541D9C33F5DD3886B5D4 /* libPods-UniversalApp.a in Frameworks */,
 				3DEE10B320EB05C0002C597D /* libOpenInstallSDK.a in Frameworks */,
@@ -281,6 +285,9 @@
 		03A351799EE8CF542DAEE2A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A07830BD22735F3600771DA3 /* Contacts.framework */,
+				A0D25DEB22735138001168A5 /* UIKit.framework */,
+				A0D25DE9227350BF001168A5 /* CoreFoundation.framework */,
 				3D20AC3D20B2C83800BDE45D /* JavaScriptCore.framework */,
 				4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */,
 				0296C350224E490362599AB1 /* libPods-UniversalAppTests.a */,
@@ -358,15 +365,6 @@
 				3D4A2FA221A2DF3900817536 /* LTLanguageTableViewCell.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		3D50913C20C6790400A21655 /* PrivacyPermission */ = {
-			isa = PBXGroup;
-			children = (
-				3D50913E20C6790F00A21655 /* PrivacyPermission.h */,
-				3D50913D20C6790F00A21655 /* PrivacyPermission.m */,
-			);
-			path = PrivacyPermission;
 			sourceTree = "<group>";
 		};
 		3D679309213E23160017891D /* FirstViewController */ = {
@@ -522,7 +520,6 @@
 			isa = PBXGroup;
 			children = (
 				3DEE10AF20EB05C0002C597D /* OpenInstallSDK2.2.0 */,
-				3D50913C20C6790400A21655 /* PrivacyPermission */,
 				3D03D64120B80C17006F6F75 /* LTNavigationBar */,
 				3DCC9F4B20B019F100CD476A /* YYFPSLabel */,
 			);
@@ -728,12 +725,12 @@
 		A0A9A3A42251EBC700C2188E /* Device */ = {
 			isa = PBXGroup;
 			children = (
+				A07830CB2273CDF500771DA3 /* LTDynamicDevice.h */,
+				A07830CC2273CDF500771DA3 /* LTDynamicDevice.m */,
+				A07830C92273CDE000771DA3 /* LTContact.h */,
+				A07830C82273CDE000771DA3 /* LTContact.m */,
 				3D48666E20B1AE0F002BACA8 /* LTDevice.h */,
 				3D48666720B1AE0F002BACA8 /* LTDevice.m */,
-				A0E4D1CC2272A44F0091E66C /* LTDynamicDevice.h */,
-				A0E4D1CD2272A44F0091E66C /* LTDynamicDevice.m */,
-				A0E4D1DB2272FD670091E66C /* LTContact.h */,
-				A0E4D1DC2272FD670091E66C /* LTContact.m */,
 			);
 			path = Device;
 			sourceTree = "<group>";
@@ -741,8 +738,8 @@
 		A0F53AE52273323D0059088D /* LTPrivacyPermission */ = {
 			isa = PBXGroup;
 			children = (
-				A0F53AE62273323D0059088D /* LTPrivacyPermission.h */,
-				A0F53AE72273323D0059088D /* LTPrivacyPermission.m */,
+				A07830C62273CDB600771DA3 /* LTPrivacyPermission.h */,
+				A07830C52273CDB600771DA3 /* LTPrivacyPermission.m */,
 			);
 			path = LTPrivacyPermission;
 			sourceTree = "<group>";
@@ -921,7 +918,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/QMUIKit/QMUIKit/QMUIResources/QMUIResources.bundle",
@@ -934,7 +931,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6D184C78EAD76F8A1BC4F92 /* [CP] Check Pods Manifest.lock */ = {
@@ -968,13 +965,13 @@
 				A073C304224A3F7B00B685A1 /* UINavigationController+LTAdd.m in Sources */,
 				A073C309224A3F7B00B685A1 /* NSObject+LTAdd.m in Sources */,
 				3D48668120B1B34D002BACA8 /* LTSandboxTool.m in Sources */,
-				3D50913F20C6790F00A21655 /* PrivacyPermission.m in Sources */,
 				3D03D64420B80C27006F6F75 /* UINavigationBar+Awesome.m in Sources */,
 				A035615521C3859C00DAAEE1 /* LTListTableViewController.m in Sources */,
 				A01255EF22680D0C009223E1 /* CALayer+LTAdd.m in Sources */,
 				3D4A2F9C21A2585A00817536 /* LTLocalizations.m in Sources */,
 				A073C30A224A3F7B00B685A1 /* NSArray+LTAdd.m in Sources */,
 				A073C305224A3F7B00B685A1 /* UIWindow+LTAdd.m in Sources */,
+				A07830C72273CDB600771DA3 /* LTPrivacyPermission.m in Sources */,
 				A073C2F9224A3F7B00B685A1 /* UIImage+LTAdd.m in Sources */,
 				A073C2FD224A3F7B00B685A1 /* UITextView+LTAdd.m in Sources */,
 				A073C302224A3F7B00B685A1 /* UIView+LTAdd.m in Sources */,
@@ -985,12 +982,12 @@
 				3DCC9F7120B02D4500CD476A /* LTTabBarControllerConfig.m in Sources */,
 				3DBD184B21CCD36400E98730 /* LTWKWebView.m in Sources */,
 				A073C303224A3F7B00B685A1 /* UINavigationBar+LTAdd.m in Sources */,
-				A0F53AE82273323D0059088D /* LTPrivacyPermission.m in Sources */,
 				3DCC9F4A20B018F900CD476A /* AppDelegate+AppService.m in Sources */,
 				3DCC9F7520B02E0A00CD476A /* LTNavigationController.m in Sources */,
 				3DCC9F4E20B019F100CD476A /* YYFPSLabel.m in Sources */,
 				3D48667E20B1B1C5002BACA8 /* LTUser.m in Sources */,
 				A035615821C3F6FD00DAAEE1 /* LTObjcViewController.m in Sources */,
+				A07830CA2273CDE000771DA3 /* LTContact.m in Sources */,
 				3DCC9F2120B006F100CD476A /* main.m in Sources */,
 				A073C306224A3F7B00B685A1 /* UIColor+LTAdd.m in Sources */,
 				A073C2FE224A3F7B00B685A1 /* UIScrollView+LTRefresh.m in Sources */,
@@ -998,8 +995,6 @@
 				3DFE3E7020EA531500A8832C /* AppDelegate+UMengAnalytics.m in Sources */,
 				3DE5B32420B11EBE009719D0 /* LTBaseRequest.m in Sources */,
 				A073C2FC224A3F7B00B685A1 /* UIButton+LTAdd.m in Sources */,
-				A0E4D1DD2272FD670091E66C /* LTContact.m in Sources */,
-				A0E4D1CE2272A44F0091E66C /* LTDynamicDevice.m in Sources */,
 				3D48667B20B1B1B7002BACA8 /* LTUserManager.m in Sources */,
 				A073C308224A3F7B00B685A1 /* NSDictionary+LTAdd.m in Sources */,
 				3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */,
@@ -1013,6 +1008,7 @@
 				A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */,
 				A035615F21C3F8B400DAAEE1 /* LTBlockExample.m in Sources */,
 				3D03D63B20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m in Sources */,
+				A07830CD2273CDF500771DA3 /* LTDynamicDevice.m in Sources */,
 				3D4A2FA321A2DF3900817536 /* LTLanguageTableViewCell.m in Sources */,
 				3DDDBEC621941CCF004D68F6 /* LTExampleCode.m in Sources */,
 				3DFE3E7620EA533300A8832C /* AppDelegate+JPush.m in Sources */,

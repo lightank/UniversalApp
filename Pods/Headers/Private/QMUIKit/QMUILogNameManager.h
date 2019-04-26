@@ -1,1 +1,1 @@
-../../../QMUIKit/QMUIKit/QMUIComponents/QMUILog/QMUILogNameManager.h
+../../../QMUIKit/QMUIKit/QMUIComponents/Log/QMUILogNameManager.h

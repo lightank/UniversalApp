@@ -1,6 +1,6 @@
 /*****
  * Tencent is pleased to support the open source community by making QMUI_iOS available.
- * Copyright (C) 2016-2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Copyright (C) 2016-2018 THL A29 Limited, a Tencent company. All rights reserved.
  * Licensed under the MIT License (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
  * http://opensource.org/licenses/MIT
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
@@ -25,12 +25,35 @@
 
 @implementation UIViewController (QMUINavigationController)
 
-QMUISynthesizeBOOLProperty(qmui_navigationControllerPopGestureRecognizerChanging, setQmui_navigationControllerPopGestureRecognizerChanging)
-QMUISynthesizeBOOLProperty(qmui_poppingByInteractivePopGestureRecognizer, setQmui_poppingByInteractivePopGestureRecognizer)
-QMUISynthesizeBOOLProperty(qmui_willAppearByInteractivePopGestureRecognizer, setQmui_willAppearByInteractivePopGestureRecognizer)
-
 - (BOOL)qmui_navigationControllerPoppingInteracted {
     return self.qmui_poppingByInteractivePopGestureRecognizer || self.qmui_willAppearByInteractivePopGestureRecognizer;
+}
+
+static char kAssociatedObjectKey_navigationControllerPopGestureRecognizerChanging;
+- (void)setQmui_navigationControllerPopGestureRecognizerChanging:(BOOL)qmui_navigationControllerPopGestureRecognizerChanging {
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_navigationControllerPopGestureRecognizerChanging, @(qmui_navigationControllerPopGestureRecognizerChanging), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)qmui_navigationControllerPopGestureRecognizerChanging {
+    return [((NSNumber *)objc_getAssociatedObject(self, &kAssociatedObjectKey_navigationControllerPopGestureRecognizerChanging)) boolValue];
+}
+
+static char kAssociatedObjectKey_poppingByInteractivePopGestureRecognizer;
+- (void)setQmui_poppingByInteractivePopGestureRecognizer:(BOOL)qmui_poppingByInteractivePopGestureRecognizer {
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_poppingByInteractivePopGestureRecognizer, @(qmui_poppingByInteractivePopGestureRecognizer), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)qmui_poppingByInteractivePopGestureRecognizer {
+    return [((NSNumber *)objc_getAssociatedObject(self, &kAssociatedObjectKey_poppingByInteractivePopGestureRecognizer)) boolValue];
+}
+
+static char kAssociatedObjectKey_willAppearByInteractivePopGestureRecognizer;
+- (void)setQmui_willAppearByInteractivePopGestureRecognizer:(BOOL)qmui_willAppearByInteractivePopGestureRecognizer {
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_willAppearByInteractivePopGestureRecognizer, @(qmui_willAppearByInteractivePopGestureRecognizer), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)qmui_willAppearByInteractivePopGestureRecognizer {
+    return [((NSNumber *)objc_getAssociatedObject(self, &kAssociatedObjectKey_willAppearByInteractivePopGestureRecognizer)) boolValue];
 }
 
 @end
@@ -311,7 +334,7 @@ static char kAssociatedObjectKey_qmui_viewWillAppearNotifyDelegate;
         return;
     }
     
-    // 增加一个 presentedViewController 作为判断条件是因为这个 issue：https://github.com/Tencent/QMUI_iOS/issues/261
+    // 增加一个 presentedViewController 作为判断条件是因为这个 issue：https://github.com/QMUI/QMUI_iOS/issues/261
     if (!self.presentedViewController && animated) {
         self.isViewControllerTransiting = YES;
     }
@@ -337,7 +360,7 @@ static char kAssociatedObjectKey_qmui_viewWillAppearNotifyDelegate;
     [super pushViewController:viewController animated:animated];
     
     // 某些情况下 push 操作可能会被系统拦截，实际上该 push 并不生效，这种情况下应当恢复相关标志位，否则会影响后续的 push 操作
-    // https://github.com/Tencent/QMUI_iOS/issues/426
+    // https://github.com/QMUI/QMUI_iOS/issues/426
     if (![self.viewControllers containsObject:viewController]) {
         self.isViewControllerTransiting = NO;
     }
@@ -421,11 +444,6 @@ static char kAssociatedObjectKey_qmui_viewWillAppearNotifyDelegate;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    // fix iOS 9 UIAlertController bug: UIAlertController:supportedInterfaceOrientations was invoked recursively!
-    // https://github.com/Tencent/QMUI_iOS/issues/502
-    if (IOS_VERSION_NUMBER < 100000 && [self.visibleViewController isKindOfClass:UIAlertController.class]) {
-        return SupportedOrientationMask;
-    }
     return [self.visibleViewController qmui_hasOverrideUIKitMethod:_cmd] ? [self.visibleViewController supportedInterfaceOrientations] : SupportedOrientationMask;
 }
 

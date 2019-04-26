@@ -12,6 +12,7 @@
 #import "LTTabBarControllerConfig.h"
 #import "LTNetworkTools.h"
 #import "LTPrivacyPermission.h"
+#import "LTDynamicDevice.h"
 
 @implementation AppDelegate (AppService)
 
@@ -37,7 +38,7 @@
        if (authorized)
        {
            [LTDynamicDevice accessContacts:^(NSArray<LTContact *> *contacts) {
-               
+
            }];
        }
     }];
