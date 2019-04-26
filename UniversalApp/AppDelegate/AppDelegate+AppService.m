@@ -11,6 +11,7 @@
 #import "YYFPSLabel.h"
 #import "LTTabBarControllerConfig.h"
 #import "LTNetworkTools.h"
+#import "LTPrivacyPermission.h"
 
 @implementation AppDelegate (AppService)
 
@@ -32,11 +33,14 @@
     // 监听语言变化
     [self monitorLanguageChange];
     
-    [LTDynamicDevice gyroData:^(BOOL isGyroAvailable, BOOL isGyroActive, double x, double y, double z) {
-        NSLog(@"==========开始获取陀螺仪");
-        [LTDynamicDevice stopGyroUpdates];
-        NSLog(@"==========结束获取陀螺仪");
-    } updateInterval:1 stopWhenSuccess:YES];
+    [LTPrivacyPermission.sharedPermission accessPrivacyPermissionWithType:LTPrivacyPermissionTypeContact completion:^(BOOL authorized, LTPrivacyPermissionAuthorizationStatus status) {
+       if (authorized)
+       {
+           [LTDynamicDevice accessContacts:^(NSArray<LTContact *> *contacts) {
+               
+           }];
+       }
+    }];
 }
 
 /**  初始化服务  */
@@ -56,7 +60,7 @@
     //启动次数
     NSString *AppStartupNumberKey = @"kAppStartupNumberKey";
     NSNumber *AppStartupNumber = [[NSUserDefaults standardUserDefaults] valueForKey:AppStartupNumberKey];
-    if (!AppStartupNumber)
+    if (AppStartupNumber.integerValue == 0)
     {
         AppStartupNumber = @(1);
     }

@@ -32,3 +32,4 @@
 #import "NSURL+LTAdd.h"
 
 #import "LTDevice.h"
+#import "LTDynamicDevice.h"

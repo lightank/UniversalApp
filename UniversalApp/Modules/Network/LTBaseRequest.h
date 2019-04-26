@@ -42,6 +42,6 @@
 @property (nonatomic, copy) NSString *message;
 
 /**  状态码是是否为200  */
-@property (nonatomic, assign, getter=isSuccess) BOOL success;
+- (BOOL)isSuccess;
 
 @end

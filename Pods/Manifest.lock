@@ -27,7 +27,6 @@ PODS:
   - JCore (1.2.6)
   - JPush (3.1.2):
     - JCore (~> 1.2.6)
-  - LTPrivacyPermission (0.0.1)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.1.16)
@@ -324,7 +323,6 @@ DEPENDENCIES:
   - iCarousel
   - IQKeyboardManager
   - JPush
-  - LTPrivacyPermission
   - Masonry
   - MBProgressHUD
   - MJRefresh
@@ -350,7 +348,6 @@ SPEC REPOS:
     - IQKeyboardManager
     - JCore
     - JPush
-    - LTPrivacyPermission
     - Masonry
     - MBProgressHUD
     - MJRefresh
@@ -376,7 +373,6 @@ SPEC CHECKSUMS:
   IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
   JCore: cae516dd2bf1a73b578ce6e1065abd49e709e0f7
   JPush: d0cead70ba223a6a3b52749899ebda830dfbc49a
-  LTPrivacyPermission: 6a9265cd0a4effbd7a6d119c754d6d1e9c2c09cd
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
@@ -391,6 +387,6 @@ SPEC CHECKSUMS:
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: c05df4423d17d4c47517aaecf0ded5c0f5c37d06
+PODFILE CHECKSUM: 8faafa48a3e3a4ae1f0695c1fa95fff7489b8a88
 
 COCOAPODS: 1.6.1

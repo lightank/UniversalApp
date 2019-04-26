@@ -69,30 +69,10 @@
     return 20; //秒
 }
 
-/** 请求成功过滤器 */
-- (void)requestCompleteFilter
-{
-    self.responseModel = [LTBaseResponse modelWithJSON:self.responseJSONObject];
-    if (!self.responseModel) return;
-    if (self.responseModel.isSuccess)
-    {
-        if (self.isAESEncrypted)
-        {
-            // 进行内容解密
-        }
-    }
-}
-
-/** 请求失败过滤器 */
-- (void)requestFailedFilter
-{
-    //当前请求失效时要做的事
-    
-}
-
 - (BOOL)statusCodeValidator
 {
-    return YES;
+    self.responseModel = [LTBaseResponse modelWithJSON:self.responseJSONObject];
+    return [self.responseModel isSuccess];
 }
 
 @end

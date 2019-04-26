@@ -72,4 +72,12 @@ typedef NS_ENUM(NSUInteger, LTGradientImageDirection) {
  */
 - (UIImage *)lt_imageWithGradientAlphaDirection:(LTGradientImageDirection)alphaDirection;
 
+/**
+ 更改网络下载的图片大小,一般后台下发的图片scale是1,如果直接取图片的scale是有可能出现锯齿的
+
+ @param size 压缩后图片大小
+ @return 压缩后图片
+ */
+- (UIImage *)lt_webImageByResizeToSize:(CGSize)size;
+
 @end

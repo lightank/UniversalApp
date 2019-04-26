@@ -10,6 +10,7 @@
 @import CoreMotion;
 @import CoreBluetooth;
 
+
 @interface LTDynamicDevice () <CBCentralManagerDelegate>
 
 @property (nonatomic, strong) CMMotionManager *motionManager;
@@ -21,9 +22,16 @@
 @property (nonatomic, assign) BOOL isBluetoothCalled;
 @property (nonatomic, copy) LTDeviceBluetoothBlock bluetoothBlock;
 
-/**  蓝牙是否开启,如果直接取值,可能取到默认值NO,建议延迟在调用 [SPANDevice sharedInstance] 后两秒再获取值,也可以通过block获取值  */
+/**  蓝牙是否开启,如果直接取值,可能取到默认值NO,建议延迟在调用 [LTDynamicDevice sharedInstance] 后两秒再获取值,也可以通过block实时获取值  */
 @property (nonatomic, assign, readonly) BOOL isOpenBluetooth;
 
+
+@property (nonatomic, strong) dispatch_queue_t queue;
+@property (nonatomic, copy) NSArray *contactskeys;
+@property (nonatomic) ABAddressBookRef addressBook;
+#if LTContactAvailable
+@property (nonatomic, strong) CNContactStore *contactStore API_AVAILABLE(ios(9.0));
+#endif
 @end
 
 @implementation LTDynamicDevice
@@ -49,6 +57,24 @@
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], CBCentralManagerOptionShowPowerAlertKey,nil];
     device.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:device queue:nil options:options];
     device.isBluetoothCalled = NO;
+    device.queue = dispatch_queue_create("com.addressBook.queue", DISPATCH_QUEUE_SERIAL);
+}
+
+#pragma mark - 蓝牙
++ (void)isOpenBluetooth:(LTDeviceBluetoothBlock)completeBlock
+{
+    if ([LTDynamicDevice sharedInstance].isBluetoothCalled)
+    {
+        if (completeBlock)
+        {
+            completeBlock([LTDynamicDevice sharedInstance].isOpenBluetooth);
+        }
+    }
+    else
+    {
+        [LTDynamicDevice sharedInstance].bluetoothBlock = completeBlock;
+    }
+
 }
 
 #pragma mark - 陀螺仪
@@ -97,6 +123,54 @@
     });
 }
 
+#pragma mark - 通讯录
++ (void)accessContacts:(LTDeviceContactBlock)completeBlock
+{
+    dispatch_async([LTDynamicDevice sharedInstance].queue, ^{
+        NSMutableArray *contacts = [NSMutableArray array];
+        if ([self isIOS9OrLater])
+        {
+            if (@available(iOS 9.0, *))
+            {
+#if LTContactAvailable
+                CNContactFetchRequest *request = [[CNContactFetchRequest alloc] initWithKeysToFetch:[LTDynamicDevice sharedInstance].contactskeys];
+                [[LTDynamicDevice sharedInstance].contactStore enumerateContactsWithFetchRequest:request error:nil usingBlock:^(CNContact * _Nonnull contact, BOOL * _Nonnull stop) {
+                    LTContact *mycontact = [[LTContact alloc] initWithCNContact:contact];
+                    [contacts addObject:mycontact];
+                }];
+#endif
+            }
+        }
+        else
+        {
+            CFArrayRef allPeople = ABAddressBookCopyArrayOfAllPeople([LTDynamicDevice sharedInstance].addressBook);
+            CFIndex count = CFArrayGetCount(allPeople);
+            
+            for (int i = 0; i < count; i++)
+            {
+                ABRecordRef record = CFArrayGetValueAtIndex(allPeople, i);
+                LTContact *personModel = [[LTContact alloc] initWithRecord:record];
+                [contacts addObject:personModel];
+            }
+            
+            CFRelease(allPeople);
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completeBlock)
+            {
+                completeBlock(contacts);
+                
+            }
+        });
+    });
+}
+
++ (void)cleanContactCache
+{
+    
+}
+
 #pragma mark - 蓝牙
 #pragma mark - CBCentralManagerDelegate
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
@@ -119,12 +193,77 @@
             break;
     }
     
-//    if ([SPANDevice sharedInstance].bluetoothBlock)
-//    {
-//        [SPANDevice sharedInstance].bluetoothBlock([SPANDevice sharedInstance].isOpenBluetooth);
-//        [SPANDevice sharedInstance].bluetoothBlock = nil;
-//    }
+    if ([LTDynamicDevice sharedInstance].bluetoothBlock)
+    {
+        [LTDynamicDevice sharedInstance].bluetoothBlock([LTDynamicDevice sharedInstance].isOpenBluetooth);
+        [LTDynamicDevice sharedInstance].bluetoothBlock = nil;
+    }
 }
 
+#pragma mark - setter and getter
+- (dispatch_queue_t)queue
+{
+    if (!_queue)
+    {
+        _queue = dispatch_queue_create("com.addressBook.queue", DISPATCH_QUEUE_SERIAL);
+    }
+    return _queue;
+}
+
+#if LTContactAvailable
+- (CNContactStore *)contactStore API_AVAILABLE(ios(9.0))
+{
+    if (!_contactStore)
+    {
+        _contactStore = [[CNContactStore alloc] init];
+    }
+    return _contactStore;
+}
+
+#endif
+
+- (NSArray *)contactskeys
+{
+    if (!_contactskeys)
+    {
+        if (@available(iOS 9.0, *))
+        {
+            _contactskeys = @[[CNContactFormatter descriptorForRequiredKeysForStyle:CNContactFormatterStyleFullName],
+                              CNContactPhoneNumbersKey,
+                              CNContactOrganizationNameKey,
+                              CNContactDepartmentNameKey,
+                              CNContactJobTitleKey,
+                              CNContactNoteKey,
+                              CNContactPhoneticGivenNameKey,
+                              CNContactPhoneticFamilyNameKey,
+                              CNContactPhoneticMiddleNameKey,
+                              CNContactImageDataKey,
+                              CNContactThumbnailImageDataKey,
+                              CNContactEmailAddressesKey,
+                              CNContactPostalAddressesKey,
+                              CNContactBirthdayKey,
+                              CNContactNonGregorianBirthdayKey,
+                              CNContactInstantMessageAddressesKey,
+                              CNContactSocialProfilesKey,
+                              CNContactRelationsKey,
+                              CNContactUrlAddressesKey];
+        }
+    }
+    return _contactskeys;
+}
+
+- (ABAddressBookRef)addressBook
+{
+    if (!_addressBook)
+    {
+        _addressBook = ABAddressBookCreate();
+    }
+    return _addressBook;
+}
+
++ (BOOL)isIOS9OrLater
+{
+    return ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0);
+}
 
 @end

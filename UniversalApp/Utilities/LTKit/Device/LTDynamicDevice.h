@@ -7,7 +7,7 @@
 //  动态获取的设备数据
 
 #import <Foundation/Foundation.h>
-
+#import "LTContact.h"
 
 /**
  陀螺仪数据回调block
@@ -18,13 +18,18 @@
  @param y 陀螺仪开启情况下的y值
  @param z 陀螺仪开启情况下的z值
  */
-typedef void(^LTDeviceGyroDataBlock)(BOOL isGyroAvailable, BOOL isGyroActive, double x,double y,double z);
+typedef void(^LTDeviceGyroDataBlock)(BOOL isGyroAvailable, BOOL isGyroActive, double x,double y, double z);
 
 typedef void(^LTDeviceBluetoothBlock)(BOOL isOpenBluetooth);
+
+typedef void(^LTDeviceContactBlock)(NSArray <LTContact *> *contacts);
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LTDynamicDevice : NSObject
+
+#pragma mark - 蓝牙
++ (void)isOpenBluetooth:(LTDeviceBluetoothBlock)completeBlock;
 
 #pragma mark - 陀螺仪
 /**
@@ -32,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param completeBlock 完成回调
  @param gyroUpdateInterval 陀螺仪更新时间间隔
- @param stop 是否当获取数据成功后停止获取,如果为NO,则需要手动调用+ (void)stopGyroUpdates
+ @param stop 是否当获取数据成功后停止获取,如果为NO,则需要在block回调第一行里手动调用+ (void)stopGyroUpdates,不然可能收到多次回调
  */
 + (void)gyroData:(LTDeviceGyroDataBlock)completeBlock
   updateInterval:(NSTimeInterval)gyroUpdateInterval
@@ -40,6 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**  停止获取陀螺仪  */
 + (void)stopGyroUpdates;
+
+#pragma mark - 通讯录
++ (void)accessContacts:(LTDeviceContactBlock)completeBlock;
 
 @end
 

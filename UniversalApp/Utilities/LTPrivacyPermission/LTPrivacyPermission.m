@@ -10,14 +10,44 @@
 @import Photos;
 @import AVFoundation;
 @import EventKit;
-@import Contacts;
 @import AddressBook;
-@import Speech;
 @import HealthKit;
-@import MediaPlayer;
-@import UserNotifications;
 @import CoreLocation;
+
+#if __has_include(<CoreTelephony/CTCall.h>)
 @import CoreTelephony;
+#define LTLTPrivacyPermissionCoreTelephonyAvailable YES
+#else
+#define LTLTPrivacyPermissionCoreTelephonyAvailable NO
+#endif
+
+#if __has_include(<Speech/Speech.h>)
+@import Speech;
+#define LTLTPrivacyPermissionSpeechAvailable YES
+#else
+#define LTLTPrivacyPermissionSpeechAvailable NO
+#endif
+
+#if __has_include(<MediaPlayer/MediaPlayer.h>)
+@import MediaPlayer;
+#define LTLTPrivacyPermissionMediaLibraryAvailable YES
+#else
+#define LTLTPrivacyPermissionMediaLibraryAvailable NO
+#endif
+
+#if __has_include(<Contacts/Contacts.h>)
+@import Contacts;
+#define LTLTPrivacyPermissionContactAvailable YES
+#else
+#define LTLTPrivacyPermissionContactAvailable NO
+#endif
+
+#if __has_include(<UserNotifications/UserNotifications.h>)
+@import UserNotifications;
+#define LTLTPrivacyPermissionUserNotificationsAvailable YES
+#else
+#define LTLTPrivacyPermissionUserNotificationsAvailable NO
+#endif
 
 @interface LTPrivacyPermission () <CLLocationManagerDelegate>
 
@@ -49,29 +79,35 @@
 - (void)accessPrivacyPermissionWithType:(LTPrivacyPermissionType)type
                              completion:(CompletionBlock)completion
 {
+    completion = completion ? : ^(BOOL authorized, LTPrivacyPermissionAuthorizationStatus status) {
+        
+    };
+    
     switch (type)
     {
         case LTPrivacyPermissionTypePhoto:
         {
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-                switch (status)
-                {
-                    case PHAuthorizationStatusNotDetermined:
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
-                        break;
-                        
-                    case PHAuthorizationStatusRestricted:
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
-                        break;
-                        
-                    case PHAuthorizationStatusDenied:
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
-                        break;
-                        
-                    case PHAuthorizationStatusAuthorized:
-                        completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
-                        break;
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    switch (status)
+                    {
+                        case PHAuthorizationStatusNotDetermined:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
+                            break;
+                            
+                        case PHAuthorizationStatusRestricted:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
+                            break;
+                            
+                        case PHAuthorizationStatusDenied:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
+                            break;
+                            
+                        case PHAuthorizationStatusAuthorized:
+                            completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
+                            break;
+                    }
+                });
             }];
         }
             break;
@@ -80,24 +116,26 @@
         {
             [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
                 AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-                switch (status)
-                {
-                    case AVAuthorizationStatusNotDetermined:
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
-                        break;
-                        
-                    case AVAuthorizationStatusRestricted:
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
-                        break;
-                        
-                    case AVAuthorizationStatusDenied:
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
-                        break;
-                        
-                    case AVAuthorizationStatusAuthorized:
-                        completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
-                        break;
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    switch (status)
+                    {
+                        case AVAuthorizationStatusNotDetermined:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
+                            break;
+                            
+                        case AVAuthorizationStatusRestricted:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
+                            break;
+                            
+                        case AVAuthorizationStatusDenied:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
+                            break;
+                            
+                        case AVAuthorizationStatusAuthorized:
+                            completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
+                            break;
+                    }
+                });
             }];
         }
             break;
@@ -106,26 +144,30 @@
         {
             if (@available(iOS 9.3, *))
             {
+#if LTLTPrivacyPermissionMediaLibraryAvailable
                 [MPMediaLibrary requestAuthorization:^(MPMediaLibraryAuthorizationStatus status) {
-                    switch (status)
-                    {
-                        case MPMediaLibraryAuthorizationStatusNotDetermined:
-                            completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
-                            break;
-                            
-                        case MPMediaLibraryAuthorizationStatusDenied:
-                            completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
-                            break;
-                            
-                        case MPMediaLibraryAuthorizationStatusRestricted:
-                            completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
-                            break;
-                            
-                        case MPMediaLibraryAuthorizationStatusAuthorized:
-                            completion(YES, LTPrivacyPermissionAuthorizationStatusNotDetermined);
-                            break;
-                    }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        switch (status)
+                        {
+                            case MPMediaLibraryAuthorizationStatusNotDetermined:
+                                completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
+                                break;
+                                
+                            case MPMediaLibraryAuthorizationStatusDenied:
+                                completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
+                                break;
+                                
+                            case MPMediaLibraryAuthorizationStatusRestricted:
+                                completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
+                                break;
+                                
+                            case MPMediaLibraryAuthorizationStatusAuthorized:
+                                completion(YES, LTPrivacyPermissionAuthorizationStatusNotDetermined);
+                                break;
+                        }
+                    });
                 }];
+#endif
             }
             else
             {
@@ -143,15 +185,15 @@
                     case AVAuthorizationStatusDenied:
                         completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
                         break;
-                        
+
                     case AVAuthorizationStatusNotDetermined:
                         completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
                         break;
-                        
+
                     case AVAuthorizationStatusRestricted:
                         completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
                         break;
-                        
+
                     case AVAuthorizationStatusAuthorized:
                         completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
                         break;
@@ -228,6 +270,7 @@
         {
             if (@available(iOS 10.0, *))
             {
+#if LTLTPrivacyPermissionUserNotificationsAvailable
                 UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
                 UNAuthorizationOptions types = UNAuthorizationOptionBadge | UNAuthorizationOptionAlert |UNAuthorizationOptionSound;
                 [center requestAuthorizationWithOptions:types completionHandler:^(BOOL granted, NSError * _Nullable error) {
@@ -236,6 +279,7 @@
                         completion(granted, granted ? LTPrivacyPermissionAuthorizationStatusAuthorized : LTPrivacyPermissionAuthorizationStatusDenied);
                     });
                 }];
+#endif
             }
             else
             {
@@ -253,26 +297,30 @@
         {
             if (@available(iOS 10, *))
             {
+#if LTLTPrivacyPermissionSpeechAvailable
                 [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
-                    switch (status)
-                    {
-                        case SFSpeechRecognizerAuthorizationStatusDenied:
-                            completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
-                            break;
-                            
-                        case SFSpeechRecognizerAuthorizationStatusNotDetermined:
-                            completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
-                            break;
-                            
-                        case SFSpeechRecognizerAuthorizationStatusRestricted:
-                            completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
-                            break;
-                            
-                        case SFSpeechRecognizerAuthorizationStatusAuthorized:
-                            completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
-                            break;
-                    }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        switch (status)
+                        {
+                            case SFSpeechRecognizerAuthorizationStatusDenied:
+                                completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
+                                break;
+                                
+                            case SFSpeechRecognizerAuthorizationStatusNotDetermined:
+                                completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
+                                break;
+                                
+                            case SFSpeechRecognizerAuthorizationStatusRestricted:
+                                completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
+                                break;
+                                
+                            case SFSpeechRecognizerAuthorizationStatusAuthorized:
+                                completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
+                                break;
+                        }
+                    });
                 }];
+#endif
             }
             else
             {
@@ -281,29 +329,31 @@
         }
             break;
             
-        case LTPrivacyPermissionTypeCalendarEvent:
+        case LTPrivacyPermissionTypeCalendar:
         {
             EKEventStore *store = [[EKEventStore alloc] init];
             [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
                 EKAuthorizationStatus status = [EKEventStore  authorizationStatusForEntityType:EKEntityTypeEvent];
-                switch (status)
-                {
-                    case EKAuthorizationStatusAuthorized:
-                        completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
-                        break;
-                        
-                    case EKAuthorizationStatusDenied:
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
-                        break;
-                        
-                    case EKAuthorizationStatusNotDetermined:
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
-                        break;
-                        
-                    case EKAuthorizationStatusRestricted:
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
-                        break;
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    switch (status)
+                    {
+                        case EKAuthorizationStatusAuthorized:
+                            completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
+                            break;
+                            
+                        case EKAuthorizationStatusDenied:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
+                            break;
+                            
+                        case EKAuthorizationStatusNotDetermined:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
+                            break;
+                            
+                        case EKAuthorizationStatusRestricted:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
+                            break;
+                    }
+                });
             }];
         }
             break;
@@ -312,6 +362,7 @@
         {
             if (@available(iOS 9, *))
             {
+#if LTLTPrivacyPermissionContactAvailable
                 CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
                 switch (status)
                 {
@@ -337,6 +388,7 @@
                     }
                         break;
                 }
+#endif
             }
             else
             {
@@ -384,24 +436,26 @@
             EKEventStore *eventStore = [[EKEventStore alloc] init];
             [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError * _Nullable error) {
                 EKAuthorizationStatus status = [EKEventStore  authorizationStatusForEntityType:EKEntityTypeEvent];
-                switch (status)
-                {
-                    case EKAuthorizationStatusNotDetermined:
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
-                        break;
-                        
-                    case EKAuthorizationStatusRestricted:
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
-                        break;
-                        
-                    case EKAuthorizationStatusDenied:
-                        completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
-                        break;
-                        
-                    case EKAuthorizationStatusAuthorized:
-                        completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
-                        break;
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    switch (status)
+                    {
+                        case EKAuthorizationStatusNotDetermined:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusNotDetermined);
+                            break;
+                            
+                        case EKAuthorizationStatusRestricted:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusRestricted);
+                            break;
+                            
+                        case EKAuthorizationStatusDenied:
+                            completion(NO, LTPrivacyPermissionAuthorizationStatusDenied);
+                            break;
+                            
+                        case EKAuthorizationStatusAuthorized:
+                            completion(YES, LTPrivacyPermissionAuthorizationStatusAuthorized);
+                            break;
+                    }
+                });
             }];
         }
             break;
@@ -411,6 +465,7 @@
         {
             if (@available(iOS 9, *))
             {
+#if LTLTPrivacyPermissionCoreTelephonyAvailable
                 CTCellularData *cellularData = [[CTCellularData alloc] init];
                 CTCellularDataRestrictedState status = cellularData.restrictedState;
                 
@@ -434,7 +489,6 @@
                     {
                         [cellularData setCellularDataRestrictionDidUpdateNotifier:^(CTCellularDataRestrictedState newState) {
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                
                                 switch (newState)
                                 {
                                     case kCTCellularDataNotRestricted:
@@ -462,6 +516,7 @@
                     }
                         break;
                 }
+#endif
             }
             else
             {

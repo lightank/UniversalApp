@@ -69,6 +69,8 @@
 		A073C30A224A3F7B00B685A1 /* NSArray+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2F4224A3F7A00B685A1 /* NSArray+LTAdd.m */; };
 		A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */; };
 		A0E4D1CE2272A44F0091E66C /* LTDynamicDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E4D1CD2272A44F0091E66C /* LTDynamicDevice.m */; };
+		A0E4D1DD2272FD670091E66C /* LTContact.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E4D1DC2272FD670091E66C /* LTContact.m */; };
+		A0F53AE82273323D0059088D /* LTPrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F53AE72273323D0059088D /* LTPrivacyPermission.m */; };
 		E263541D9C33F5DD3886B5D4 /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */; };
 		FB553A15234B274C38B6CE91 /* libPods-UniversalAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0296C350224E490362599AB1 /* libPods-UniversalAppTests.a */; };
 /* End PBXBuildFile section */
@@ -232,6 +234,10 @@
 		A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+LTAdd.m"; sourceTree = "<group>"; };
 		A0E4D1CC2272A44F0091E66C /* LTDynamicDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTDynamicDevice.h; sourceTree = "<group>"; };
 		A0E4D1CD2272A44F0091E66C /* LTDynamicDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTDynamicDevice.m; sourceTree = "<group>"; };
+		A0E4D1DB2272FD670091E66C /* LTContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTContact.h; sourceTree = "<group>"; };
+		A0E4D1DC2272FD670091E66C /* LTContact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTContact.m; sourceTree = "<group>"; };
+		A0F53AE62273323D0059088D /* LTPrivacyPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPrivacyPermission.h; sourceTree = "<group>"; };
+		A0F53AE72273323D0059088D /* LTPrivacyPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTPrivacyPermission.m; sourceTree = "<group>"; };
 		A244D68607808162F3309FE0 /* Pods-UniversalAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppUITests/Pods-UniversalAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC8739C3BF6125C27952E091 /* Pods-UniversalAppTests.sit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppTests.sit.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppTests/Pods-UniversalAppTests.sit.xcconfig"; sourceTree = "<group>"; };
 		C88A913B462EFBFE7833C24D /* Pods-UniversalAppTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppTests/Pods-UniversalAppTests.dev.xcconfig"; sourceTree = "<group>"; };
@@ -526,6 +532,7 @@
 		3DCC9F4720B0183300CD476A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A0F53AE52273323D0059088D /* LTPrivacyPermission */,
 				A073C2CE224A3F7900B685A1 /* LTKit */,
 				3DDDBEC421941CCF004D68F6 /* LTExampleCode.h */,
 				3DDDBEC521941CCF004D68F6 /* LTExampleCode.m */,
@@ -725,8 +732,19 @@
 				3D48666720B1AE0F002BACA8 /* LTDevice.m */,
 				A0E4D1CC2272A44F0091E66C /* LTDynamicDevice.h */,
 				A0E4D1CD2272A44F0091E66C /* LTDynamicDevice.m */,
+				A0E4D1DB2272FD670091E66C /* LTContact.h */,
+				A0E4D1DC2272FD670091E66C /* LTContact.m */,
 			);
 			path = Device;
+			sourceTree = "<group>";
+		};
+		A0F53AE52273323D0059088D /* LTPrivacyPermission */ = {
+			isa = PBXGroup;
+			children = (
+				A0F53AE62273323D0059088D /* LTPrivacyPermission.h */,
+				A0F53AE72273323D0059088D /* LTPrivacyPermission.m */,
+			);
+			path = LTPrivacyPermission;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -967,6 +985,7 @@
 				3DCC9F7120B02D4500CD476A /* LTTabBarControllerConfig.m in Sources */,
 				3DBD184B21CCD36400E98730 /* LTWKWebView.m in Sources */,
 				A073C303224A3F7B00B685A1 /* UINavigationBar+LTAdd.m in Sources */,
+				A0F53AE82273323D0059088D /* LTPrivacyPermission.m in Sources */,
 				3DCC9F4A20B018F900CD476A /* AppDelegate+AppService.m in Sources */,
 				3DCC9F7520B02E0A00CD476A /* LTNavigationController.m in Sources */,
 				3DCC9F4E20B019F100CD476A /* YYFPSLabel.m in Sources */,
@@ -979,6 +998,7 @@
 				3DFE3E7020EA531500A8832C /* AppDelegate+UMengAnalytics.m in Sources */,
 				3DE5B32420B11EBE009719D0 /* LTBaseRequest.m in Sources */,
 				A073C2FC224A3F7B00B685A1 /* UIButton+LTAdd.m in Sources */,
+				A0E4D1DD2272FD670091E66C /* LTContact.m in Sources */,
 				A0E4D1CE2272A44F0091E66C /* LTDynamicDevice.m in Sources */,
 				3D48667B20B1B1B7002BACA8 /* LTUserManager.m in Sources */,
 				A073C308224A3F7B00B685A1 /* NSDictionary+LTAdd.m in Sources */,

@@ -103,4 +103,15 @@
     return imageOut;
 }
 
+- (UIImage *)lt_webImageByResizeToSize:(CGSize)size
+{
+    if (size.width <= 0 || size.height <= 0) return nil;
+    CGFloat scale = self.size.width / size.width;
+    UIGraphicsBeginImageContextWithOptions(size, NO, scale);
+    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 @end

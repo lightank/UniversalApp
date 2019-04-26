@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///  @param data 要加密的数据
 ///
 ///  @return 加密后的二进制数据
-- (NSData *)RSAEncryptData:(NSData *)data;
+- (nullable NSData *)RSAEncryptData:(NSData *)data;
 
 ///  RSA 加密字符串
 ///
@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///  @param data 要解密的数据
 ///
 ///  @return 解密后的二进制数据
-- (NSData *)RSADecryptData:(NSData *)data;
+- (nullable NSData *)RSADecryptData:(NSData *)data;
 
 ///  RSA 解密字符串
 ///
@@ -109,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param publicKey 公钥字符串
  @return 返回base64编码的加密后字符串
  */
-+ (NSData *)RSAEncryptData:(NSData *)data publicKey:(NSString *)publicKey;
++ (nullable NSData *)RSAEncryptData:(NSData *)data publicKey:(NSString *)publicKey;
 /**
  加载私钥,解密指定字符串,返回字符串
 
@@ -125,7 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param privateKey 私钥字符串
  @return 返回解密后字符串
  */
-+ (NSData *)RSADecryptData:(NSData *)data privateKey:(NSString *)privateKey;
++ (nullable NSData *)RSADecryptData:(NSData *)data privateKey:(NSString *)privateKey;
 
 @end
 
