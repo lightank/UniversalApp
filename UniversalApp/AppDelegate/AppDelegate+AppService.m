@@ -11,8 +11,6 @@
 #import "YYFPSLabel.h"
 #import "LTTabBarControllerConfig.h"
 #import "LTNetworkTools.h"
-#import "LTPrivacyPermission.h"
-#import "LTDynamicDevice.h"
 
 @implementation AppDelegate (AppService)
 
@@ -33,15 +31,6 @@
     [self somethingForDebug];
     // 监听语言变化
     [self monitorLanguageChange];
-    
-    [LTPrivacyPermission.sharedPermission accessPrivacyPermissionWithType:LTPrivacyPermissionTypeContact completion:^(BOOL authorized, LTPrivacyPermissionAuthorizationStatus status) {
-       if (authorized)
-       {
-           [LTDynamicDevice accessContacts:^(NSArray<LTContact *> *contacts) {
-
-           }];
-       }
-    }];
 }
 
 /**  初始化服务  */
