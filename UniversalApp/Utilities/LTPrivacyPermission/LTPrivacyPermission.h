@@ -53,7 +53,7 @@ typedef NS_ENUM(NSInteger, LTPrivacyPermissionAuthorizationStatus)
     LTPrivacyPermissionAuthorizationStatusServicesDisabled,
 };
 
-typedef void(^CompletionBlock)(BOOL authorized, LTPrivacyPermissionAuthorizationStatus status);
+typedef void(^LTPrivacyPermissionCompletionBlock)(BOOL authorized, LTPrivacyPermissionAuthorizationStatus status);
 
 @interface LTPrivacyPermission : NSObject
 
@@ -72,7 +72,7 @@ typedef void(^CompletionBlock)(BOOL authorized, LTPrivacyPermissionAuthorization
  * @param completion `A block for the permission result and the value of authorization status` -> 获取权限结果和对应权限状态的block
  */
 - (void)accessPrivacyPermissionWithType:(LTPrivacyPermissionType)type
-                             completion:(CompletionBlock)completion;
+                             completion:(LTPrivacyPermissionCompletionBlock)completion;
 
 
 + (void)openApplicationSettings;

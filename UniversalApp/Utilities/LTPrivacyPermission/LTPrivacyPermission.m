@@ -54,7 +54,7 @@
 /**  定位  */
 @property (nonatomic, strong) CLLocationManager *locationManager;
 /**  定位回调  */
-@property (nonatomic, copy) CompletionBlock locationCompletion;
+@property (nonatomic, copy) LTPrivacyPermissionCompletionBlock locationCompletion;
 
 @end
 
@@ -77,7 +77,7 @@
 }
 
 - (void)accessPrivacyPermissionWithType:(LTPrivacyPermissionType)type
-                             completion:(CompletionBlock)completion
+                             completion:(LTPrivacyPermissionCompletionBlock)completion
 {
     completion = completion ? : ^(BOOL authorized, LTPrivacyPermissionAuthorizationStatus status) {
         
