@@ -48,6 +48,7 @@
 		A035615821C3F6FD00DAAEE1 /* LTObjcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A035615721C3F6FD00DAAEE1 /* LTObjcViewController.m */; };
 		A035615B21C3F76400DAAEE1 /* LTMultiThreadExample.m in Sources */ = {isa = PBXBuildFile; fileRef = A035615A21C3F76400DAAEE1 /* LTMultiThreadExample.m */; };
 		A035615F21C3F8B400DAAEE1 /* LTBlockExample.m in Sources */ = {isa = PBXBuildFile; fileRef = A035615E21C3F8B400DAAEE1 /* LTBlockExample.m */; };
+		A060A7122274549100277C1A /* LTAuthID.m in Sources */ = {isa = PBXBuildFile; fileRef = A060A7112274549100277C1A /* LTAuthID.m */; };
 		A073C2F9224A3F7B00B685A1 /* UIImage+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2D1224A3F7900B685A1 /* UIImage+LTAdd.m */; };
 		A073C2FA224A3F7B00B685A1 /* UITableViewCell+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2D2224A3F7900B685A1 /* UITableViewCell+LTAdd.m */; };
 		A073C2FB224A3F7B00B685A1 /* UIViewController+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2D3224A3F7900B685A1 /* UIViewController+LTAdd.m */; };
@@ -192,6 +193,8 @@
 		A035615A21C3F76400DAAEE1 /* LTMultiThreadExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTMultiThreadExample.m; sourceTree = "<group>"; };
 		A035615D21C3F8B400DAAEE1 /* LTBlockExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTBlockExample.h; sourceTree = "<group>"; };
 		A035615E21C3F8B400DAAEE1 /* LTBlockExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTBlockExample.m; sourceTree = "<group>"; };
+		A060A7102274549100277C1A /* LTAuthID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAuthID.h; sourceTree = "<group>"; };
+		A060A7112274549100277C1A /* LTAuthID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTAuthID.m; sourceTree = "<group>"; };
 		A073C2D0224A3F7900B685A1 /* UITableView+LTAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LTAdd.h"; sourceTree = "<group>"; };
 		A073C2D1224A3F7900B685A1 /* UIImage+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LTAdd.m"; sourceTree = "<group>"; };
 		A073C2D2224A3F7900B685A1 /* UITableViewCell+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+LTAdd.m"; sourceTree = "<group>"; };
@@ -731,6 +734,8 @@
 				A07830C82273CDE000771DA3 /* LTContact.m */,
 				3D48666E20B1AE0F002BACA8 /* LTDevice.h */,
 				3D48666720B1AE0F002BACA8 /* LTDevice.m */,
+				A060A7102274549100277C1A /* LTAuthID.h */,
+				A060A7112274549100277C1A /* LTAuthID.m */,
 			);
 			path = Device;
 			sourceTree = "<group>";
@@ -987,6 +992,7 @@
 				3DCC9F4E20B019F100CD476A /* YYFPSLabel.m in Sources */,
 				3D48667E20B1B1C5002BACA8 /* LTUser.m in Sources */,
 				A035615821C3F6FD00DAAEE1 /* LTObjcViewController.m in Sources */,
+				A060A7122274549100277C1A /* LTAuthID.m in Sources */,
 				A07830CA2273CDE000771DA3 /* LTContact.m in Sources */,
 				3DCC9F2120B006F100CD476A /* main.m in Sources */,
 				A073C306224A3F7B00B685A1 /* UIColor+LTAdd.m in Sources */,
