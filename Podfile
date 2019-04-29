@@ -21,10 +21,10 @@ target 'UniversalApp' do
     pod 'ReactiveObjC'
     pod 'RTRootNavigationController'
     pod 'FDFullscreenPopGesture'
-    pod 'Aspects'
-    pod 'MBProgressHUD'
-    pod 'iCarousel'
-    #pod 'LTPrivacyPermission'
+    #pod 'Aspects'
+    #pod 'MBProgressHUD'
+    #pod 'iCarousel'
+    pod 'WCDB'
     
     # UMeng Analytics iOS SDK Begin .......
     #依赖库
