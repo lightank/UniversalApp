@@ -7,43 +7,43 @@
 //
 
 #import "LTPrivacyPermission.h"
-@import Photos;
-@import AVFoundation;
-@import EventKit;
-@import AddressBook;
-@import HealthKit;
-@import CoreLocation;
+#import <Photos/Photos.h>
+#import <AVFoundation/AVFoundation.h>
+#import <EventKit/EventKit.h>
+#import <AddressBook/AddressBook.h>
+#import <HealthKit/HealthKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 #if __has_include(<CoreTelephony/CTCall.h>)
-@import CoreTelephony;
+#import <CoreTelephony/CTCall.h>
 #define LTLTPrivacyPermissionCoreTelephonyAvailable YES
 #else
 #define LTLTPrivacyPermissionCoreTelephonyAvailable NO
 #endif
 
 #if __has_include(<Speech/Speech.h>)
-@import Speech;
+#import <Speech/Speech.h>
 #define LTLTPrivacyPermissionSpeechAvailable YES
 #else
 #define LTLTPrivacyPermissionSpeechAvailable NO
 #endif
 
 #if __has_include(<MediaPlayer/MediaPlayer.h>)
-@import MediaPlayer;
+#import <MediaPlayer/MediaPlayer.h>;
 #define LTLTPrivacyPermissionMediaLibraryAvailable YES
 #else
 #define LTLTPrivacyPermissionMediaLibraryAvailable NO
 #endif
 
 #if __has_include(<Contacts/Contacts.h>)
-@import Contacts;
+#import <Contacts/Contacts.h>;
 #define LTLTPrivacyPermissionContactAvailable YES
 #else
 #define LTLTPrivacyPermissionContactAvailable NO
 #endif
 
 #if __has_include(<UserNotifications/UserNotifications.h>)
-@import UserNotifications;
+#import <UserNotifications/UserNotifications.h>;
 #define LTLTPrivacyPermissionUserNotificationsAvailable YES
 #else
 #define LTLTPrivacyPermissionUserNotificationsAvailable NO

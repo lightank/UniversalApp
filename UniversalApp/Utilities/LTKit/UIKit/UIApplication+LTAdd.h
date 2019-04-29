@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@import MessageUI;
+#import <MessageUI/MessageUI.h>
 
 @interface UIApplication (LTAdd)
 

@@ -7,9 +7,9 @@
 //
 
 #pragma mark - 系统库
-@import UIKit;
-@import Foundation;
-@import CoreFoundation;
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <CoreFoundation/CoreFoundation.h>
 
 #pragma mark - 常用工具
 #import "LTKit.h"

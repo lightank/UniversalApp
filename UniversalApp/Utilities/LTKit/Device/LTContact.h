@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AddressBook/AddressBook.h>
 #if __has_include(<Contacts/Contacts.h>)
-@import Contacts;
+#import <Contacts/Contacts.h>
 #define LTContactAvailable YES
 #else
 #define LTContactAvailable NO

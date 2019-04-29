@@ -7,7 +7,7 @@
 //  此控制器仅适用加载网络h5页面,不适用本地h5
 
 #import <UIKit/UIKit.h>
-@import WebKit;
+#import <WebKit/WebKit.h>
 
 @interface LTBaseWebViewController : UIViewController
 

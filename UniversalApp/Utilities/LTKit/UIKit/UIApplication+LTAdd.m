@@ -8,8 +8,8 @@
 
 #import "UIApplication+LTAdd.h"
 #import "UIWindow+LTAdd.h"
-@import SafariServices;
-@import MessageUI;
+#import <SafariServices/SafariServices.h>
+#import <MessageUI/MessageUI.h>
 
 @implementation UIApplication (LTAdd)
 

@@ -19,6 +19,7 @@
     [super viewDidLoad];
     self.title = @"Universal Example";
     [self addCell:@"Objective-C" class:@"LTObjcViewController"];
+    [self addCell:@"WCDB" class:@"LTWCDBExampleViewController"];
     [self addCell:@"Feed List Demo" class:@"YYFeedListExample"];
 }
 

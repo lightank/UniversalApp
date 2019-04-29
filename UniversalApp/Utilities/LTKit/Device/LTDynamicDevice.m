@@ -7,8 +7,8 @@
 //
 
 #import "LTDynamicDevice.h"
-@import CoreMotion;
-@import CoreBluetooth;
+#import <CoreMotion/CoreMotion.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
 
 @interface LTDynamicDevice () <CBCentralManagerDelegate>

@@ -44,6 +44,8 @@
 		3DFE3E7620EA533300A8832C /* AppDelegate+JPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE3E7520EA533300A8832C /* AppDelegate+JPush.m */; };
 		7B06541542D17252DD1BA4D2 /* libPods-UniversalAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D3A5DAA64B035CDF219C8B /* libPods-UniversalAppUITests.a */; };
 		A01255EF22680D0C009223E1 /* CALayer+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A01255EE22680D0C009223E1 /* CALayer+LTAdd.m */; };
+		A01F88892276F2D1004DECA8 /* LTWCDBExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01F88882276F2D1004DECA8 /* LTWCDBExampleViewController.m */; };
+		A01F888D2276F47F004DECA8 /* LTAddressBook.mm in Sources */ = {isa = PBXBuildFile; fileRef = A01F888C2276F47F004DECA8 /* LTAddressBook.mm */; };
 		A035615521C3859C00DAAEE1 /* LTListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A035615421C3859C00DAAEE1 /* LTListTableViewController.m */; };
 		A035615821C3F6FD00DAAEE1 /* LTObjcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A035615721C3F6FD00DAAEE1 /* LTObjcViewController.m */; };
 		A035615B21C3F76400DAAEE1 /* LTMultiThreadExample.m in Sources */ = {isa = PBXBuildFile; fileRef = A035615A21C3F76400DAAEE1 /* LTMultiThreadExample.m */; };
@@ -185,6 +187,10 @@
 		461DB11EE24A791480763032 /* Pods-UniversalApp.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalApp.dev.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp.dev.xcconfig"; sourceTree = "<group>"; };
 		A01255ED22680D0C009223E1 /* CALayer+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+LTAdd.h"; sourceTree = "<group>"; };
 		A01255EE22680D0C009223E1 /* CALayer+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+LTAdd.m"; sourceTree = "<group>"; };
+		A01F88872276F2D1004DECA8 /* LTWCDBExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTWCDBExampleViewController.h; sourceTree = "<group>"; };
+		A01F88882276F2D1004DECA8 /* LTWCDBExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTWCDBExampleViewController.m; sourceTree = "<group>"; };
+		A01F888B2276F47F004DECA8 /* LTAddressBook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAddressBook.h; sourceTree = "<group>"; };
+		A01F888C2276F47F004DECA8 /* LTAddressBook.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LTAddressBook.mm; sourceTree = "<group>"; };
 		A035615321C3859C00DAAEE1 /* LTListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTListTableViewController.h; sourceTree = "<group>"; };
 		A035615421C3859C00DAAEE1 /* LTListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTListTableViewController.m; sourceTree = "<group>"; };
 		A035615621C3F6FD00DAAEE1 /* LTObjcViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTObjcViewController.h; sourceTree = "<group>"; };
@@ -496,6 +502,7 @@
 		3DCC9F4420B00E8100CD476A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				A01F88862276F224004DECA8 /* WCDB */,
 				A035615121C35C7E00DAAEE1 /* Objective-C */,
 				3DACBB34219EBE980077E262 /* Localization */,
 				3DACBB2C219EAD380077E262 /* Login */,
@@ -630,6 +637,25 @@
 				A01255EE22680D0C009223E1 /* CALayer+LTAdd.m */,
 			);
 			path = QuartzCore;
+			sourceTree = "<group>";
+		};
+		A01F88862276F224004DECA8 /* WCDB */ = {
+			isa = PBXGroup;
+			children = (
+				A01F888A2276F33F004DECA8 /* Model */,
+				A01F88872276F2D1004DECA8 /* LTWCDBExampleViewController.h */,
+				A01F88882276F2D1004DECA8 /* LTWCDBExampleViewController.m */,
+			);
+			path = WCDB;
+			sourceTree = "<group>";
+		};
+		A01F888A2276F33F004DECA8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A01F888B2276F47F004DECA8 /* LTAddressBook.h */,
+				A01F888C2276F47F004DECA8 /* LTAddressBook.mm */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A035615121C35C7E00DAAEE1 /* Objective-C */ = {
@@ -979,6 +1005,7 @@
 				A07830C72273CDB600771DA3 /* LTPrivacyPermission.m in Sources */,
 				A073C2F9224A3F7B00B685A1 /* UIImage+LTAdd.m in Sources */,
 				A073C2FD224A3F7B00B685A1 /* UITextView+LTAdd.m in Sources */,
+				A01F88892276F2D1004DECA8 /* LTWCDBExampleViewController.m in Sources */,
 				A073C302224A3F7B00B685A1 /* UIView+LTAdd.m in Sources */,
 				3DACBB30219EAD610077E262 /* LTLoginViewController.m in Sources */,
 				A073C2FF224A3F7B00B685A1 /* UIApplication+LTAdd.m in Sources */,
@@ -998,6 +1025,7 @@
 				A073C306224A3F7B00B685A1 /* UIColor+LTAdd.m in Sources */,
 				A073C2FE224A3F7B00B685A1 /* UIScrollView+LTRefresh.m in Sources */,
 				A073C2FB224A3F7B00B685A1 /* UIViewController+LTAdd.m in Sources */,
+				A01F888D2276F47F004DECA8 /* LTAddressBook.mm in Sources */,
 				3DFE3E7020EA531500A8832C /* AppDelegate+UMengAnalytics.m in Sources */,
 				3DE5B32420B11EBE009719D0 /* LTBaseRequest.m in Sources */,
 				A073C2FC224A3F7B00B685A1 /* UIButton+LTAdd.m in Sources */,
@@ -1143,6 +1171,7 @@
 				APP_DISPLAY_NAME = UniversalApp_Sit;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconSit;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92CYHZVC4M;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1267,6 +1296,7 @@
 				APP_DISPLAY_NAME = UniversalApp_Uat;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconUat;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92CYHZVC4M;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1391,6 +1421,7 @@
 				APP_DISPLAY_NAME = UniversalApp_Dev;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92CYHZVC4M;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1568,6 +1599,7 @@
 				APP_DISPLAY_NAME = UniversalApp_Debug;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92CYHZVC4M;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1595,6 +1627,7 @@
 				APP_DISPLAY_NAME = UniversalApp;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92CYHZVC4M;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
