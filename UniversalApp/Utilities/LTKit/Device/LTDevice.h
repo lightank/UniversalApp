@@ -260,8 +260,8 @@
 @property (nonatomic, readonly, nullable) NSString *country;
 @property (class, nonatomic, readonly, nullable) NSString *country;
 /**  本地语言  */
-@property (nonatomic, copy) NSString *language;
-@property (class, nonatomic, copy) NSString *language;
+@property (nonatomic, readonly, nullable) NSString *language;
+@property (class, nonatomic, readonly, nullable) NSString *language;
 + (void)resetLanguage;
 /**  时间区域  */
 @property (nonatomic, readonly, nullable) NSString *timeZone;
@@ -344,9 +344,9 @@
 
 #pragma mark - 类方法
 /**  NSUserDefaults所有字典  */
-+ (NSDictionary<NSString *, id> *)userDefaultsDictionaryRepresentation;
++ (nullable NSDictionary<NSString *, id> *)userDefaultsDictionaryRepresentation;
 /**  app info.plist 字典  */
-+ (NSDictionary *)infoDictionary;
++ (nullable NSDictionary *)infoDictionary;
 
 #pragma mark - cookie相关
 
@@ -364,7 +364,7 @@
                    domain:(nonnull NSString *)domain
                      path:(nonnull NSString *)path;
 /**  对指定key取cookie  */
-+ (NSString *)cookieValueForKey:(const NSString *)key;
++ (nullable NSString *)cookieValueForKey:(const NSString *_Nonnull)key;
 
 /**
  将[NSHTTPCookieStorage sharedHTTPCookieStorage].cookies转换为NSURLRequest的请求头
@@ -376,7 +376,7 @@
  NSURLRequest *request = [NSURLRequest requestWithURL:@""];
  request.allHTTPHeaderFields = requestHeaderFields;
  */
-+ (NSDictionary *)requestHeaderFields;
++ (NSDictionary *_Nullable)requestHeaderFields;
 
 
 @end

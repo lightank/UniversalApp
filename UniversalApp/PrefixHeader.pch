@@ -4,6 +4,6 @@
 //
 //  Created by huanyu.li on 2017/4/24.
 //  Copyright © 2017年 huanyu.li. All rights reserved.
-//
+//  在build setting 中搜索 |pch| 选中 |prefix header| 修改对应的值为 |$(SRCROOT)/YourAppName/YourPrefixHeaderName.pch|, 注意 |YourAppName| 修改为你的 |app project | 名称, |YourPrefixHeaderName| 修改为你的pch文件名
 
 #import "Header.h"

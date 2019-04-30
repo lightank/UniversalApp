@@ -1162,7 +1162,7 @@
 
 + (NSString *)cellNetworkType
 {
-    NSString *netWorkType = @"unknown";
+    NSString *netWorkType = nil;
     NSArray *typeStrings2G = @[CTRadioAccessTechnologyEdge,
                                CTRadioAccessTechnologyGPRS,
                                CTRadioAccessTechnologyCDMA1x,];
