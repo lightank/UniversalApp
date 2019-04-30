@@ -1,1 +1,0 @@
-../../../../WCDBOptimizedSQLCipher/ext/userauth/sqlite3userauth.h

@@ -50,7 +50,13 @@
     }
     if (focusedImage)
     {
-        [button setImage:focusedImage forState:UIControlStateFocused];
+        if ([UIDevice currentDevice].systemVersion.doubleValue >= 9.0)
+        {
+            if (@available(iOS 9.0, *))
+            {
+                [button setImage:focusedImage forState:UIControlStateFocused];
+            }
+        }
     }
     //设置文本
     if (normalTitle)
@@ -71,7 +77,13 @@
     }
     if (focusedTitle)
     {
-        [button setTitle:focusedTitle forState:UIControlStateFocused];
+        if ([UIDevice currentDevice].systemVersion.doubleValue >= 9.0)
+        {
+            if (@available(iOS 9.0, *))
+            {
+                [button setTitle:focusedTitle forState:UIControlStateFocused];
+            }
+        }
     }
     //设置文字大小
     if (font)

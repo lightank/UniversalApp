@@ -14,7 +14,7 @@
 + (void)showAuthIDWithReason:(NSString *)reason fallbackTitle:(NSString *)fallbackTitle block:(LTAuthIDStateBlock)block
 {
     NSString *localizedReason = @"请验证信息";
-    NSString *localizedFallbackTitle = @"输入密码";
+    //NSString *localizedFallbackTitle = @"输入密码";
     
     
     if ([[[UIDevice currentDevice] systemVersion] doubleValue] < 8.0)

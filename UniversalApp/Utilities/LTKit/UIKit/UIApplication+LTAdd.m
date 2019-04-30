@@ -20,9 +20,12 @@
 }
 + (void)lt_openSafariInApplication:(NSString *)url API_AVAILABLE(ios(9.0))
 {
-    NSURL *trueUrl = [NSURL URLWithString:url];
-    SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:trueUrl];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:safariViewController animated:YES completion:nil];
+    if ([UIDevice currentDevice].systemVersion.doubleValue >= 9.0)
+    {
+        NSURL *trueUrl = [NSURL URLWithString:url];
+        SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:trueUrl];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:safariViewController animated:YES completion:nil];
+    }
 }
 
 + (void)lt_openApplicationSettings
@@ -50,7 +53,7 @@
     //设置收件人列表
     //vc.recipients = @[@"10010",@"10086"];
     //设置代理
-    vc.messageComposeDelegate = [UIApplication sharedApplication];
+    //vc.messageComposeDelegate = [UIApplication sharedApplication];
     //显示控制器
     [kCurrentViewController presentViewController:vc animated:YES completion:nil];
 }

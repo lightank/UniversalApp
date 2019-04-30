@@ -18,9 +18,9 @@
 
 
 // 设置语言成功通知
-extern NSString * const LTLanguageDidSettingSuccessNotification;
+extern NSString * _Nonnull const LTLanguageDidSettingSuccessNotification;
 // 单例
-extern LTLocalizations *LTLocalizationsInstance;
+extern LTLocalizations * _Nonnull LTLocalizationsInstance;
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -1,1 +1,0 @@
-../../../../WCDBOptimizedSQLCipher/src/sqlite3ext.h

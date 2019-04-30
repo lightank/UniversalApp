@@ -524,7 +524,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
 
 NS_ASSUME_NONNULL_END
 
-CG_INLINE NSString * LTContactFilterPhoneNumber(NSString *phoneNumber) {
+CG_INLINE NSString * _Nonnull LTContactFilterPhoneNumber(NSString * _Nonnull phoneNumber) {
     if (phoneNumber == nil)
     {
         return @"";

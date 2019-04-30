@@ -29,21 +29,21 @@
 #endif
 
 #if __has_include(<MediaPlayer/MediaPlayer.h>)
-#import <MediaPlayer/MediaPlayer.h>;
+#import <MediaPlayer/MediaPlayer.h>
 #define LTLTPrivacyPermissionMediaLibraryAvailable YES
 #else
 #define LTLTPrivacyPermissionMediaLibraryAvailable NO
 #endif
 
 #if __has_include(<Contacts/Contacts.h>)
-#import <Contacts/Contacts.h>;
+#import <Contacts/Contacts.h>
 #define LTLTPrivacyPermissionContactAvailable YES
 #else
 #define LTLTPrivacyPermissionContactAvailable NO
 #endif
 
 #if __has_include(<UserNotifications/UserNotifications.h>)
-#import <UserNotifications/UserNotifications.h>;
+#import <UserNotifications/UserNotifications.h>
 #define LTLTPrivacyPermissionUserNotificationsAvailable YES
 #else
 #define LTLTPrivacyPermissionUserNotificationsAvailable NO

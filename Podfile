@@ -24,7 +24,6 @@ target 'UniversalApp' do
     #pod 'Aspects'
     #pod 'MBProgressHUD'
     #pod 'iCarousel'
-    pod 'WCDB'
     
     # UMeng Analytics iOS SDK Begin .......
     #依赖库

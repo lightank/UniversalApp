@@ -1,1 +1,0 @@
-../../../../WCDBOptimizedSQLCipher/src/vxworks.h

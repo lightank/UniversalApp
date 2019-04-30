@@ -366,7 +366,10 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     SEL sel = NSSelectorFromString(self.jsMethodsDictionary[message.name]);
     if (sel && [self respondsToSelector:sel])
     {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self performSelector:sel withObject:message];
+#pragma clang diagnostic pop
     }
 }
 

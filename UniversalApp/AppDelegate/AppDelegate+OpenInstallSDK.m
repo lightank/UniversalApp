@@ -53,7 +53,7 @@
         
         //弹出提示框(便于调试，调试完成后删除此代码)
 #if DEBUG
-        if (NO) // 打印传过来的信息
+        if (YES) // 打印传过来的信息
         {
             NSString *getData;
             if (appData.data) {
