@@ -342,6 +342,33 @@
 @property (class, nonatomic, readonly, nullable) NSString *memoryTotal;
 
 
+#pragma mark - 沙盒路径相关
+/**  documents 路径  */
+@property (class, nonatomic, readonly) NSURL *documentsURL;
+@property (class, nonatomic, readonly) NSString *documentsPath;
+/**  library 路径  */
+@property (class, nonatomic, readonly) NSURL *libraryURL;
+@property (class, nonatomic, readonly) NSString *libraryPath;
+/**  caches 路径  */
+@property (class, nonatomic, readonly) NSURL *cachesURL;
+@property (class, nonatomic, readonly) NSString *cachesPath;
+
+/**  创建指定路径的文件夹  */
++ (BOOL)createFolderAtPath:(NSString *)folderPath;
+/**  单个文件的大小  */
++ (long long)fileSizeAtPath:(NSString*)filePath;
+/**  遍历文件夹获得文件夹大小，返回多少M  */
++ (float)folderSizeAtPath:(NSString *)folderPath;
+/**  清除指定文件  */
++ (BOOL)clearItemAtPath:(NSString *)filePath;
+/**  清除指定文件夹缓存  */
++ (BOOL)clearfolderItemsAtPath:(NSString *)folderPath;
+/**  将数据写入文件  */
++ (BOOL)writeDataItem:(NSData *)itemData withName:(NSString *)savedName toFolder:(NSString *)folderPath;
+/**  添加特别的文件标识,防止iCloud同步这个路径的文件  */
++ (BOOL)addSkipBackupAttributeToFile:(NSString *)path;
+
+
 #pragma mark - 类方法
 /**  NSUserDefaults所有字典  */
 + (nullable NSDictionary<NSString *, id> *)userDefaultsDictionaryRepresentation;

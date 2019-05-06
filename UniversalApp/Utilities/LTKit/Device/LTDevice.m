@@ -1651,6 +1651,145 @@
     return [[NSBundle mainBundle] infoDictionary];
 }
 
+#pragma mark - 沙盒路径相关
+/*
+ 沙盒
+    Bundle Container
+        MyApp.app:由于应用程序必须经过签名，所以不能在运行时对这个目录中的内容进行修改，否则会导致应用程序无法启动
+    Data Container
+        Documents:保存应用运行时生成的需要持久化的数据,iTunes会自动备份该目录。苹果建议将在应用程序中浏览到的文件数据保存在该目录下。
+        Library:
+            Caches: 一般存储的是缓存文件，例如图片视频等，此目录下的文件不会在应用程序退出时删除。
+                    *在手机备份的时候，iTunes不会备份该目录。例如音频,视频等文件存放其中
+            Preferences:保存应用程序的所有偏好设置iOS的Settings(设置)，我们不应该直接在这里创建文件，而是需要通过NSUserDefault这个类来访问应用程序的偏好设置。
+                    *iTunes会自动备份该文件目录下的内容。比如说:是否允许访问图片,是否允许访问地理位置......
+            tmp:临时文件目录，在程序重新运行的时候，和开机的时候，会清空tmp文件夹
+    iCloud Container
+ …
+ */
++ (NSURL *)documentsURL
+{
+    return [self URLForDirectory:NSDocumentDirectory];
+}
+
++ (NSString *)documentsPath
+{
+    return [self pathForDirectory:NSDocumentDirectory];
+}
+
++ (NSURL *)libraryURL
+{
+    return [self URLForDirectory:NSLibraryDirectory];
+}
+
++ (NSString *)libraryPath
+{
+    return [self pathForDirectory:NSLibraryDirectory];
+}
+
++ (NSURL *)cachesURL
+{
+    return [self URLForDirectory:NSCachesDirectory];
+}
+
++ (NSString *)cachesPath
+{
+    return [self pathForDirectory:NSCachesDirectory];
+}
+
++ (BOOL)createFolderAtPath:(NSString *)folderPath
+{
+    NSError *error = nil;
+    BOOL success = [[NSFileManager defaultManager] createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error];
+    return success;
+}
+
+//单个文件的大小
++ (long long)fileSizeAtPath:(NSString*)filePath
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:filePath])
+    {
+        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
+    }
+    return 0;
+}
+
+//遍历文件夹获得文件夹大小，返回多少M
++ (float)folderSizeAtPath:(NSString*)folderPath
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if (![manager fileExistsAtPath:folderPath])
+    {
+        return 0.0;
+    }
+    NSEnumerator *childFilesEnumerator=[[manager subpathsAtPath:folderPath] objectEnumerator];
+    NSString *fileName = nil;
+    long long folderSize = 0;
+    while ((fileName = [childFilesEnumerator nextObject])!=nil)
+    {
+        NSString *fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
+        folderSize += [self fileSizeAtPath:fileAbsolutePath];
+    }
+    return folderSize / (1024.0 * 1024.0);
+}
+
+//清除指定文件
++ (BOOL)clearItemAtPath:(NSString *)filePath
+{
+    NSError *error = nil;
+    BOOL success = NO;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath])
+    {
+        success = [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
+    }
+    return success;
+}
+
+//清除指定文件夹缓存
++ (BOOL)clearfolderItemsAtPath:(NSString *)folderPath
+{
+    NSArray<NSString *> *files = [[NSFileManager defaultManager] subpathsAtPath:folderPath];
+    BOOL success = NO;
+    for (NSString *item in files)
+    {
+        NSError *error = nil;
+        NSString *path = [folderPath stringByAppendingPathComponent:item];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path])
+        {
+            [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+        }
+        success = YES;
+    }
+    return success;
+}
+
++ (BOOL)writeDataItem:(NSData *)itemData withName:(NSString *)savedName toFolder:(NSString *)folderPath
+{
+    BOOL success = NO;
+    [self createFolderAtPath:folderPath];
+    NSString *filePath = [folderPath stringByAppendingPathComponent:savedName];
+    
+    success = [[NSFileManager defaultManager] createFileAtPath:filePath contents:itemData attributes:nil];
+    return success;
+}
+
++ (BOOL)addSkipBackupAttributeToFile:(NSString *)path
+{
+    return [[NSURL.alloc initFileURLWithPath:path] setResourceValue:@(YES) forKey:NSURLIsExcludedFromBackupKey error:nil];
+}
+
++ (NSURL *)URLForDirectory:(NSSearchPathDirectory)directory
+{
+    return [NSFileManager.defaultManager URLsForDirectory:directory inDomains:NSUserDomainMask].lastObject;
+}
+
++ (NSString *)pathForDirectory:(NSSearchPathDirectory)directory
+{
+    return NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES).firstObject;
+}
+
+
 #pragma mark - cookie相关
 + (BOOL)addCookieWithName:(nonnull NSString *)name
                     value:(nonnull NSString *)value
