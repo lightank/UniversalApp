@@ -17,7 +17,6 @@
 		3D48667320B1AE0F002BACA8 /* LTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48666720B1AE0F002BACA8 /* LTDevice.m */; };
 		3D48667B20B1B1B7002BACA8 /* LTUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48667A20B1B1B7002BACA8 /* LTUserManager.m */; };
 		3D48667E20B1B1C5002BACA8 /* LTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48667D20B1B1C5002BACA8 /* LTUser.m */; };
-		3D48668120B1B34D002BACA8 /* LTSandboxTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48668020B1B34D002BACA8 /* LTSandboxTool.m */; };
 		3D4A2F9C21A2585A00817536 /* LTLocalizations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A2F9B21A2585A00817536 /* LTLocalizations.m */; };
 		3D4A2F9F21A2640600817536 /* LTLanguageSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A2F9E21A2640600817536 /* LTLanguageSettingViewController.m */; };
 		3D4A2FA321A2DF3900817536 /* LTLanguageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A2FA221A2DF3900817536 /* LTLanguageTableViewCell.m */; };
@@ -122,8 +121,6 @@
 		3D48667A20B1B1B7002BACA8 /* LTUserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTUserManager.m; sourceTree = "<group>"; };
 		3D48667C20B1B1C5002BACA8 /* LTUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTUser.h; sourceTree = "<group>"; };
 		3D48667D20B1B1C5002BACA8 /* LTUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTUser.m; sourceTree = "<group>"; };
-		3D48667F20B1B34C002BACA8 /* LTSandboxTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSandboxTool.h; sourceTree = "<group>"; };
-		3D48668020B1B34D002BACA8 /* LTSandboxTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTSandboxTool.m; sourceTree = "<group>"; };
 		3D4A2F9A21A2585A00817536 /* LTLocalizations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTLocalizations.h; sourceTree = "<group>"; };
 		3D4A2F9B21A2585A00817536 /* LTLocalizations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTLocalizations.m; sourceTree = "<group>"; };
 		3D4A2F9D21A2640600817536 /* LTLanguageSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTLanguageSettingViewController.h; sourceTree = "<group>"; };
@@ -332,15 +329,6 @@
 			path = Encryption;
 			sourceTree = "<group>";
 		};
-		3D48666420B1ADF5002BACA8 /* DeviceInfo */ = {
-			isa = PBXGroup;
-			children = (
-				3D48667F20B1B34C002BACA8 /* LTSandboxTool.h */,
-				3D48668020B1B34D002BACA8 /* LTSandboxTool.m */,
-			);
-			path = DeviceInfo;
-			sourceTree = "<group>";
-		};
 		3D48667820B1B197002BACA8 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,7 +524,6 @@
 				A073C2CE224A3F7900B685A1 /* LTKit */,
 				3DDDBEC421941CCF004D68F6 /* LTExampleCode.h */,
 				3DDDBEC521941CCF004D68F6 /* LTExampleCode.m */,
-				3D48666420B1ADF5002BACA8 /* DeviceInfo */,
 				3D48665D20B1AAA3002BACA8 /* Encryption */,
 			);
 			path = Utilities;
@@ -969,7 +956,6 @@
 				3D4A2F9F21A2640600817536 /* LTLanguageSettingViewController.m in Sources */,
 				A073C304224A3F7B00B685A1 /* UINavigationController+LTAdd.m in Sources */,
 				A073C309224A3F7B00B685A1 /* NSObject+LTAdd.m in Sources */,
-				3D48668120B1B34D002BACA8 /* LTSandboxTool.m in Sources */,
 				3D03D64420B80C27006F6F75 /* UINavigationBar+Awesome.m in Sources */,
 				A035615521C3859C00DAAEE1 /* LTListTableViewController.m in Sources */,
 				A01255EF22680D0C009223E1 /* CALayer+LTAdd.m in Sources */,

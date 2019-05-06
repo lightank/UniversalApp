@@ -1704,6 +1704,16 @@
     return success;
 }
 
++ (NSURL *)URLForDirectory:(NSSearchPathDirectory)directory
+{
+    return [NSFileManager.defaultManager URLsForDirectory:directory inDomains:NSUserDomainMask].lastObject;
+}
+
++ (NSString *)pathForDirectory:(NSSearchPathDirectory)directory
+{
+    return NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES).firstObject;
+}
+
 //单个文件的大小
 + (long long)fileSizeAtPath:(NSString*)filePath
 {
@@ -1779,16 +1789,42 @@
     return [[NSURL.alloc initFileURLWithPath:path] setResourceValue:@(YES) forKey:NSURLIsExcludedFromBackupKey error:nil];
 }
 
-+ (NSURL *)URLForDirectory:(NSSearchPathDirectory)directory
++ (double)availableDiskSpace
 {
-    return [NSFileManager.defaultManager URLsForDirectory:directory inDomains:NSUserDomainMask].lastObject;
+    NSDictionary *attributes = [NSFileManager.defaultManager attributesOfFileSystemForPath:self.documentsPath error:nil];
+    return [attributes[NSFileSystemFreeSize] unsignedLongLongValue] / (double)0x100000;
 }
 
-+ (NSString *)pathForDirectory:(NSSearchPathDirectory)directory
+#pragma mark - 二进制和资源包的自检
+/**  app的二进制包路径  */
++ (NSString *)applicationBinaryPath
 {
-    return NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES).firstObject;
+    NSString *excutableName = [[NSBundle mainBundle] infoDictionary][@"CFBundleExecutable"];
+    NSString *tmpPath = [[[UIApplication sharedApplication] documentsPath] stringByDeletingLastPathComponent];
+    NSString *appPath = [[tmpPath stringByAppendingPathComponent:excutableName] stringByAppendingPathExtension:@"app"];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.f)
+    {
+        appPath = [[NSBundle mainBundle] bundlePath];
+    }
+    NSString *binaryPath = [appPath stringByAppendingPathComponent:excutableName];
+    return binaryPath;
 }
 
+/**  app的所有资源校验码路径,可通过修改为.plist文件来访问  */
++ (NSString *)applicationCodeResourcesPath
+{
+    NSString *excutableName = [[NSBundle mainBundle] infoDictionary][@"CFBundleExecutable"];
+    NSString *tmpPath = [[[UIApplication sharedApplication] documentsPath] stringByDeletingLastPathComponent];
+    NSString *appPath = [[tmpPath stringByAppendingPathComponent:excutableName]
+                         stringByAppendingPathExtension:@"app"];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.f)
+    {
+        appPath = [[NSBundle mainBundle] bundlePath];
+    }
+    NSString *sigPath = [[appPath stringByAppendingPathComponent:@"_CodeSignature"]
+                         stringByAppendingPathComponent:@"CodeResources"];
+    return sigPath;
+}
 
 #pragma mark - cookie相关
 + (BOOL)addCookieWithName:(nonnull NSString *)name

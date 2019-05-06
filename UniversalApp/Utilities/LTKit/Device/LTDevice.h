@@ -368,6 +368,13 @@
 /**  添加特别的文件标识,防止iCloud同步这个路径的文件  */
 + (BOOL)addSkipBackupAttributeToFile:(NSString *)path;
 
+#pragma mark - 二进制和资源包的自检
+// 从iOS8开始沙盒机制有所变化，文稿和资源文件分开在不同的路径，而且文稿是一个动态的路径，所以获取方法要区分系统版本。
+/**  app的二进制包路径  */
++ (NSString *)applicationBinaryPath;
+/**  app的所有资源校验码路径,可通过修改为.plist文件来访问  */
++ (NSString *)applicationCodeResourcesPath;
+
 
 #pragma mark - 类方法
 /**  NSUserDefaults所有字典  */
