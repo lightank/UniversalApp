@@ -74,50 +74,8 @@
 
 + (BOOL)createFolder:(NSString *)folderPath
 {
-    if ([self fileExistsAtPath:folderPath]) return YES;
-
-    BOOL success = NO;
-
-    __block NSArray<NSString *> *sandbox = @[@"Documents", @"Library", @"Caches", @"Preferences", @"tmp"];
-    __block NSArray<NSString *> *fileNameArray = [folderPath componentsSeparatedByString:@"/"];
-    __block NSMutableArray *indexArray = [NSMutableArray array];
-    [sandbox enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [indexArray addObject:@([self lastIndexOfString:obj inArray:fileNameArray])];
-    }];
-    
-    [indexArray sortUsingComparator:^NSComparisonResult(NSNumber * _Nonnull num1, NSNumber * _Nonnull num2) {
-        int v1 = [num1 intValue];
-        int v2 = [num2 intValue];
-        
-        if (v1 < v2)
-        {
-            return NSOrderedAscending;
-        }
-        else if (v1 > v2)
-        {
-            return NSOrderedDescending;
-        }
-        else
-        {
-            return NSOrderedSame;
-        }
-    }];
-    
-    NSUInteger start = [indexArray.lastObject integerValue];
-    start = ((start + 1) <= (fileNameArray.count - 1)) ? (start + 1) : (fileNameArray.count - 1);
-    NSArray *subArray = [fileNameArray subarrayWithRange:NSMakeRange(0, start)];
-    NSString *startString = [subArray componentsJoinedByString:@"/"];
-    
-    for (; start < fileNameArray.count; ++start)
-    {
-        startString = [self createFolder:fileNameArray[start] inFolderName:startString];
-        if ([self fileExistsAtPath:folderPath])
-        {
-            success = YES;
-            break;
-        }
-    }
-    
+    NSError *error = nil;
+    BOOL success = [[NSFileManager defaultManager] createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error];
     return success;
 }
 
@@ -150,7 +108,7 @@
 //清除指定文件夹缓存
 + (BOOL)clearfolderItemsAtPath:(NSString *)folderPath
 {
-    NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:folderPath];
+    NSArray<NSString *> *files = [[NSFileManager defaultManager] subpathsAtPath:folderPath];
     BOOL success = NO;
     for (NSString *item in files)
     {
@@ -172,8 +130,7 @@
 {
     NSString *excutableName = [[NSBundle mainBundle] infoDictionary][@"CFBundleExecutable"];
     NSString *tmpPath = [[[UIApplication sharedApplication] documentsPath] stringByDeletingLastPathComponent];
-    NSString *appPath = [[tmpPath stringByAppendingPathComponent:excutableName]
-                         stringByAppendingPathExtension:@"app"];
+    NSString *appPath = [[tmpPath stringByAppendingPathComponent:excutableName] stringByAppendingPathExtension:@"app"];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.f)
     {
         appPath = [[NSBundle mainBundle] bundlePath];
@@ -226,7 +183,7 @@
 + (NSString *)createFolder:(NSString *)folderName inFolderName:(NSString *)folderPath
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *path = [NSString stringWithFormat:@"%@/%@",folderPath, folderName];
+    NSString *path = [folderPath stringByAppendingPathComponent:folderName];
     BOOL isDir = NO;;
     BOOL result = NO;
     if  (![fileManager fileExistsAtPath:path isDirectory:&isDir])   //先判断目录是否存在，不存在才创建
