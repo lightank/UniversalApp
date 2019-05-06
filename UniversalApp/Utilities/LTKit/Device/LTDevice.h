@@ -88,257 +88,175 @@
 
 #pragma mark - 设备相关
 /**  系统设备类型(如iPhone, iPod touch)  */
-@property (nonatomic, readonly, nullable) NSString *deviceModel;
 @property (class, nonatomic, readonly, nullable) NSString *deviceModel;
 /**  设备名称(如xxx的iPhone)  */
-@property (nonatomic, readonly, nullable) NSString *deviceName;
 @property (class, nonatomic, readonly, nullable) NSString *deviceName;
 /**  无格式的系统设备类型(如:i386, iPhone6,1)  */
-@property (nonatomic, readonly, nullable) NSString *machineModel;
 @property (class, nonatomic, readonly, nullable) NSString *machineModel;
 /**  格式化的系统设备类型(如:iPhone 6s, iPhone 6s Plus)  */
-@property (nonatomic, readonly, nullable) NSString *machineModelName;
 @property (class, nonatomic, readonly, nullable) NSString *machineModelName;
 /**  屏幕尺寸:3.5 4.0 4.7 5.5 ...  */
-@property (nonatomic, readonly, nullable) NSString *screenInchSize;
 @property (class, nonatomic, readonly, nullable) NSString *screenInchSize;
 /**  CPU类型:arm arm64 x86 x86_64  */
-@property (nonatomic, readonly, nullable) NSString *CUPType;
 @property (class, nonatomic, readonly, nullable) NSString *CUPType;
 /**  SIM卡类型:Micro Nano, iPhone 4s之后都是Nano卡  */
-@property (nonatomic, readonly, nullable) NSString *SIMType;
 @property (class, nonatomic, readonly, nullable) NSString *SIMType;
 /**  电池状态:充电,放电,充满100%等  */
-@property(nonatomic, readonly) UIDeviceBatteryState batteryState;
 @property(class, nonatomic, readonly) UIDeviceBatteryState batteryState;
 /**  电池电量,0 .. 1.0. -1.0 if UIDeviceBatteryStateUnknown  */
-@property (nonatomic, readonly) CGFloat batteryLevel;
 @property (class, nonatomic, readonly) CGFloat batteryLevel;
 /**  是否为模拟器  */
-@property (nonatomic, readonly) BOOL isSimulator;
 @property (class, nonatomic, readonly) BOOL isSimulator;
 /**  是否越狱  */
-@property (nonatomic, readonly) BOOL isJailbroken;
 @property (class, nonatomic, readonly) BOOL isJailbroken;
 /**  是否支持指纹识别  */
-@property (nonatomic, readonly) BOOL isEnableTouchID;
 @property (class, nonatomic, readonly) BOOL isEnableTouchID;
 /**  屏幕分辨率  */
-@property (nonatomic, readonly, nullable) NSString *resolutionRatio;
 @property (class, nonatomic, readonly, nullable) NSString *resolutionRatio;;
 /**  是否是iPad  */
-@property (nonatomic, readonly) BOOL isIPad;
 @property (class, nonatomic, readonly) BOOL isIPad;
 /**  是否是iPod  */
-@property (nonatomic, readonly) BOOL isIPod;
 @property (class, nonatomic, readonly) BOOL isIPod;
 /**  是否是iPhone  */
-@property (nonatomic, readonly) BOOL isIPhone;
 @property (class, nonatomic, readonly) BOOL isIPhone;
 
 #pragma mark - 屏幕/尺寸相关
 /**  屏幕亮度,系统取值是0-1,这里取值在系统基础上 *100 取值范围为0-100  */
-@property (nonatomic, readonly) CGFloat screenBrightness;
 @property (class, nonatomic, readonly) CGFloat screenBrightness;
 /**  用户界面横屏了才会返回YES  */
-@property (nonatomic, readonly) BOOL isLandscape;
 @property (class, nonatomic, readonly) BOOL isLandscape;
 /**  无论支不支持横屏，只要设备横屏了，就会返回YES  */
-@property (nonatomic, readonly) BOOL isDeviceLandscape;
 @property (class, nonatomic, readonly) BOOL isDeviceLandscape;
 /**  屏幕宽度，跟横竖屏无关  */
-@property (nonatomic, readonly) CGFloat deviceWidth;
 @property (class, nonatomic, readonly) CGFloat deviceWidth;
 /**  屏幕高度，跟横竖屏无关  */
-@property (nonatomic, readonly) CGFloat deviceHeight;
 @property (class, nonatomic, readonly) CGFloat deviceHeight;
 /**  屏幕宽度，会根据横竖屏的变化而变化  */
-@property (nonatomic, readonly) CGFloat screenWidth;
 @property (class, nonatomic, readonly) CGFloat screenWidth;
 /**  屏幕高度，会根据横竖屏的变化而变化  */
-@property (nonatomic, readonly) CGFloat screenHeight;
 @property (class, nonatomic, readonly) CGFloat screenHeight;
 /**  状态栏高度(来电等情况下，状态栏高度会发生变化，所以应该实时计算),普通的是20pt,刘海屏是44pt.来电时普通的40pt,刘海屏还是44pt,状态栏高度变化会发送UIApplicationWillChangeStatusBarFrameNotification通知  */
-@property (nonatomic, readonly) CGFloat statusBarHeight;
 @property (class, nonatomic, readonly) CGFloat statusBarHeight;
 /**  判断是否为 iPhone X 系列刘海设计  */
-@property (nonatomic, readonly) BOOL isNotchedScreen;
 @property (class, nonatomic, readonly) BOOL isNotchedScreen;
 /**  判断是否为 6.5英寸 iPhone XR pt:414x896，px:1242x2688，@3x  */
-@property (nonatomic, readonly) BOOL is65InchScreen;
 @property (class, nonatomic, readonly) BOOL is65InchScreen;
 /**  判断是否为 6.1英寸 iPhone XR pt:414x896，px:828x1792，@2x  */
-@property (nonatomic, readonly) BOOL is61InchScreen;
 @property (class, nonatomic, readonly) BOOL is61InchScreen;
 /**  判断是否为 5.8英寸 iPhone X/XS pt:375x812，px:1125x2436，@3x  */
-@property (nonatomic, readonly) BOOL is58InchScreen;
 @property (class, nonatomic, readonly) BOOL is58InchScreen;
 /**  判断是否为 5.5英寸 iPhone 6Plus/6sPlus pt:414x736，px:1242x2208，@3x  */
-@property (nonatomic, readonly) BOOL is55InchScreen;
 @property (class, nonatomic, readonly) BOOL is55InchScreen;
 /**  判断是否为 4.7英寸 iPhone 6/6s pt:375x667，px:750x1334，@2x  */
-@property (nonatomic, readonly) BOOL is47InchScreen;
 @property (class, nonatomic, readonly) BOOL is47InchScreen;
 /**  判断是否为 4.0英寸 iPhone 5/SE pt:320x568，px:640x1136，@2x  */
-@property (nonatomic, readonly) BOOL is40InchScreen;
 @property (class, nonatomic, readonly) BOOL is40InchScreen;
 /**  判断是否为 3.5英寸 iPhone 4/4S pt:320x480，px:640x960，@2x  */
-@property (nonatomic, readonly) BOOL is35InchScreen;
 @property (class, nonatomic, readonly) BOOL is35InchScreen;
 /**  6.5英寸 屏幕尺寸414x896   */
-@property (nonatomic, readonly) CGSize screenSizeFor65Inch;
 @property (class, nonatomic, readonly) CGSize screenSizeFor65Inch;
 /**  6.1英寸 屏幕尺寸414x896   */
-@property (nonatomic, readonly) CGSize screenSizeFor61Inch;
 @property (class, nonatomic, readonly) CGSize screenSizeFor61Inch;
 /**  5.8英寸 屏幕尺寸375x812   */
-@property (nonatomic, readonly) CGSize screenSizeFor58Inch;
 @property (class, nonatomic, readonly) CGSize screenSizeFor58Inch;
 /**  5.5英寸 屏幕尺寸414x736   */
-@property (nonatomic, readonly) CGSize screenSizeFor55Inch;
 @property (class, nonatomic, readonly) CGSize screenSizeFor55Inch;
 /**  4.7英寸 屏幕尺寸375x667   */
-@property (nonatomic, readonly) CGSize screenSizeFor47Inch;
 @property (class, nonatomic, readonly) CGSize screenSizeFor47Inch;
 /**  4.0英寸 屏幕尺寸320x568   */
-@property (nonatomic, readonly) CGSize screenSizeFor40Inch;
 @property (class, nonatomic, readonly) CGSize screenSizeFor40Inch;
 /**  3.5英寸 屏幕尺寸320x480   */
-@property (nonatomic, readonly) CGSize screenSizeFor35Inch;
 @property (class, nonatomic, readonly) CGSize screenSizeFor35Inch;
 /**  是否Retina  */
-@property (nonatomic, readonly) BOOL isRetinaScreen;
 @property (class, nonatomic, readonly) BOOL isRetinaScreen;
 /**  获取一像素的大小  */
-@property (nonatomic, readonly) CGFloat pixelOne;
 @property (class, nonatomic, readonly) CGFloat pixelOne;
 /**  homeIndicator Height:竖屏为34pt,横屏为21pt */
-@property (nonatomic, readonly) CGFloat homeIndicatorHeight;
 @property (class, nonatomic, readonly) CGFloat homeIndicatorHeight;
 /**  tabBarHeight:固定高度49pt + homeIndicatorHeight  */
-@property (nonatomic, readonly) CGFloat tabBarHeight;
 @property (class, nonatomic, readonly) CGFloat tabBarHeight;
 /**  导航栏固定高度:44pt  */
-@property (nonatomic, readonly) CGFloat navigationBarHeigh;
 @property (class, nonatomic, readonly) CGFloat navigationBarHeigh;
 /**  导航栏 + 状态栏高度:固定高度44pt + statusBarHeight  */
-@property (nonatomic, readonly) CGFloat navigationPlusStatusBarHeight;
 @property (class, nonatomic, readonly) CGFloat navigationPlusStatusBarHeight;
 
 #pragma mark - 系统版本,软件相关
 /**  系统名称(如iOS)  */
-@property (nonatomic, readonly, nullable) NSString *systemName;
 @property (class, nonatomic, readonly, nullable) NSString *systemName;
 /**  系统版本(如iOS 10.3)  */
-@property (nonatomic, readonly, nullable) NSString *systemVersion;
 @property (class, nonatomic, readonly, nullable) NSString *systemVersion;
 /**  系统正常待机时间  */
-@property (nonatomic, readonly, nullable) NSString *systemUptime;
 @property (class, nonatomic, readonly, nullable) NSString *systemUptime;
 /**  系统版本是否是iOS 8及以上  */
-@property (nonatomic, readonly) BOOL iOS8OrLater;
 @property (class, nonatomic, readonly) BOOL iOS8OrLater;
 /**  系统版本是否是iOS 9及以上  */
-@property (nonatomic, readonly) BOOL iOS9OrLater;
 @property (class, nonatomic, readonly) BOOL iOS9OrLater;
 /**  系统版本是否是iOS 10及以上  */
-@property (nonatomic, readonly) BOOL iOS10OrLater;
 @property (class, nonatomic, readonly) BOOL iOS10OrLater;
 /**  系统版本是否是iOS 11及以上  */
-@property (nonatomic, readonly) BOOL iOS11OrLater;
 @property (class, nonatomic, readonly) BOOL iOS11OrLater;
 /**  系统版本是否是iOS 12及以上  */
-@property (nonatomic, readonly) BOOL iOS12OrLater;
 @property (class, nonatomic, readonly) BOOL iOS12OrLater;
 /**  剪切板上内容  */
-@property (nonatomic, readonly, nullable) NSString *clipboardContent;
 @property (class, nonatomic, readonly, nullable) NSString *clipboardContent;
-
 
 #pragma mark - 本地区域相关
 /**  所属国家  */
-@property (nonatomic, readonly, nullable) NSString *country;
 @property (class, nonatomic, readonly, nullable) NSString *country;
 /**  本地语言  */
-@property (nonatomic, readonly, nullable) NSString *language;
-@property (class, nonatomic, readonly, nullable) NSString *language;
+@property (class, nonatomic, nullable) NSString *language;
 + (void)resetLanguage;
 /**  时间区域  */
-@property (nonatomic, readonly, nullable) NSString *timeZone;
 @property (class, nonatomic, readonly, nullable) NSString *timeZone;
 /**  货币  */
-@property (nonatomic, readonly, nullable) NSString *currency;
 @property (class, nonatomic, readonly, nullable) NSString *currency;
-
 
 #pragma mark - 网络相关
 /**  运营商名字(如:中国移动)  */
-@property (nonatomic, readonly, nullable) NSString *carrierName;
 @property (class, nonatomic, readonly, nullable) NSString *carrierName;
 /**  运营商所属国家  */
-@property (nonatomic, readonly, nullable) NSString *carrierCountry;
 @property (class, nonatomic, readonly, nullable) NSString *carrierCountry;
 /**  运营商在所属国家的code  */
-@property (nonatomic, readonly, nullable) NSString *carrierISOCountryCode;
 @property (class, nonatomic, readonly, nullable) NSString *carrierISOCountryCode;
 /**  运营商是否允许VOIP  */
-@property (nonatomic, readonly) BOOL carrierAllowsVOIP;
 @property (class, nonatomic, readonly) BOOL carrierAllowsVOIP;
 /**  是否开启代理  */
-@property (nonatomic, readonly) BOOL isOpenProxy;
 @property (class, nonatomic, readonly) BOOL isOpenProxy;
 /**  是否开启VPN  */
-@property (nonatomic, readonly) BOOL isOpenVPN;
 @property (class, nonatomic, readonly) BOOL isOpenVPN;
 /**  当前蜂窝网络类型:2G/3G/4G等  */
-@property (nonatomic, readonly, nullable) NSString *cellNetworkType;
 @property (class, nonatomic, readonly, nullable) NSString *cellNetworkType;
 /**  是否连接到蜂窝网络  */
-@property (nonatomic, readonly) BOOL isConnectedToCellNetwork;
 @property (class, nonatomic, readonly) BOOL isConnectedToCellNetwork;
 /**  是否连接到WIFI  */
-@property (nonatomic, readonly) BOOL isConnectedToWiFi;
 @property (class, nonatomic, readonly) BOOL isConnectedToWiFi;
 /**  当前WIFI名称  */
-@property (nonatomic, readonly, nullable) NSString *WiFiName;
 @property (class, nonatomic, readonly, nullable) NSString *WiFiName;
 /**  当前连接WIFI MAC 地址  */
-@property (nonatomic, readonly, nullable) NSString *WiFiMacAddress;
 @property (class, nonatomic, readonly, nullable) NSString *WiFiMacAddress;
 /**  WIFI IP address of this device (can be nil). e.g. @"192.168.1.111"  */
-@property (nonatomic, readonly, nullable) NSString *ipAddressWiFi;
 @property (class, nonatomic, readonly, nullable) NSString *ipAddressWiFi;
 /**  Cell IP address of this device (can be nil). e.g. @"10.2.2.222"  */
-@property (nonatomic, readonly, nullable) NSString *ipAddressCell;
 @property (class, nonatomic, readonly, nullable) NSString *ipAddressCell;
 /**  外网IP地址 (can be nil). e.g. @"10.2.2.222"  */
-@property (nonatomic, readonly, nullable) NSString *externalIPAddress;
 @property (class, nonatomic, readonly, nullable) NSString *externalIPAddress;
-
 
 #pragma mark - APP相关
 /**  app版本  */
-@property (nonatomic, readonly, nullable) NSString *appVersion;
 @property (class, nonatomic, readonly, nullable) NSString *appVersion;
 /**  app展示的名字  */
-@property (nonatomic, readonly, nullable) NSString *appDisplayName;
 @property (class, nonatomic, readonly, nullable) NSString *appDisplayName;
 /**  app build版本号  */
-@property (nonatomic, readonly, nullable) NSString *appBuildVersion;
 @property (class, nonatomic, readonly, nullable) NSString *appBuildVersion;
 
 #pragma mark - 磁盘与内存
 /**  总存储空间大小(如:16 GB)  */
-@property (nonatomic, readonly, nullable) NSString *totalDiskSpace;
 @property (class, nonatomic, readonly, nullable) NSString *totalDiskSpace;
 /**  已使用存储空间大小(如:7.5 GB)  */
-@property (nonatomic, readonly, nullable) NSString *usedDiskSpace;
 @property (class, nonatomic, readonly, nullable) NSString *usedDiskSpace;
 /**  空余存储空间大小(如:8.5 GB)  */
-@property (nonatomic, readonly, nullable) NSString *freeDiskSpace;
 @property (class, nonatomic, readonly, nullable) NSString *freeDiskSpace;
 /**  总运行内存大小(如 2 G)  */
-@property (nonatomic, readonly, nullable) NSString *memoryTotal;
 @property (class, nonatomic, readonly, nullable) NSString *memoryTotal;
 
 
