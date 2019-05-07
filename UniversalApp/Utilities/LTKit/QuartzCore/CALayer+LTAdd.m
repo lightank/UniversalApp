@@ -21,4 +21,70 @@
     self.shadowRadius = shadowRadius;
 }
 
++ (CAGradientLayer *)lt_gradientLayerWithFromColor:(UIColor *)fromColor
+                                           toColor:(UIColor *)toColor
+                                              size:(CGSize)size
+                                         direction:(LTGradientLayerDirection)direction
+{
+    if (!fromColor || !toColor) return nil;
+    return [self lt_gradientLayerWithColorArray:@[fromColor, toColor] size:size direction:direction];
+}
+
++ (CAGradientLayer *)lt_gradientLayerWithColorArray:(NSArray<UIColor *> *)colorArray
+                                               size:(CGSize)size
+                                          direction:(LTGradientLayerDirection)direction
+{
+    CGPoint startPoint = CGPointZero;
+    CGPoint endPoint = CGPointZero;
+    switch (direction)
+    {
+        case LTGradientImageDirectionTop:
+        {
+            startPoint = CGPointMake(0.5f, 1.f);
+            endPoint = CGPointMake(0.5f, .0f);
+        }
+            break;
+        case LTGradientImageDirectionLeft:
+        {
+            startPoint = CGPointMake(1.f, 0.5f);
+            endPoint = CGPointMake(0.f, 0.5f);
+        }
+            break;
+        case LTGradientImageDirectionBottom:
+        {
+            startPoint = CGPointMake(0.5f, .0f);
+            endPoint = CGPointMake(0.5f, 1.f);
+        }
+            break;
+        case LTGradientImageDirectionRight:
+        {
+            startPoint = CGPointMake(0.f, 0.5f);
+            endPoint = CGPointMake(1.f, 0.5f);
+        }
+            break;
+    }
+    
+    return [self lt_gradientLayerWithColorArray:colorArray size:size startPoint:startPoint endPoint:endPoint];
+}
+
++ (CAGradientLayer *)lt_gradientLayerWithColorArray:(NSArray<UIColor *> *)colorArray
+                                               size:(CGSize)size
+                                         startPoint:(CGPoint)startPoint
+                                           endPoint:(CGPoint)endPoint
+{
+    if (!colorArray || colorArray.count == 0) return nil;
+    CGSize layerSize = (size.width <= 0 || size.height <= 0) ? CGSizeMake(1.f, 1.f) : size;
+    CAGradientLayer *layer = [[CAGradientLayer alloc] init];
+    layer.frame = CGRectMake(0.f, 0.f, layerSize.width, layerSize.height);
+    NSMutableArray *cgColorArray = [[NSMutableArray alloc] init];
+    for (UIColor *color in colorArray)
+    {
+        [cgColorArray addObject:(__bridge id)color.CGColor];
+    }
+    layer.colors = cgColorArray;
+    layer.startPoint = startPoint;
+    layer.endPoint = endPoint;
+    return layer;
+}
+
 @end

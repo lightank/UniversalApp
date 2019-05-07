@@ -11,6 +11,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, LTGradientLayerDirection) {
+    LTGradientLayerDirectionTop,    //从上往下渐变,越往下颜色越深
+    LTGradientLayerDirectionLeft,   //从左往右渐变,越往右颜色越深
+    LTGradientLayerDirectionBottom, //从下往上渐变,越往上颜色越深
+    LTGradientLayerDirectionRight,  //从右到左渐变,越往左颜色越深
+};
+
 @interface CALayer (LTAdd)
 
 /**
@@ -25,6 +32,46 @@ NS_ASSUME_NONNULL_BEGIN
                        offset:(CGSize)shadowOffset
                       opacity:(CGFloat)shadowOpacity
                        radius:(CGFloat)shadowRadius;
+
+/**
+ 生成渐变layer
+
+ @param fromColor 开始颜色
+ @param toColor 结束颜色
+ @param size 大小
+ @param direction 渐变方向
+ @return 渐变layer
+ */
++ (CAGradientLayer *)lt_gradientLayerWithFromColor:(UIColor *)fromColor
+                                           toColor:(UIColor *)toColor
+                                              size:(CGSize)size
+                                         direction:(LTGradientLayerDirection)direction;
+
+/**
+ 生成渐变layer
+
+ @param colorArray 颜色数组
+ @param size 大小
+ @param direction 渐变方向
+ @return 渐变layer
+ */
++ (CAGradientLayer *)lt_gradientLayerWithColorArray:(NSArray<UIColor *> *)colorArray
+                                               size:(CGSize)size
+                                          direction:(LTGradientLayerDirection)direction;
+
+/**
+ 生成渐变layer
+
+ @param colorArray 颜色数组
+ @param size 大小
+ @param startPoint 开始点
+ @param endPoint 结束点
+ @return 渐变layer
+ */
++ (CAGradientLayer *)lt_gradientLayerWithColorArray:(NSArray<UIColor *> *)colorArray
+                                               size:(CGSize)size
+                                         startPoint:(CGPoint)startPoint
+                                           endPoint:(CGPoint)endPoint;
 
 @end
 

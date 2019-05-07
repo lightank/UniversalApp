@@ -436,6 +436,7 @@
 				3DCC9F4720B0183300CD476A /* Utilities */,
 				3DCC9F4620B017F300CD476A /* Vender */,
 				3DCC9F4520B017E700CD476A /* Define */,
+				A06CDC9722812E7D007798A4 /* Resources */,
 				3DCC9F4F20B01A8500CD476A /* PrefixHeader.pch */,
 				3DCC9F1A20B006F100CD476A /* Assets.xcassets */,
 				3DCC9F1F20B006F100CD476A /* Info.plist */,
@@ -646,6 +647,13 @@
 				A035615E21C3F8B400DAAEE1 /* LTBlockExample.m */,
 			);
 			path = Block;
+			sourceTree = "<group>";
+		};
+		A06CDC9722812E7D007798A4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		A073C2CE224A3F7900B685A1 /* LTKit */ = {
