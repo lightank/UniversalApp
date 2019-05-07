@@ -38,25 +38,25 @@
     CGPoint endPoint = CGPointZero;
     switch (direction)
     {
-        case LTGradientImageDirectionTop:
+        case LTGradientLayerDirectionTop:
         {
             startPoint = CGPointMake(0.5f, 1.f);
             endPoint = CGPointMake(0.5f, .0f);
         }
             break;
-        case LTGradientImageDirectionLeft:
+        case LTGradientLayerDirectionLeft:
         {
             startPoint = CGPointMake(1.f, 0.5f);
             endPoint = CGPointMake(0.f, 0.5f);
         }
             break;
-        case LTGradientImageDirectionBottom:
+        case LTGradientLayerDirectionBottom:
         {
             startPoint = CGPointMake(0.5f, .0f);
             endPoint = CGPointMake(0.5f, 1.f);
         }
             break;
-        case LTGradientImageDirectionRight:
+        case LTGradientLayerDirectionRight:
         {
             startPoint = CGPointMake(0.f, 0.5f);
             endPoint = CGPointMake(1.f, 0.5f);
