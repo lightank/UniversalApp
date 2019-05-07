@@ -21,56 +21,57 @@
     self.shadowRadius = shadowRadius;
 }
 
-+ (CAGradientLayer *)lt_gradientLayerWithFromColor:(UIColor *)fromColor
-                                           toColor:(UIColor *)toColor
-                                              size:(CGSize)size
-                                         direction:(LTGradientLayerDirection)direction
++ (CAGradientLayer *)lt_axialGradientLayerWithFromColor:(UIColor *)fromColor
+                                                toColor:(UIColor *)toColor
+                                                   size:(CGSize)size
+                                              direction:(LTGradientLayerDirection)direction
 {
     if (!fromColor || !toColor) return nil;
-    return [self lt_gradientLayerWithColorArray:@[fromColor, toColor] size:size direction:direction];
+    return [self lt_axialGradientLayerWithColorArray:@[fromColor, toColor] size:size direction:direction];
 }
 
-+ (CAGradientLayer *)lt_gradientLayerWithColorArray:(NSArray<UIColor *> *)colorArray
-                                               size:(CGSize)size
-                                          direction:(LTGradientLayerDirection)direction
++ (CAGradientLayer *)lt_axialGradientLayerWithColorArray:(NSArray<UIColor *> *)colorArray
+                                                    size:(CGSize)size
+                                               direction:(LTGradientLayerDirection)direction
 {
     CGPoint startPoint = CGPointZero;
     CGPoint endPoint = CGPointZero;
     switch (direction)
     {
-        case LTGradientLayerDirectionTop:
+        case LTGradientLayerDirectionTopToBottom:
         {
-            startPoint = CGPointMake(0.5f, 1.f);
-            endPoint = CGPointMake(0.5f, .0f);
+            startPoint = CGPointMake(0.f, 0.f);
+            endPoint = CGPointMake(0.f, 1.f);
         }
             break;
-        case LTGradientLayerDirectionLeft:
+        case LTGradientLayerDirectionLeftToRight:
         {
-            startPoint = CGPointMake(1.f, 0.5f);
-            endPoint = CGPointMake(0.f, 0.5f);
+            startPoint = CGPointMake(0.f, 0.f);
+            endPoint = CGPointMake(1.f, 0.f);
         }
             break;
-        case LTGradientLayerDirectionBottom:
+        case LTGradientLayerDirectionBottomToTop:
         {
-            startPoint = CGPointMake(0.5f, .0f);
-            endPoint = CGPointMake(0.5f, 1.f);
+            startPoint = CGPointMake(0.f, 1.f);
+            endPoint = CGPointMake(0.f, 0.f);
         }
             break;
-        case LTGradientLayerDirectionRight:
+        case LTGradientLayerDirectionRightToLeft:
         {
-            startPoint = CGPointMake(0.f, 0.5f);
-            endPoint = CGPointMake(1.f, 0.5f);
+            startPoint = CGPointMake(1.f, 0.f);
+            endPoint = CGPointMake(0.f, 0.f);
         }
             break;
     }
     
-    return [self lt_gradientLayerWithColorArray:colorArray size:size startPoint:startPoint endPoint:endPoint];
+    return [self lt_gradientLayerWithColorArray:colorArray size:size startPoint:startPoint endPoint:endPoint type:kCAGradientLayerAxial];
 }
 
 + (CAGradientLayer *)lt_gradientLayerWithColorArray:(NSArray<UIColor *> *)colorArray
                                                size:(CGSize)size
                                          startPoint:(CGPoint)startPoint
                                            endPoint:(CGPoint)endPoint
+                                               type:(CAGradientLayerType)type
 {
     if (!colorArray || colorArray.count == 0) return nil;
     CGSize layerSize = (size.width <= 0 || size.height <= 0) ? CGSizeMake(1.f, 1.f) : size;
@@ -84,6 +85,7 @@
     layer.colors = cgColorArray;
     layer.startPoint = startPoint;
     layer.endPoint = endPoint;
+    layer.type = type;
     return layer;
 }
 

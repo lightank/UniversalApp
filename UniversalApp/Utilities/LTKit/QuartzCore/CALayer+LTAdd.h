@@ -12,11 +12,18 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, LTGradientLayerDirection) {
-    LTGradientLayerDirectionTop,    //从上往下渐变,越往下颜色越深
-    LTGradientLayerDirectionLeft,   //从左往右渐变,越往右颜色越深
-    LTGradientLayerDirectionBottom, //从下往上渐变,越往上颜色越深
-    LTGradientLayerDirectionRight,  //从右到左渐变,越往左颜色越深
+    LTGradientLayerDirectionTopToBottom,    //从上往下渐变,A → C
+    LTGradientLayerDirectionLeftToRight,   //从左往右渐变,A → B
+    LTGradientLayerDirectionBottomToTop, //从下往上渐变,C → A
+    LTGradientLayerDirectionRightToLeft,  //从右到左渐变,B → A
 };
+
+//   (0,0)        (1,0)
+//     A  _________ B
+//      |         |
+//      |         |
+//    C  ---------  D
+//  (0,1)         (1,1)
 
 @interface CALayer (LTAdd)
 
@@ -34,28 +41,28 @@ typedef NS_ENUM(NSUInteger, LTGradientLayerDirection) {
                        radius:(CGFloat)shadowRadius;
 
 /**
- 生成渐变layer
+ 生成轴向渐变layer
 
  @param fromColor 开始颜色
  @param toColor 结束颜色
  @param size 大小
  @param direction 渐变方向
- @return 渐变layer
+ @return 轴向渐变layer
  */
-+ (CAGradientLayer *)lt_gradientLayerWithFromColor:(UIColor *)fromColor
++ (CAGradientLayer *)lt_axialGradientLayerWithFromColor:(UIColor *)fromColor
                                            toColor:(UIColor *)toColor
                                               size:(CGSize)size
                                          direction:(LTGradientLayerDirection)direction;
 
 /**
- 生成渐变layer
+ 生成轴向渐变layer
 
  @param colorArray 颜色数组
  @param size 大小
  @param direction 渐变方向
- @return 渐变layer
+ @return 轴向渐变layer
  */
-+ (CAGradientLayer *)lt_gradientLayerWithColorArray:(NSArray<UIColor *> *)colorArray
++ (CAGradientLayer *)lt_axialGradientLayerWithColorArray:(NSArray<UIColor *> *)colorArray
                                                size:(CGSize)size
                                           direction:(LTGradientLayerDirection)direction;
 
@@ -66,12 +73,14 @@ typedef NS_ENUM(NSUInteger, LTGradientLayerDirection) {
  @param size 大小
  @param startPoint 开始点
  @param endPoint 结束点
+  @param type iOS 12 以下支持 kCAGradientLayerAxial(轴向) kCAGradientLayerRadial(径向), iOS 12 以后支持 kCAGradientLayerConic(锥)
  @return 渐变layer
  */
 + (CAGradientLayer *)lt_gradientLayerWithColorArray:(NSArray<UIColor *> *)colorArray
                                                size:(CGSize)size
                                          startPoint:(CGPoint)startPoint
-                                           endPoint:(CGPoint)endPoint;
+                                           endPoint:(CGPoint)endPoint
+                                               type:(CAGradientLayerType)type;
 
 @end
 
