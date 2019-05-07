@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, LTGradientLayerDirection) {
+    // 轴向
     LTGradientLayerDirectionTopToBottom,    //从上往下渐变,A → C
     LTGradientLayerDirectionLeftToRight,   //从左往右渐变,A → B
     LTGradientLayerDirectionBottomToTop, //从下往上渐变,C → A
