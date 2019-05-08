@@ -1641,16 +1641,6 @@
     return [NSString stringWithFormat:@"%.lf", TotalGB < 0.f ? -1.0 : TotalGB];
 }
 
-+ (NSDictionary<NSString *, id> *)userDefaultsDictionaryRepresentation
-{
-    return [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-}
-
-+ (NSDictionary *)infoDictionary
-{
-    return [[NSBundle mainBundle] infoDictionary];
-}
-
 #pragma mark - 沙盒路径相关
 /*
  沙盒
@@ -1825,6 +1815,28 @@
                          stringByAppendingPathComponent:@"CodeResources"];
     return sigPath;
 }
+
+#pragma mark - 类方法
++ (NSDictionary<NSString *, id> *)userDefaultsDictionaryRepresentation
+{
+    return [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+}
+
++ (NSDictionary *)infoDictionary
+{
+    return [[NSBundle mainBundle] infoDictionary];
+}
+
+//设置状态栏背景颜色
++ (void)setStatusBarBackgroundColor:(nullable UIColor *)color
+{
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)])
+    {
+        statusBar.backgroundColor = color;
+    }
+}
+
 
 #pragma mark - cookie相关
 + (BOOL)addCookieWithName:(nonnull NSString *)name

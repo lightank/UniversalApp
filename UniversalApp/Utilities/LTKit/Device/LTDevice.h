@@ -259,7 +259,6 @@
 /**  总运行内存大小(如 2 G)  */
 @property (class, nonatomic, readonly, nullable) NSString *memoryTotal;
 
-
 #pragma mark - 沙盒路径相关
 /**  documents 路径  */
 @property (class, nonatomic, readonly) NSURL *documentsURL;
@@ -299,6 +298,9 @@
 + (nullable NSDictionary<NSString *, id> *)userDefaultsDictionaryRepresentation;
 /**  app info.plist 字典  */
 + (nullable NSDictionary *)infoDictionary;
+/**  设置状态栏背景颜色,如果为nil则恢复默认透明颜色  */
++ (void)setStatusBarBackgroundColor:(nullable UIColor *)color;
+
 
 #pragma mark - cookie相关
 
