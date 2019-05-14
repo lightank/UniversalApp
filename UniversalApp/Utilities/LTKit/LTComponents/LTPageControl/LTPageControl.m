@@ -52,7 +52,6 @@
     {
         [self initialization];
     }
-    
     return self;
 }
 
@@ -173,8 +172,8 @@
     CGFloat height = 0;
     if (index == self.currentPage)
     {
-        // 这个已经验证
         x = index * (self.dotImage.size.width + self.spacingBetweenDots);
+        y = ABS((self.bounds.size.height - self.currentDotImage.size.height) * 0.5f);
         width = self.currentDotImage.size.width;
         height = self.currentDotImage.size.height;
         dot.image = self.currentDotImage;
@@ -183,7 +182,6 @@
     {
         if (index < self.currentPage)
         {
-            // 这个已经验证
             x = (index) * (self.dotImage.size.width + self.spacingBetweenDots);
         }
         else
@@ -192,7 +190,7 @@
             CGFloat normalWidth = (index - 1) * (self.dotImage.size.width + self.spacingBetweenDots);
             x =  currentWidth + normalWidth;
         }
-    
+        y = ABS((self.bounds.size.height - self.dotImage.size.height) * 0.5f);
         width = self.dotImage.size.width;
         height = self.dotImage.size.height;
         dot.image = self.dotImage;
@@ -299,6 +297,12 @@
     }
     
     return _dots;
+}
+
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    [self updateDots];
 }
 
 @end
