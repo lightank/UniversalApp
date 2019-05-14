@@ -199,7 +199,6 @@
     }
     
     dot.frame = CGRectMake(x, y, width, height);
-    NSLog(@"第%d个:%@", index, NSStringFromCGRect(dot.frame));
 }
 
 #pragma mark - Utils

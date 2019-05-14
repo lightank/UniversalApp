@@ -60,6 +60,8 @@ typedef NS_ENUM(NSUInteger, LTOscillatoryAnimationType) {
 /**  完全复制一个视图的内容.UIButton的Target.Action复制不过来  */
 - (UIView*)lt_duplicate;
 
+- (void)lt_setCornerRadius:(CGFloat)cornerRadius;
+
 @end
 
 NS_ASSUME_NONNULL_END
