@@ -21,6 +21,7 @@ target 'UniversalApp' do
     pod 'ReactiveObjC'
     pod 'RTRootNavigationController'
     pod 'FDFullscreenPopGesture'
+    pod 'SDCycleScrollView'
     #pod 'Aspects'
     #pod 'MBProgressHUD'
     #pod 'iCarousel'

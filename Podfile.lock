@@ -288,6 +288,8 @@ PODS:
   - RTRootNavigationController (0.7.1):
     - RTRootNavigationController/Core (= 0.7.1)
   - RTRootNavigationController/Core (0.7.1)
+  - SDCycleScrollView (1.75):
+    - SDWebImage (>= 4.0.0)
   - SDWebImage (4.4.3):
     - SDWebImage/Core (= 4.4.3)
   - SDWebImage/Core (4.4.3)
@@ -314,6 +316,7 @@ DEPENDENCIES:
   - QMUIKit
   - ReactiveObjC
   - RTRootNavigationController
+  - SDCycleScrollView
   - SDWebImage
   - UMCAnalytics
   - UMCCommon
@@ -336,6 +339,7 @@ SPEC REPOS:
     - QMUIKit
     - ReactiveObjC
     - RTRootNavigationController
+    - SDCycleScrollView
     - SDWebImage
     - UICKeyChainStore
     - UMCAnalytics
@@ -358,6 +362,7 @@ SPEC CHECKSUMS:
   QMUIKit: 5b8f0a3ab60e42af1310bd40a6fe1b54d612d15c
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
   RTRootNavigationController: afa6913402be26f8326f7f37fc1550aa67baddcc
+  SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   UICKeyChainStore: 85db518bb1d294366d15ec9b92a416c4e670518f
   UMCAnalytics: 6654fd3c8201ff6da5c86a3ae29cd5c8436d3b7b
@@ -366,6 +371,6 @@ SPEC CHECKSUMS:
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: cdb517e96608349344867ae2830389bd31cccae4
+PODFILE CHECKSUM: aeb71eeb8084928389ce228b60f8a6d08f416474
 
 COCOAPODS: 1.6.1
