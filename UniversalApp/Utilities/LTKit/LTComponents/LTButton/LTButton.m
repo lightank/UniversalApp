@@ -51,6 +51,7 @@
 - (void)stopCountDown
 {
     [self.timer invalidate];
+    self.timer = nil;
     if (self.countDownFinished)
     {
         __weak __typeof(self)weakSelf = self;
