@@ -12,6 +12,8 @@
 
 - (void)lt_setBackgroundColor:(UIColor *)backgroundColor;
 - (void)lt_setTranslationY:(CGFloat)translationY;
+// 设置导航栏背景透明度
+- (void)lt_setAlpha:(CGFloat)alpha;
 - (void)lt_reset;
 
 /**  隐藏导航栏底部那条线  */

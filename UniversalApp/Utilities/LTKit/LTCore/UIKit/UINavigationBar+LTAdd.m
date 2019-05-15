@@ -41,6 +41,45 @@ static char kAssociatedObjectKey_navigationBarOverlayKey;
     self.transform = CGAffineTransformMakeTranslation(0, translationY);
 }
 
+- (void)lt_setAlpha:(CGFloat)alpha
+{
+    // 导航栏背景透明度设置
+    UIView *barBackgroundView = [self subviews].firstObject;// _UIBarBackground
+    UIImageView *backgroundImageView = [barBackgroundView subviews].firstObject;// UIImageView
+    if (self.isTranslucent)
+    {
+        if (backgroundImageView != nil && [backgroundImageView isKindOfClass:[UIImageView class]] && backgroundImageView.image != nil)
+        {
+            barBackgroundView.alpha = alpha;
+        }
+        else
+        {
+            if (backgroundImageView.subviews.count >= 2)
+            {
+                UIView *backgroundEffectView = [[barBackgroundView subviews] objectAtIndex:1];// UIVisualEffectView
+                if (backgroundEffectView != nil)
+                {
+                    backgroundEffectView.alpha = alpha;
+                }
+            }
+        }
+    }
+    else
+    {
+        barBackgroundView.alpha = alpha;
+    }
+    
+    // 对导航栏下面那条线做处理
+    if (alpha == 0.0)
+    {
+        [self lt_hiddenBottomLine];
+    }
+    else
+    {
+        [self lt_resetBottomLine];
+    }
+}
+
 - (void)lt_reset
 {
     [self setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
