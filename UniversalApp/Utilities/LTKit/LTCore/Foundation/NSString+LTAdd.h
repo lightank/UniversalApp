@@ -18,6 +18,8 @@
 /**  阿拉伯数字转中文  */
 - (NSString *)lt_numbersToChinese;
 + (NSString *)lt_numbersToChinese:(double)number;
+/**  中文转拼音  */
+- (NSString *)lt_transformToPinyin;
 
 - (NSDictionary *)lt_dictionary;
 

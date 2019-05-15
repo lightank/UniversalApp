@@ -47,6 +47,14 @@
     return dict;
 }
 
+- (NSString *)lt_transformToPinyin
+{
+    NSMutableString *mutableString = [NSMutableString stringWithString:self];
+    CFStringTransform((CFMutableStringRef)mutableString, NULL, kCFStringTransformToLatin, false);
+    mutableString = (NSMutableString *)[mutableString stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:[NSLocale currentLocale]];
+    return [mutableString stringByReplacingOccurrencesOfString:@"'" withString:@""];
+}
+
 - (void)lt_copyToPasteboard
 {
     if (self)
@@ -273,7 +281,5 @@
     
     return result;
 }
-
-
 
 @end

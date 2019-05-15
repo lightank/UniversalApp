@@ -145,14 +145,12 @@
         {
             CFArrayRef allPeople = ABAddressBookCopyArrayOfAllPeople([LTDynamicDevice sharedInstance].addressBook);
             CFIndex count = CFArrayGetCount(allPeople);
-            
             for (int i = 0; i < count; i++)
             {
                 ABRecordRef record = CFArrayGetValueAtIndex(allPeople, i);
                 LTContact *personModel = [[LTContact alloc] initWithRecord:record];
                 [contacts addObject:personModel];
             }
-            
             CFRelease(allPeople);
         }
         
@@ -160,7 +158,97 @@
             if (completeBlock)
             {
                 completeBlock(contacts);
-                
+            }
+        });
+    });
+}
+
+
++ (void)accessSortedContacts:(LTDeviceSortedContactBlock)completeBlock
+{
+    dispatch_async([LTDynamicDevice sharedInstance].queue, ^{
+        NSMutableDictionary *contactsDictionary = [NSMutableDictionary dictionary];
+        if ([self isIOS9OrLater])
+        {
+            if (@available(iOS 9.0, *))
+            {
+#if LTContactAvailable
+                CNContactFetchRequest *request = [[CNContactFetchRequest alloc] initWithKeysToFetch:[LTDynamicDevice sharedInstance].contactskeys];
+                [[LTDynamicDevice sharedInstance].contactStore enumerateContactsWithFetchRequest:request error:nil usingBlock:^(CNContact * _Nonnull cncontact, BOOL * _Nonnull stop) {
+                    LTContact *contact = [[LTContact alloc] initWithCNContact:cncontact];
+                    //获取到姓名的大写首字母
+                    NSString *firstLetter = [self getFirstLetterFromString:contact.fullName];
+                    //如果该字母对应的联系人模型不为空,则将此联系人模型添加到此数组中
+                    if (contactsDictionary[firstLetter])
+                    {
+                        [contactsDictionary[firstLetter] addObject:contact];
+                    }
+                    else    //没有出现过该首字母，则在字典中新增一组key-value
+                    {
+                        //创建新发可变数组存储该首字母对应的联系人模型
+                        NSMutableArray *mArr = [NSMutableArray array];
+                        [mArr addObject:contact];
+                        //将首字母-姓名数组作为key-value加入到字典中
+                        [contactsDictionary setObject:mArr forKey:firstLetter];
+                    }
+                }];
+#endif
+            }
+        }
+        else
+        {
+            CFArrayRef allPeople = ABAddressBookCopyArrayOfAllPeople([LTDynamicDevice sharedInstance].addressBook);
+            CFIndex count = CFArrayGetCount(allPeople);
+            for (int i = 0; i < count; i++)
+            {
+                ABRecordRef record = CFArrayGetValueAtIndex(allPeople, i);
+                LTContact *contact = [[LTContact alloc] initWithRecord:record];
+                //获取到姓名的大写首字母
+                NSString *firstLetter = [self getFirstLetterFromString:contact.fullName];
+                //如果该字母对应的联系人模型不为空,则将此联系人模型添加到此数组中
+                if (contactsDictionary[firstLetter])
+                {
+                    [contactsDictionary[firstLetter] addObject:contact];
+                }
+                //没有出现过该首字母，则在字典中新增一组key-value
+                else
+                {
+                    //创建新发可变数组存储该首字母对应的联系人模型
+                    NSMutableArray *mArr = [NSMutableArray array];
+                    [mArr addObject:contact];
+                    //将首字母-姓名数组作为key-value加入到字典中
+                    [contactsDictionary setObject:mArr forKey:firstLetter];
+                }
+            }
+            CFRelease(allPeople);
+        }
+        
+        // 将addressBookDict字典中的所有Key值进行排序: A~Z
+        NSArray *nameKeys = [[contactsDictionary allKeys] sortedArrayUsingSelector:@selector(compare:)];
+        NSMutableDictionary *dicts = @{}.mutableCopy;
+        for (NSString *key in contactsDictionary)
+        {
+            NSMutableArray *mArr = contactsDictionary[key];
+            dicts[key] = [mArr sortedArrayUsingComparator:^NSComparisonResult(LTContact * _Nonnull obj1, LTContact * _Nonnull obj2) {
+                NSString *firstName = [self.class transformToPinyin:obj1.fullName];
+                NSString *secondName = [self.class transformToPinyin:obj2.fullName];;
+                return [firstName compare:secondName options:NSCaseInsensitiveSearch];
+            }];
+        }
+        
+        // 将 "#" 排列在 A~Z 的后面
+        if ([nameKeys.firstObject isEqualToString:@"#"])
+        {
+            NSMutableArray *mutableNamekeys = [NSMutableArray arrayWithArray:nameKeys];
+            [mutableNamekeys insertObject:nameKeys.firstObject atIndex:nameKeys.count];
+            [mutableNamekeys removeObjectAtIndex:0];
+            nameKeys = mutableNamekeys.copy;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completeBlock)
+            {
+                completeBlock(dicts, nameKeys);
             }
         });
     });
@@ -170,6 +258,48 @@
 {
     
 }
+
+#pragma mark - 获取联系人姓名首字母(传入汉字字符串, 返回大写拼音首字母)
++ (NSString *)getFirstLetterFromString:(NSString *)aString
+{
+    // 转换为拼音
+    NSString *pinyinString = [self transformToPinyin:aString];
+    
+    // 将拼音首字母装换成大写
+    NSString *strPinYin = [[self polyphoneStringHandle:aString pinyinString:pinyinString] uppercaseString];
+    // 截取大写首字母
+    NSString *firstString = [strPinYin substringToIndex:1];
+    // 判断姓名首位是否为大写字母
+    NSString * regexA = @"^[A-Z]$";
+    NSPredicate *predA = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexA];
+    // 获取并返回首字母
+    return [predA evaluateWithObject:firstString] ? firstString : @"#";
+}
+
++ (NSString *)transformToPinyin:(NSString *)aString
+{
+    /**
+     * 参考博主-庞海礁先生的一文:iOS开发中如何更快的实现汉字转拼音 http://www.olinone.com/?p=131
+     */
+    NSMutableString *mutableString = [NSMutableString stringWithString:aString];
+    CFStringTransform((CFMutableStringRef)mutableString, NULL, kCFStringTransformToLatin, false);
+    mutableString = (NSMutableString *)[mutableString stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:[NSLocale currentLocale]];
+    return [mutableString stringByReplacingOccurrencesOfString:@"'" withString:@""];
+}
+
+/**
+ 多音字处理
+ */
++ (NSString *)polyphoneStringHandle:(NSString *)aString pinyinString:(NSString *)pinyinString
+{
+    if ([aString hasPrefix:@"长"]) { return @"chang";}
+    if ([aString hasPrefix:@"沈"]) { return @"shen"; }
+    if ([aString hasPrefix:@"厦"]) { return @"xia";  }
+    if ([aString hasPrefix:@"地"]) { return @"di";   }
+    if ([aString hasPrefix:@"重"]) { return @"chong";}
+    return pinyinString;
+}
+
 
 #pragma mark - 蓝牙
 #pragma mark - CBCentralManagerDelegate

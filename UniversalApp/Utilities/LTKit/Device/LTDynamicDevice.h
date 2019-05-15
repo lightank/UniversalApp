@@ -23,6 +23,7 @@ typedef void(^LTDeviceGyroDataBlock)(BOOL isGyroAvailable, BOOL isGyroActive, do
 typedef void(^LTDeviceBluetoothBlock)(BOOL isOpenBluetooth);
 
 typedef void(^LTDeviceContactBlock)(NSArray <LTContact *> *contacts);
+typedef void(^LTDeviceSortedContactBlock)(NSDictionary <NSString *, NSArray<LTContact *> *> *contactDictionary, NSArray<NSString *> *nameKeys);
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -48,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 通讯录
 + (void)accessContacts:(LTDeviceContactBlock)completeBlock;
++ (void)accessSortedContacts:(LTDeviceSortedContactBlock)completeBlock;
 
 @end
 
