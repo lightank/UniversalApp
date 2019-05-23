@@ -59,6 +59,22 @@
     }
 }
 
+#pragma mark - override super method
+-(BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    //如果 button 边界值无变化  失效 隐藏 或者透明 直接返回
+    if(UIEdgeInsetsEqualToEdgeInsets(self.hitEdgeInsets, UIEdgeInsetsZero) || !self.enabled || self.hidden || self.alpha == 0)
+    {
+        return [super pointInside:point withEvent:event];
+    }
+    else
+    {
+        CGRect relativeFrame = self.bounds;
+        CGRect hitFrame = UIEdgeInsetsInsetRect(relativeFrame, self.hitEdgeInsets);
+        return CGRectContainsPoint(hitFrame, point);
+    }
+}
+
 #pragma mark - setter and getter
 - (YYTimer *)timer
 {

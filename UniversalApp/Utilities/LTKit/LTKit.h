@@ -14,6 +14,7 @@
 #import "UIButton+LTAdd.h"
 #import "UIColor+LTAdd.h"
 #import "UIImage+LTAdd.h"
+#import "UILabel+LTAdd.h"
 #import "UINavigationBar+LTAdd.h"
 #import "UINavigationController+LTAdd.h"
 #import "UIView+LTAdd.h"

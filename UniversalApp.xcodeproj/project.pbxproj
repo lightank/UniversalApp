@@ -72,6 +72,7 @@
 		A07830C72273CDB600771DA3 /* LTPrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = A07830C52273CDB600771DA3 /* LTPrivacyPermission.m */; };
 		A07830CA2273CDE000771DA3 /* LTContact.m in Sources */ = {isa = PBXBuildFile; fileRef = A07830C82273CDE000771DA3 /* LTContact.m */; };
 		A07830CD2273CDF500771DA3 /* LTDynamicDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = A07830CC2273CDF500771DA3 /* LTDynamicDevice.m */; };
+		A09099652296451B00B00859 /* UILabel+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A09099642296451B00B00859 /* UILabel+LTAdd.m */; };
 		A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */; };
 		A0D25DEA227350BF001168A5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DE9227350BF001168A5 /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A0D25DEC22735138001168A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DEB22735138001168A5 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -245,6 +246,8 @@
 		A07830C92273CDE000771DA3 /* LTContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTContact.h; sourceTree = "<group>"; };
 		A07830CB2273CDF500771DA3 /* LTDynamicDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTDynamicDevice.h; sourceTree = "<group>"; };
 		A07830CC2273CDF500771DA3 /* LTDynamicDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTDynamicDevice.m; sourceTree = "<group>"; };
+		A09099632296451B00B00859 /* UILabel+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+LTAdd.h"; sourceTree = "<group>"; };
+		A09099642296451B00B00859 /* UILabel+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+LTAdd.m"; sourceTree = "<group>"; };
 		A0C2CFB12254A31F00190314 /* NSURL+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+LTAdd.h"; sourceTree = "<group>"; };
 		A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+LTAdd.m"; sourceTree = "<group>"; };
 		A0D25DE9227350BF001168A5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -754,6 +757,8 @@
 				A073C2E1224A3F7900B685A1 /* UITableView+LTAdd.m */,
 				A073C2E7224A3F7900B685A1 /* UITextView+LTAdd.h */,
 				A073C2E8224A3F7900B685A1 /* UIWindow+LTAdd.m */,
+				A09099632296451B00B00859 /* UILabel+LTAdd.h */,
+				A09099642296451B00B00859 /* UILabel+LTAdd.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1066,6 +1071,7 @@
 				3D03D63B20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m in Sources */,
 				A07830CD2273CDF500771DA3 /* LTDynamicDevice.m in Sources */,
 				A05AAECB228AA9E20016F61C /* LTButton.m in Sources */,
+				A09099652296451B00B00859 /* UILabel+LTAdd.m in Sources */,
 				A03C9400228270E000F2D513 /* LTScreenshotCapture.m in Sources */,
 				3D4A2FA321A2DF3900817536 /* LTLanguageTableViewCell.m in Sources */,
 				3DDDBEC621941CCF004D68F6 /* LTExampleCode.m in Sources */,
