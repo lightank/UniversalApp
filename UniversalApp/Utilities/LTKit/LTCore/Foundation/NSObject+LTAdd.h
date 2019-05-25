@@ -17,5 +17,18 @@
 + (nullable NSString *)lt_classNameForProperty:(NSString *_Nonnull)propertyName;
 - (nullable NSString *)lt_classNameForProperty:(NSString *_Nonnull)propertyName;
 
+/**
+ * 返回对象中属性class对应的属性名称,如果你用NSClassFromString()返回了nil,请检查是否把相应类加入了target,或者有无实现@implementation
+ * @return NSString 返回属性的类型
+ **/
++ (nullable NSString *)lt_propertyNameForClass:(NSString *_Nonnull)className;
+- (nullable NSString *)lt_propertyNameForClass:(NSString *_Nonnull)className;
+
+/**
+ 返回对象中key为属性名称,value为class类型字符串的字典,如果你用NSClassFromString()返回了nil,请检查是否把相应类加入了target,或者有无实现@implementation,注意不会查找父类的属性
+ @return 返回对象中key为属性名称,value为class类型字符串的字
+ */
++ (nullable NSDictionary<NSString *, NSString *> *)lt_propertyDictionary;
+- (nullable NSDictionary<NSString *, NSString *> *)lt_propertyDictionary;
 
 @end

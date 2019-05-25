@@ -16,38 +16,66 @@
  **/
 + (nullable NSString *)lt_classNameForProperty:(NSString *)propertyName
 {
-    NSString* propertyType = nil;
-    
-    unsigned int propertyCount;
-    objc_property_t* properties = class_copyPropertyList([self class], &propertyCount);
-    for (int i = 0; i < propertyCount; i++)
-    {
-        objc_property_t property = properties[i];
-        //属性名称
-        const char* propertyNameChar = property_getName(property);
-        NSString* propertyNameStr = [NSString stringWithUTF8String:propertyNameChar];
-        
-        //属性对应的类型名字
-        char *typeEncoding = property_copyAttributeValue(property,"T");
-        NSString* typeEncodingStr = [NSString stringWithUTF8String:typeEncoding];
-        typeEncodingStr = [typeEncodingStr stringByReplacingOccurrencesOfString:@"@" withString:@""];
-        typeEncodingStr = [typeEncodingStr stringByReplacingOccurrencesOfString:@"\\" withString:@""];
-        typeEncodingStr = [typeEncodingStr stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-        
-        if ([propertyName isEqualToString:propertyNameStr])
-        {
-            propertyType = typeEncodingStr;
-            break;
-        }
-    }
-    free(properties);
-    
-    return propertyType;
+    return [self lt_propertyDictionary][propertyName];
 }
 
 - (nullable NSString *)lt_classNameForProperty:(NSString *)propertyName
 {
     return [self.class lt_classNameForProperty:propertyName];
+}
+
++ (nullable NSString *)lt_propertyNameForClass:(NSString *_Nonnull)className
+{
+    __block NSString *propertyName = nil;
+    Class class = NSClassFromString(className);
+    if (!class)
+    {
+        return propertyName;
+    }
+    [[self lt_propertyDictionary] enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+        Class propertyClass = NSClassFromString(obj);
+        if ([[propertyClass new] isKindOfClass:class.class])
+        {
+            propertyName = key;
+            *stop = YES;
+        }
+    }];
+    return propertyName;
+}
+- (nullable NSString *)lt_propertyNameForClass:(NSString *_Nonnull)className
+{
+    return [self.class lt_propertyNameForClass:className];
+}
+
++ (nullable NSDictionary<NSString *, NSString *> *)lt_propertyDictionary
+{
+    NSMutableDictionary *dictionary = @{}.mutableCopy;
+    
+    unsigned int propertyCount;
+    objc_property_t *properties = class_copyPropertyList([self class], &propertyCount);
+    for (int i = 0; i < propertyCount; i++)
+    {
+        objc_property_t property = properties[i];
+        //属性名称
+        const char *propertyNameChar = property_getName(property);
+        NSString *propertyNameStr = [NSString stringWithUTF8String:propertyNameChar];
+        
+        //属性对应的类型名字
+        char *typeEncoding = property_copyAttributeValue(property,"T");
+        NSString *typeEncodingStr = [NSString stringWithUTF8String:typeEncoding];
+        typeEncodingStr = [typeEncodingStr stringByReplacingOccurrencesOfString:@"@" withString:@""];
+        typeEncodingStr = [typeEncodingStr stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+        typeEncodingStr = [typeEncodingStr stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        
+        dictionary[propertyNameStr] = typeEncodingStr;
+    }
+    free(properties);
+    
+    return dictionary;
+}
+- (nullable NSDictionary<NSString *, NSString *> *)lt_propertyDictionary
+{
+    return [self.class lt_propertyDictionary];
 }
 
 
