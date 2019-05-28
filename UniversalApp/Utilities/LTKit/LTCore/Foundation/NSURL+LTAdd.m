@@ -17,15 +17,26 @@
         return nil;
     }
     
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithString:self.absoluteString];
+    NSString *tempUrl = self.absoluteString.copy;
+    NSString *tempParams = nil;
+    NSRange tempRang = [tempUrl rangeOfString:@"?"];
+    NSMutableDictionary *dict = @{}.mutableCopy;
+    if (tempRang.length != 0)
+    {
+        tempParams = [[tempUrl substringFromIndex:tempRang.location] stringByReplacingOccurrencesOfString:@"?" withString:@""];
+    }
     
-    [urlComponents.queryItems enumerateObjectsUsingBlock:^(NSURLQueryItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.name) {
-            [params setObject:obj.value ?: [NSNull null] forKey:obj.name];
-        }
-    }];
-    return [params copy];
+    if (tempParams.length != 0)
+    {
+        NSArray *tempArr = [tempParams componentsSeparatedByString:@"&"];
+        [tempArr enumerateObjectsUsingBlock:^(NSString  * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSArray *para = [obj componentsSeparatedByString:@"="];
+            dict[para.firstObject] = para.lastObject;
+            NSLog(@"%@", para);
+        }];
+    }
+    
+    return dict;
 }
 
 @end
