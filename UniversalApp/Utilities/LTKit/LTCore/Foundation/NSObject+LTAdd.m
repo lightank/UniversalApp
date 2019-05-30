@@ -73,7 +73,7 @@
  **/
 + (nullable NSString *)lt_classNameForProperty:(NSString *)propertyName
 {
-    return [NSObject lt_propertyDictionaryOf:self][propertyName];
+    return [NSObject lt_allPropertyDictionaryOf:self][propertyName];
 }
 
 + (nullable NSString *)lt_propertyNameForClass:(Class _Nonnull)className
@@ -106,7 +106,7 @@
 + (nullable NSDictionary<NSString *, NSString *> *)lt_allPropertyDictionaryOf:(Class _Nonnull)defaultClass
 {
     NSMutableDictionary *dictionary = @{}.mutableCopy;
-    Class superClass = self;
+    Class superClass = defaultClass;
     while (superClass)
     {
         NSDictionary<NSString *, NSString *> *propertyDictionary = [NSObject lt_propertyDictionaryOf:superClass];
@@ -141,10 +141,6 @@
     free(properties);
     
     return dictionary;
-}
-- (nullable NSDictionary<NSString *, NSString *> *)lt_propertyDictionary
-{
-    return [self.class lt_propertyDictionary];
 }
 
 
