@@ -41,15 +41,20 @@
  **/
 + (nullable NSString *)lt_classNameForProperty:(NSString *_Nonnull)propertyName;
 
-+ (nullable NSDictionary<NSString *, NSString *> *)lt_allPropertyDictionaryOf:(Class _Nonnull)defaultClass;
+
 /**
- * 返回对象中属性class对应的属性名称,如果你用NSClassFromString()返回了nil,请检查是否把相应类加入了target,或者有无实现@implementation
+ * 返回对象中属性class对应的属性名称,会搜索父类的属性,如果你用NSClassFromString()返回了nil,请检查是否把相应类加入了target,或者有无实现@implementation
  * @return NSString 返回属性的类型
  **/
 + (nullable NSString *)lt_propertyNameForClass:(Class _Nonnull)className;
 
 /**
- 返回对象中key为属性名称,value为class类型字符串的字典,如果你用NSClassFromString()返回了nil,请检查是否把相应类加入了target,或者有无实现@implementation,注意不会查找父类的属性
+ * 返回对象中key为属性名称,value为class类型字符串的字典,包含所有父类的属性,如果你用NSClassFromString()返回了nil,请检查是否把相应类加入了target,或者有无实现@implementation
+ * @return NSString 返回属性的类型
+ **/
++ (nullable NSDictionary<NSString *, NSString *> *)lt_allPropertyDictionaryOf:(Class _Nonnull)defaultClass;
+/**
+ 返回对象中key为属性名称,value为class类型字符串的字典,仅包含当前类的属性,如果你用NSClassFromString()返回了nil,请检查是否把相应类加入了target,或者有无实现@implementation,注意不会查找父类的属性
  @return 返回对象中key为属性名称,value为class类型字符串的字
  */
 + (nullable NSDictionary<NSString *, NSString *> *)lt_propertyDictionaryOf:(Class _Nonnull)defaultClass;
