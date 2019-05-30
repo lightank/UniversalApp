@@ -10,6 +10,63 @@
 
 @implementation NSObject (LTAdd)
 
++ (NSArray<NSString *> *)lt_subClassOf:(Class)defaultClass includeSelf:(BOOL)include
+{
+    NSMutableArray *output = [[NSMutableArray alloc] init];
+    if (include) [output addObject:NSStringFromClass(defaultClass)];
+    int count = objc_getClassList(NULL, 0);
+    if (count <= 0 || !defaultClass)
+    {
+        return output;
+    }
+    Class *classes = (Class *) malloc(sizeof(Class) * count);
+    objc_getClassList(classes, count);
+    for (int i = 0; i < count; ++i)
+    {
+        if (defaultClass == class_getSuperclass(classes[i]))//子类
+        {
+            [output addObject:NSStringFromClass(classes[i])];
+        }
+    }
+    free(classes);
+    return [NSArray arrayWithArray:output];
+}
+
++ (NSArray *)lt_allSubClassOf:(Class)defaultClass includeSelf:(BOOL)include
+{
+    NSMutableArray *output = [[NSMutableArray alloc] init];
+    if (include) [output addObject:NSStringFromClass(defaultClass)];
+    int count = objc_getClassList(NULL, 0);
+    if (count <= 0 || !defaultClass)
+    {
+        return output;
+    }
+    Class *classes = (Class *) malloc(sizeof(Class) * count);
+    objc_getClassList(classes, count);
+    for (int i = 0; i < count; ++i)
+    {
+        NSArray<NSString *> *superClasses = [NSObject lt_superClassOf:classes[i]];
+        if ([superClasses containsObject:NSStringFromClass(defaultClass)])//子类
+        {
+            [output addObject:NSStringFromClass(classes[i])];
+        }
+    }
+    free(classes);
+    return [NSArray arrayWithArray:output];
+}
+
++ (NSArray<NSString *> *)lt_superClassOf:(Class)defaultClass
+{
+    __block NSMutableArray *allClassContainArray = [[NSMutableArray alloc] init];
+    Class superClass = class_getSuperclass(defaultClass);
+    while (superClass)
+    {
+        [allClassContainArray addObject:NSStringFromClass(superClass)];
+        superClass = class_getSuperclass(superClass);
+    }
+    return allClassContainArray;
+}
+
 /**
  * 返回对象中属性的类型
  * @return NSString 返回属性的类型

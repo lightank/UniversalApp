@@ -11,6 +11,31 @@
 @interface NSObject (LTAdd)
 
 /**
+ 获取 defaultClass类 的所有直接继承自这个类的子类的类名,子类需要实现 @impletation
+ 
+ @param defaultClass  需要查询的类
+ @param include 返回的数组是否包含自己
+ @return 包含所有子类的数组,如果没有则返回空数组
+ */
++ (NSArray<NSString *> *_Nonnull)lt_subClassOf:(Class _Nonnull )defaultClass includeSelf:(BOOL)include;
+/**
+ 获取 defaultClass类 的所有子类的类名,包含所有直接或间接继承自这个类的子类,子类需要实现 @impletation
+ 
+ @param defaultClass 需要查询的类
+ @param include 返回的数组是否包含自己
+ @return 包含所有类的数组,如果没有则返回空数组
+ */
++ (NSArray<NSString *> *_Nonnull)lt_allSubClassOf:(Class _Nonnull )defaultClass includeSelf:(BOOL)include;
+
+/**
+ 获取 defaultClass类 所有的父类
+
+ @param defaultClass 需要查询的类
+ @return 所有父类的数组
+ */
++ (NSArray<NSString *> *_Nonnull)lt_superClassOf:(Class _Nonnull )defaultClass;
+
+/**
  * 返回对象中属性的class类型,如果你用NSClassFromString()返回了nil,请检查是否把相应类加入了target,或者有无实现@implementation
  * @return NSString 返回属性的类型
  **/
