@@ -41,6 +41,7 @@
  **/
 + (nullable NSString *)lt_classNameForProperty:(NSString *_Nonnull)propertyName;
 
++ (nullable NSDictionary<NSString *, NSString *> *)lt_allPropertyDictionaryOf:(Class _Nonnull)defaultClass;
 /**
  * 返回对象中属性class对应的属性名称,如果你用NSClassFromString()返回了nil,请检查是否把相应类加入了target,或者有无实现@implementation
  * @return NSString 返回属性的类型

@@ -103,6 +103,19 @@
     return propertyName;
 }
 
++ (nullable NSDictionary<NSString *, NSString *> *)lt_allPropertyDictionaryOf:(Class _Nonnull)defaultClass
+{
+    NSMutableDictionary *dictionary = @{}.mutableCopy;
+    Class superClass = self;
+    while (superClass)
+    {
+        NSDictionary<NSString *, NSString *> *propertyDictionary = [NSObject lt_propertyDictionaryOf:superClass];
+        [dictionary addEntriesFromDictionary:propertyDictionary];
+        superClass = class_getSuperclass(superClass);
+    }
+    return dictionary;
+}
+
 + (nullable NSDictionary<NSString *, NSString *> *)lt_propertyDictionaryOf:(Class _Nonnull)defaultClass
 {
     NSMutableDictionary *dictionary = @{}.mutableCopy;
