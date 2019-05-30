@@ -73,43 +73,42 @@
  **/
 + (nullable NSString *)lt_classNameForProperty:(NSString *)propertyName
 {
-    return [self lt_propertyDictionary][propertyName];
+    return [NSObject lt_propertyDictionaryOf:self][propertyName];
 }
 
-- (nullable NSString *)lt_classNameForProperty:(NSString *)propertyName
-{
-    return [self.class lt_classNameForProperty:propertyName];
-}
-
-+ (nullable NSString *)lt_propertyNameForClass:(NSString *_Nonnull)className
++ (nullable NSString *)lt_propertyNameForClass:(Class _Nonnull)className
 {
     __block NSString *propertyName = nil;
-    Class class = NSClassFromString(className);
+    Class class = self;
     if (!class)
     {
         return propertyName;
     }
-    [[self lt_propertyDictionary] enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
-        Class propertyClass = NSClassFromString(obj);
-        if ([[propertyClass new] isKindOfClass:class.class])
-        {
-            propertyName = key;
-            *stop = YES;
-        }
-    }];
+    
+    Class superClass = self;
+    while (superClass && !propertyName)
+    {
+        NSDictionary<NSString *, NSString *> *propertyDictionary = [NSObject lt_propertyDictionaryOf:superClass];
+        [propertyDictionary enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+            NSArray *superClasees = [NSObject lt_superClassOf:NSClassFromString(obj)];
+            if ([superClasees containsObject:NSStringFromClass(className)])
+            {
+                *stop = YES;
+                propertyName = key;
+            }
+        }];
+        superClass = class_getSuperclass(superClass);
+    }
+    
     return propertyName;
 }
-- (nullable NSString *)lt_propertyNameForClass:(NSString *_Nonnull)className
-{
-    return [self.class lt_propertyNameForClass:className];
-}
 
-+ (nullable NSDictionary<NSString *, NSString *> *)lt_propertyDictionary
++ (nullable NSDictionary<NSString *, NSString *> *)lt_propertyDictionaryOf:(Class _Nonnull)defaultClass
 {
     NSMutableDictionary *dictionary = @{}.mutableCopy;
     
     unsigned int propertyCount;
-    objc_property_t *properties = class_copyPropertyList([self class], &propertyCount);
+    objc_property_t *properties = class_copyPropertyList([defaultClass class], &propertyCount);
     for (int i = 0; i < propertyCount; i++)
     {
         objc_property_t property = properties[i];
