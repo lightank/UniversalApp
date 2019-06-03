@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *textColor;
 /**  字体所在区域背景颜色，取值为 UIColor对象，默认值为nil, 透明色  */
 @property (nonatomic, strong) UIColor *backgroundColor;
-/**  连体属性，取值为NSNumber 对象(整数)，0 表示没有连体字符，1 表示使用默认的连体字符  */
+/**  连体属性，取值为NSNumber 对象(整数)，0 表示没有连体字符，1 表示使用默认的连体字符,一般中文用不到，在英文中可能出现相邻字母连笔的情况  */
 @property (nonatomic, assign) NSInteger ligature;
 /**  字符间距，取值为 NSNumber 对象（整数），正值间距加宽，负值间距变窄,0表示字符间距不可用   */
 @property(nonatomic, assign) CGFloat characterSpacing;
