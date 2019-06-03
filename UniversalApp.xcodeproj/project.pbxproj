@@ -51,6 +51,7 @@
 		A03C9400228270E000F2D513 /* LTScreenshotCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = A03C93FF228270E000F2D513 /* LTScreenshotCapture.m */; };
 		A05AAECB228AA9E20016F61C /* LTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A05AAECA228AA9E20016F61C /* LTButton.m */; };
 		A060A7122274549100277C1A /* LTAuthID.m in Sources */ = {isa = PBXBuildFile; fileRef = A060A7112274549100277C1A /* LTAuthID.m */; };
+		A06D065B22A51A0000FC3D42 /* LTTextAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = A06D065A22A51A0000FC3D42 /* LTTextAttributes.m */; };
 		A073C2F9224A3F7B00B685A1 /* UIImage+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2D1224A3F7900B685A1 /* UIImage+LTAdd.m */; };
 		A073C2FA224A3F7B00B685A1 /* UITableViewCell+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2D2224A3F7900B685A1 /* UITableViewCell+LTAdd.m */; };
 		A073C2FB224A3F7B00B685A1 /* UIViewController+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2D3224A3F7900B685A1 /* UIViewController+LTAdd.m */; };
@@ -202,6 +203,8 @@
 		A05AAECA228AA9E20016F61C /* LTButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTButton.m; sourceTree = "<group>"; };
 		A060A7102274549100277C1A /* LTAuthID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAuthID.h; sourceTree = "<group>"; };
 		A060A7112274549100277C1A /* LTAuthID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTAuthID.m; sourceTree = "<group>"; };
+		A06D065922A51A0000FC3D42 /* LTTextAttributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTTextAttributes.h; sourceTree = "<group>"; };
+		A06D065A22A51A0000FC3D42 /* LTTextAttributes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTTextAttributes.m; sourceTree = "<group>"; };
 		A073C2D0224A3F7900B685A1 /* UITableView+LTAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LTAdd.h"; sourceTree = "<group>"; };
 		A073C2D1224A3F7900B685A1 /* UIImage+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LTAdd.m"; sourceTree = "<group>"; };
 		A073C2D2224A3F7900B685A1 /* UITableViewCell+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+LTAdd.m"; sourceTree = "<group>"; };
@@ -657,6 +660,8 @@
 			children = (
 				A05AAEC8228AA9C90016F61C /* LTButton */,
 				A0128D3022891E6E006FF62D /* LTPageControl */,
+				A06D065922A51A0000FC3D42 /* LTTextAttributes.h */,
+				A06D065A22A51A0000FC3D42 /* LTTextAttributes.m */,
 			);
 			path = LTComponents;
 			sourceTree = "<group>";
@@ -1048,6 +1053,7 @@
 				A035615821C3F6FD00DAAEE1 /* LTObjcViewController.m in Sources */,
 				A060A7122274549100277C1A /* LTAuthID.m in Sources */,
 				A07830CA2273CDE000771DA3 /* LTContact.m in Sources */,
+				A06D065B22A51A0000FC3D42 /* LTTextAttributes.m in Sources */,
 				3DCC9F2120B006F100CD476A /* main.m in Sources */,
 				A073C306224A3F7B00B685A1 /* UIColor+LTAdd.m in Sources */,
 				A073C2FE224A3F7B00B685A1 /* UIScrollView+LTRefresh.m in Sources */,
