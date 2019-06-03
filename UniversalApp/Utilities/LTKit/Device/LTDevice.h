@@ -83,6 +83,7 @@
 //#define UIColorHEX_Alpha(hex, a) ([UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0 green:((float)((hex & 0xFF00) >> 8)) / 255.0 blue:((float)(hex & 0xFF)) / 255.0 alpha:a])
 //#define UIColorWithHEX(hex) (UIColorHEX_Alpha(hex, 1.0f))
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface LTDevice : NSObject
 
@@ -334,3 +335,5 @@
 
 
 @end
+
+NS_ASSUME_NONNULL_END
