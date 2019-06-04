@@ -19,6 +19,8 @@
     self.shadowOffset = shadowOffset;
     self.shadowOpacity = shadowOpacity;
     self.shadowRadius = shadowRadius;
+    self.masksToBounds = NO;
+    self.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:self.cornerRadius].CGPath;
 }
 
 + (CAGradientLayer *)lt_axialGradientLayerWithFromColor:(UIColor *)fromColor
