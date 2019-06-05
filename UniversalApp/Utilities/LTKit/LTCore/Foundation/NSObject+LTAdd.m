@@ -7,6 +7,7 @@
 //
 
 #import "NSObject+LTAdd.h"
+#import <objc/runtime.h>
 
 @implementation NSObject (LTAdd)
 
