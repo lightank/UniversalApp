@@ -74,7 +74,28 @@
  **/
 + (nullable NSString *)lt_classNameForProperty:(NSString *)propertyName
 {
-    return [NSObject lt_allPropertyDictionaryOf:self][propertyName];
+    if (!propertyName)
+    {
+        return nil;
+    }
+    
+    static dispatch_once_t onceToken;
+    static NSMutableDictionary *cacheDictionary = nil;
+    dispatch_once(&onceToken,^{
+        cacheDictionary = @{}.mutableCopy;
+    });
+    
+    NSString *key = [NSString stringWithFormat:@"%@_%@", NSStringFromClass(self.class), propertyName];
+    NSString *className = cacheDictionary[key];
+    if (className)
+    {
+        return [className isKindOfClass:[NSNull class]] ? nil : className;
+    }
+    
+    className = [NSObject lt_allPropertyDictionaryOf:self][propertyName];
+    cacheDictionary[key] = className ? : [NSNull null];
+    
+    return className;
 }
 
 + (nullable NSString *)lt_propertyNameForClass:(Class _Nonnull)className
@@ -84,6 +105,19 @@
     if (!class)
     {
         return propertyName;
+    }
+    
+    static dispatch_once_t onceToken;
+    static NSMutableDictionary *cacheDictionary = nil;
+    dispatch_once(&onceToken,^{
+        cacheDictionary = @{}.mutableCopy;
+    });
+    
+    NSString *key = [NSString stringWithFormat:@"%@_%@", NSStringFromClass(self.class), className];
+    propertyName = cacheDictionary[key];
+    if (propertyName)
+    {
+        return [propertyName isKindOfClass:[NSNull class]] ? nil : propertyName;
     }
     
     Class superClass = self;
@@ -100,6 +134,8 @@
         }];
         superClass = class_getSuperclass(superClass);
     }
+    
+    cacheDictionary[key] = propertyName ? : [NSNull null];
     
     return propertyName;
 }
