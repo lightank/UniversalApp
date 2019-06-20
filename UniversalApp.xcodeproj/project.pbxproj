@@ -77,6 +77,7 @@
 		A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */; };
 		A0D25DEA227350BF001168A5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DE9227350BF001168A5 /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A0D25DEC22735138001168A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DEB22735138001168A5 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A0EEAE8622BB8687006E4004 /* LTBaseRequestResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EEAE8422BB8687006E4004 /* LTBaseRequestResponse.m */; };
 		E263541D9C33F5DD3886B5D4 /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */; };
 		FB553A15234B274C38B6CE91 /* libPods-UniversalAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0296C350224E490362599AB1 /* libPods-UniversalAppTests.a */; };
 /* End PBXBuildFile section */
@@ -255,6 +256,8 @@
 		A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+LTAdd.m"; sourceTree = "<group>"; };
 		A0D25DE9227350BF001168A5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A0D25DEB22735138001168A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A0EEAE8422BB8687006E4004 /* LTBaseRequestResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTBaseRequestResponse.m; sourceTree = "<group>"; };
+		A0EEAE8522BB8687006E4004 /* LTBaseRequestResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTBaseRequestResponse.h; sourceTree = "<group>"; };
 		A244D68607808162F3309FE0 /* Pods-UniversalAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppUITests/Pods-UniversalAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC8739C3BF6125C27952E091 /* Pods-UniversalAppTests.sit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppTests.sit.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppTests/Pods-UniversalAppTests.sit.xcconfig"; sourceTree = "<group>"; };
 		C88A913B462EFBFE7833C24D /* Pods-UniversalAppTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppTests/Pods-UniversalAppTests.dev.xcconfig"; sourceTree = "<group>"; };
@@ -585,12 +588,11 @@
 		3DCC9F7A20B0313F00CD476A /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				A0EEAE8322BB8687006E4004 /* Model */,
 				3DCC9F7B20B0318C00CD476A /* LTNetworkTools.h */,
 				3DCC9F7C20B0318C00CD476A /* LTNetworkTools.m */,
 				3DE5B32220B11EBE009719D0 /* LTBaseRequest.h */,
 				3DE5B32320B11EBE009719D0 /* LTBaseRequest.m */,
-				3D2E14B521087EA7003B3122 /* LTRequestHeaderModel.h */,
-				3D2E14B621087EA7003B3122 /* LTRequestHeaderModel.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -798,6 +800,17 @@
 				A060A7112274549100277C1A /* LTAuthID.m */,
 			);
 			path = Device;
+			sourceTree = "<group>";
+		};
+		A0EEAE8322BB8687006E4004 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A0EEAE8522BB8687006E4004 /* LTBaseRequestResponse.h */,
+				A0EEAE8422BB8687006E4004 /* LTBaseRequestResponse.m */,
+				3D2E14B521087EA7003B3122 /* LTRequestHeaderModel.h */,
+				3D2E14B621087EA7003B3122 /* LTRequestHeaderModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A0F53AE52273323D0059088D /* LTPrivacyPermission */ = {
@@ -1073,6 +1086,7 @@
 				3D48666320B1AAC5002BACA8 /* LTEncryptorTools.m in Sources */,
 				A073C307224A3F7B00B685A1 /* NSString+LTAdd.m in Sources */,
 				A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */,
+				A0EEAE8622BB8687006E4004 /* LTBaseRequestResponse.m in Sources */,
 				A035615F21C3F8B400DAAEE1 /* LTBlockExample.m in Sources */,
 				3D03D63B20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m in Sources */,
 				A07830CD2273CDF500771DA3 /* LTDynamicDevice.m in Sources */,
