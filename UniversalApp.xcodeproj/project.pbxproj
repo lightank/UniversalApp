@@ -11,7 +11,6 @@
 		3D03D64420B80C27006F6F75 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D03D64320B80C26006F6F75 /* UINavigationBar+Awesome.m */; };
 		3D20AC3F20B3B04200BDE45D /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20AC3D20B2C83800BDE45D /* JavaScriptCore.framework */; };
 		3D20AC4320B3B0EC00BDE45D /* LTBaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D20AC4220B3B0EC00BDE45D /* LTBaseWebViewController.m */; };
-		3D2E14B721087EA7003B3122 /* LTRequestHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2E14B621087EA7003B3122 /* LTRequestHeaderModel.m */; };
 		3D48666220B1AAC5002BACA8 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48666020B1AAC4002BACA8 /* NSString+Hash.m */; };
 		3D48666320B1AAC5002BACA8 /* LTEncryptorTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48666120B1AAC4002BACA8 /* LTEncryptorTools.m */; };
 		3D48667320B1AE0F002BACA8 /* LTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48666720B1AE0F002BACA8 /* LTDevice.m */; };
@@ -35,8 +34,6 @@
 		3DCC9F7120B02D4500CD476A /* LTTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F7020B02D4500CD476A /* LTTabBarControllerConfig.m */; };
 		3DCC9F7520B02E0A00CD476A /* LTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F7420B02E0A00CD476A /* LTNavigationController.m */; };
 		3DDDBEC621941CCF004D68F6 /* LTExampleCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDBEC521941CCF004D68F6 /* LTExampleCode.m */; };
-		3DE5B31A20B047CF009719D0 /* LTNetworkTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F7C20B0318C00CD476A /* LTNetworkTools.m */; };
-		3DE5B32420B11EBE009719D0 /* LTBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5B32320B11EBE009719D0 /* LTBaseRequest.m */; };
 		3DEE10B320EB05C0002C597D /* libOpenInstallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DEE10B020EB05C0002C597D /* libOpenInstallSDK.a */; };
 		3DFE3E7020EA531500A8832C /* AppDelegate+UMengAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE3E6F20EA531500A8832C /* AppDelegate+UMengAnalytics.m */; };
 		3DFE3E7320EA532500A8832C /* AppDelegate+OpenInstallSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE3E7220EA532500A8832C /* AppDelegate+OpenInstallSDK.m */; };
@@ -77,7 +74,6 @@
 		A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */; };
 		A0D25DEA227350BF001168A5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DE9227350BF001168A5 /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A0D25DEC22735138001168A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DEB22735138001168A5 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A0EEAE8622BB8687006E4004 /* LTBaseRequestResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EEAE8422BB8687006E4004 /* LTBaseRequestResponse.m */; };
 		E263541D9C33F5DD3886B5D4 /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */; };
 		FB553A15234B274C38B6CE91 /* libPods-UniversalAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0296C350224E490362599AB1 /* libPods-UniversalAppTests.a */; };
 /* End PBXBuildFile section */
@@ -115,8 +111,6 @@
 		3D20AC3D20B2C83800BDE45D /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		3D20AC4120B3B0EC00BDE45D /* LTBaseWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTBaseWebViewController.h; sourceTree = "<group>"; };
 		3D20AC4220B3B0EC00BDE45D /* LTBaseWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTBaseWebViewController.m; sourceTree = "<group>"; };
-		3D2E14B521087EA7003B3122 /* LTRequestHeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTRequestHeaderModel.h; sourceTree = "<group>"; };
-		3D2E14B621087EA7003B3122 /* LTRequestHeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTRequestHeaderModel.m; sourceTree = "<group>"; };
 		3D48665E20B1AAC4002BACA8 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
 		3D48665F20B1AAC4002BACA8 /* LTEncryptorTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTEncryptorTools.h; sourceTree = "<group>"; };
 		3D48666020B1AAC4002BACA8 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
@@ -167,14 +161,10 @@
 		3DCC9F7020B02D4500CD476A /* LTTabBarControllerConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTTabBarControllerConfig.m; sourceTree = "<group>"; };
 		3DCC9F7320B02E0A00CD476A /* LTNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTNavigationController.h; sourceTree = "<group>"; };
 		3DCC9F7420B02E0A00CD476A /* LTNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTNavigationController.m; sourceTree = "<group>"; };
-		3DCC9F7B20B0318C00CD476A /* LTNetworkTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTNetworkTools.h; sourceTree = "<group>"; };
-		3DCC9F7C20B0318C00CD476A /* LTNetworkTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTNetworkTools.m; sourceTree = "<group>"; };
 		3DDDBEC421941CCF004D68F6 /* LTExampleCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTExampleCode.h; sourceTree = "<group>"; };
 		3DDDBEC521941CCF004D68F6 /* LTExampleCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTExampleCode.m; sourceTree = "<group>"; };
 		3DE5B32020B0E94C009719D0 /* ColorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMacros.h; sourceTree = "<group>"; };
 		3DE5B32120B11B19009719D0 /* URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLString.h; sourceTree = "<group>"; };
-		3DE5B32220B11EBE009719D0 /* LTBaseRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTBaseRequest.h; sourceTree = "<group>"; };
-		3DE5B32320B11EBE009719D0 /* LTBaseRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTBaseRequest.m; sourceTree = "<group>"; };
 		3DEE10B020EB05C0002C597D /* libOpenInstallSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOpenInstallSDK.a; sourceTree = "<group>"; };
 		3DEE10B120EB05C0002C597D /* OpeninstallData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpeninstallData.h; sourceTree = "<group>"; };
 		3DEE10B220EB05C0002C597D /* OpenInstallSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInstallSDK.h; sourceTree = "<group>"; };
@@ -256,8 +246,6 @@
 		A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+LTAdd.m"; sourceTree = "<group>"; };
 		A0D25DE9227350BF001168A5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A0D25DEB22735138001168A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		A0EEAE8422BB8687006E4004 /* LTBaseRequestResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTBaseRequestResponse.m; sourceTree = "<group>"; };
-		A0EEAE8522BB8687006E4004 /* LTBaseRequestResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTBaseRequestResponse.h; sourceTree = "<group>"; };
 		A244D68607808162F3309FE0 /* Pods-UniversalAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppUITests/Pods-UniversalAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC8739C3BF6125C27952E091 /* Pods-UniversalAppTests.sit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppTests.sit.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppTests/Pods-UniversalAppTests.sit.xcconfig"; sourceTree = "<group>"; };
 		C88A913B462EFBFE7833C24D /* Pods-UniversalAppTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppTests/Pods-UniversalAppTests.dev.xcconfig"; sourceTree = "<group>"; };
@@ -508,7 +496,6 @@
 				3DACBB2C219EAD380077E262 /* Login */,
 				3D679309213E23160017891D /* FirstViewController */,
 				3D48667820B1B197002BACA8 /* User */,
-				3DCC9F7A20B0313F00CD476A /* Network */,
 				3DCC9F6E20B02D2E00CD476A /* HomeTabBar */,
 			);
 			path = Modules;
@@ -583,18 +570,6 @@
 				3DCC9F7420B02E0A00CD476A /* LTNavigationController.m */,
 			);
 			path = NavigationController;
-			sourceTree = "<group>";
-		};
-		3DCC9F7A20B0313F00CD476A /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				A0EEAE8322BB8687006E4004 /* Model */,
-				3DCC9F7B20B0318C00CD476A /* LTNetworkTools.h */,
-				3DCC9F7C20B0318C00CD476A /* LTNetworkTools.m */,
-				3DE5B32220B11EBE009719D0 /* LTBaseRequest.h */,
-				3DE5B32320B11EBE009719D0 /* LTBaseRequest.m */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		3DEE10AF20EB05C0002C597D /* OpenInstallSDK2.2.0 */ = {
@@ -800,17 +775,6 @@
 				A060A7112274549100277C1A /* LTAuthID.m */,
 			);
 			path = Device;
-			sourceTree = "<group>";
-		};
-		A0EEAE8322BB8687006E4004 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				A0EEAE8522BB8687006E4004 /* LTBaseRequestResponse.h */,
-				A0EEAE8422BB8687006E4004 /* LTBaseRequestResponse.m */,
-				3D2E14B521087EA7003B3122 /* LTRequestHeaderModel.h */,
-				3D2E14B621087EA7003B3122 /* LTRequestHeaderModel.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		A0F53AE52273323D0059088D /* LTPrivacyPermission */ = {
@@ -1037,8 +1001,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D2E14B721087EA7003B3122 /* LTRequestHeaderModel.m in Sources */,
-				3DE5B31A20B047CF009719D0 /* LTNetworkTools.m in Sources */,
 				3D4A2F9F21A2640600817536 /* LTLanguageSettingViewController.m in Sources */,
 				A073C304224A3F7B00B685A1 /* UINavigationController+LTAdd.m in Sources */,
 				A073C309224A3F7B00B685A1 /* NSObject+LTAdd.m in Sources */,
@@ -1073,7 +1035,6 @@
 				A073C2FB224A3F7B00B685A1 /* UIViewController+LTAdd.m in Sources */,
 				3DFE3E7020EA531500A8832C /* AppDelegate+UMengAnalytics.m in Sources */,
 				A0128D3322891F1A006FF62D /* LTPageControl.m in Sources */,
-				3DE5B32420B11EBE009719D0 /* LTBaseRequest.m in Sources */,
 				A073C2FC224A3F7B00B685A1 /* UIButton+LTAdd.m in Sources */,
 				3D48667B20B1B1B7002BACA8 /* LTUserManager.m in Sources */,
 				A073C308224A3F7B00B685A1 /* NSDictionary+LTAdd.m in Sources */,
@@ -1086,7 +1047,6 @@
 				3D48666320B1AAC5002BACA8 /* LTEncryptorTools.m in Sources */,
 				A073C307224A3F7B00B685A1 /* NSString+LTAdd.m in Sources */,
 				A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */,
-				A0EEAE8622BB8687006E4004 /* LTBaseRequestResponse.m in Sources */,
 				A035615F21C3F8B400DAAEE1 /* LTBlockExample.m in Sources */,
 				3D03D63B20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m in Sources */,
 				A07830CD2273CDF500771DA3 /* LTDynamicDevice.m in Sources */,

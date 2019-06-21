@@ -22,6 +22,7 @@ target 'UniversalApp' do
     pod 'RTRootNavigationController'
     pod 'FDFullscreenPopGesture'
     pod 'SDCycleScrollView'
+    pod 'PrintBeautifulLog'
     #pod 'Aspects'
     #pod 'MBProgressHUD'
     #pod 'iCarousel'

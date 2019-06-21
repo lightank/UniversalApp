@@ -10,7 +10,6 @@
 #import <objc/runtime.h>
 #import "YYFPSLabel.h"
 #import "LTTabBarControllerConfig.h"
-#import "LTNetworkTools.h"
 
 @implementation AppDelegate (AppService)
 
@@ -36,8 +35,6 @@
 /**  初始化服务  */
 - (void)initAppServiceWithOptions:(NSDictionary *)launchOptions
 {
-    //网络管理配置 须配置在首位.
-    [LTNetworkTools configureNetwork];
     // ========== 上方不能插入代码 ==========
     //设置IQKeyboard
     //[self configureBoardManager];

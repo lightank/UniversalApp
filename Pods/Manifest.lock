@@ -27,6 +27,7 @@ PODS:
     - JCore (~> 1.2.6)
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.7)
+  - PrintBeautifulLog (1.0.0)
   - QMUIKit (2.9.3):
     - QMUIKit/QMUIComponents (= 2.9.3)
     - QMUIKit/QMUICore (= 2.9.3)
@@ -313,6 +314,7 @@ DEPENDENCIES:
   - JPush
   - Masonry
   - MJRefresh
+  - PrintBeautifulLog
   - QMUIKit
   - ReactiveObjC
   - RTRootNavigationController
@@ -336,6 +338,7 @@ SPEC REPOS:
     - JPush
     - Masonry
     - MJRefresh
+    - PrintBeautifulLog
     - QMUIKit
     - ReactiveObjC
     - RTRootNavigationController
@@ -359,6 +362,7 @@ SPEC CHECKSUMS:
   JPush: d0cead70ba223a6a3b52749899ebda830dfbc49a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  PrintBeautifulLog: ae1edcf7af92ffcb1de3726d1545d043e861d2e0
   QMUIKit: 5b8f0a3ab60e42af1310bd40a6fe1b54d612d15c
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
   RTRootNavigationController: afa6913402be26f8326f7f37fc1550aa67baddcc
@@ -371,6 +375,6 @@ SPEC CHECKSUMS:
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: aeb71eeb8084928389ce228b60f8a6d08f416474
+PODFILE CHECKSUM: 0b0fde852745c87647120ad56b5511fb1d8257d2
 
 COCOAPODS: 1.6.1
