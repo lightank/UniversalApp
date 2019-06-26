@@ -476,7 +476,12 @@
         return YES;
     }
     
-    NSString *path = [NSString stringWithFormat:@"/private/%@", [NSString stringWithUUID]];
+    CFUUIDRef uuid = CFUUIDCreate(NULL);
+    CFStringRef string = CFUUIDCreateString(NULL, uuid);
+    CFRelease(uuid);
+    NSString *uuidString = (__bridge_transfer NSString *)string;
+    
+    NSString *path = [NSString stringWithFormat:@"/private/%@", uuidString];
     if ([@"test" writeToFile : path atomically : YES encoding : NSUTF8StringEncoding error : NULL])
     {
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
@@ -1790,7 +1795,7 @@
 + (NSString *)applicationBinaryPath
 {
     NSString *excutableName = [[NSBundle mainBundle] infoDictionary][@"CFBundleExecutable"];
-    NSString *tmpPath = [[[UIApplication sharedApplication] documentsPath] stringByDeletingLastPathComponent];
+    NSString *tmpPath = [[self documentsPath] stringByDeletingLastPathComponent];
     NSString *appPath = [[tmpPath stringByAppendingPathComponent:excutableName] stringByAppendingPathExtension:@"app"];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.f)
     {
@@ -1804,7 +1809,7 @@
 + (NSString *)applicationCodeResourcesPath
 {
     NSString *excutableName = [[NSBundle mainBundle] infoDictionary][@"CFBundleExecutable"];
-    NSString *tmpPath = [[[UIApplication sharedApplication] documentsPath] stringByDeletingLastPathComponent];
+    NSString *tmpPath = [[self documentsPath] stringByDeletingLastPathComponent];
     NSString *appPath = [[tmpPath stringByAppendingPathComponent:excutableName]
                          stringByAppendingPathExtension:@"app"];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.f)

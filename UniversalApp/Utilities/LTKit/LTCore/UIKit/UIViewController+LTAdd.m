@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+LTAdd.h"
+#import <objc/runtime.h>
 
 @implementation UIViewController (LTAdd)
 

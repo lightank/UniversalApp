@@ -8,6 +8,7 @@
 
 #import "UINavigationBar+LTAdd.h"
 #import "LTDevice.h"
+#import <objc/runtime.h>
 
 @implementation UINavigationBar (LTAdd)
 

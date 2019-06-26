@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AddressBook/AddressBook.h>
+#import <UIKit/UIKit.h>
 #if __has_include(<Contacts/Contacts.h>)
 #import <Contacts/Contacts.h>
 #define LTContactAvailable YES

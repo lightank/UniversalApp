@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreFoundation/CoreFoundation.h>
 #import <CFNetwork/CFNetwork.h>
+#import <UIKit/UIKit.h>
 
 #pragma mark - 系统版本相关
 // 手机系统版本是否为 iOS 8.0 及以上
