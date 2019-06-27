@@ -140,7 +140,7 @@
     CGFloat spacingBetweenImageAndTitle = LTFlat(isImageViewShowing && isTitleLabelShowing ? self.spacingBetweenImageAndTitle : 0);// 如果图片或文字某一者没显示，则这个 spacing 不考虑进布局
     UIEdgeInsets contentEdgeInsets = LTUIEdgeInsetsRemoveFloatMin(self.contentEdgeInsets);
     CGSize resultSize = CGSizeZero;
-    CGSize contentLimitSize = CGSizeMake(size.width - LTUIEdgeInsetsGetHorizontalValue(contentEdgeInsets), size.height - UIEdgeInsetsGetVerticalValue(contentEdgeInsets));
+    CGSize contentLimitSize = CGSizeMake(size.width - LTUIEdgeInsetsGetHorizontalValue(contentEdgeInsets), size.height - LTUIEdgeInsetsGetVerticalValue(contentEdgeInsets));
     
     switch (self.imagePosition) {
         case LTButtonImagePositionTop:
@@ -150,19 +150,19 @@
                 CGFloat imageLimitWidth = contentLimitSize.width - LTUIEdgeInsetsGetHorizontalValue(self.imageEdgeInsets);
                 CGSize imageSize = self.imageView.image ? [self.imageView sizeThatFits:CGSizeMake(imageLimitWidth, CGFLOAT_MAX)] : self.currentImage.size;
                 imageSize.width = fmin(imageSize.width, imageLimitWidth);
-                imageTotalSize = CGSizeMake(imageSize.width + LTUIEdgeInsetsGetHorizontalValue(self.imageEdgeInsets), imageSize.height + UIEdgeInsetsGetVerticalValue(self.imageEdgeInsets));
+                imageTotalSize = CGSizeMake(imageSize.width + LTUIEdgeInsetsGetHorizontalValue(self.imageEdgeInsets), imageSize.height + LTUIEdgeInsetsGetVerticalValue(self.imageEdgeInsets));
             }
             
             if (isTitleLabelShowing) {
-                CGSize titleLimitSize = CGSizeMake(contentLimitSize.width - LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets), contentLimitSize.height - imageTotalSize.height - spacingBetweenImageAndTitle - UIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
+                CGSize titleLimitSize = CGSizeMake(contentLimitSize.width - LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets), contentLimitSize.height - imageTotalSize.height - spacingBetweenImageAndTitle - LTUIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
                 CGSize titleSize = [self.titleLabel sizeThatFits:titleLimitSize];
                 titleSize.height = fmin(titleSize.height, titleLimitSize.height);
-                titleTotalSize = CGSizeMake(titleSize.width + LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets), titleSize.height + UIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
+                titleTotalSize = CGSizeMake(titleSize.width + LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets), titleSize.height + LTUIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
             }
             
             resultSize.width = LTUIEdgeInsetsGetHorizontalValue(contentEdgeInsets);
             resultSize.width += fmax(imageTotalSize.width, titleTotalSize.width);
-            resultSize.height = UIEdgeInsetsGetVerticalValue(contentEdgeInsets) + imageTotalSize.height + spacingBetweenImageAndTitle + titleTotalSize.height;
+            resultSize.height = LTUIEdgeInsetsGetVerticalValue(contentEdgeInsets) + imageTotalSize.height + spacingBetweenImageAndTitle + titleTotalSize.height;
         }
             break;
             
@@ -172,21 +172,21 @@
             // 注意这里有一个和系统不一致的行为：当 titleLabel 为多行时，系统的 sizeThatFits: 计算结果固定是单行的，所以当 LTButtonImagePositionLeft 并且titleLabel 多行的情况下，QMUIButton 计算的结果与系统不一致
             
             if (isImageViewShowing) {
-                CGFloat imageLimitHeight = contentLimitSize.height - UIEdgeInsetsGetVerticalValue(self.imageEdgeInsets);
+                CGFloat imageLimitHeight = contentLimitSize.height - LTUIEdgeInsetsGetVerticalValue(self.imageEdgeInsets);
                 CGSize imageSize = self.imageView.image ? [self.imageView sizeThatFits:CGSizeMake(CGFLOAT_MAX, imageLimitHeight)] : self.currentImage.size;
                 imageSize.height = fmin(imageSize.height, imageLimitHeight);
-                imageTotalSize = CGSizeMake(imageSize.width + LTUIEdgeInsetsGetHorizontalValue(self.imageEdgeInsets), imageSize.height + UIEdgeInsetsGetVerticalValue(self.imageEdgeInsets));
+                imageTotalSize = CGSizeMake(imageSize.width + LTUIEdgeInsetsGetHorizontalValue(self.imageEdgeInsets), imageSize.height + LTUIEdgeInsetsGetVerticalValue(self.imageEdgeInsets));
             }
             
             if (isTitleLabelShowing) {
-                CGSize titleLimitSize = CGSizeMake(contentLimitSize.width - LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets) - imageTotalSize.width - spacingBetweenImageAndTitle, contentLimitSize.height - UIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
+                CGSize titleLimitSize = CGSizeMake(contentLimitSize.width - LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets) - imageTotalSize.width - spacingBetweenImageAndTitle, contentLimitSize.height - LTUIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
                 CGSize titleSize = [self.titleLabel sizeThatFits:titleLimitSize];
                 titleSize.height = fmin(titleSize.height, titleLimitSize.height);
-                titleTotalSize = CGSizeMake(titleSize.width + LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets), titleSize.height + UIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
+                titleTotalSize = CGSizeMake(titleSize.width + LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets), titleSize.height + LTUIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
             }
             
             resultSize.width = LTUIEdgeInsetsGetHorizontalValue(contentEdgeInsets) + imageTotalSize.width + spacingBetweenImageAndTitle + titleTotalSize.width;
-            resultSize.height = UIEdgeInsetsGetVerticalValue(contentEdgeInsets);
+            resultSize.height = LTUIEdgeInsetsGetVerticalValue(contentEdgeInsets);
             resultSize.height += fmax(imageTotalSize.height, titleTotalSize.height);
         }
             break;
@@ -215,27 +215,27 @@
     CGRect imageFrame = CGRectZero;
     CGRect titleFrame = CGRectZero;
     UIEdgeInsets contentEdgeInsets = LTUIEdgeInsetsRemoveFloatMin(self.contentEdgeInsets);
-    CGSize contentSize = CGSizeMake(CGRectGetWidth(self.bounds) - LTUIEdgeInsetsGetHorizontalValue(contentEdgeInsets), CGRectGetHeight(self.bounds) - UIEdgeInsetsGetVerticalValue(contentEdgeInsets));
+    CGSize contentSize = CGSizeMake(CGRectGetWidth(self.bounds) - LTUIEdgeInsetsGetHorizontalValue(contentEdgeInsets), CGRectGetHeight(self.bounds) - LTUIEdgeInsetsGetVerticalValue(contentEdgeInsets));
     
     // 图片的布局原则都是尽量完整展示，所以不管 imagePosition 的值是什么，这个计算过程都是相同的
     if (isImageViewShowing) {
-        imageLimitSize = CGSizeMake(contentSize.width - LTUIEdgeInsetsGetHorizontalValue(self.imageEdgeInsets), contentSize.height - UIEdgeInsetsGetVerticalValue(self.imageEdgeInsets));
+        imageLimitSize = CGSizeMake(contentSize.width - LTUIEdgeInsetsGetHorizontalValue(self.imageEdgeInsets), contentSize.height - LTUIEdgeInsetsGetVerticalValue(self.imageEdgeInsets));
         CGSize imageSize = self.imageView.image ? [self.imageView sizeThatFits:imageLimitSize] : self.currentImage.size;
         imageSize.width = fmin(imageLimitSize.width, imageSize.width);
         imageSize.height = fmin(imageLimitSize.height, imageSize.height);
         imageFrame = LTCGRectMakeWithSize(imageSize);
-        imageTotalSize = CGSizeMake(imageSize.width + LTUIEdgeInsetsGetHorizontalValue(self.imageEdgeInsets), imageSize.height + UIEdgeInsetsGetVerticalValue(self.imageEdgeInsets));
+        imageTotalSize = CGSizeMake(imageSize.width + LTUIEdgeInsetsGetHorizontalValue(self.imageEdgeInsets), imageSize.height + LTUIEdgeInsetsGetVerticalValue(self.imageEdgeInsets));
     }
     
     if (self.imagePosition == LTButtonImagePositionTop || self.imagePosition == LTButtonImagePositionBottom) {
         
         if (isTitleLabelShowing) {
-            titleLimitSize = CGSizeMake(contentSize.width - LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets), contentSize.height - imageTotalSize.height - spacingBetweenImageAndTitle - UIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
+            titleLimitSize = CGSizeMake(contentSize.width - LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets), contentSize.height - imageTotalSize.height - spacingBetweenImageAndTitle - LTUIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
             CGSize titleSize = [self.titleLabel sizeThatFits:titleLimitSize];
             titleSize.width = fmin(titleLimitSize.width, titleSize.width);
             titleSize.height = fmin(titleLimitSize.height, titleSize.height);
             titleFrame = LTCGRectMakeWithSize(titleSize);
-            titleTotalSize = CGSizeMake(titleSize.width + LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets), titleSize.height + UIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
+            titleTotalSize = CGSizeMake(titleSize.width + LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets), titleSize.height + LTUIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
         }
         
         switch (self.contentHorizontalAlignment) {
@@ -292,10 +292,10 @@
                         
                     } else if (isImageViewShowing) {
                         imageFrame = LTCGRectSetY(imageFrame, contentEdgeInsets.top + self.imageEdgeInsets.top);
-                        imageFrame = LTCGRectSetHeight(imageFrame, contentSize.height - UIEdgeInsetsGetVerticalValue(self.imageEdgeInsets));
+                        imageFrame = LTCGRectSetHeight(imageFrame, contentSize.height - LTUIEdgeInsetsGetVerticalValue(self.imageEdgeInsets));
                     } else {
                         titleFrame = LTCGRectSetY(titleFrame, contentEdgeInsets.top + self.titleEdgeInsets.top);
-                        titleFrame = LTCGRectSetHeight(titleFrame, contentSize.height - UIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
+                        titleFrame = LTCGRectSetHeight(titleFrame, contentSize.height - LTUIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
                     }
                 }
                     break;
@@ -327,10 +327,10 @@
                         
                     } else if (isImageViewShowing) {
                         imageFrame = LTCGRectSetY(imageFrame, contentEdgeInsets.top + self.imageEdgeInsets.top);
-                        imageFrame = LTCGRectSetHeight(imageFrame, contentSize.height - UIEdgeInsetsGetVerticalValue(self.imageEdgeInsets));
+                        imageFrame = LTCGRectSetHeight(imageFrame, contentSize.height - LTUIEdgeInsetsGetVerticalValue(self.imageEdgeInsets));
                     } else {
                         titleFrame = LTCGRectSetY(titleFrame, contentEdgeInsets.top + self.titleEdgeInsets.top);
-                        titleFrame = LTCGRectSetHeight(titleFrame, contentSize.height - UIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
+                        titleFrame = LTCGRectSetHeight(titleFrame, contentSize.height - LTUIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
                     }
                 }
                     break;
@@ -347,12 +347,12 @@
     } else if (self.imagePosition == LTButtonImagePositionLeft || self.imagePosition == LTButtonImagePositionRight) {
         
         if (isTitleLabelShowing) {
-            titleLimitSize = CGSizeMake(contentSize.width - LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets) - imageTotalSize.width - spacingBetweenImageAndTitle, contentSize.height - UIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
+            titleLimitSize = CGSizeMake(contentSize.width - LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets) - imageTotalSize.width - spacingBetweenImageAndTitle, contentSize.height - LTUIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
             CGSize titleSize = [self.titleLabel sizeThatFits:titleLimitSize];
             titleSize.width = fmin(titleLimitSize.width, titleSize.width);
             titleSize.height = fmin(titleLimitSize.height, titleSize.height);
             titleFrame = LTCGRectMakeWithSize(titleSize);
-            titleTotalSize = CGSizeMake(titleSize.width + LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets), titleSize.height + UIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
+            titleTotalSize = CGSizeMake(titleSize.width + LTUIEdgeInsetsGetHorizontalValue(self.titleEdgeInsets), titleSize.height + LTUIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
         }
         
         switch (self.contentVerticalAlignment) {
@@ -372,11 +372,11 @@
             case UIControlContentVerticalAlignmentFill:
                 if (isImageViewShowing) {
                     imageFrame = LTCGRectSetY(imageFrame, contentEdgeInsets.top + self.imageEdgeInsets.top);
-                    imageFrame = LTCGRectSetHeight(imageFrame, contentSize.height - UIEdgeInsetsGetVerticalValue(self.imageEdgeInsets));
+                    imageFrame = LTCGRectSetHeight(imageFrame, contentSize.height - LTUIEdgeInsetsGetVerticalValue(self.imageEdgeInsets));
                 }
                 if (isTitleLabelShowing) {
                     titleFrame = LTCGRectSetY(titleFrame, contentEdgeInsets.top + self.titleEdgeInsets.top);
-                    titleFrame = LTCGRectSetHeight(titleFrame, contentSize.height - UIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
+                    titleFrame = LTCGRectSetHeight(titleFrame, contentSize.height - LTUIEdgeInsetsGetVerticalValue(self.titleEdgeInsets));
                 }
                 break;
         }
@@ -686,7 +686,7 @@ LTUIEdgeInsetsGetHorizontalValue(UIEdgeInsets insets) {
 
 /// 获取UIEdgeInsets在垂直方向上的值
 CG_INLINE CGFloat
-UIEdgeInsetsGetVerticalValue(UIEdgeInsets insets) {
+LTUIEdgeInsetsGetVerticalValue(UIEdgeInsets insets) {
     return insets.top + insets.bottom;
 }
 

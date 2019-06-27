@@ -22,7 +22,7 @@
     UILabel *placeHolderLabel = [[UILabel alloc] init];
     placeHolderLabel.text = text;
     placeHolderLabel.numberOfLines = 0;
-    placeHolderLabel.textColor = UIColor.blackColor;
+    placeHolderLabel.textColor = [UIColor colorWithRed:(196 / 255.f) green:(200 / 255.f) blue:(208 / 255.f) alpha:1.f];
     [placeHolderLabel sizeToFit];
     [self addSubview:placeHolderLabel];
     // same font
