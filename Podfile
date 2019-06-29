@@ -16,7 +16,7 @@ target 'UniversalApp' do
     pod 'Masonry'
     pod 'YYKit'
     pod 'FCUUID'
-    pod 'QMUIKit'
+#    pod 'QMUIKit'
     pod 'FMDB'
     pod 'ReactiveObjC'
     pod 'RTRootNavigationController'

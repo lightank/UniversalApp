@@ -36,7 +36,7 @@
     
     if (self.languages.count == 0)
     {
-        [QMUITips showError:LTLocalizedString(@"Global.NetworkError") inView:self.view hideAfterDelay:1.f];
+        //[QMUITips showError:LTLocalizedString(@"Global.NetworkError") inView:self.view hideAfterDelay:1.f];
     }
     
     __block NSString *currentLanguage = LTLocalizations.currentLanguage;

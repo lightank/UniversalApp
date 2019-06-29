@@ -346,7 +346,7 @@
 - (void)lt_setCornerRadius:(CGFloat)cornerRadius
 {
     self.layer.cornerRadius = cornerRadius;
-    self.layer.qmui_maskedCorners = QMUILayerMinXMinYCorner | QMUILayerMaxXMinYCorner | QMUILayerMinXMaxYCorner | QMUILayerMaxXMaxYCorner;
+    //self.layer.qmui_maskedCorners = QMUILayerMinXMinYCorner | QMUILayerMaxXMinYCorner | QMUILayerMinXMaxYCorner | QMUILayerMaxXMaxYCorner;
 }
 
 @end

@@ -66,11 +66,12 @@
 #endif
 
 #pragma mark - QMUIKit
-#if __has_include(<QMUIKit/QMUIKit.h>)
-#import <QMUIKit/QMUIKit.h>
-#else
+//#if __has_include(<QMUIKit/QMUIKit.h>)
+//#import <QMUIKit/QMUIKit.h>
+//#else
+// 这个是精简版的QMUI,只有分类
 #import "QMUIKit.h"
-#endif
+//#endif
 
 #pragma mark - ReactiveObjC
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
