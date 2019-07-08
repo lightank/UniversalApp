@@ -85,6 +85,42 @@
     return string;
 }
 
+#pragma mark - UITextField/UITextView 字符过滤
+
++ (BOOL)keepTwoDecimalsNumberWithCurrentText:(NSString *)content
+               shouldChangeCharactersInRange:(NSRange)range
+                           replacementString:(NSString *)string
+{
+    NSString *currentText = content;
+    NSString *insertString = string;
+    
+    if ([currentText containsString:@"."])
+    {
+        if ([insertString isEqualToString:@"."])
+        {
+            return NO;
+        }
+        else if ([insertString isEqualToString:@""])
+        {
+            return YES;
+        }
+        else
+        {
+            NSInteger index = [currentText rangeOfString:@"."].location;
+            NSInteger count = currentText.length;
+            return count - 1 - 2 < index;
+        }
+    }
+    else
+    {
+        if ([insertString isEqualToString:@"."])
+        {
+            return currentText.length != 0;
+        }
+        return YES;
+    }
+}
+
 #pragma mark - 创建二维码/条形码
 //引用自:http://www.jianshu.com/p/e8f7a257b612
 //引用自:https://github.com/MxABC/LBXScan

@@ -97,7 +97,7 @@ _Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"")
 //应用程序实例
 #define kApplication ([UIApplication sharedApplication])
 //当前KeyWindow
-#define kKeyWindow ([UIApplication sharedApplication].keyWindow)
+#define kKeyWindow ([UIApplication sharedApplication].keyWindow ? : ([UIApplication sharedApplication].delegate.window))
 //应用程序实例代理
 #define kApplicationDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 //数据存储

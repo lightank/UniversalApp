@@ -26,6 +26,12 @@
 
 - (void)lt_copyToPasteboard;
 
+#pragma mark - UITextField/UITextView 字符过滤
+/**  输入框保留两位小数  */
++ (BOOL)keepTwoDecimalsNumberWithCurrentText:(NSString *)content
+               shouldChangeCharactersInRange:(NSRange)range
+                           replacementString:(NSString *)string;
+
 #pragma mark - 二维码/条形码
 /**
  生成二维码【白底黑色】

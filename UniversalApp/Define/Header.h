@@ -79,3 +79,6 @@
 #else
 #import "ReactiveObjC.h"
 #endif
+
+// 全局常量
+static CGFloat const kLeftMargin = 16.f;

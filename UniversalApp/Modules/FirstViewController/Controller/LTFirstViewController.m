@@ -20,6 +20,7 @@
     self.title = @"Universal Example";
     [self addCell:@"Objective-C" class:@"LTObjcViewController"];
     [self addCell:@"Feed List Demo" class:@"YYFeedListExample"];
+    //[self addCell:@"Loan Calculator" class:@"LTLoanCalculationViewController"];
 }
 
 @end

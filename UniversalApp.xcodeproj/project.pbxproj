@@ -111,11 +111,21 @@
 		A073C308224A3F7B00B685A1 /* NSDictionary+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2EF224A3F7900B685A1 /* NSDictionary+LTAdd.m */; };
 		A073C309224A3F7B00B685A1 /* NSObject+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2F2224A3F7A00B685A1 /* NSObject+LTAdd.m */; };
 		A073C30A224A3F7B00B685A1 /* NSArray+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2F4224A3F7A00B685A1 /* NSArray+LTAdd.m */; };
+		A077290A22D319A300F03E40 /* LTLoanCalculationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A077290922D319A300F03E40 /* LTLoanCalculationViewController.m */; };
+		A077290E22D319C400F03E40 /* LTLoanInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A077290D22D319C400F03E40 /* LTLoanInfoTableViewCell.m */; };
+		A077291922D31D2900F03E40 /* QMUIToastAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = A077291222D31D2900F03E40 /* QMUIToastAnimator.m */; };
+		A077291A22D31D2900F03E40 /* QMUIToastBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = A077291422D31D2900F03E40 /* QMUIToastBackgroundView.m */; };
+		A077291B22D31D2900F03E40 /* QMUIToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = A077291622D31D2900F03E40 /* QMUIToastView.m */; };
+		A077291C22D31D2900F03E40 /* QMUIToastContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A077291722D31D2900F03E40 /* QMUIToastContentView.m */; };
+		A077291F22D31D4600F03E40 /* QMUITips.m in Sources */ = {isa = PBXBuildFile; fileRef = A077291E22D31D4600F03E40 /* QMUITips.m */; };
+		A077292222D31D6E00F03E40 /* QMUIVisualEffectView.m in Sources */ = {isa = PBXBuildFile; fileRef = A077292122D31D6E00F03E40 /* QMUIVisualEffectView.m */; };
+		A077292522D31DBA00F03E40 /* QMUIKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A077292422D31DBA00F03E40 /* QMUIKeyboardManager.m */; };
 		A07830C72273CDB600771DA3 /* LTPrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = A07830C52273CDB600771DA3 /* LTPrivacyPermission.m */; };
 		A07830CA2273CDE000771DA3 /* LTContact.m in Sources */ = {isa = PBXBuildFile; fileRef = A07830C82273CDE000771DA3 /* LTContact.m */; };
 		A07830CD2273CDF500771DA3 /* LTDynamicDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = A07830CC2273CDF500771DA3 /* LTDynamicDevice.m */; };
 		A081AD8222C614E700B41C41 /* LTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A081AD8122C614E700B41C41 /* LTTextField.m */; };
 		A09099652296451B00B00859 /* UILabel+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A09099642296451B00B00859 /* UILabel+LTAdd.m */; };
+		A0B9953222D32577004BDCA3 /* LTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B9953122D32577004BDCA3 /* LTPickerView.m */; };
 		A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */; };
 		A0D25DEA227350BF001168A5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DE9227350BF001168A5 /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A0D25DEC22735138001168A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DEB22735138001168A5 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -372,6 +382,24 @@
 		A073C2F3224A3F7A00B685A1 /* NSDictionary+LTAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LTAdd.h"; sourceTree = "<group>"; };
 		A073C2F4224A3F7A00B685A1 /* NSArray+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LTAdd.m"; sourceTree = "<group>"; };
 		A073C2F5224A3F7A00B685A1 /* LTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTKit.h; sourceTree = "<group>"; };
+		A077290822D319A300F03E40 /* LTLoanCalculationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTLoanCalculationViewController.h; sourceTree = "<group>"; };
+		A077290922D319A300F03E40 /* LTLoanCalculationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTLoanCalculationViewController.m; sourceTree = "<group>"; };
+		A077290C22D319C400F03E40 /* LTLoanInfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTLoanInfoTableViewCell.h; sourceTree = "<group>"; };
+		A077290D22D319C400F03E40 /* LTLoanInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTLoanInfoTableViewCell.m; sourceTree = "<group>"; };
+		A077291122D31D2900F03E40 /* QMUIToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIToastView.h; sourceTree = "<group>"; };
+		A077291222D31D2900F03E40 /* QMUIToastAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIToastAnimator.m; sourceTree = "<group>"; };
+		A077291322D31D2900F03E40 /* QMUIToastContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIToastContentView.h; sourceTree = "<group>"; };
+		A077291422D31D2900F03E40 /* QMUIToastBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIToastBackgroundView.m; sourceTree = "<group>"; };
+		A077291522D31D2900F03E40 /* QMUIToastAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIToastAnimator.h; sourceTree = "<group>"; };
+		A077291622D31D2900F03E40 /* QMUIToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIToastView.m; sourceTree = "<group>"; };
+		A077291722D31D2900F03E40 /* QMUIToastContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIToastContentView.m; sourceTree = "<group>"; };
+		A077291822D31D2900F03E40 /* QMUIToastBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIToastBackgroundView.h; sourceTree = "<group>"; };
+		A077291D22D31D4600F03E40 /* QMUITips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUITips.h; sourceTree = "<group>"; };
+		A077291E22D31D4600F03E40 /* QMUITips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUITips.m; sourceTree = "<group>"; };
+		A077292022D31D6E00F03E40 /* QMUIVisualEffectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIVisualEffectView.h; sourceTree = "<group>"; };
+		A077292122D31D6E00F03E40 /* QMUIVisualEffectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIVisualEffectView.m; sourceTree = "<group>"; };
+		A077292322D31DB900F03E40 /* QMUIKeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIKeyboardManager.h; sourceTree = "<group>"; };
+		A077292422D31DBA00F03E40 /* QMUIKeyboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIKeyboardManager.m; sourceTree = "<group>"; };
 		A07830BD22735F3600771DA3 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		A07830C52273CDB600771DA3 /* LTPrivacyPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTPrivacyPermission.m; sourceTree = "<group>"; };
 		A07830C62273CDB600771DA3 /* LTPrivacyPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPrivacyPermission.h; sourceTree = "<group>"; };
@@ -383,6 +411,8 @@
 		A081AD8122C614E700B41C41 /* LTTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTTextField.m; sourceTree = "<group>"; };
 		A09099632296451B00B00859 /* UILabel+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+LTAdd.h"; sourceTree = "<group>"; };
 		A09099642296451B00B00859 /* UILabel+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+LTAdd.m"; sourceTree = "<group>"; };
+		A0B9953022D32577004BDCA3 /* LTPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTPickerView.h; sourceTree = "<group>"; };
+		A0B9953122D32577004BDCA3 /* LTPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTPickerView.m; sourceTree = "<group>"; };
 		A0C2CFB12254A31F00190314 /* NSURL+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+LTAdd.h"; sourceTree = "<group>"; };
 		A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+LTAdd.m"; sourceTree = "<group>"; };
 		A0D25DE9227350BF001168A5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -510,6 +540,7 @@
 			children = (
 				A035615321C3859C00DAAEE1 /* LTListTableViewController.h */,
 				A035615421C3859C00DAAEE1 /* LTListTableViewController.m */,
+				A077290B22D319A900F03E40 /* View */,
 				3D67930A213E23160017891D /* Controller */,
 			);
 			path = FirstViewController;
@@ -520,6 +551,8 @@
 			children = (
 				3D67930B213E23160017891D /* LTFirstViewController.h */,
 				3D67930C213E23160017891D /* LTFirstViewController.m */,
+				A077290822D319A300F03E40 /* LTLoanCalculationViewController.h */,
+				A077290922D319A300F03E40 /* LTLoanCalculationViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -857,8 +890,15 @@
 		A00C0E1022C765660016EB47 /* QMUIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A077292022D31D6E00F03E40 /* QMUIVisualEffectView.h */,
+				A077292122D31D6E00F03E40 /* QMUIVisualEffectView.m */,
+				A077291D22D31D4600F03E40 /* QMUITips.h */,
+				A077291E22D31D4600F03E40 /* QMUITips.m */,
 				A00C0E1C22C765F60016EB47 /* QMUIWeakObjectContainer.h */,
 				A00C0E1D22C765F60016EB47 /* QMUIWeakObjectContainer.m */,
+				A077292322D31DB900F03E40 /* QMUIKeyboardManager.h */,
+				A077292422D31DBA00F03E40 /* QMUIKeyboardManager.m */,
+				A077291022D31D2900F03E40 /* ToastView */,
 				A00C0E1122C7656F0016EB47 /* QMUILog */,
 			);
 			path = QMUIComponents;
@@ -909,6 +949,7 @@
 		A023AAE1228AA96600E14B8B /* LTComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A0B9952F22D3255F004BDCA3 /* LTPickerView */,
 				A081AD7F22C614D500B41C41 /* LTTextField */,
 				A05AAEC8228AA9C90016F61C /* LTButton */,
 				A0128D3022891E6E006FF62D /* LTPageControl */,
@@ -1038,6 +1079,30 @@
 			path = Foundation;
 			sourceTree = "<group>";
 		};
+		A077290B22D319A900F03E40 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A077290C22D319C400F03E40 /* LTLoanInfoTableViewCell.h */,
+				A077290D22D319C400F03E40 /* LTLoanInfoTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A077291022D31D2900F03E40 /* ToastView */ = {
+			isa = PBXGroup;
+			children = (
+				A077291122D31D2900F03E40 /* QMUIToastView.h */,
+				A077291222D31D2900F03E40 /* QMUIToastAnimator.m */,
+				A077291322D31D2900F03E40 /* QMUIToastContentView.h */,
+				A077291422D31D2900F03E40 /* QMUIToastBackgroundView.m */,
+				A077291522D31D2900F03E40 /* QMUIToastAnimator.h */,
+				A077291622D31D2900F03E40 /* QMUIToastView.m */,
+				A077291722D31D2900F03E40 /* QMUIToastContentView.m */,
+				A077291822D31D2900F03E40 /* QMUIToastBackgroundView.h */,
+			);
+			path = ToastView;
+			sourceTree = "<group>";
+		};
 		A081AD7F22C614D500B41C41 /* LTTextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -1060,6 +1125,15 @@
 				A060A7112274549100277C1A /* LTAuthID.m */,
 			);
 			path = Device;
+			sourceTree = "<group>";
+		};
+		A0B9952F22D3255F004BDCA3 /* LTPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				A0B9953022D32577004BDCA3 /* LTPickerView.h */,
+				A0B9953122D32577004BDCA3 /* LTPickerView.m */,
+			);
+			path = LTPickerView;
 			sourceTree = "<group>";
 		};
 		A0F53AE52273323D0059088D /* LTPrivacyPermission */ = {
@@ -1290,6 +1364,7 @@
 				A00C0E1B22C7656F0016EB47 /* QMUILogNameManager.m in Sources */,
 				A00C0DF622C764D40016EB47 /* NSAttributedString+QMUI.m in Sources */,
 				A00C0DE522C764D40016EB47 /* UIScrollView+QMUI.m in Sources */,
+				A077291C22D31D2900F03E40 /* QMUIToastContentView.m in Sources */,
 				A073C304224A3F7B00B685A1 /* UINavigationController+LTAdd.m in Sources */,
 				A00C0DF822C764D40016EB47 /* UIFont+QMUI.m in Sources */,
 				A073C309224A3F7B00B685A1 /* NSObject+LTAdd.m in Sources */,
@@ -1301,6 +1376,7 @@
 				A00C0DFF22C764D40016EB47 /* NSString+QMUI.m in Sources */,
 				A00C0DFE22C764D40016EB47 /* UINavigationController+QMUI.m in Sources */,
 				A00C0E1E22C765F60016EB47 /* QMUIWeakObjectContainer.m in Sources */,
+				A0B9953222D32577004BDCA3 /* LTPickerView.m in Sources */,
 				3D4A2F9C21A2585A00817536 /* LTLocalizations.m in Sources */,
 				A00C0DF522C764D40016EB47 /* UITableViewCell+QMUI.m in Sources */,
 				A073C30A224A3F7B00B685A1 /* NSArray+LTAdd.m in Sources */,
@@ -1310,11 +1386,14 @@
 				A00C0DDE22C764D40016EB47 /* UIColor+QMUI.m in Sources */,
 				A07830C72273CDB600771DA3 /* LTPrivacyPermission.m in Sources */,
 				A073C2F9224A3F7B00B685A1 /* UIImage+LTAdd.m in Sources */,
+				A077292222D31D6E00F03E40 /* QMUIVisualEffectView.m in Sources */,
 				A073C2FD224A3F7B00B685A1 /* UITextView+LTAdd.m in Sources */,
 				A073C302224A3F7B00B685A1 /* UIView+LTAdd.m in Sources */,
+				A077291A22D31D2900F03E40 /* QMUIToastBackgroundView.m in Sources */,
 				3DACBB30219EAD610077E262 /* LTLoginViewController.m in Sources */,
 				A073C2FF224A3F7B00B685A1 /* UIApplication+LTAdd.m in Sources */,
 				A081AD8222C614E700B41C41 /* LTTextField.m in Sources */,
+				A077291F22D31D4600F03E40 /* QMUITips.m in Sources */,
 				A073C301224A3F7B00B685A1 /* UIBarButtonItem+LTAdd.m in Sources */,
 				3D48667320B1AE0F002BACA8 /* LTDevice.m in Sources */,
 				3DCC9F7120B02D4500CD476A /* LTTabBarControllerConfig.m in Sources */,
@@ -1335,7 +1414,9 @@
 				A00C0DFC22C764D40016EB47 /* UIBarItem+QMUI.m in Sources */,
 				3DCC9F2120B006F100CD476A /* main.m in Sources */,
 				A073C306224A3F7B00B685A1 /* UIColor+LTAdd.m in Sources */,
+				A077290A22D319A300F03E40 /* LTLoanCalculationViewController.m in Sources */,
 				A00C0E0022C764D40016EB47 /* NSPointerArray+QMUI.m in Sources */,
+				A077290E22D319C400F03E40 /* LTLoanInfoTableViewCell.m in Sources */,
 				A00C0DE922C764D40016EB47 /* UIImageView+QMUI.m in Sources */,
 				A00C0E0122C764D40016EB47 /* NSMethodSignature+QMUI.m in Sources */,
 				A00C0DF722C764D40016EB47 /* UIInterface+QMUI.m in Sources */,
@@ -1362,6 +1443,7 @@
 				A00C0DFB22C764D40016EB47 /* NSURL+QMUI.m in Sources */,
 				3DFE3E7320EA532500A8832C /* AppDelegate+OpenInstallSDK.m in Sources */,
 				A073C300224A3F7B00B685A1 /* UITableView+LTAdd.m in Sources */,
+				A077292522D31DBA00F03E40 /* QMUIKeyboardManager.m in Sources */,
 				A00C0DF922C764D40016EB47 /* NSObject+QMUI.m in Sources */,
 				3D48666320B1AAC5002BACA8 /* LTEncryptorTools.m in Sources */,
 				A00C0E0F22C7653A0016EB47 /* QMUIConfiguration.m in Sources */,
@@ -1369,6 +1451,7 @@
 				A073C307224A3F7B00B685A1 /* NSString+LTAdd.m in Sources */,
 				A00C0DE322C764D40016EB47 /* UITextField+QMUI.m in Sources */,
 				A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */,
+				A077291B22D31D2900F03E40 /* QMUIToastView.m in Sources */,
 				A035615F21C3F8B400DAAEE1 /* LTBlockExample.m in Sources */,
 				3D03D63B20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m in Sources */,
 				A00C0DE222C764D40016EB47 /* UITableView+QMUI.m in Sources */,
@@ -1382,6 +1465,7 @@
 				3D4A2FA321A2DF3900817536 /* LTLanguageTableViewCell.m in Sources */,
 				3DDDBEC621941CCF004D68F6 /* LTExampleCode.m in Sources */,
 				3DFE3E7620EA533300A8832C /* AppDelegate+JPush.m in Sources */,
+				A077291922D31D2900F03E40 /* QMUIToastAnimator.m in Sources */,
 				A00C0DEF22C764D40016EB47 /* UIView+QMUI.m in Sources */,
 				A035615B21C3F76400DAAEE1 /* LTMultiThreadExample.m in Sources */,
 				A073C2FA224A3F7B00B685A1 /* UITableViewCell+LTAdd.m in Sources */,
