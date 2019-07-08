@@ -9,6 +9,7 @@
 #import "LTTabBarControllerConfig.h"
 #import "LTNavigationController.h"
 #import "LTFirstViewController.h"
+#import "LTSecondViewController.h"
 
 @interface LTTabBarControllerConfig () <UITabBarControllerDelegate>
 
@@ -38,7 +39,7 @@
     firstViewController.view.backgroundColor = [UIColor whiteColor];
     UINavigationController *firstNavigationController = [[LTNavigationController alloc] initWithRootViewController:firstViewController];
     
-    UIViewController *secondViewController = [[UIViewController alloc] init];
+    UIViewController *secondViewController = [[LTSecondViewController alloc] init];
     secondViewController.view.backgroundColor = [UIColor whiteColor];
     UINavigationController *secondNavigationController = [[LTNavigationController alloc] initWithRootViewController:secondViewController];
     

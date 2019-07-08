@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>测试一下，你就知道</title>
+</head>
+
+<body>
+
+<div>
+    <a href="weprotocol://showToast?callbackName=complete&content=测试内容">显示toast</a>
+</div>
+
+<div>
+    <a href="weprotocol://hiddenToast?callbackName=complete">隐藏toast</a>
+</div>
+
+<script type="text/javascript">
+    window.sendData = function (data, callbackname) {
+        if(data.indexOf("%22") == -1){
+            console.log("&ndash;&gt;没有被转译");
+        }
+        callbackname(data);
+    };
+    function complete(data) {
+        alert(data);
+        console.log(data);
+    }
+    function response(data) {
+        console.log(data);
+    }
+    function callBackAction0(data){
+        alert(data);
+        console.log(data);
+    }
+
+</script>
+
+</body></html>

@@ -36,7 +36,10 @@
 {
     [super viewDidLoad];
     self.view.frame = self.view.bounds;
-    [self.webView addSubview:self.webView];
+    [self.view addSubview:self.webView];
+    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.bottom.right.equalTo(self.view);
+    }];
 }
 
 - (void)dealloc

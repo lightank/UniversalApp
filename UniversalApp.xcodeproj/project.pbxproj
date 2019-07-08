@@ -126,6 +126,8 @@
 		A081AD8222C614E700B41C41 /* LTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A081AD8122C614E700B41C41 /* LTTextField.m */; };
 		A09099652296451B00B00859 /* UILabel+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A09099642296451B00B00859 /* UILabel+LTAdd.m */; };
 		A0B9953222D32577004BDCA3 /* LTPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B9953122D32577004BDCA3 /* LTPickerView.m */; };
+		A0B9953422D333BE004BDCA3 /* CustomProtocol.html in Resources */ = {isa = PBXBuildFile; fileRef = A0B9953322D333BE004BDCA3 /* CustomProtocol.html */; };
+		A0B9953922D33448004BDCA3 /* LTSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B9953822D33448004BDCA3 /* LTSecondViewController.m */; };
 		A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */; };
 		A0D25DEA227350BF001168A5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DE9227350BF001168A5 /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A0D25DEC22735138001168A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DEB22735138001168A5 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -413,6 +415,9 @@
 		A09099642296451B00B00859 /* UILabel+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+LTAdd.m"; sourceTree = "<group>"; };
 		A0B9953022D32577004BDCA3 /* LTPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTPickerView.h; sourceTree = "<group>"; };
 		A0B9953122D32577004BDCA3 /* LTPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTPickerView.m; sourceTree = "<group>"; };
+		A0B9953322D333BE004BDCA3 /* CustomProtocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CustomProtocol.html; sourceTree = "<group>"; };
+		A0B9953722D33448004BDCA3 /* LTSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTSecondViewController.h; sourceTree = "<group>"; };
+		A0B9953822D33448004BDCA3 /* LTSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTSecondViewController.m; sourceTree = "<group>"; };
 		A0C2CFB12254A31F00190314 /* NSURL+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+LTAdd.h"; sourceTree = "<group>"; };
 		A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+LTAdd.m"; sourceTree = "<group>"; };
 		A0D25DE9227350BF001168A5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -669,6 +674,7 @@
 				3DACBB34219EBE980077E262 /* Localization */,
 				3DACBB2C219EAD380077E262 /* Login */,
 				3D679309213E23160017891D /* FirstViewController */,
+				A0B9953522D333FB004BDCA3 /* SecondViewController */,
 				3D48667820B1B197002BACA8 /* User */,
 				3DCC9F6E20B02D2E00CD476A /* HomeTabBar */,
 			);
@@ -1009,6 +1015,7 @@
 		A06CDC9722812E7D007798A4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A0B9953322D333BE004BDCA3 /* CustomProtocol.html */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1136,6 +1143,23 @@
 			path = LTPickerView;
 			sourceTree = "<group>";
 		};
+		A0B9953522D333FB004BDCA3 /* SecondViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A0B9953622D33439004BDCA3 /* Controller */,
+			);
+			path = SecondViewController;
+			sourceTree = "<group>";
+		};
+		A0B9953622D33439004BDCA3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A0B9953722D33448004BDCA3 /* LTSecondViewController.h */,
+				A0B9953822D33448004BDCA3 /* LTSecondViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		A0F53AE52273323D0059088D /* LTPrivacyPermission */ = {
 			isa = PBXGroup;
 			children = (
@@ -1257,6 +1281,7 @@
 				3DB0BB6721411A1700EA1B6E /* Localizable.strings in Resources */,
 				3DB0BB61214117EF00EA1B6E /* InfoPlist.strings in Resources */,
 				3DCC9F1B20B006F100CD476A /* Assets.xcassets in Resources */,
+				A0B9953422D333BE004BDCA3 /* CustomProtocol.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1425,6 +1450,7 @@
 				A00C0DEE22C764D40016EB47 /* UITabBar+QMUI.m in Sources */,
 				3DFE3E7020EA531500A8832C /* AppDelegate+UMengAnalytics.m in Sources */,
 				A0128D3322891F1A006FF62D /* LTPageControl.m in Sources */,
+				A0B9953922D33448004BDCA3 /* LTSecondViewController.m in Sources */,
 				A00C0DDF22C764D40016EB47 /* UINavigationBar+QMUI.m in Sources */,
 				A00C0DED22C764D40016EB47 /* UIBezierPath+QMUI.m in Sources */,
 				A00C0E0E22C7653A0016EB47 /* QMUIHelper.m in Sources */,
