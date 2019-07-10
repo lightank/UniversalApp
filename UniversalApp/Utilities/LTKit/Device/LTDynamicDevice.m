@@ -53,9 +53,6 @@
 
 + (void)initializeProperty:(LTDynamicDevice *)device
 {
-    device.motionManager = [[CMMotionManager alloc] init];
-    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], CBCentralManagerOptionShowPowerAlertKey,nil];
-    device.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:device queue:nil options:options];
     device.isBluetoothCalled = NO;
     device.queue = dispatch_queue_create("com.addressBook.queue", DISPATCH_QUEUE_SERIAL);
 }
@@ -120,6 +117,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [[LTDynamicDevice sharedInstance].motionManager stopGyroUpdates];
         [[LTDynamicDevice sharedInstance].gyroQueue waitUntilAllOperationsAreFinished];
+        [LTDynamicDevice sharedInstance].motionManager = nil;
     });
 }
 
@@ -396,6 +394,26 @@
 + (BOOL)isIOS9OrLater
 {
     return ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0);
+}
+
+#pragma mark - setter and getter
+- (CMMotionManager *)motionManager
+{
+    if (!_motionManager)
+    {
+        _motionManager = [[CMMotionManager alloc] init];
+    }
+    return _motionManager;
+}
+
+- (CBCentralManager *)bluetoothManager
+{
+    if (!_bluetoothManager)
+    {
+        NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], CBCentralManagerOptionShowPowerAlertKey,nil];
+        _bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:options];
+    }
+    return _bluetoothManager;
 }
 
 @end
