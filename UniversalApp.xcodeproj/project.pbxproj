@@ -93,6 +93,7 @@
 		A05AAECB228AA9E20016F61C /* LTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A05AAECA228AA9E20016F61C /* LTButton.m */; };
 		A060A7122274549100277C1A /* LTAuthID.m in Sources */ = {isa = PBXBuildFile; fileRef = A060A7112274549100277C1A /* LTAuthID.m */; };
 		A06D065B22A51A0000FC3D42 /* LTTextAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = A06D065A22A51A0000FC3D42 /* LTTextAttributes.m */; };
+		A071249722E1961300C91E89 /* LTNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = A071249522E1947400C91E89 /* LTNotification.m */; };
 		A073C2F9224A3F7B00B685A1 /* UIImage+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2D1224A3F7900B685A1 /* UIImage+LTAdd.m */; };
 		A073C2FA224A3F7B00B685A1 /* UITableViewCell+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2D2224A3F7900B685A1 /* UITableViewCell+LTAdd.m */; };
 		A073C2FB224A3F7B00B685A1 /* UIViewController+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2D3224A3F7900B685A1 /* UIViewController+LTAdd.m */; };
@@ -346,6 +347,8 @@
 		A060A7112274549100277C1A /* LTAuthID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTAuthID.m; sourceTree = "<group>"; };
 		A06D065922A51A0000FC3D42 /* LTTextAttributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTTextAttributes.h; sourceTree = "<group>"; };
 		A06D065A22A51A0000FC3D42 /* LTTextAttributes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTTextAttributes.m; sourceTree = "<group>"; };
+		A071249422E1947400C91E89 /* LTNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTNotification.h; sourceTree = "<group>"; };
+		A071249522E1947400C91E89 /* LTNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTNotification.m; sourceTree = "<group>"; };
 		A073C2D0224A3F7900B685A1 /* UITableView+LTAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LTAdd.h"; sourceTree = "<group>"; };
 		A073C2D1224A3F7900B685A1 /* UIImage+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LTAdd.m"; sourceTree = "<group>"; };
 		A073C2D2224A3F7900B685A1 /* UITableViewCell+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+LTAdd.m"; sourceTree = "<group>"; };
@@ -703,6 +706,7 @@
 		3DCC9F4720B0183300CD476A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A071249322E1943200C91E89 /* Notification */,
 				A03C93FD228270AD00F2D513 /* ScreenshotCapture */,
 				A073C2CE224A3F7900B685A1 /* LTKit */,
 				3DDDBEC421941CCF004D68F6 /* LTExampleCode.h */,
@@ -1014,6 +1018,15 @@
 				A0B9953322D333BE004BDCA3 /* CustomProtocol.html */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A071249322E1943200C91E89 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				A071249422E1947400C91E89 /* LTNotification.h */,
+				A071249522E1947400C91E89 /* LTNotification.m */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		A073C2CE224A3F7900B685A1 /* LTKit */ = {
@@ -1439,6 +1452,7 @@
 				A0B9953922D33448004BDCA3 /* LTSecondViewController.m in Sources */,
 				A00C0DDF22C764D40016EB47 /* UINavigationBar+QMUI.m in Sources */,
 				A00C0DED22C764D40016EB47 /* UIBezierPath+QMUI.m in Sources */,
+				A071249722E1961300C91E89 /* LTNotification.m in Sources */,
 				A00C0E0E22C7653A0016EB47 /* QMUIHelper.m in Sources */,
 				A073C2FC224A3F7B00B685A1 /* UIButton+LTAdd.m in Sources */,
 				A00C0DF222C764D40016EB47 /* UITextView+QMUI.m in Sources */,

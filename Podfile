@@ -23,6 +23,7 @@ target 'UniversalApp' do
     pod 'FDFullscreenPopGesture'
     pod 'SDCycleScrollView'
     pod 'PrintBeautifulLog'
+    #pod 'LTPrivacyPermission'
     #pod 'Aspects'
     #pod 'MBProgressHUD'
     #pod 'iCarousel'

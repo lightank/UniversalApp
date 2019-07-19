@@ -11,9 +11,9 @@
 #import <UIKit/UIKit.h>
 #if __has_include(<Contacts/Contacts.h>)
 #import <Contacts/Contacts.h>
-#define LTContactAvailable YES
+#define LTContactAvailable
 #else
-#define LTContactAvailable NO
+
 #endif
 
 
@@ -90,7 +90,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
 /**  url数组  */
 @property (nonatomic, copy) NSArray <LTUrlAddress *> *urls;
 
-#if LTContactAvailable
+#ifdef LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -118,7 +118,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
 /**  标签  */
 @property (nonatomic, copy, nullable) NSString *label;
 
-#if LTContactAvailable
+#ifdef LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -146,7 +146,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
 /**  标签  */
 @property (nonatomic, copy, nullable) NSString *label;
 
-#if LTContactAvailable
+#ifdef LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -186,7 +186,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
 /**  标准格式化地址 */
 @property (nonatomic, copy) NSString *formatterAddress NS_AVAILABLE_IOS(9_0);
 
-#if LTContactAvailable
+#ifdef LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -222,7 +222,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
 @property (nonatomic, assign) NSInteger month;
 /**  日  */
 @property (nonatomic, assign) NSInteger day;
-#if LTContactAvailable
+#ifdef LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -248,7 +248,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
 @property (nonatomic, copy) NSString *service;
 /**  账号  */
 @property (nonatomic, copy) NSString *userName;
-#if LTContactAvailable
+#ifdef LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -277,7 +277,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
 @property (nonatomic, copy) NSString *username;
 /**  url字符串  */
 @property (nonatomic, copy) NSString *urlString;
-#if LTContactAvailable
+#ifdef LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -304,7 +304,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
 @property (nonatomic, copy) NSString *label;
 /**  url字符串  */
 @property (nonatomic, copy) NSString *urlString;
-#if LTContactAvailable
+#ifdef LTContactAvailable
 /**
  便利构造 （Contacts）
  
@@ -330,7 +330,7 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
 @property (nonatomic, copy) NSString *label;
 /**  名字  */
 @property (nonatomic, copy) NSString *name;
-#if LTContactAvailable
+#ifdef LTContactAvailable
 /**
  便利构造 （Contacts）
  

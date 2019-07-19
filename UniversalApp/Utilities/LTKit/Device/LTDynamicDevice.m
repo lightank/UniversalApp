@@ -28,7 +28,7 @@
 
 @property (nonatomic, strong) dispatch_queue_t queue;
 @property (nonatomic) ABAddressBookRef addressBook;
-#if LTContactAvailable
+#ifdef LTContactAvailable
 @property (nonatomic, copy) NSArray *contactskeys;
 @property (nonatomic, strong) CNContactStore *contactStore API_AVAILABLE(ios(9.0));
 #endif
@@ -130,7 +130,7 @@
         {
             if (@available(iOS 9.0, *))
             {
-#if LTContactAvailable
+#ifdef LTContactAvailable
                 CNContactFetchRequest *request = [[CNContactFetchRequest alloc] initWithKeysToFetch:[LTDynamicDevice sharedInstance].contactskeys];
                 [[LTDynamicDevice sharedInstance].contactStore enumerateContactsWithFetchRequest:request error:nil usingBlock:^(CNContact * _Nonnull contact, BOOL * _Nonnull stop) {
                     LTContact *mycontact = [[LTContact alloc] initWithCNContact:contact];
@@ -170,7 +170,7 @@
         {
             if (@available(iOS 9.0, *))
             {
-#if LTContactAvailable
+#ifdef LTContactAvailable
                 CNContactFetchRequest *request = [[CNContactFetchRequest alloc] initWithKeysToFetch:[LTDynamicDevice sharedInstance].contactskeys];
                 [[LTDynamicDevice sharedInstance].contactStore enumerateContactsWithFetchRequest:request error:nil usingBlock:^(CNContact * _Nonnull cncontact, BOOL * _Nonnull stop) {
                     LTContact *contact = [[LTContact alloc] initWithCNContact:cncontact];
@@ -338,7 +338,7 @@
     return _queue;
 }
 
-#if LTContactAvailable
+#ifdef LTContactAvailable
 - (CNContactStore *)contactStore API_AVAILABLE(ios(9.0))
 {
     if (!_contactStore)

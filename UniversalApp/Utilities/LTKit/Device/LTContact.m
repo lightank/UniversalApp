@@ -10,7 +10,7 @@
 
 @implementation LTContact
 
-#if LTContactAvailable
+#ifdef LTContactAvailable
 - (instancetype)initWithCNContact:(CNContact *)contact
 {
     self = [super init];
@@ -312,7 +312,7 @@
 @end
 
 @implementation LTPhone
-#if LTContactAvailable
+#ifdef LTContactAvailable
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
     self = [super init];
@@ -360,7 +360,7 @@
 @end
 
 @implementation LTEmail
-#if LTContactAvailable
+#ifdef LTContactAvailable
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
     self = [super init];
@@ -397,7 +397,7 @@
 
 @implementation LTAddress
 
-#if LTContactAvailable
+#ifdef LTContactAvailable
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
     self = [super init];
@@ -443,7 +443,7 @@
 
 @implementation LTBirthday
 
-#if LTContactAvailable
+#ifdef LTContactAvailable
 - (instancetype)initWithCNContact:(CNContact *)contact
 {
     self = [super init];
@@ -487,7 +487,7 @@
 @end
 
 @implementation LTMessage
-#if LTContactAvailable
+#ifdef LTContactAvailable
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
     self = [super init];
@@ -515,7 +515,7 @@
 @end
 
 @implementation LTSocialProfile
-#if LTContactAvailable
+#ifdef LTContactAvailable
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
     self = [super init];
@@ -546,7 +546,7 @@
 @end
 
 @implementation LTUrlAddress
-#if LTContactAvailable
+#ifdef LTContactAvailable
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
     self = [super init];
@@ -575,7 +575,7 @@
 @end
 
 @implementation LTContactRelation
-#if LTContactAvailable
+#ifdef LTContactAvailable
 - (instancetype)initWithLabeledValue:(CNLabeledValue *)labeledValue
 {
     self = [super init];
