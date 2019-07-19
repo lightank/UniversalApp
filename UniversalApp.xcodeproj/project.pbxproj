@@ -120,7 +120,6 @@
 		A077291F22D31D4600F03E40 /* QMUITips.m in Sources */ = {isa = PBXBuildFile; fileRef = A077291E22D31D4600F03E40 /* QMUITips.m */; };
 		A077292222D31D6E00F03E40 /* QMUIVisualEffectView.m in Sources */ = {isa = PBXBuildFile; fileRef = A077292122D31D6E00F03E40 /* QMUIVisualEffectView.m */; };
 		A077292522D31DBA00F03E40 /* QMUIKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A077292422D31DBA00F03E40 /* QMUIKeyboardManager.m */; };
-		A07830C72273CDB600771DA3 /* LTPrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = A07830C52273CDB600771DA3 /* LTPrivacyPermission.m */; };
 		A07830CA2273CDE000771DA3 /* LTContact.m in Sources */ = {isa = PBXBuildFile; fileRef = A07830C82273CDE000771DA3 /* LTContact.m */; };
 		A07830CD2273CDF500771DA3 /* LTDynamicDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = A07830CC2273CDF500771DA3 /* LTDynamicDevice.m */; };
 		A081AD8222C614E700B41C41 /* LTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A081AD8122C614E700B41C41 /* LTTextField.m */; };
@@ -403,8 +402,6 @@
 		A077292322D31DB900F03E40 /* QMUIKeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIKeyboardManager.h; sourceTree = "<group>"; };
 		A077292422D31DBA00F03E40 /* QMUIKeyboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIKeyboardManager.m; sourceTree = "<group>"; };
 		A07830BD22735F3600771DA3 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
-		A07830C52273CDB600771DA3 /* LTPrivacyPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTPrivacyPermission.m; sourceTree = "<group>"; };
-		A07830C62273CDB600771DA3 /* LTPrivacyPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPrivacyPermission.h; sourceTree = "<group>"; };
 		A07830C82273CDE000771DA3 /* LTContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTContact.m; sourceTree = "<group>"; };
 		A07830C92273CDE000771DA3 /* LTContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTContact.h; sourceTree = "<group>"; };
 		A07830CB2273CDF500771DA3 /* LTDynamicDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTDynamicDevice.h; sourceTree = "<group>"; };
@@ -707,7 +704,6 @@
 			isa = PBXGroup;
 			children = (
 				A03C93FD228270AD00F2D513 /* ScreenshotCapture */,
-				A0F53AE52273323D0059088D /* LTPrivacyPermission */,
 				A073C2CE224A3F7900B685A1 /* LTKit */,
 				3DDDBEC421941CCF004D68F6 /* LTExampleCode.h */,
 				3DDDBEC521941CCF004D68F6 /* LTExampleCode.m */,
@@ -1160,15 +1156,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		A0F53AE52273323D0059088D /* LTPrivacyPermission */ = {
-			isa = PBXGroup;
-			children = (
-				A07830C62273CDB600771DA3 /* LTPrivacyPermission.h */,
-				A07830C52273CDB600771DA3 /* LTPrivacyPermission.m */,
-			);
-			path = LTPrivacyPermission;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1409,7 +1396,6 @@
 				A073C305224A3F7B00B685A1 /* UIWindow+LTAdd.m in Sources */,
 				A00C0DEC22C764D40016EB47 /* UIWindow+QMUI.m in Sources */,
 				A00C0DDE22C764D40016EB47 /* UIColor+QMUI.m in Sources */,
-				A07830C72273CDB600771DA3 /* LTPrivacyPermission.m in Sources */,
 				A073C2F9224A3F7B00B685A1 /* UIImage+LTAdd.m in Sources */,
 				A077292222D31D6E00F03E40 /* QMUIVisualEffectView.m in Sources */,
 				A073C2FD224A3F7B00B685A1 /* UITextView+LTAdd.m in Sources */,
@@ -1621,7 +1607,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 92CYHZVC4M;
+				DEVELOPMENT_TEAM = WWJ7XS3PG2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/UniversalApp/PrefixHeader.pch";
 				INFOPLIST_FILE = UniversalApp/Info.plist;
@@ -1634,7 +1620,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/UniversalApp/Vender/OpenInstallSDK2.2.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.testDD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1746,7 +1732,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 92CYHZVC4M;
+				DEVELOPMENT_TEAM = WWJ7XS3PG2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/UniversalApp/PrefixHeader.pch";
 				INFOPLIST_FILE = UniversalApp/Info.plist;
@@ -1759,7 +1745,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/UniversalApp/Vender/OpenInstallSDK2.2.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.testDD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1871,7 +1857,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 92CYHZVC4M;
+				DEVELOPMENT_TEAM = WWJ7XS3PG2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/UniversalApp/PrefixHeader.pch";
 				INFOPLIST_FILE = UniversalApp/Info.plist;
@@ -1884,7 +1870,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/UniversalApp/Vender/OpenInstallSDK2.2.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.testDD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2049,7 +2035,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 92CYHZVC4M;
+				DEVELOPMENT_TEAM = WWJ7XS3PG2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/UniversalApp/PrefixHeader.pch";
 				INFOPLIST_FILE = UniversalApp/Info.plist;
@@ -2062,7 +2048,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/UniversalApp/Vender/OpenInstallSDK2.2.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.testDD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2077,7 +2063,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 92CYHZVC4M;
+				DEVELOPMENT_TEAM = WWJ7XS3PG2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/UniversalApp/PrefixHeader.pch";
 				INFOPLIST_FILE = UniversalApp/Info.plist;
@@ -2090,7 +2076,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/UniversalApp/Vender/OpenInstallSDK2.2.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.testDD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
