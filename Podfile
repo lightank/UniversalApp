@@ -1,6 +1,6 @@
 # Uncomment the next line to define a global platform for your project
 
-platform :ios, '8.0'
+platform :ios, '9.0'
 
 target 'UniversalApp' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
@@ -16,7 +16,8 @@ target 'UniversalApp' do
     pod 'Masonry'
     pod 'YYKit'
     pod 'FCUUID'
-#    pod 'QMUIKit'
+    pod 'QMUIKit/QMUICore'  # 分类
+    pod 'QMUIKit/QMUIComponents/QMUITips'   #弹窗
     pod 'FMDB'
     pod 'ReactiveObjC'
     pod 'RTRootNavigationController'

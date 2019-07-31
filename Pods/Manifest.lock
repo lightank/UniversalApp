@@ -29,6 +29,24 @@ PODS:
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.7)
   - PrintBeautifulLog (1.0.0)
+  - QMUIKit/QMUIComponents/QMUIKeyboardManager (3.2.1):
+    - QMUIKit/QMUICore
+  - QMUIKit/QMUIComponents/QMUITips (3.2.1):
+    - QMUIKit/QMUIComponents/QMUIToastView
+    - QMUIKit/QMUICore
+    - QMUIKit/QMUIResources
+  - QMUIKit/QMUIComponents/QMUIToastView (3.2.1):
+    - QMUIKit/QMUIComponents/QMUIKeyboardManager
+    - QMUIKit/QMUIComponents/QMUIVisualEffectView
+    - QMUIKit/QMUICore
+  - QMUIKit/QMUIComponents/QMUIVisualEffectView (3.2.1):
+    - QMUIKit/QMUICore
+  - QMUIKit/QMUICore (3.2.1):
+    - QMUIKit/QMUILog
+    - QMUIKit/QMUIWeakObjectContainer
+  - QMUIKit/QMUILog (3.2.1)
+  - QMUIKit/QMUIResources (3.2.1)
+  - QMUIKit/QMUIWeakObjectContainer (3.2.1)
   - ReactiveObjC (3.1.0)
   - RTRootNavigationController (0.7.1):
     - RTRootNavigationController/Core (= 0.7.1)
@@ -60,6 +78,8 @@ DEPENDENCIES:
   - Masonry
   - MJRefresh
   - PrintBeautifulLog
+  - QMUIKit/QMUIComponents/QMUITips
+  - QMUIKit/QMUICore
   - ReactiveObjC
   - RTRootNavigationController
   - SDCycleScrollView
@@ -84,6 +104,7 @@ SPEC REPOS:
     - Masonry
     - MJRefresh
     - PrintBeautifulLog
+    - QMUIKit
     - ReactiveObjC
     - RTRootNavigationController
     - SDCycleScrollView
@@ -108,6 +129,7 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   PrintBeautifulLog: ae1edcf7af92ffcb1de3726d1545d043e861d2e0
+  QMUIKit: a3af645843b9558eb7aaf407b320eaeb45ab6144
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
   RTRootNavigationController: afa6913402be26f8326f7f37fc1550aa67baddcc
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
@@ -119,6 +141,6 @@ SPEC CHECKSUMS:
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 336afcadb82f5b16c1f2fe55b4d5cf24043d7c89
+PODFILE CHECKSUM: 6482e226cff13dcdfd1ea0792c86541d4c76f9b0
 
 COCOAPODS: 1.6.1
