@@ -14,6 +14,21 @@
 
 @implementation LTNavigationController
 
+- (void)setViewControllers:(NSArray<UIViewController *> *)viewControllers animated:(BOOL)animated
+{
+    [viewControllers enumerateObjectsUsingBlock:^(UIViewController * _Nonnull viewController, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (idx != 0)
+        {
+            //隐藏tabbar导航
+            viewController.hidesBottomBarWhenPushed = YES;
+        }
+    }];
+    [super setViewControllers:viewControllers animated:animated];
+    
+    [self adapteTabBarFrame];
+}
+
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if (self.viewControllers.count > 0)
@@ -22,10 +37,27 @@
     }
     [super pushViewController:viewController animated:animated];
     
-    // 修改tabBra的frame
-    CGRect frame = self.tabBarController.tabBar.frame;
-    frame.origin.y = [UIScreen mainScreen].bounds.size.height - frame.size.height;
-    self.tabBarController.tabBar.frame = frame;
+    [self adapteTabBarFrame];
+}
+
+- (void)adapteTabBarFrame
+{
+    if (self.viewControllers.count == 0)
+    {
+        // 修改tabBra的frame
+        CGRect frame = self.tabBarController.tabBar.frame;
+        frame.origin.y = [UIScreen mainScreen].bounds.size.height - frame.size.height;
+        self.tabBarController.tabBar.frame = frame;
+    }
+}
+
+#pragma mark - UINavigationControllerDelegate
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+//    if ([viewController isKindOfClass:[LTBaseViewController class]])
+//    {
+//        [navigationController setNavigationBarHidden:((LTBaseViewController *)viewController).isHiddenNavigationBar animated:animated];
+//    }
 }
 
 @end

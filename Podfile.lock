@@ -25,6 +25,7 @@ PODS:
   - JCore (1.2.6)
   - JPush (3.1.2):
     - JCore (~> 1.2.6)
+  - LookinServer (0.9.3)
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.7)
   - PrintBeautifulLog (1.0.0)
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - FMDB
   - IQKeyboardManager
   - JPush
+  - LookinServer
   - Masonry
   - MJRefresh
   - PrintBeautifulLog
@@ -78,6 +80,7 @@ SPEC REPOS:
     - IQKeyboardManager
     - JCore
     - JPush
+    - LookinServer
     - Masonry
     - MJRefresh
     - PrintBeautifulLog
@@ -101,6 +104,7 @@ SPEC CHECKSUMS:
   IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
   JCore: cae516dd2bf1a73b578ce6e1065abd49e709e0f7
   JPush: d0cead70ba223a6a3b52749899ebda830dfbc49a
+  LookinServer: 44f1b5f32743dc61068a156ff86b5b47d0a82943
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   PrintBeautifulLog: ae1edcf7af92ffcb1de3726d1545d043e861d2e0
@@ -115,6 +119,6 @@ SPEC CHECKSUMS:
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 7f959336fb06aa26e5473badca5cd6de4e9a3edd
+PODFILE CHECKSUM: 336afcadb82f5b16c1f2fe55b4d5cf24043d7c89
 
 COCOAPODS: 1.6.1

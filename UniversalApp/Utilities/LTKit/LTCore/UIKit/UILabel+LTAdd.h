@@ -12,8 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UILabel (LTAdd)
 
-+ (UILabel *)lt_labelWithText:(NSString *)text font:(UIFont *)font color:(UIColor *)textColor;
-                              ;
++ (instancetype)lt_labelWithText:(NSString *)text font:(UIFont *)font color:(UIColor *)textColor;
 
 @end
 

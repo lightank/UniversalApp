@@ -10,12 +10,13 @@
 
 @implementation UILabel (LTAdd)
 
-+ (UILabel *)lt_labelWithText:(NSString *)text font:(UIFont *)font color:(UIColor *)textColor
++ (instancetype)lt_labelWithText:(NSString *)text font:(UIFont *)font color:(UIColor *)textColor
 {
-    UILabel *label = [[UILabel alloc] init];
+    UILabel *label = [[self alloc] init];
     label.textColor = textColor;
     label.font = font;
     label.text = text;
+    [label sizeToFit];
     return label;
 }
 

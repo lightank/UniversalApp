@@ -15,7 +15,7 @@
                              normalTitle:(NSString *)normalTitle
                                  andFont:(UIFont *)font
 {
-    return [UIButton lt_buttonWithNormalImage:normalImage highlightedImage:nil selectedImage:nil disabledImage:nil focusedImage:nil andNormalTitle:normalTitle highlightedTitle:nil selectedTitle:nil disabledTitle:nil focusedTitle:nil andFont:font];
+    return [self lt_buttonWithNormalImage:normalImage highlightedImage:nil selectedImage:nil disabledImage:nil focusedImage:nil andNormalTitle:normalTitle highlightedTitle:nil selectedTitle:nil disabledTitle:nil focusedTitle:nil andFont:font];
 }
 
 + (instancetype)lt_buttonWithNormalImage:(UIImage *)normalImage
@@ -30,7 +30,7 @@
                             focusedTitle:(NSString *)focusedTitle
                                  andFont:(UIFont *)font
 {
-    UIButton *button = [[UIButton alloc] init];
+    UIButton *button = [[self alloc] init];
     //设置图片
     if (normalImage)
     {

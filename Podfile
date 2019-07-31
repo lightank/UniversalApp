@@ -23,6 +23,8 @@ target 'UniversalApp' do
     pod 'FDFullscreenPopGesture'
     pod 'SDCycleScrollView'
     pod 'PrintBeautifulLog'
+    pod 'LookinServer', :configurations => ['Debug']  #官网:https://lookin.work
+    #pod 'EBBannerView'   #前台时通知https://github.com/pikacode/EBBannerView
     #pod 'LTPrivacyPermission'
     #pod 'Aspects'
     #pod 'MBProgressHUD'

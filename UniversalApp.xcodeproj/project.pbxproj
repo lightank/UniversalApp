@@ -696,6 +696,7 @@
 		3DCC9F4620B017F300CD476A /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				A00C0D8622C7643E0016EB47 /* QMUI */,
 				3DEE10AF20EB05C0002C597D /* OpenInstallSDK2.2.0 */,
 				3D03D64120B80C17006F6F75 /* LTNavigationBar */,
 				3DCC9F4B20B019F100CD476A /* YYFPSLabel */,
@@ -952,9 +953,17 @@
 			path = LTPageControl;
 			sourceTree = "<group>";
 		};
+		A01CF27222E5C2ED00ABA010 /* LTGuideView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LTGuideView;
+			sourceTree = "<group>";
+		};
 		A023AAE1228AA96600E14B8B /* LTComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A01CF27222E5C2ED00ABA010 /* LTGuideView */,
 				A0B9952F22D3255F004BDCA3 /* LTPickerView */,
 				A081AD7F22C614D500B41C41 /* LTTextField */,
 				A05AAEC8228AA9C90016F61C /* LTButton */,
@@ -1032,7 +1041,6 @@
 		A073C2CE224A3F7900B685A1 /* LTKit */ = {
 			isa = PBXGroup;
 			children = (
-				A00C0D8622C7643E0016EB47 /* QMUI */,
 				A023AAE1228AA96600E14B8B /* LTComponents */,
 				A0128D2F22891E4F006FF62D /* LTCore */,
 				A0A9A3A42251EBC700C2188E /* Device */,
@@ -1181,6 +1189,7 @@
 				3DCC9F0B20B006EF00CD476A /* Frameworks */,
 				3DCC9F0C20B006EF00CD476A /* Resources */,
 				B9D1613C8F06AA24AD28CDCA /* [CP] Copy Pods Resources */,
+				DB946CD54D1FAEF56C8C89A3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1356,6 +1365,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB946CD54D1FAEF56C8C89A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-frameworks.sh",
+				"${PODS_ROOT}/LookinServer/LookinServer.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LookinServer.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6D184C78EAD76F8A1BC4F92 /* [CP] Check Pods Manifest.lock */ = {
