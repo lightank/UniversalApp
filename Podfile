@@ -26,6 +26,9 @@ target 'UniversalApp' do
     pod 'PrintBeautifulLog'
     pod 'LookinServer', :configurations => ['Debug']  #官网:https://lookin.work
     #pod 'EBBannerView'   #前台时通知https://github.com/pikacode/EBBannerView
+    # 二维码
+    #pod 'LBXScan'    #OC版:https://github.com/MxABC/LBXScan
+    #pod 'EFQRCode'    #Swift版:https://github.com/EFPrefix/EFQRCode
     #pod 'LTPrivacyPermission'
     #pod 'Aspects'
     #pod 'MBProgressHUD'
