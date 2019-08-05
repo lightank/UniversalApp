@@ -18,7 +18,9 @@ target 'UniversalApp' do
     pod 'FCUUID'
     pod 'QMUIKit/QMUICore'  # 分类
     pod 'QMUIKit/QMUIComponents/QMUITips'   #弹窗
-    pod 'FMDB'
+    # 数据库
+    pod 'WCDB'
+    #pod 'FMDB'
     pod 'ReactiveObjC'
     pod 'RTRootNavigationController'
     pod 'FDFullscreenPopGesture'

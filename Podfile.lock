@@ -18,9 +18,6 @@ PODS:
   - FCUUID (1.3.1):
     - UICKeyChainStore (~> 2.1.0)
   - FDFullscreenPopGesture (1.1)
-  - FMDB (2.7.5):
-    - FMDB/standard (= 2.7.5)
-  - FMDB/standard (2.7.5)
   - IQKeyboardManager (6.2.0)
   - JCore (1.2.6)
   - JPush (3.1.2):
@@ -56,11 +53,17 @@ PODS:
   - SDWebImage (4.4.3):
     - SDWebImage/Core (= 4.4.3)
   - SDWebImage/Core (4.4.3)
+  - SQLiteRepairKit (1.2.2):
+    - WCDBOptimizedSQLCipher (~> 1.2.0)
   - UICKeyChainStore (2.1.2)
   - UMCAnalytics (5.5.2):
     - UMCCommon
   - UMCCommon (1.5.3)
   - UMCSecurityPlugins (1.0.6)
+  - WCDB (1.0.7.5):
+    - SQLiteRepairKit (~> 1.2.0)
+    - WCDBOptimizedSQLCipher (~> 1.2.0)
+  - WCDBOptimizedSQLCipher (1.2.1)
   - YTKNetwork (2.0.4):
     - AFNetworking (~> 3.0)
   - YYKit (1.0.9):
@@ -71,7 +74,6 @@ DEPENDENCIES:
   - CYLTabBarController
   - FCUUID
   - FDFullscreenPopGesture
-  - FMDB
   - IQKeyboardManager
   - JPush
   - LookinServer
@@ -87,6 +89,7 @@ DEPENDENCIES:
   - UMCAnalytics
   - UMCCommon
   - UMCSecurityPlugins
+  - WCDB
   - YTKNetwork
   - YYKit
 
@@ -96,7 +99,6 @@ SPEC REPOS:
     - CYLTabBarController
     - FCUUID
     - FDFullscreenPopGesture
-    - FMDB
     - IQKeyboardManager
     - JCore
     - JPush
@@ -109,10 +111,13 @@ SPEC REPOS:
     - RTRootNavigationController
     - SDCycleScrollView
     - SDWebImage
+    - SQLiteRepairKit
     - UICKeyChainStore
     - UMCAnalytics
     - UMCCommon
     - UMCSecurityPlugins
+    - WCDB
+    - WCDBOptimizedSQLCipher
     - YTKNetwork
     - YYKit
 
@@ -121,7 +126,6 @@ SPEC CHECKSUMS:
   CYLTabBarController: 35784c2969383583d11cc56ff5abce078f19d94a
   FCUUID: bb054fc90cd7cd99320f9f6ff8e130fe607fba05
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
-  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
   JCore: cae516dd2bf1a73b578ce6e1065abd49e709e0f7
   JPush: d0cead70ba223a6a3b52749899ebda830dfbc49a
@@ -134,13 +138,16 @@ SPEC CHECKSUMS:
   RTRootNavigationController: afa6913402be26f8326f7f37fc1550aa67baddcc
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
+  SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
   UICKeyChainStore: 85db518bb1d294366d15ec9b92a416c4e670518f
   UMCAnalytics: 6654fd3c8201ff6da5c86a3ae29cd5c8436d3b7b
   UMCCommon: 016af43c0f769feb1ae1861d65aaf2b23b89c9c7
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
+  WCDB: 8e90babdeb7784c569353a4bd22a66c0a175a882
+  WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 6482e226cff13dcdfd1ea0792c86541d4c76f9b0
+PODFILE CHECKSUM: aee7eff1ca88f79102cadd012286ba82f0f2e93a
 
 COCOAPODS: 1.6.1
