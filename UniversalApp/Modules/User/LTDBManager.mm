@@ -91,5 +91,15 @@ WCDB_SYNTHESIZE(LTContact, creationDate)
 WCDB_SYNTHESIZE(LTContact, fullName)
 //identifier
 WCDB_SYNTHESIZE(LTContact, identifier)
+WCDB_SYNTHESIZE(LTContact, phones)
+
 
 @end
+
+
+//@implementation LTPhone (DB)
+//
+//WCDB_SYNTHESIZE(LTPhone, phone)
+//WCDB_SYNTHESIZE(LTPhone, label)
+//
+//@end

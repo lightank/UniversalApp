@@ -16,8 +16,10 @@ target 'UniversalApp' do
     pod 'Masonry'
     pod 'YYKit'
     pod 'FCUUID'
-    pod 'QMUIKit/QMUICore'  # 分类
-    pod 'QMUIKit/QMUIComponents/QMUITips'   #弹窗
+    pod 'QMUIKit'   #弹窗
+    #pod 'QMUIKit/QMUICore'  # 分类
+    #pod 'QMUIKit/QMUIComponents'   #弹窗
+    #pod 'QMUIKit/QMUIComponents/QMUITips'   #弹窗
     # 数据库
     pod 'WCDB'
     #pod 'FMDB'

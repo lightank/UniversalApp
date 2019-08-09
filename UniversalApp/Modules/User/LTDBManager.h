@@ -31,8 +31,16 @@ extern NSString * const kDataBaseName_contactTable;
 WCDB_PROPERTY(creationDate)
 WCDB_PROPERTY(fullName)
 WCDB_PROPERTY(identifier)
+WCDB_PROPERTY(phones)
 
 
 @end
+
+//@interface LTPhone (DB) <WCTTableCoding>
+//
+//WCDB_PROPERTY(phone)
+//WCDB_PROPERTY(label)
+//
+//@end
 
 NS_ASSUME_NONNULL_END
