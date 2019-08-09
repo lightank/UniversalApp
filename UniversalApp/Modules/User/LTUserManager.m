@@ -8,8 +8,6 @@
 
 #import "LTUserManager.h"
 
-LTUserManager *LTUserManagerInstance = nil;
-
 @interface LTUserManager ()
 {
     dispatch_semaphore_t _lock;
@@ -24,26 +22,13 @@ LTUserManager *LTUserManagerInstance = nil;
 
 @implementation LTUserManager
 
-+ (void)initialize
-{
-    if (self == [LTUserManager class])
-    {
-        [self sharedInstance];
-    }
-}
-
-+ (void)initializeUserManager
-{
-    [self sharedInstance];
-}
-
-+ (instancetype)sharedInstance
-{
++ (instancetype)sharedInstance {
     static dispatch_once_t onceToken;
+    static LTUserManager *instance = nil;
     dispatch_once(&onceToken,^{
-        LTUserManagerInstance = [[super allocWithZone:NULL] init];
+        instance = [[super allocWithZone:NULL] init];
     });
-    return LTUserManagerInstance;
+    return instance;
 }
 
 + (id)allocWithZone:(struct _NSZone *)zone
@@ -70,14 +55,14 @@ LTUserManager *LTUserManagerInstance = nil;
 
 + (void)showLoginPageWithCompletion:(LTUserManagerCompletionBlock)completionBlock
 {
-    dispatch_semaphore_wait(LTUserManagerInstance->_lock, DISPATCH_TIME_FOREVER);
+    dispatch_semaphore_wait(LTUserManager.sharedInstance->_lock, DISPATCH_TIME_FOREVER);
     // 先清空登录用户相关信息
     [self signOutCurrentUser];
     // 如果当前页面就是登录页面就不用跳转了
     UIViewController *controller = kCurrentViewController.navigationController.viewControllers.firstObject;
     if ([controller isKindOfClass:[[self loginViewController] class]])
     {
-        dispatch_semaphore_signal(LTUserManagerInstance->_lock);
+        dispatch_semaphore_signal(LTUserManager.sharedInstance->_lock);
         return;
     }
     
@@ -89,9 +74,9 @@ LTUserManager *LTUserManagerInstance = nil;
         
     }];
     
-    LTUserManagerInstance.navigationController = navigationController;
-    LTUserManagerInstance.completionBlock = completionBlock;
-    dispatch_semaphore_signal(LTUserManagerInstance->_lock);
+    LTUserManager.sharedInstance.navigationController = navigationController;
+    LTUserManager.sharedInstance.completionBlock = completionBlock;
+    dispatch_semaphore_signal(LTUserManager.sharedInstance->_lock);
 }
 
 + (void)showLoginPage
@@ -101,12 +86,12 @@ LTUserManager *LTUserManagerInstance = nil;
 
 + (void)hiddenLoginPageWithLoginStatus:(BOOL)isLoginSuccess
 {
-    [LTUserManagerInstance.navigationController dismissViewControllerAnimated:YES completion:^{
-        LTUserManagerInstance.navigationController = nil;
-        if (LTUserManagerInstance.completionBlock)
+    [LTUserManager.sharedInstance.navigationController dismissViewControllerAnimated:YES completion:^{
+        LTUserManager.sharedInstance.navigationController = nil;
+        if (LTUserManager.sharedInstance.completionBlock)
         {
-            LTUserManagerInstance.completionBlock(isLoginSuccess);
-            LTUserManagerInstance.completionBlock = nil;
+            LTUserManager.sharedInstance.completionBlock(isLoginSuccess);
+            LTUserManager.sharedInstance.completionBlock = nil;
         }
         if (isLoginSuccess)
         {
@@ -118,7 +103,7 @@ LTUserManager *LTUserManagerInstance = nil;
 #pragma mark - 用户管理
 + (void)restoreCurrentUserInfo
 {
-    return [LTUserManagerInstance restoreCurrentUserInfo];
+    return [LTUserManager.sharedInstance restoreCurrentUserInfo];
 }
 
 - (void)restoreCurrentUserInfo
@@ -132,7 +117,7 @@ LTUserManager *LTUserManagerInstance = nil;
 
 + (void)storageCurrentUserInfo
 {
-    return [LTUserManagerInstance storageCurrentUserInfo];
+    return [LTUserManager.sharedInstance storageCurrentUserInfo];
 }
 
 - (void)storageCurrentUserInfo
@@ -144,8 +129,8 @@ LTUserManager *LTUserManagerInstance = nil;
 /**  当前账号退出登录  */
 + (BOOL)signOutCurrentUser
 {
-    LTUserManagerInstance.currentUser = nil;
-    [LTUserManagerInstance storageCurrentUserInfo];
+    LTUserManager.sharedInstance.currentUser = nil;
+    [LTUserManager.sharedInstance storageCurrentUserInfo];
     // 发出退出登录通知
     [self postSignOutSuccessNotification];
     return YES;

@@ -164,7 +164,7 @@ static void *LTObserverWebViewContext = &LTObserverWebViewContext;
     progressView.trackTintColor = [UIColor whiteColor];
     [progressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.equalTo(3.f);
+        make.height.equalTo(@3.f);
     }];
 }
 

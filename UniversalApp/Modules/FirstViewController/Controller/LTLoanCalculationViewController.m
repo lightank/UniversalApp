@@ -302,7 +302,7 @@
             [annualInterestTateTextField mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(cell.detailTextLabel);
                 make.top.bottom.equalTo(cell.contentView);
-                make.width.equalTo(kScreenWidth * 0.5);
+                make.width.equalTo(@(kScreenWidth * 0.5));
             }];
             annualInterestTateTextField.delegate = self;
         }

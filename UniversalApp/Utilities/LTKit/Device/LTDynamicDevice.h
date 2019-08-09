@@ -18,12 +18,12 @@
  @param y 陀螺仪开启情况下的y值
  @param z 陀螺仪开启情况下的z值
  */
-typedef void(^LTDeviceGyroDataBlock)(BOOL isGyroAvailable, BOOL isGyroActive, double x,double y, double z);
+typedef void(^LTDeviceGyroDataBlock)(BOOL isGyroAvailable, BOOL isGyroActive, double x, double y, double z);
 
 typedef void(^LTDeviceBluetoothBlock)(BOOL isOpenBluetooth);
 
-typedef void(^LTDeviceContactBlock)(NSArray <LTContact *> *contacts);
-typedef void(^LTDeviceSortedContactBlock)(NSDictionary <NSString *, NSArray<LTContact *> *> *contactDictionary, NSArray<NSString *> *nameKeys);
+typedef void(^LTDeviceContactBlock)(NSArray <LTContact *> * _Nonnull contacts);
+typedef void(^LTDeviceSortedContactBlock)(NSDictionary <NSString *, NSArray<LTContact *> *> * _Nonnull contactDictionary, NSArray<NSString *> * _Nonnull nameKeys);
 
 NS_ASSUME_NONNULL_BEGIN
 

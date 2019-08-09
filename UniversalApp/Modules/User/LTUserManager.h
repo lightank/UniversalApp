@@ -10,11 +10,12 @@
 @class LTUserManager;
 #import "LTUser.h"
 
-// 单例
-extern LTUserManager *LTUserManagerInstance;
 typedef void(^LTUserManagerCompletionBlock)(BOOL isLoginSuccess);
 
 @interface LTUserManager : NSObject
+
+/* Methods for creating shared instances. */
+@property (class, readonly, strong) LTUserManager *sharedInstance;
 
 /**  当前用户  */
 @property (nonatomic, strong) LTUser *currentUser;

@@ -46,6 +46,9 @@
 		A035615B21C3F76400DAAEE1 /* LTMultiThreadExample.m in Sources */ = {isa = PBXBuildFile; fileRef = A035615A21C3F76400DAAEE1 /* LTMultiThreadExample.m */; };
 		A035615F21C3F8B400DAAEE1 /* LTBlockExample.m in Sources */ = {isa = PBXBuildFile; fileRef = A035615E21C3F8B400DAAEE1 /* LTBlockExample.m */; };
 		A03C9400228270E000F2D513 /* LTScreenshotCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = A03C93FF228270E000F2D513 /* LTScreenshotCapture.m */; };
+		A059165022F91FDC00A0CFC7 /* LTThirdViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A059164F22F91FDC00A0CFC7 /* LTThirdViewController.mm */; };
+		A059165522F9220F00A0CFC7 /* LTPrivacyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = A059165422F9220F00A0CFC7 /* LTPrivacyPermission.m */; };
+		A059165822F9241400A0CFC7 /* LTDBManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = A059165722F9241400A0CFC7 /* LTDBManager.mm */; };
 		A05AAECB228AA9E20016F61C /* LTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A05AAECA228AA9E20016F61C /* LTButton.m */; };
 		A060A7122274549100277C1A /* LTAuthID.m in Sources */ = {isa = PBXBuildFile; fileRef = A060A7112274549100277C1A /* LTAuthID.m */; };
 		A06D065B22A51A0000FC3D42 /* LTTextAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = A06D065A22A51A0000FC3D42 /* LTTextAttributes.m */; };
@@ -196,6 +199,12 @@
 		A035615E21C3F8B400DAAEE1 /* LTBlockExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTBlockExample.m; sourceTree = "<group>"; };
 		A03C93FE228270E000F2D513 /* LTScreenshotCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTScreenshotCapture.h; sourceTree = "<group>"; };
 		A03C93FF228270E000F2D513 /* LTScreenshotCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTScreenshotCapture.m; sourceTree = "<group>"; };
+		A059164E22F91FDC00A0CFC7 /* LTThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTThirdViewController.h; sourceTree = "<group>"; };
+		A059164F22F91FDC00A0CFC7 /* LTThirdViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LTThirdViewController.mm; sourceTree = "<group>"; };
+		A059165322F9220F00A0CFC7 /* LTPrivacyPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPrivacyPermission.h; sourceTree = "<group>"; };
+		A059165422F9220F00A0CFC7 /* LTPrivacyPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTPrivacyPermission.m; sourceTree = "<group>"; };
+		A059165622F9241400A0CFC7 /* LTDBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTDBManager.h; sourceTree = "<group>"; };
+		A059165722F9241400A0CFC7 /* LTDBManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LTDBManager.mm; sourceTree = "<group>"; };
 		A05AAEC9228AA9E20016F61C /* LTButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTButton.h; sourceTree = "<group>"; };
 		A05AAECA228AA9E20016F61C /* LTButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTButton.m; sourceTree = "<group>"; };
 		A060A7102274549100277C1A /* LTAuthID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAuthID.h; sourceTree = "<group>"; };
@@ -359,6 +368,8 @@
 				3D48667A20B1B1B7002BACA8 /* LTUserManager.m */,
 				3D48667C20B1B1C5002BACA8 /* LTUser.h */,
 				3D48667D20B1B1C5002BACA8 /* LTUser.m */,
+				A059165622F9241400A0CFC7 /* LTDBManager.h */,
+				A059165722F9241400A0CFC7 /* LTDBManager.mm */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -516,6 +527,7 @@
 				3DACBB2C219EAD380077E262 /* Login */,
 				3D679309213E23160017891D /* FirstViewController */,
 				A0B9953522D333FB004BDCA3 /* SecondViewController */,
+				A059164C22F91FA600A0CFC7 /* ThirdViewController */,
 				3D48667820B1B197002BACA8 /* User */,
 				3DCC9F6E20B02D2E00CD476A /* HomeTabBar */,
 			);
@@ -537,6 +549,7 @@
 		3DCC9F4620B017F300CD476A /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				A059165222F9220F00A0CFC7 /* LTPrivacyPermission */,
 				3DEE10AF20EB05C0002C597D /* OpenInstallSDK2.2.0 */,
 				3D03D64120B80C17006F6F75 /* LTNavigationBar */,
 				3DCC9F4B20B019F100CD476A /* YYFPSLabel */,
@@ -710,6 +723,32 @@
 				A03C93FF228270E000F2D513 /* LTScreenshotCapture.m */,
 			);
 			path = ScreenshotCapture;
+			sourceTree = "<group>";
+		};
+		A059164C22F91FA600A0CFC7 /* ThirdViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A059164D22F91FBF00A0CFC7 /* Controller */,
+			);
+			path = ThirdViewController;
+			sourceTree = "<group>";
+		};
+		A059164D22F91FBF00A0CFC7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A059164E22F91FDC00A0CFC7 /* LTThirdViewController.h */,
+				A059164F22F91FDC00A0CFC7 /* LTThirdViewController.mm */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A059165222F9220F00A0CFC7 /* LTPrivacyPermission */ = {
+			isa = PBXGroup;
+			children = (
+				A059165322F9220F00A0CFC7 /* LTPrivacyPermission.h */,
+				A059165422F9220F00A0CFC7 /* LTPrivacyPermission.m */,
+			);
+			path = LTPrivacyPermission;
 			sourceTree = "<group>";
 		};
 		A05AAEC8228AA9C90016F61C /* LTButton */ = {
@@ -1124,6 +1163,9 @@
 				A073C303224A3F7B00B685A1 /* UINavigationBar+LTAdd.m in Sources */,
 				3DCC9F4A20B018F900CD476A /* AppDelegate+AppService.m in Sources */,
 				3DCC9F7520B02E0A00CD476A /* LTNavigationController.m in Sources */,
+				A059165822F9241400A0CFC7 /* LTDBManager.mm in Sources */,
+				A059165522F9220F00A0CFC7 /* LTPrivacyPermission.m in Sources */,
+				A059165022F91FDC00A0CFC7 /* LTThirdViewController.mm in Sources */,
 				3DCC9F4E20B019F100CD476A /* YYFPSLabel.m in Sources */,
 				3D48667E20B1B1C5002BACA8 /* LTUser.m in Sources */,
 				A035615821C3F6FD00DAAEE1 /* LTObjcViewController.m in Sources */,
@@ -1287,6 +1329,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconSit;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WWJ7XS3PG2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1301,8 +1344,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/UniversalApp/Vender/OpenInstallSDK2.2.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.testDD;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Sit;
@@ -1412,6 +1456,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconUat;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WWJ7XS3PG2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1426,8 +1471,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/UniversalApp/Vender/OpenInstallSDK2.2.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.testDD;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Uat;
@@ -1537,6 +1583,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WWJ7XS3PG2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1551,8 +1598,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/UniversalApp/Vender/OpenInstallSDK2.2.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.testDD;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Dev;
@@ -1715,6 +1763,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WWJ7XS3PG2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1729,8 +1778,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/UniversalApp/Vender/OpenInstallSDK2.2.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.testDD;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1743,6 +1793,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WWJ7XS3PG2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1757,8 +1808,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/UniversalApp/Vender/OpenInstallSDK2.2.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.UniversalApp.testDD;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huanyu.li.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

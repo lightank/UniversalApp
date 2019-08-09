@@ -29,6 +29,8 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
 
 @interface LTContact : NSObject
 
+@property (nonatomic, copy) NSString *identifier;
+
 /**  联系人类型  */
 @property (nonatomic) LTContactType contactType;
 /**  姓名  */

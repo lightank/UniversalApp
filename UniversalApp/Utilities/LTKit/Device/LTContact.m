@@ -16,6 +16,7 @@
     self = [super init];
     if (self)
     {
+        self.identifier = contact.identifier;
         self.contactType = contact.contactType == CNContactTypePerson ? LTContactTypePerson : LTContactTypeOrigination;
         
         self.fullName = [CNContactFormatter stringFromContact:contact style:CNContactFormatterStyleFullName];

@@ -54,10 +54,10 @@
     _nameTextField.borderStyle = UITextBorderStyleNone;
     [self.contentScrollView addSubview:_nameTextField];
     [_nameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(kTextFieldWidth);
-        make.height.equalTo(kTextFieldHeight);
+        make.width.equalTo(@(kTextFieldWidth));
+        make.height.equalTo(@(kTextFieldHeight));
         make.left.equalTo(self.view.mas_left).offset(kTextLeftPadding);
-        make.top.equalTo(self.contentScrollView.mas_top).equalTo(kForgetPwdBtnWidth);
+        make.top.equalTo(self.contentScrollView.mas_top).equalTo(@(kForgetPwdBtnWidth));
         
     }];
     
@@ -66,8 +66,8 @@
     sepView1.backgroundColor = [UIColor whiteColor];
     [self.contentScrollView addSubview:sepView1];
     [sepView1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(kTextFieldWidth);
-        make.height.equalTo(1.5);
+        make.width.equalTo(@(kTextFieldWidth));
+        make.height.equalTo(@(1.5));
         make.left.equalTo(self.nameTextField.mas_left).offset(0);
         make.top.equalTo(self.nameTextField.mas_bottom).equalTo(0);
         
@@ -82,10 +82,10 @@
     [self.contentScrollView addSubview:_pwdTextField];
     
     [_pwdTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(kTextFieldWidth);
-        make.height.equalTo(kTextFieldHeight);
+        make.width.equalTo(@(kTextFieldWidth));
+        make.height.equalTo(@(kTextFieldHeight));
         make.left.equalTo(self.view.mas_left).offset(kTextLeftPadding);
-        make.top.equalTo(sepView1.mas_bottom).equalTo(20);
+        make.top.equalTo(sepView1.mas_bottom).equalTo(@(20));
     }];
     
     //2.1 添加一个分割线
@@ -93,8 +93,8 @@
     sepView2.backgroundColor = [UIColor whiteColor];
     [self.contentScrollView addSubview:sepView2];
     [sepView2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(kTextFieldWidth);
-        make.height.equalTo(1.5);
+        make.width.equalTo(@(kTextFieldWidth));
+        make.height.equalTo(@(1.5));
         make.left.equalTo(self.pwdTextField.mas_left).offset(0);
         make.top.equalTo(self.pwdTextField.mas_bottom).equalTo(0);
     }];
@@ -108,10 +108,10 @@
     [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.contentScrollView addSubview:loginBtn];
     [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(kTextFieldWidth);
-        make.height.equalTo(kTextFieldHeight);
+        make.width.equalTo(@(kTextFieldWidth));
+        make.height.equalTo(@(kTextFieldHeight));
         make.left.equalTo(self.pwdTextField.mas_left).offset(0);
-        make.top.equalTo(sepView2.mas_bottom).equalTo(30);
+        make.top.equalTo(sepView2.mas_bottom).equalTo(@(30));
     }];
     
     // 4 忘记密码
@@ -122,10 +122,10 @@
     [forgetPwdBtn setTitleColor:kRGBColor(24, 154, 214) forState:UIControlStateNormal];
     [self.contentScrollView addSubview:forgetPwdBtn];
     [forgetPwdBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(kForgetPwdBtnWidth);
-        make.height.equalTo(kTextFieldHeight);
+        make.width.equalTo(@(kForgetPwdBtnWidth));
+        make.height.equalTo(@(kTextFieldHeight));
         make.left.equalTo(self.pwdTextField.mas_left).offset(0);
-        make.top.equalTo(loginBtn.mas_bottom).equalTo(10);
+        make.top.equalTo(loginBtn.mas_bottom).equalTo(@10);
     }];
     
     // 5 新用户注册
@@ -136,10 +136,10 @@
     [registBtn setTitleColor:kRGBColor(24, 154, 214) forState:UIControlStateNormal];
     [self.contentScrollView addSubview:registBtn];
     [registBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(kForgetPwdBtnWidth);
-        make.height.equalTo(kTextFieldHeight);
+        make.width.equalTo(@(kForgetPwdBtnWidth));
+        make.height.equalTo(@(kTextFieldHeight));
         make.right.equalTo(self.pwdTextField.mas_right).offset(0);
-        make.top.equalTo(loginBtn.mas_bottom).equalTo(10);
+        make.top.equalTo(loginBtn.mas_bottom).equalTo(@10);
     }];
 }
 
