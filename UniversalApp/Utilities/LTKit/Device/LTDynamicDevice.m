@@ -9,9 +9,9 @@
 #import "LTDynamicDevice.h"
 #import <CoreMotion/CoreMotion.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+#import <AddressBookUI/AddressBookUI.h>
 
-
-@interface LTDynamicDevice () <CBCentralManagerDelegate>
+@interface LTDynamicDevice () <CBCentralManagerDelegate, CNContactPickerDelegate, ABPeoplePickerNavigationControllerDelegate>
 
 @property (nonatomic, strong) CMMotionManager *motionManager;
 @property (nonatomic, strong) CBCentralManager *bluetoothManager;
@@ -255,6 +255,87 @@
 + (void)cleanContactCache
 {
     
+}
+
++ (void)showContactPicker:(LTDeviceContactBlock)block
+{
+    
+    //if (@available(iOS 9.0, *))
+    if (NO)
+    {
+#ifdef LTContactAvailable
+
+        CNContactPickerViewController *contactPickerViewController = [[CNContactPickerViewController alloc] init];
+        contactPickerViewController.delegate = [LTDynamicDevice sharedInstance];
+        [kCurrentViewController presentViewController:contactPickerViewController animated:YES completion:^{
+            
+        }];
+#endif
+    }
+    else
+    {
+        ABPeoplePickerNavigationController *contactPickerViewController= [[ABPeoplePickerNavigationController alloc] init];
+        contactPickerViewController.peoplePickerDelegate = self;
+        contactPickerViewController.predicateForSelectionOfPerson = [NSPredicate predicateWithValue:false];
+        [kCurrentViewController presentViewController:contactPickerViewController animated:YES completion:nil];
+    }
+}
+
+#pragma mark CNContactPickerDelegate
+//- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact
+//{
+////    [self printContactInfo:contact];
+////    [_contactPickerViewController dismissViewControllerAnimated:YES completion:nil];
+//}
+
+//- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContactProperty:(CNContactProperty *)contactProperty
+//{
+//
+//}
+
+//- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContacts:(NSArray<CNContact*> *)contacts
+//{
+//
+//}
+
+- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContactProperties:(NSArray<CNContactProperty*> *)contactProperties
+{
+    
+}
+
+#pragma mark - ABPeoplePickerNavigationControllerDelegate
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+{
+    ABMultiValueRef valuesRef = ABRecordCopyValue(person, kABPersonPhoneProperty);
+    CFIndex index = ABMultiValueGetIndexForIdentifier(valuesRef,identifier);
+    if (index < 0) {
+        return;
+    }
+    
+    //电话号码
+    CFStringRef telValue = ABMultiValueCopyValueAtIndex(valuesRef,index);
+    NSString *number = (NSString *)CFBridgingRelease(telValue);
+    if ([number hasPrefix:@"+"]) {
+        number = [number stringByReplacingOccurrencesOfString:@"+" withString:@""];
+    }
+    if ([number hasPrefix:@"86"]) {
+        number =   [number stringByReplacingCharactersInRange:NSMakeRange(0, 2) withString:@""];
+    }
+    if ([number hasPrefix:@"0086"]) {
+        number =   [number stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@""];
+    }
+    
+    number =  [number stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    NSString *numberStr = [number stringByTrim];
+    NSLog(@"numberStr =%@",numberStr);
+    
+    CFStringRef anFullName = ABRecordCopyCompositeName(person);
+    NSString *nameStr = (__bridge_transfer NSString *) anFullName;
+    
+    nameStr =  [nameStr stringByTrim];
+    if (nameStr && nameStr.length>15) {
+        nameStr = [nameStr substringToIndex:15];
+    }
 }
 
 #pragma mark - 获取联系人姓名首字母(传入汉字字符串, 返回大写拼音首字母)

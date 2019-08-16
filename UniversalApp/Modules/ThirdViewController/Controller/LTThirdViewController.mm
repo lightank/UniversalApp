@@ -22,7 +22,6 @@
     // Do any additional setup after loading the view.
     [LTPrivacyPermission.sharedPermission accessPrivacyPermissionWithType:LTPrivacyPermissionTypeContact completion:^(BOOL authorized, LTPrivacyPermissionType type, LTPrivacyPermissionAuthorizationStatus status) {
         [LTDynamicDevice accessContacts:^(NSArray<LTContact *> * _Nonnull contacts) {
-            @1;
             [contacts enumerateObjectsUsingBlock:^(LTContact * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 [LTDBManager insertContact:obj];
             }];
@@ -34,7 +33,6 @@
         }];
     }];
 }
-
 /*
 #pragma mark - Navigation
 

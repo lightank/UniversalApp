@@ -51,6 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)accessContacts:(LTDeviceContactBlock)completeBlock;
 + (void)accessSortedContacts:(LTDeviceSortedContactBlock)completeBlock;
 
++ (void)showContactPicker:(LTDeviceContactBlock)block;
+
 @end
 
 NS_ASSUME_NONNULL_END
