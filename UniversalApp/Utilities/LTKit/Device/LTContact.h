@@ -116,6 +116,8 @@ typedef NS_ENUM(NSUInteger, LTContactType) {
 /// 电话
 @interface LTPhone : NSObject
 
+@property (nonatomic, copy) NSString *identifier;
+
 /**  电话  */
 @property (nonatomic, copy) NSString *phone;
 /**  标签  */

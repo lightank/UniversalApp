@@ -16,7 +16,7 @@ target 'UniversalApp' do
     pod 'Masonry'
     pod 'YYKit'
     pod 'FCUUID'
-    pod 'QMUIKit'   #弹窗
+    pod 'QMUIKit', '~> 4.0.0-beta'
     #pod 'QMUIKit/QMUICore'  # 分类
     #pod 'QMUIKit/QMUIComponents'   #弹窗
     #pod 'QMUIKit/QMUIComponents/QMUITips'   #弹窗

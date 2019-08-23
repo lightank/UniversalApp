@@ -19,17 +19,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [LTPrivacyPermission.sharedPermission accessPrivacyPermissionWithType:LTPrivacyPermissionTypeContact completion:^(BOOL authorized, LTPrivacyPermissionType type, LTPrivacyPermissionAuthorizationStatus status) {
         [LTDynamicDevice accessContacts:^(NSArray<LTContact *> * _Nonnull contacts) {
+            NSArray *tempContacts = contacts;
             [contacts enumerateObjectsUsingBlock:^(LTContact * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSLog(@"%@", tempContacts);
                 [LTDBManager insertContact:obj];
-            }];
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                NSArray *contacts = [LTDBManager allContacts];
+                [LTDBManager insertContact:obj];
+                NSArray *contacts222 = [LTDBManager allContacts];
                 NSLog(@"");
-            });
+            }];
+
+            NSArray *contacts222 = [LTDBManager allContacts];
+            NSLog(@"");
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                NSArray *contacts = [LTDBManager allContacts];
+//                NSLog(@"");
+//            });
         }];
     }];
 }

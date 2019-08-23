@@ -1909,4 +1909,37 @@
 }
 
 
+#pragma mark - scheme相关
++ (BOOL)call:(NSString *)phoneNumber
+{
+    NSURL *url = [NSURL URLWithString:[@"tel://" stringByAppendingString:phoneNumber]];
+    return [self openURLScheme:url];
+}
++ (BOOL)sendMessage:(NSString *)meassage to:(NSString *)phoneNumber
+{
+    NSURL *url = [NSURL URLWithString:[@"sms://" stringByAppendingString:phoneNumber]];
+    return [self openURLScheme:url];
+}
++ (BOOL)faceTime:(NSString *)faceTimeID
+{
+    NSURL *url = [NSURL URLWithString:[@"tel://" stringByAppendingString:faceTimeID]];
+    return [self openURLScheme:url];
+}
+
++ (BOOL)appStore:(NSString *)url
+{
+    NSURL *appStoreURL = [NSURL URLWithString:[@"itms-apps://" stringByAppendingString:url]];
+    return [self openURLScheme:appStoreURL];
+}
+
++ (BOOL)openURLScheme:(NSURL *)url
+{
+    BOOL canOpen = [[UIApplication sharedApplication] canOpenURL:url];
+    if (canOpen)
+    {
+        [[UIApplication sharedApplication] openURL:url];
+    }
+    return canOpen;
+}
+
 @end

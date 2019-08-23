@@ -335,6 +335,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSDictionary *_Nullable)requestHeaderFields;
 
 
+#pragma mark - scheme相关
++ (BOOL)call:(NSString *)phoneNumber;
++ (BOOL)faceTime:(NSString *)faceTimeID;
++ (BOOL)appStore:(NSString *)url;
++ (BOOL)openURLScheme:(NSURL *)url;
+
 @end
 
 NS_ASSUME_NONNULL_END
