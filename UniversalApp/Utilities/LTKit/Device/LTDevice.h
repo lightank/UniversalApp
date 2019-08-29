@@ -203,6 +203,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (class, nonatomic, readonly, nullable) NSString *clipboardContent;
 
 #pragma mark - 本地区域相关
+/**  是否在中国:
+    系统语言:中文
+    设备机型:iPhone
+    当前系统时区:Asia/Hong_Kong、Asia/Shanghai、Asia/Harbin
+    当前地区国家:zh_CN
+ */
+@property (class, nonatomic, readonly) BOOL isInChina;
 /**  所属国家  */
 @property (class, nonatomic, readonly, nullable) NSString *country;
 /**  本地语言  */

@@ -962,6 +962,39 @@
 }
 
 #pragma mark - 本地区域相关
++ (BOOL)isInChina
+{
+    BOOL isInChina = NO;
+    
+    // 系统语言:中文
+    BOOL isChinese = NO;
+    NSArray *languageArray = [[NSUserDefaults standardUserDefaults] valueForKey:@"AppleLanguages"];
+    // Get the user's language
+    NSString *language = languageArray.firstObject;
+    isChinese = [language containsString:@"zh"];
+    
+    // 设备机型:iPhone
+    BOOL isIPhone = NO;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) isIPhone = YES;
+    
+    // 当前系统时区:Asia/Hong_Kong、Asia/Shanghai、Asia/Harbin
+    BOOL isChinaTimeZone = NO;
+    NSString *systemTimeZoneName = [NSTimeZone systemTimeZone].name;
+    static NSArray *ChinaTimeZone;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        ChinaTimeZone = @[@"Asia/Hong_Kong", @"Asia/Shanghai", @"Asia/Harbin"];
+    });
+    isChinaTimeZone = [ChinaTimeZone containsObject:systemTimeZoneName];
+    
+    // 当前地区国家:zh_CN
+    BOOL isChinaLocale = NO;
+    NSString *country = [NSLocale currentLocale].localeIdentifier;
+    isChinaLocale = [country containsString:@"zh"];
+    
+    isInChina = isChinese && isIPhone && isChinaTimeZone && isChinaLocale;
+    return isInChina;
+}
 + (NSString *)country
 {
     NSLocale *Locale = [NSLocale currentLocale];
