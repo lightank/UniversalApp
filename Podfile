@@ -17,6 +17,7 @@ target 'UniversalApp' do
     pod 'YYKit'
     pod 'FCUUID'
     pod 'QMUIKit', '~> 4.0.0-beta'
+    pod 'Reachability'
     #pod 'QMUIKit/QMUICore'  # 分类
     #pod 'QMUIKit/QMUIComponents'   #弹窗
     #pod 'QMUIKit/QMUIComponents/QMUITips'   #弹窗

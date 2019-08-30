@@ -83,6 +83,7 @@
 		A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */; };
 		A0D25DEA227350BF001168A5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DE9227350BF001168A5 /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A0D25DEC22735138001168A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DEB22735138001168A5 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A0F1DB3D2318D261007D2EED /* LTLanuchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F1DB3C2318D261007D2EED /* LTLanuchViewController.m */; };
 		E263541D9C33F5DD3886B5D4 /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */; };
 		FB553A15234B274C38B6CE91 /* libPods-UniversalAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0296C350224E490362599AB1 /* libPods-UniversalAppTests.a */; };
 /* End PBXBuildFile section */
@@ -272,6 +273,8 @@
 		A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+LTAdd.m"; sourceTree = "<group>"; };
 		A0D25DE9227350BF001168A5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A0D25DEB22735138001168A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A0F1DB3B2318D261007D2EED /* LTLanuchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTLanuchViewController.h; sourceTree = "<group>"; };
+		A0F1DB3C2318D261007D2EED /* LTLanuchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTLanuchViewController.m; sourceTree = "<group>"; };
 		A244D68607808162F3309FE0 /* Pods-UniversalAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppUITests/Pods-UniversalAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC8739C3BF6125C27952E091 /* Pods-UniversalAppTests.sit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppTests.sit.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppTests/Pods-UniversalAppTests.sit.xcconfig"; sourceTree = "<group>"; };
 		C88A913B462EFBFE7833C24D /* Pods-UniversalAppTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalAppTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalAppTests/Pods-UniversalAppTests.dev.xcconfig"; sourceTree = "<group>"; };
@@ -522,6 +525,7 @@
 		3DCC9F4420B00E8100CD476A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				A0F1DB392318D245007D2EED /* Lanuch */,
 				A035615121C35C7E00DAAEE1 /* Objective-C */,
 				3DACBB34219EBE980077E262 /* Localization */,
 				3DACBB2C219EAD380077E262 /* Login */,
@@ -901,6 +905,23 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		A0F1DB392318D245007D2EED /* Lanuch */ = {
+			isa = PBXGroup;
+			children = (
+				A0F1DB3A2318D253007D2EED /* Controller */,
+			);
+			path = Lanuch;
+			sourceTree = "<group>";
+		};
+		A0F1DB3A2318D253007D2EED /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A0F1DB3B2318D261007D2EED /* LTLanuchViewController.h */,
+				A0F1DB3C2318D261007D2EED /* LTLanuchViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1076,17 +1097,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-resources.sh",
-				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-				"${PODS_ROOT}/QMUIKit/QMUIKit/QMUIResources/QMUIResources.bundle",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QMUIResources.bundle",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1099,16 +1115,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-frameworks.sh",
-				"${PODS_ROOT}/LookinServer/LookinServer.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LookinServer.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1181,6 +1192,7 @@
 				3DFE3E7020EA531500A8832C /* AppDelegate+UMengAnalytics.m in Sources */,
 				A0128D3322891F1A006FF62D /* LTPageControl.m in Sources */,
 				A0B9953922D33448004BDCA3 /* LTSecondViewController.m in Sources */,
+				A0F1DB3D2318D261007D2EED /* LTLanuchViewController.m in Sources */,
 				A071249722E1961300C91E89 /* LTNotification.m in Sources */,
 				A073C2FC224A3F7B00B685A1 /* UIButton+LTAdd.m in Sources */,
 				3D48667B20B1B1B7002BACA8 /* LTUserManager.m in Sources */,
