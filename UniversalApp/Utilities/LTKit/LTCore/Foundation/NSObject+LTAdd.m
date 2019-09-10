@@ -136,13 +136,27 @@
     while (superClass && !propertyName)
     {
         NSDictionary<NSString *, NSString *> *propertyDictionary = [NSObject lt_propertyDictionaryOf:superClass];
+        BOOL haveClassKey = [propertyDictionary.allValues containsObject:NSStringFromClass(className)];
+
         [propertyDictionary enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
-            NSArray *superClasees = [NSObject lt_superClassOf:NSClassFromString(obj)];
-            if ([superClasees containsObject:NSStringFromClass(className)])
+            if (haveClassKey)
             {
-                *stop = YES;
-                propertyName = key;
-                propertyClassName = obj;
+                if ([obj isEqualToString:NSStringFromClass(className)])
+                {
+                    *stop = YES;
+                    propertyName = key;
+                    propertyClassName = obj;
+                }
+            }
+            else
+            {
+                NSArray *superClasees = [NSObject lt_superClassOf:NSClassFromString(obj)];
+                if ([superClasees containsObject:NSStringFromClass(className)])
+                {
+                    *stop = YES;
+                    propertyName = key;
+                    propertyClassName = obj;
+                }
             }
         }];
         superClass = class_getSuperclass(superClass);
