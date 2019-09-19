@@ -113,6 +113,7 @@
                               @"iPod4,1" : @"iPod touch 4",
                               @"iPod5,1" : @"iPod touch 5",
                               @"iPod7,1" : @"iPod touch 6",
+                              @"iPod9,1" : @"iPod touch 7",
                               
                               @"iPhone1,1" : @"iPhone 1G",
                               @"iPhone1,2" : @"iPhone 3G",
@@ -248,6 +249,7 @@
                               @"iPod4,1" : @"3.5",//@"iPod touch 4",
                               @"iPod5,1" : @"4.0",//@"iPod touch 5",
                               @"iPod7,1" : @"4.0",//@"iPod touch 6",
+                              @"iPod9,1" : @"4.0",//@"iPod touch 7",
                               
                               @"iPhone1,1" : @"3.5",//@"iPhone 1G",
                               @"iPhone1,2" : @"3.5",//@"iPhone 3G",
