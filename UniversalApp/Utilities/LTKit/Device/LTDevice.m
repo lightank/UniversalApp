@@ -80,6 +80,7 @@
 }
 
 /// @see http://theiphonewiki.com/wiki/Models
+/// @see https://ipsw.me
 + (NSString *)machineModelName
 {
     static dispatch_once_t one;
@@ -147,6 +148,9 @@
                               @"iPhone11,4" : @"iPhone XS Max",
                               @"iPhone11,6" : @"iPhone XS Max China",
                               @"iPhone11,8" : @"iPhone XR",
+                              @"iPhone12,1" : @"iPhone 11",
+                              @"iPhone12,3" : @"iPhone 11 Pro",
+                              @"iPhone12,5" : @"iPhone 11 Pro Max",
                               
                               @"iPad1,1" : @"iPad 1",
                               @"iPad2,1" : @"iPad 2 (WiFi)",
@@ -216,6 +220,7 @@
 }
 
 /// @see http://theiphonewiki.com/wiki/Models
+/// @see https://ipsw.me
 + (NSString *)screenInchSize
 {
     static dispatch_once_t one;
@@ -283,6 +288,9 @@
                               @"iPhone11,4" : @"6.5",//@"iPhone XS Max",
                               @"iPhone11,6" : @"6.5",//@"iPhone XS Max China",
                               @"iPhone11,8" : @"6.1",//@"iPhone XR",
+                              @"iPhone12,1" : @"6.1",//@"iPhone 11",
+                              @"iPhone12,3" : @"5.8",//@"iPhone 11 Pro",
+                              @"iPhone12,5" : @"6.5",//@"iPhone 11 Pro Max",
                               
                               @"iPad1,1" : @"9.7",//@"iPad 1",
                               @"iPad2,1" : @"9.7",//@"iPad 2 (WiFi)",
