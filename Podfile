@@ -16,7 +16,7 @@ target 'UniversalApp' do
     pod 'Masonry'
     pod 'YYKit'
     pod 'FCUUID'
-    pod 'QMUIKit', '~> 4.0.0-beta'
+    pod 'QMUIKit'
     pod 'Reachability'
     #pod 'QMUIKit/QMUICore'  # 分类
     #pod 'QMUIKit/QMUIComponents'   #弹窗
@@ -49,15 +49,5 @@ target 'UniversalApp' do
     
     #极光推送
     pod 'JPush'
-
-  target 'UniversalAppTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'UniversalAppUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 
 end
