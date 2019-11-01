@@ -8,29 +8,40 @@ target 'UniversalApp' do
 
   # Pods for UniversalApp
 
-    pod 'CYLTabBarController'
-    pod 'YTKNetwork'
-    pod 'IQKeyboardManager'
-    pod 'SDWebImage'
-    pod 'MJRefresh'
-    pod 'Masonry'
-    pod 'YYKit'
-    pod 'FCUUID'
-    pod 'QMUIKit'
+    # 网络
     pod 'Reachability'
+    pod 'YTKNetwork'
+
+    # Tools
+    pod 'FCUUID'
+    pod 'SDWebImage'
+    pod 'LookinServer', :configurations => ['Debug']  #官网:https://lookin.work
+
+    # 布局
+    pod 'Masonry'
+    
+    # UI
+    pod 'IQKeyboardManager'
+    pod 'QMUIKit'
+    pod 'SDCycleScrollView'
+    pod 'YYKit'
+    pod 'CYLTabBarController'
+    pod 'MJRefresh'
     #pod 'QMUIKit/QMUICore'  # 分类
     #pod 'QMUIKit/QMUIComponents'   #弹窗
     #pod 'QMUIKit/QMUIComponents/QMUITips'   #弹窗
+    #pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git' #
+
     # 数据库
     pod 'WCDB'
     #pod 'FMDB'
     pod 'ReactiveObjC'
     pod 'RTRootNavigationController'
     pod 'FDFullscreenPopGesture'
-    pod 'SDCycleScrollView'
     pod 'PrintBeautifulLog'
-    pod 'LookinServer', :configurations => ['Debug']  #官网:https://lookin.work
     #pod 'EBBannerView'   #前台时通知https://github.com/pikacode/EBBannerView
+    
+    
     # 二维码
     #pod 'LBXScan'    #OC版:https://github.com/MxABC/LBXScan
     #pod 'EFQRCode'    #Swift版:https://github.com/EFPrefix/EFQRCode
