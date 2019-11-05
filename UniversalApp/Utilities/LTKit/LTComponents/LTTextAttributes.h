@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**  最终的字典  */
-@property (nonatomic, strong, readonly) NSDictionary *textAttributes;
+@property (nonatomic, readonly) NSDictionary *textAttributes;
 
 @end
 

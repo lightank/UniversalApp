@@ -146,7 +146,6 @@
     
     for (int i = 0; i < [subviews count]; i++)
     {
-        
         UIView *currentSubview = [subviews objectAtIndex:i];
         NSMutableString *currentViewDescription = [[NSMutableString alloc] init];
         
@@ -156,9 +155,7 @@
         }
         
         [currentViewDescription appendFormat:@"[%d]: class: '%@', frame=(%.1f, %.1f, %.1f, %.1f), opaque=%i, hidden=%i, userInterfaction=%i", i, NSStringFromClass([currentSubview class]), currentSubview.frame.origin.x, currentSubview.frame.origin.y, currentSubview.frame.size.width, currentSubview.frame.size.height, currentSubview.opaque, currentSubview.hidden, currentSubview.userInteractionEnabled];
-
         fprintf(stderr,"%s\n", [currentViewDescription UTF8String]);
-        
         [currentSubview lt_printSubviewsWithIndentation:indentation+1];
     }
 }
@@ -166,9 +163,7 @@
 - (UIView *)lt_subviewOfClassType:(Class)classType
 {
     __block UIView *subview = nil;
-    
     NSArray<__kindof UIView *> *subviews = self.subviews;
-    
     [subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:classType])
         {
@@ -188,7 +183,6 @@
 - (UIView *)lt_superviewOfClassType:(Class)classType
 {
     UIView *superview = self.superview;
-    
     while (superview)
     {
         if ([superview isKindOfClass:classType])
@@ -218,7 +212,8 @@
     return nil;
 }
 
-- (UIViewController *)lt_viewController {
+- (UIViewController *)lt_viewController
+{
     for (UIView *view = self; view; view = view.superview)
     {
         UIResponder *nextResponder = [view nextResponder];
