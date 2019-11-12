@@ -348,6 +348,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)appStore:(NSString *)url;
 + (BOOL)openURLScheme:(NSURL *)url;
 
+#pragma mark - 手电筒
++ (void)openFlashlight;
++ (void)closeFlashlight;
+
 @end
 
 NS_ASSUME_NONNULL_END

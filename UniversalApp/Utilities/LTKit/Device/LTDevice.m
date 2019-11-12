@@ -1985,4 +1985,31 @@
     return canOpen;
 }
 
+#pragma mark - - 手电筒
++ (void)openFlashlight
+{
+    AVCaptureDevice *captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    NSError *error = nil;
+    if ([captureDevice hasTorch])
+    {
+        BOOL locked = [captureDevice lockForConfiguration:&error];
+        if (locked)
+        {
+            [captureDevice setTorchMode:AVCaptureTorchModeOn];
+            [captureDevice unlockForConfiguration];
+        }
+    }
+}
+
++ (void)closeFlashlight
+{
+    AVCaptureDevice *captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if ([captureDevice hasTorch])
+    {
+        [captureDevice lockForConfiguration:nil];
+        [captureDevice setTorchMode:AVCaptureTorchModeOff];
+        [captureDevice unlockForConfiguration];
+    }
+}
+
 @end

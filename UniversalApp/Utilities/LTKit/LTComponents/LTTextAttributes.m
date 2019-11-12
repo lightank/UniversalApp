@@ -4,7 +4,7 @@
 //
 //  Created by 李桓宇 on 2019/6/3.
 //  Copyright © 2019 huanyu.li. All rights reserved.
-//
+//  富文本属性
 
 #import "LTTextAttributes.h"
 

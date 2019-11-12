@@ -124,8 +124,6 @@ QMUISynthesizeUIEdgeInsetsProperty(qmui_textFieldMargins, setQmui_textFieldMargi
         OverrideImplementation([UISearchBar class], @selector(setFrame:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
             return ^(UISearchBar *selfObject, CGRect frame) {
                 
-                if (QMUICMIActivated) selfObject.keyboardAppearance = KeyboardAppearance;
-                
                 frame = [selfObject qmui_adjustedSearchBarFrameByOriginalFrame:frame];
                 
                 // call super
@@ -225,22 +223,13 @@ static char kAssociatedObjectKey_cancelButtonFont;
     }
     
     // 搜索框的字号及 placeholder 的字号
-    UIFont *font = SearchBarFont;
-    if (font) {
-        self.qmui_font = font;
-    }
+    self.qmui_font = SearchBarFont;
 
     // 搜索框的文字颜色
-    UIColor *textColor = SearchBarTextColor;
-    if (textColor) {
-        self.qmui_textColor = textColor;
-    }
+    self.qmui_textColor = SearchBarTextColor;
 
     // placeholder 的文字颜色
-    UIColor *placeholderColor = SearchBarPlaceholderColor;
-    if (placeholderColor) {
-        self.qmui_placeholderColor = placeholderColor;
-    }
+    self.qmui_placeholderColor = SearchBarPlaceholderColor;
 
     self.placeholder = @"搜索";
     self.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -287,7 +276,7 @@ static char kAssociatedObjectKey_cancelButtonFont;
 }
 
 + (UIImage *)qmui_generateTextFieldBackgroundImageWithColor:(UIColor *)color {
-    // 背景图片的高度会决定输入框的高度，在 iOS 11 及以上，系统默认高度是 36，iOS 10 及以下的高度是 28
+    // 背景图片的高度会决定输入框的高度，在 iOS 11 及以上，系统默认高度是 36，iOS 10 及以下的高度是 28 的搜索输入框的高度计算:QMUIKit/UIKitExtensions/UISearchBar+QMUI.m
     // 至于圆角，输入框会在 UIView 层面控制，背景图里无需处理
     return [[UIImage qmui_imageWithColor:color size:self.qmui_textFieldDefaultSize cornerRadius:0] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
 }
@@ -379,7 +368,13 @@ static char kAssociatedObjectKey_cancelButtonFont;
 - (CGRect)qmui_adjustedSearchTextFieldFrameByOriginalFrame:(CGRect)frame {
     if (self.qmui_shouldFixLayoutWhenUsedAsTableHeaderView) {
         if (self.qmui_searchController.isBeingPresented) {
-            CGFloat visibleHeight = [UIApplication sharedApplication].statusBarHidden ? 56 : 50;
+            BOOL statusBarHidden = NO;
+            if (@available(iOS 13.0, *)) {
+                statusBarHidden = self.window.windowScene.statusBarManager.statusBarHidden;
+            } else {
+                statusBarHidden = UIApplication.sharedApplication.statusBarHidden;
+            }
+            CGFloat visibleHeight = statusBarHidden ? 56 : 50;
             frame.origin.y = (visibleHeight - self.qmui_textField.qmui_height) / 2;
         } else if (self.qmui_searchController.isBeingDismissed) {
             frame.origin.y = (56 - self.qmui_textField.qmui_height) / 2;
