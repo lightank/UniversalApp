@@ -123,6 +123,26 @@ NS_ASSUME_NONNULL_BEGIN
 @property (class, nonatomic, readonly) BOOL isIPhone;
 
 #pragma mark - 屏幕/尺寸相关
+/*
+ iPhone屏幕尺寸
+ 手机型号            屏幕尺寸      物理尺寸         像素尺寸      倍图
+ XS Max/11Pro Max  6.5inch     414*896 pt    1242*2688 px   @3x
+ XR/11             6.1inch     414*896 pt     828*1792 px   @2x
+ X/XS/11 Pro       5.8inch     375*812 pt    1125*2436 px   @3x
+ 6+/6S+/7+/8+      5.5inch     414*736 pt    1242*2208 px   @3x
+ 6/6S/7/8          4.7inch     375*667 pt     750*1334 px   @2x
+ 5/5S/5C           4.0inch     320*568 pt     640*1136 px   @2x
+ 4/4S              3.5inch     320*480 pt     640*960  px   @2x
+ 
+ iPad屏幕尺寸
+ 手机型号            屏幕尺寸      物理尺寸         像素尺寸      倍图
+ Pro 12.9          12.9inch   1024*1366 pt   2048*2732 px   @2x
+ Pro 10.5          10.5inch    834*1112 pt   1668*2224 px   @2x
+ Pro/Air 2/Retina  9.7inch     768*1024 pt   1536*2048 px   @2x
+ mini 2/4          7.9inch     768*1024 pt   1536*2048 px   @2x
+ 1/2               9.7inch     768*1024 pt   768*1024 px    @1x
+*/
+
 /**  屏幕亮度,系统取值是0-1,这里取值在系统基础上 *100 取值范围为0-100  */
 @property (class, nonatomic, readonly) CGFloat screenBrightness;
 /**  用户界面横屏了才会返回YES  */

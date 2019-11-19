@@ -62,10 +62,6 @@
 #import "UITableViewCell+LTAdd.h"
 #endif
 
-#if __has_include("UITextView+LTAdd.h")
-#import "UITextView+LTAdd.h"
-#endif
-
 #if __has_include("UIWindow+LTAdd.h")
 #import "UIWindow+LTAdd.h"
 #endif

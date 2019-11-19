@@ -15,7 +15,6 @@
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
 
-
 #include <sys/socket.h>
 #include <sys/sysctl.h>
 #include <net/if.h>
@@ -23,6 +22,8 @@
 #include <mach/mach.h>
 #include <arpa/inet.h>
 #include <ifaddrs.h>
+
+#import <AVFoundation/AVFoundation.h>
 
 #define kDeviceInfoPlaceHolder nil
 

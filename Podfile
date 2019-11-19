@@ -16,6 +16,8 @@ target 'UniversalApp' do
     pod 'FCUUID'
     pod 'SDWebImage'
     pod 'LookinServer', :configurations => ['Debug']  #官网:https://lookin.work
+    #pod 'Aspects'
+    #pod 'VCProfiler' #监测控制器加载耗时:https://github.com/panmingyang2009/VCProfiler
 
     # 布局
     pod 'Masonry'
@@ -27,6 +29,8 @@ target 'UniversalApp' do
     pod 'YYKit'
     pod 'CYLTabBarController'
     pod 'MJRefresh'
+    #pod 'MBProgressHUD'
+    #pod 'iCarousel'
     #pod 'QMUIKit/QMUICore'  # 分类
     #pod 'QMUIKit/QMUIComponents'   #弹窗
     #pod 'QMUIKit/QMUIComponents/QMUITips'   #弹窗
@@ -45,10 +49,7 @@ target 'UniversalApp' do
     # 二维码
     #pod 'LBXScan'    #OC版:https://github.com/MxABC/LBXScan
     #pod 'EFQRCode'    #Swift版:https://github.com/EFPrefix/EFQRCode
-    #pod 'LTPrivacyPermission'
-    #pod 'Aspects'
-    #pod 'MBProgressHUD'
-    #pod 'iCarousel'
+
     
     # UMeng Analytics iOS SDK Begin .......
     #依赖库

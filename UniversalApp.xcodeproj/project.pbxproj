@@ -20,7 +20,6 @@
 		3D4A2F9F21A2640600817536 /* LTLanguageSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A2F9E21A2640600817536 /* LTLanguageSettingViewController.m */; };
 		3D4A2FA321A2DF3900817536 /* LTLanguageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A2FA221A2DF3900817536 /* LTLanguageTableViewCell.m */; };
 		3D67930D213E23160017891D /* LTFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D67930C213E23160017891D /* LTFirstViewController.m */; };
-		3D96E4572374FC5700B580E8 /* NSObjectSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D96E4542374FC5700B580E8 /* NSObjectSafe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3DA91F9F237268E70037070F /* LTMainThreadDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA91F9E237268E70037070F /* LTMainThreadDetector.m */; };
 		3DACBB30219EAD610077E262 /* LTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DACBB2F219EAD610077E262 /* LTLoginViewController.m */; };
 		3DB0BB61214117EF00EA1B6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DB0BB63214117EF00EA1B6E /* InfoPlist.strings */; };
@@ -58,7 +57,6 @@
 		A073C2FA224A3F7B00B685A1 /* UITableViewCell+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2D2224A3F7900B685A1 /* UITableViewCell+LTAdd.m */; };
 		A073C2FB224A3F7B00B685A1 /* UIViewController+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2D3224A3F7900B685A1 /* UIViewController+LTAdd.m */; };
 		A073C2FC224A3F7B00B685A1 /* UIButton+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2D9224A3F7900B685A1 /* UIButton+LTAdd.m */; };
-		A073C2FD224A3F7B00B685A1 /* UITextView+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2DB224A3F7900B685A1 /* UITextView+LTAdd.m */; };
 		A073C2FE224A3F7B00B685A1 /* UIScrollView+LTRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2DD224A3F7900B685A1 /* UIScrollView+LTRefresh.m */; };
 		A073C2FF224A3F7B00B685A1 /* UIApplication+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2DE224A3F7900B685A1 /* UIApplication+LTAdd.m */; };
 		A073C300224A3F7B00B685A1 /* UITableView+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A073C2E1224A3F7900B685A1 /* UITableView+LTAdd.m */; };
@@ -224,7 +222,6 @@
 		A073C2D8224A3F7900B685A1 /* UIBarButtonItem+LTAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+LTAdd.h"; sourceTree = "<group>"; };
 		A073C2D9224A3F7900B685A1 /* UIButton+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LTAdd.m"; sourceTree = "<group>"; };
 		A073C2DA224A3F7900B685A1 /* UIWindow+LTAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+LTAdd.h"; sourceTree = "<group>"; };
-		A073C2DB224A3F7900B685A1 /* UITextView+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LTAdd.m"; sourceTree = "<group>"; };
 		A073C2DC224A3F7900B685A1 /* UIColor+LTAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+LTAdd.h"; sourceTree = "<group>"; };
 		A073C2DD224A3F7900B685A1 /* UIScrollView+LTRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+LTRefresh.m"; sourceTree = "<group>"; };
 		A073C2DE224A3F7900B685A1 /* UIApplication+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LTAdd.m"; sourceTree = "<group>"; };
@@ -236,7 +233,6 @@
 		A073C2E4224A3F7900B685A1 /* UIView+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LTAdd.m"; sourceTree = "<group>"; };
 		A073C2E5224A3F7900B685A1 /* UINavigationBar+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+LTAdd.m"; sourceTree = "<group>"; };
 		A073C2E6224A3F7900B685A1 /* UINavigationController+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+LTAdd.m"; sourceTree = "<group>"; };
-		A073C2E7224A3F7900B685A1 /* UITextView+LTAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+LTAdd.h"; sourceTree = "<group>"; };
 		A073C2E8224A3F7900B685A1 /* UIWindow+LTAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+LTAdd.m"; sourceTree = "<group>"; };
 		A073C2E9224A3F7900B685A1 /* UIButton+LTAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+LTAdd.h"; sourceTree = "<group>"; };
 		A073C2EA224A3F7900B685A1 /* UIScrollView+LTRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LTRefresh.h"; sourceTree = "<group>"; };
@@ -809,8 +805,6 @@
 				A073C2D9224A3F7900B685A1 /* UIButton+LTAdd.m */,
 				A073C2DA224A3F7900B685A1 /* UIWindow+LTAdd.h */,
 				A073C2E8224A3F7900B685A1 /* UIWindow+LTAdd.m */,
-				A073C2E7224A3F7900B685A1 /* UITextView+LTAdd.h */,
-				A073C2DB224A3F7900B685A1 /* UITextView+LTAdd.m */,
 				A073C2DC224A3F7900B685A1 /* UIColor+LTAdd.h */,
 				A073C2EB224A3F7900B685A1 /* UIColor+LTAdd.m */,
 				A073C2EA224A3F7900B685A1 /* UIScrollView+LTRefresh.h */,
@@ -1122,7 +1116,6 @@
 				A073C30A224A3F7B00B685A1 /* NSArray+LTAdd.m in Sources */,
 				A073C305224A3F7B00B685A1 /* UIWindow+LTAdd.m in Sources */,
 				A073C2F9224A3F7B00B685A1 /* UIImage+LTAdd.m in Sources */,
-				A073C2FD224A3F7B00B685A1 /* UITextView+LTAdd.m in Sources */,
 				A073C302224A3F7B00B685A1 /* UIView+LTAdd.m in Sources */,
 				3DACBB30219EAD610077E262 /* LTLoginViewController.m in Sources */,
 				A073C2FF224A3F7B00B685A1 /* UIApplication+LTAdd.m in Sources */,
@@ -1163,7 +1156,6 @@
 				3D67930D213E23160017891D /* LTFirstViewController.m in Sources */,
 				3D20AC4320B3B0EC00BDE45D /* LTBaseWebViewController.m in Sources */,
 				3DFE3E7320EA532500A8832C /* AppDelegate+OpenInstallSDK.m in Sources */,
-				3D96E4572374FC5700B580E8 /* NSObjectSafe.m in Sources */,
 				A073C300224A3F7B00B685A1 /* UITableView+LTAdd.m in Sources */,
 				3D48666320B1AAC5002BACA8 /* LTEncryptorTools.m in Sources */,
 				A073C307224A3F7B00B685A1 /* NSString+LTAdd.m in Sources */,
