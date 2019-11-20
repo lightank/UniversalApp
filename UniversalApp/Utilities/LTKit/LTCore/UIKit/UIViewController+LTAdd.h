@@ -18,6 +18,9 @@
 /**  在当前控制器为子控制器的时候,通过修改edgesForExtendedLayout为none,来把self.view当safeArea  */
 - (void)lt_setSafeArea;
 
+- (void)lt_moveToParentViewController:(UIViewController *)parentViewController;
+- (void)lt_removeFromParentViewController:(UIViewController *)parentViewController;
+
 @end
 
 /*
@@ -34,4 +37,20 @@
  // This controls whether this view controller takes over control of the status bar's appearance when presented non-full screen on another view controller. Defaults to NO.
  //  指定一个视图控制器是否出现非全屏，接管的状态栏从外观上呈现的视图控制器控制
  @property(nonatomic,assign) BOOL modalPresentationCapturesStatusBarAppearance NS_AVAILABLE_IOS(7_0) __TVOS_PROHIBITED;
+ 
+ 
+ 子控制器：
+ 
+ //添加一个 childViewController
+ UIViewController *vc = [UIViewController new];//子控制器
+ [self addChildViewController:vc];//添加到父控制器中
+ vc.view.frame = CGRectMake( 0,0,100,100);//设置 frame
+ [self.view addSubview:vc.view];//把子控制器的 view 添加到父控制器的 view 上面
+ [vc didMoveToParentViewController:self];  //子控制器被通知有了一个父控制器
+
+ //移除一个 childViewController
+ [vc willMoveToParentViewController:nil];//子控制器被通知即将解除父子关系
+ [vc.view removeFromSuperview];//把子控制器的 view 从到父控制器的 view 上面移除
+ [vc removeFromParentViewController];//真正的解除关系,会自己调用 [vc didMoveToParentViewController:nil]
+ 
  */
