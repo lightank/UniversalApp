@@ -664,17 +664,9 @@
 			path = LTPageControl;
 			sourceTree = "<group>";
 		};
-		A01CF27222E5C2ED00ABA010 /* LTGuideView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LTGuideView;
-			sourceTree = "<group>";
-		};
 		A023AAE1228AA96600E14B8B /* LTComponents */ = {
 			isa = PBXGroup;
 			children = (
-				A01CF27222E5C2ED00ABA010 /* LTGuideView */,
 				A0B9952F22D3255F004BDCA3 /* LTPickerView */,
 				A081AD7F22C614D500B41C41 /* LTTextField */,
 				A05AAEC8228AA9C90016F61C /* LTButton */,
