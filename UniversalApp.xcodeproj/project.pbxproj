@@ -20,7 +20,8 @@
 		3D4A2F9F21A2640600817536 /* LTLanguageSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A2F9E21A2640600817536 /* LTLanguageSettingViewController.m */; };
 		3D4A2FA321A2DF3900817536 /* LTLanguageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A2FA221A2DF3900817536 /* LTLanguageTableViewCell.m */; };
 		3D67930D213E23160017891D /* LTFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D67930C213E23160017891D /* LTFirstViewController.m */; };
-		3DA91F9F237268E70037070F /* LTMainThreadDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA91F9E237268E70037070F /* LTMainThreadDetector.m */; };
+		3D6FD31523D91FF40015A780 /* KSCoordinateConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6FD31323D91FF30015A780 /* KSCoordinateConverter.m */; };
+		3D6FD31723D920390015A780 /* GCJ02.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D6FD31623D920390015A780 /* GCJ02.json */; };
 		3DACBB30219EAD610077E262 /* LTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DACBB2F219EAD610077E262 /* LTLoginViewController.m */; };
 		3DB0BB61214117EF00EA1B6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DB0BB63214117EF00EA1B6E /* InfoPlist.strings */; };
 		3DB0BB6721411A1700EA1B6E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DB0BB6921411A1700EA1B6E /* Localizable.strings */; };
@@ -133,10 +134,11 @@
 		3D67930B213E23160017891D /* LTFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTFirstViewController.h; sourceTree = "<group>"; };
 		3D67930C213E23160017891D /* LTFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTFirstViewController.m; sourceTree = "<group>"; };
 		3D6C03E5217441F000FB9672 /* ApplicationConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationConfig.h; sourceTree = "<group>"; };
+		3D6FD31323D91FF30015A780 /* KSCoordinateConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCoordinateConverter.m; sourceTree = "<group>"; };
+		3D6FD31423D91FF30015A780 /* KSCoordinateConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCoordinateConverter.h; sourceTree = "<group>"; };
+		3D6FD31623D920390015A780 /* GCJ02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GCJ02.json; sourceTree = "<group>"; };
 		3D96E4542374FC5700B580E8 /* NSObjectSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectSafe.m; sourceTree = "<group>"; };
 		3D96E4552374FC5700B580E8 /* NSObjectSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObjectSafe.h; sourceTree = "<group>"; };
-		3DA91F9D237268E70037070F /* LTMainThreadDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMainThreadDetector.h; sourceTree = "<group>"; };
-		3DA91F9E237268E70037070F /* LTMainThreadDetector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTMainThreadDetector.m; sourceTree = "<group>"; };
 		3DACBB2E219EAD610077E262 /* LTLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTLoginViewController.h; sourceTree = "<group>"; };
 		3DACBB2F219EAD610077E262 /* LTLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTLoginViewController.m; sourceTree = "<group>"; };
 		3DB0BB62214117EF00EA1B6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -401,6 +403,16 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		3D6FD31223D91FF30015A780 /* KSCoordinateConverter */ = {
+			isa = PBXGroup;
+			children = (
+				3D6FD31423D91FF30015A780 /* KSCoordinateConverter.h */,
+				3D6FD31323D91FF30015A780 /* KSCoordinateConverter.m */,
+				3D6FD31623D920390015A780 /* GCJ02.json */,
+			);
+			path = KSCoordinateConverter;
+			sourceTree = "<group>";
+		};
 		3D96E4532374FC5700B580E8 /* NSObjectSafe */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,15 +420,6 @@
 				3D96E4542374FC5700B580E8 /* NSObjectSafe.m */,
 			);
 			path = NSObjectSafe;
-			sourceTree = "<group>";
-		};
-		3DA91F9C237267D10037070F /* App Performance Management */ = {
-			isa = PBXGroup;
-			children = (
-				3DA91F9D237268E70037070F /* LTMainThreadDetector.h */,
-				3DA91F9E237268E70037070F /* LTMainThreadDetector.m */,
-			);
-			path = "App Performance Management";
 			sourceTree = "<group>";
 		};
 		3DACBB2C219EAD380077E262 /* Login */ = {
@@ -555,6 +558,7 @@
 		3DCC9F4620B017F300CD476A /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				3D6FD31223D91FF30015A780 /* KSCoordinateConverter */,
 				3D96E4532374FC5700B580E8 /* NSObjectSafe */,
 				A059165222F9220F00A0CFC7 /* LTPrivacyPermission */,
 				3DEE10AF20EB05C0002C597D /* OpenInstallSDK2.2.0 */,
@@ -567,7 +571,6 @@
 		3DCC9F4720B0183300CD476A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				3DA91F9C237267D10037070F /* App Performance Management */,
 				A071249322E1943200C91E89 /* Notification */,
 				A03C93FD228270AD00F2D513 /* ScreenshotCapture */,
 				A073C2CE224A3F7900B685A1 /* LTKit */,
@@ -1018,6 +1021,7 @@
 				3DB0BB61214117EF00EA1B6E /* InfoPlist.strings in Resources */,
 				3DCC9F1B20B006F100CD476A /* Assets.xcassets in Resources */,
 				A0B9953422D333BE004BDCA3 /* CustomProtocol.html in Resources */,
+				3D6FD31723D920390015A780 /* GCJ02.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1136,11 +1140,11 @@
 				A073C2FB224A3F7B00B685A1 /* UIViewController+LTAdd.m in Sources */,
 				3DFE3E7020EA531500A8832C /* AppDelegate+UMengAnalytics.m in Sources */,
 				A0128D3322891F1A006FF62D /* LTPageControl.m in Sources */,
+				3D6FD31523D91FF40015A780 /* KSCoordinateConverter.m in Sources */,
 				A0B9953922D33448004BDCA3 /* LTSecondViewController.m in Sources */,
 				A0F1DB3D2318D261007D2EED /* LTLanuchViewController.m in Sources */,
 				A071249722E1961300C91E89 /* LTNotification.m in Sources */,
 				A073C2FC224A3F7B00B685A1 /* UIButton+LTAdd.m in Sources */,
-				3DA91F9F237268E70037070F /* LTMainThreadDetector.m in Sources */,
 				3D48667B20B1B1B7002BACA8 /* LTUserManager.m in Sources */,
 				A073C308224A3F7B00B685A1 /* NSDictionary+LTAdd.m in Sources */,
 				3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */,
