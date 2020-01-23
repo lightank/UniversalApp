@@ -22,14 +22,6 @@
     self.classNames = @[].mutableCopy;
     [self.tableView reloadData];
     //[self log];
-    
-    UIButton *button = [[UIButton alloc] init];
-    button.size = CGSizeMake(kScreenWidth, 200);
-    button.centerX = self.view.centerX;
-    [button setTitle:@"ceeeeeeeee" forState:UIControlStateNormal];
-    [button setTitleColor:UIColor.redColor forState:UIControlStateNormal];
-    button.selected = YES;
-    [self.view addSubview:button];
 }
 
 - (void)log {

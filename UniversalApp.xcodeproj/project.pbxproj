@@ -36,6 +36,7 @@
 		3DCC9F7120B02D4500CD476A /* LTTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F7020B02D4500CD476A /* LTTabBarControllerConfig.m */; };
 		3DCC9F7520B02E0A00CD476A /* LTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F7420B02E0A00CD476A /* LTNavigationController.m */; };
 		3DDDBEC621941CCF004D68F6 /* LTExampleCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDBEC521941CCF004D68F6 /* LTExampleCode.m */; };
+		3DE4977E23D93C04002BF5D2 /* LTPrintLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4977D23D93C03002BF5D2 /* LTPrintLog.m */; };
 		3DEE10B320EB05C0002C597D /* libOpenInstallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DEE10B020EB05C0002C597D /* libOpenInstallSDK.a */; };
 		3DFE3E7020EA531500A8832C /* AppDelegate+UMengAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE3E6F20EA531500A8832C /* AppDelegate+UMengAnalytics.m */; };
 		3DFE3E7320EA532500A8832C /* AppDelegate+OpenInstallSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE3E7220EA532500A8832C /* AppDelegate+OpenInstallSDK.m */; };
@@ -84,7 +85,7 @@
 		A0D25DEA227350BF001168A5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DE9227350BF001168A5 /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A0D25DEC22735138001168A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D25DEB22735138001168A5 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A0F1DB3D2318D261007D2EED /* LTLanuchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F1DB3C2318D261007D2EED /* LTLanuchViewController.m */; };
-		E263541D9C33F5DD3886B5D4 /* libPods-UniversalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */; };
+		D7EBC1FB838CD7059810F0E1 /* Pods_UniversalApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3128CB18A30DC97D884D086D /* Pods_UniversalApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 /* Begin PBXFileReference section */
 		16EC4528C8638410706F403E /* Pods-UniversalApp.sit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalApp.sit.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp.sit.xcconfig"; sourceTree = "<group>"; };
 		1EE9DEC4E119EB53B93D5546 /* Pods-UniversalApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp.release.xcconfig"; sourceTree = "<group>"; };
+		3128CB18A30DC97D884D086D /* Pods_UniversalApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UniversalApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31F8371F68896A3FC493131D /* Pods-UniversalApp.uat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalApp.uat.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp.uat.xcconfig"; sourceTree = "<group>"; };
 		3D03D63920B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTBaseLocalHTMLWebViewController.h; sourceTree = "<group>"; };
 		3D03D63A20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTBaseLocalHTMLWebViewController.m; sourceTree = "<group>"; };
@@ -172,6 +174,8 @@
 		3DCC9F7420B02E0A00CD476A /* LTNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTNavigationController.m; sourceTree = "<group>"; };
 		3DDDBEC421941CCF004D68F6 /* LTExampleCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTExampleCode.h; sourceTree = "<group>"; };
 		3DDDBEC521941CCF004D68F6 /* LTExampleCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTExampleCode.m; sourceTree = "<group>"; };
+		3DE4977D23D93C03002BF5D2 /* LTPrintLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTPrintLog.m; sourceTree = "<group>"; };
+		3DE4977F23D93DC8002BF5D2 /* LTPrintLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTPrintLog.h; sourceTree = "<group>"; };
 		3DE5B32020B0E94C009719D0 /* ColorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMacros.h; sourceTree = "<group>"; };
 		3DE5B32120B11B19009719D0 /* URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLString.h; sourceTree = "<group>"; };
 		3DEE10B020EB05C0002C597D /* libOpenInstallSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOpenInstallSDK.a; sourceTree = "<group>"; };
@@ -183,7 +187,6 @@
 		3DFE3E7220EA532500A8832C /* AppDelegate+OpenInstallSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+OpenInstallSDK.m"; sourceTree = "<group>"; };
 		3DFE3E7420EA533300A8832C /* AppDelegate+JPush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+JPush.h"; sourceTree = "<group>"; };
 		3DFE3E7520EA533300A8832C /* AppDelegate+JPush.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+JPush.m"; sourceTree = "<group>"; };
-		4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UniversalApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		461DB11EE24A791480763032 /* Pods-UniversalApp.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniversalApp.dev.xcconfig"; path = "Pods/Target Support Files/Pods-UniversalApp/Pods-UniversalApp.dev.xcconfig"; sourceTree = "<group>"; };
 		A01255ED22680D0C009223E1 /* CALayer+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+LTAdd.h"; sourceTree = "<group>"; };
 		A01255EE22680D0C009223E1 /* CALayer+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+LTAdd.m"; sourceTree = "<group>"; };
@@ -283,8 +286,8 @@
 				A0D25DEC22735138001168A5 /* UIKit.framework in Frameworks */,
 				A0D25DEA227350BF001168A5 /* CoreFoundation.framework in Frameworks */,
 				3D20AC3F20B3B04200BDE45D /* JavaScriptCore.framework in Frameworks */,
-				E263541D9C33F5DD3886B5D4 /* libPods-UniversalApp.a in Frameworks */,
 				3DEE10B320EB05C0002C597D /* libOpenInstallSDK.a in Frameworks */,
+				D7EBC1FB838CD7059810F0E1 /* Pods_UniversalApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +315,7 @@
 				A0D25DEB22735138001168A5 /* UIKit.framework */,
 				A0D25DE9227350BF001168A5 /* CoreFoundation.framework */,
 				3D20AC3D20B2C83800BDE45D /* JavaScriptCore.framework */,
-				4368C7EFF5E69A4A8EB7DFA6 /* libPods-UniversalApp.a */,
+				3128CB18A30DC97D884D086D /* Pods_UniversalApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 		3DCC9F4720B0183300CD476A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				3DE4977B23D93B09002BF5D2 /* PrintLog */,
 				A071249322E1943200C91E89 /* Notification */,
 				A03C93FD228270AD00F2D513 /* ScreenshotCapture */,
 				A073C2CE224A3F7900B685A1 /* LTKit */,
@@ -615,6 +619,15 @@
 				3DCC9F7420B02E0A00CD476A /* LTNavigationController.m */,
 			);
 			path = NavigationController;
+			sourceTree = "<group>";
+		};
+		3DE4977B23D93B09002BF5D2 /* PrintLog */ = {
+			isa = PBXGroup;
+			children = (
+				3DE4977F23D93DC8002BF5D2 /* LTPrintLog.h */,
+				3DE4977D23D93C03002BF5D2 /* LTPrintLog.m */,
+			);
+			path = PrintLog;
 			sourceTree = "<group>";
 		};
 		3DEE10AF20EB05C0002C597D /* OpenInstallSDK2.2.0 */ = {
@@ -920,7 +933,6 @@
 				3DCC9F0A20B006EF00CD476A /* Sources */,
 				3DCC9F0B20B006EF00CD476A /* Frameworks */,
 				3DCC9F0C20B006EF00CD476A /* Resources */,
-				B9D1613C8F06AA24AD28CDCA /* [CP] Copy Pods Resources */,
 				BD3C57FD5ED430EC4EF47CE2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -1060,23 +1072,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B9D1613C8F06AA24AD28CDCA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		BD3C57FD5ED430EC4EF47CE2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1133,6 +1128,7 @@
 				A07830CA2273CDE000771DA3 /* LTContact.m in Sources */,
 				A06D065B22A51A0000FC3D42 /* LTTextAttributes.m in Sources */,
 				3DCC9F2120B006F100CD476A /* main.m in Sources */,
+				3DE4977E23D93C04002BF5D2 /* LTPrintLog.m in Sources */,
 				A073C306224A3F7B00B685A1 /* UIColor+LTAdd.m in Sources */,
 				A077290A22D319A300F03E40 /* LTLoanCalculationViewController.m in Sources */,
 				A077290E22D319C400F03E40 /* LTLoanInfoTableViewCell.m in Sources */,
