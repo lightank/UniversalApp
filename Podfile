@@ -23,13 +23,17 @@ target 'UniversalApp' do
     # 网络
     pod 'Reachability', '3.2'
     pod 'YTKNetwork', '2.1.4'
+    pod 'SDWebImage', '5.5.1'
 
     # Tools
     pod 'FCUUID', '1.3.1'
-    pod 'SDWebImage', '5.5.1'
-    pod 'LookinServer', '1.0.0', :configurations => ['Debug']  #官网:https://lookin.work
     #pod 'Aspects'
     #pod 'VCProfiler' #监测控制器加载耗时:https://github.com/panmingyang2009/VCProfiler
+    
+    # Debug Tool
+    pod 'LookinServer', '1.0.0', :configurations => ['Debug']  #官网:https://lookin.work
+    pod 'FLEX', '3.1.2', :configurations => ['Debug']
+    #pod 'GodEye', '~> 1.1.2', :configurations => ['Debug']
 
     # 布局
     pod 'Masonry', '1.1.0'
@@ -41,12 +45,17 @@ target 'UniversalApp' do
     pod 'YYKit', '1.0.9'
     pod 'CYLTabBarController', '1.28.5'
     pod 'MJRefresh', '3.3.1'
+    pod 'HWPanModal', '~> 0.6.0' # 底部弹出控制器
+    #pod 'FSCalendar', '2.8.1'
+    #pod 'SVGKit', '2.1.1'
+    #pod 'lottie-ios', '3.1.5'
     #pod 'MBProgressHUD'
     #pod 'iCarousel'
     #pod 'QMUIKit/QMUICore'  # 分类
     #pod 'QMUIKit/QMUIComponents'   # UI控件
     #pod 'QMUIKit/QMUIComponents/QMUITips'   # 弹窗
-    #pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git' #
+    #pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
+    #pod 'HCSStarRatingView', '~> 1.5' # 星级视图
 
     # 数据库
     pod 'WCDB', '1.0.7.5'
@@ -54,7 +63,7 @@ target 'UniversalApp' do
     pod 'ReactiveObjC', '3.1.1'
     pod 'RTRootNavigationController', '0.7.2'
     pod 'FDFullscreenPopGesture', '1.1'
-    #pod 'EBBannerView'   #前台时通知https://github.com/pikacode/EBBannerView
+    #pod 'EBBannerView'   #前台时通知 https://github.com/pikacode/EBBannerView
     
     # 二维码
     #pod 'LBXScan'    #OC版:https://github.com/MxABC/LBXScan

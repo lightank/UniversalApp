@@ -12,6 +12,8 @@ PODS:
   - FCUUID (1.3.1):
     - UICKeyChainStore (~> 2.1.0)
   - FDFullscreenPopGesture (1.1)
+  - FLEX (3.1.2)
+  - HWPanModal (0.6.7)
   - IQKeyboardManager (6.5.5)
   - JCore (2.1.8)
   - JPush (3.2.8):
@@ -340,6 +342,8 @@ DEPENDENCIES:
   - CYLTabBarController (= 1.28.5)
   - FCUUID (= 1.3.1)
   - FDFullscreenPopGesture (= 1.1)
+  - FLEX (= 3.1.2)
+  - HWPanModal (~> 0.6.0)
   - IQKeyboardManager (= 6.5.5)
   - JPush (= 3.2.8)
   - LookinServer (= 1.0.0)
@@ -364,6 +368,8 @@ SPEC REPOS:
     - CYLTabBarController
     - FCUUID
     - FDFullscreenPopGesture
+    - FLEX
+    - HWPanModal
     - IQKeyboardManager
     - JCore
     - JPush
@@ -391,6 +397,8 @@ SPEC CHECKSUMS:
   CYLTabBarController: edd9fecba9afa3f2e9e44ed50ca6dde69941f25f
   FCUUID: bb054fc90cd7cd99320f9f6ff8e130fe607fba05
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  FLEX: e13e805fc3eec8732cc227d1f7508770d46e9587
+  HWPanModal: 8ce3489c30e2268dafc50acdcde50d34f75f35aa
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
   JCore: a7f1dead960d77a97717c73ea8b0aa5b33706491
   JPush: 8ce888d6dedfa417e90c8b6bc87405a16ce2e699
@@ -413,6 +421,6 @@ SPEC CHECKSUMS:
   YTKNetwork: 19be749c30f0512ada07180f4637b4b67bc8ddc2
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 343b4ab99390028b1fc74860987548cd078ff253
+PODFILE CHECKSUM: cb0239d3f1aa04bf62657bad458eada9187d6e98
 
 COCOAPODS: 1.8.4
