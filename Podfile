@@ -34,6 +34,13 @@ target 'UniversalApp' do
     pod 'LookinServer', '1.0.0', :configurations => ['Debug']  #官网:https://lookin.work
     pod 'FLEX', '3.1.2', :configurations => ['Debug']
     #pod 'GodEye', '~> 1.1.2', :configurations => ['Debug']
+    pod 'DoraemonKit/Core', '~> 2.0.0', :configurations => ['Debug'] #必选
+    pod 'DoraemonKit/WithLogger', '~> 2.0.0', :configurations => ['Debug'] #可选
+    pod 'DoraemonKit/WithGPS', '~> 2.0.0', :configurations => ['Debug'] #可选
+    pod 'DoraemonKit/WithLoad', '~> 2.0.0', :configurations => ['Debug'] #可选
+    pod 'DoraemonKit/WithWeex', '~> 2.0.0', :configurations => ['Debug'] #可选
+    pod 'DoraemonKit/WithDatabase', '~> 2.0.0', :configurations => ['Debug'] #可选
+    pod 'DoraemonKit/WithMLeaksFinder', '2.0.0', :configurations => ['Debug'] #可选
 
     # 布局
     pod 'Masonry', '1.1.0'

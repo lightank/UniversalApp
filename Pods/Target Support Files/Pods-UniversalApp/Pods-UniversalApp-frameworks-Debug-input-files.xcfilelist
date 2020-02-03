@@ -1,9 +1,16 @@
 ${PODS_ROOT}/Target Support Files/Pods-UniversalApp/Pods-UniversalApp-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
+${BUILT_PRODUCTS_DIR}/BSBacktraceLogger/BSBacktraceLogger.framework
 ${BUILT_PRODUCTS_DIR}/CYLTabBarController/CYLTabBarController.framework
+${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework
+${BUILT_PRODUCTS_DIR}/DoraemonKit/DoraemonKit.framework
+${PODS_ROOT}/DoraemonKit/iOS/DoraemonKit/Framework/DoraemonLoadAnalyze.framework
+${BUILT_PRODUCTS_DIR}/FBRetainCycleDetector/FBRetainCycleDetector.framework
 ${BUILT_PRODUCTS_DIR}/FCUUID/FCUUID.framework
 ${BUILT_PRODUCTS_DIR}/FDFullscreenPopGesture/FDFullscreenPopGesture.framework
 ${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework
+${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework
+${BUILT_PRODUCTS_DIR}/GCDWebServer/GCDWebServer.framework
 ${BUILT_PRODUCTS_DIR}/HWPanModal/HWPanModal.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
 ${PODS_ROOT}/LookinServer/LookinServer.framework
@@ -16,8 +23,13 @@ ${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework
 ${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/SQLiteRepairKit/sqliterk.framework
+${BUILT_PRODUCTS_DIR}/SocketRocket/SocketRocket.framework
 ${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework
 ${BUILT_PRODUCTS_DIR}/WCDB/WCDB.framework
 ${BUILT_PRODUCTS_DIR}/WCDBOptimizedSQLCipher/sqlcipher.framework
+${BUILT_PRODUCTS_DIR}/WXDevtool/WXDevtool.framework
+${BUILT_PRODUCTS_DIR}/WeexSDK/WeexSDK.framework
 ${BUILT_PRODUCTS_DIR}/YTKNetwork/YTKNetwork.framework
+${BUILT_PRODUCTS_DIR}/YYDebugDatabase/YYDebugDatabase.framework
 ${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework
+${BUILT_PRODUCTS_DIR}/fishhook/fishhook.framework

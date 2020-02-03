@@ -6,13 +6,57 @@ PODS:
   - AFNetworking/Reachability (3.2.1)
   - AFNetworking/Security (3.2.1)
   - AFNetworking/Serialization (3.2.1)
+  - BSBacktraceLogger (0.0.1)
+  - CocoaLumberjack (3.6.0):
+    - CocoaLumberjack/Core (= 3.6.0)
+  - CocoaLumberjack/Core (3.6.0)
   - CYLTabBarController (1.28.5):
     - CYLTabBarController/Core (= 1.28.5)
   - CYLTabBarController/Core (1.28.5)
+  - DoraemonKit/Core (2.0.0):
+    - BSBacktraceLogger
+    - fishhook
+  - DoraemonKit/WithDatabase (2.0.0):
+    - BSBacktraceLogger
+    - DoraemonKit/Core
+    - fishhook
+    - YYDebugDatabase
+  - DoraemonKit/WithGPS (2.0.0):
+    - BSBacktraceLogger
+    - DoraemonKit/Core
+    - fishhook
+  - DoraemonKit/WithLoad (2.0.0):
+    - BSBacktraceLogger
+    - DoraemonKit/Core
+    - fishhook
+  - DoraemonKit/WithLogger (2.0.0):
+    - BSBacktraceLogger
+    - CocoaLumberjack
+    - DoraemonKit/Core
+    - fishhook
+  - DoraemonKit/WithMLeaksFinder (2.0.0):
+    - BSBacktraceLogger
+    - DoraemonKit/Core
+    - FBRetainCycleDetector
+    - fishhook
+  - DoraemonKit/WithWeex (2.0.0):
+    - BSBacktraceLogger
+    - DoraemonKit/Core
+    - fishhook
+    - WeexSDK
+    - WXDevtool
+  - FBRetainCycleDetector (0.1.4)
   - FCUUID (1.3.1):
     - UICKeyChainStore (~> 2.1.0)
   - FDFullscreenPopGesture (1.1)
+  - fishhook (0.2)
   - FLEX (3.1.2)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - GCDWebServer (3.5.3):
+    - GCDWebServer/Core (= 3.5.3)
+  - GCDWebServer/Core (3.5.3)
   - HWPanModal (0.6.7)
   - IQKeyboardManager (6.5.5)
   - JCore (2.1.8)
@@ -321,6 +365,7 @@ PODS:
   - SDWebImage (5.5.1):
     - SDWebImage/Core (= 5.5.1)
   - SDWebImage/Core (5.5.1)
+  - SocketRocket (0.5.1)
   - SQLiteRepairKit (1.2.2):
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - UICKeyChainStore (2.1.2)
@@ -332,14 +377,28 @@ PODS:
     - SQLiteRepairKit (~> 1.2.0)
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - WCDBOptimizedSQLCipher (1.2.1)
+  - WeexSDK (0.28.0)
+  - WXDevtool (0.24.0):
+    - SocketRocket
+    - WeexSDK
   - YTKNetwork (2.1.4):
     - AFNetworking/NSURLSession (~> 3.0)
+  - YYDebugDatabase (2.0.7):
+    - FMDB
+    - GCDWebServer
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
   - CYLTabBarController (= 1.28.5)
+  - DoraemonKit/Core (~> 2.0.0)
+  - DoraemonKit/WithDatabase (~> 2.0.0)
+  - DoraemonKit/WithGPS (~> 2.0.0)
+  - DoraemonKit/WithLoad (~> 2.0.0)
+  - DoraemonKit/WithLogger (~> 2.0.0)
+  - DoraemonKit/WithMLeaksFinder (= 2.0.0)
+  - DoraemonKit/WithWeex (~> 2.0.0)
   - FCUUID (= 1.3.1)
   - FDFullscreenPopGesture (= 1.1)
   - FLEX (= 3.1.2)
@@ -365,10 +424,17 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
+    - BSBacktraceLogger
+    - CocoaLumberjack
     - CYLTabBarController
+    - DoraemonKit
+    - FBRetainCycleDetector
     - FCUUID
     - FDFullscreenPopGesture
+    - fishhook
     - FLEX
+    - FMDB
+    - GCDWebServer
     - HWPanModal
     - IQKeyboardManager
     - JCore
@@ -382,6 +448,7 @@ SPEC REPOS:
     - RTRootNavigationController
     - SDCycleScrollView
     - SDWebImage
+    - SocketRocket
     - SQLiteRepairKit
     - UICKeyChainStore
     - UMCAnalytics
@@ -389,15 +456,25 @@ SPEC REPOS:
     - UMCSecurityPlugins
     - WCDB
     - WCDBOptimizedSQLCipher
+    - WeexSDK
+    - WXDevtool
     - YTKNetwork
+    - YYDebugDatabase
     - YYKit
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  BSBacktraceLogger: 06b983ee93a9f87d957960e9c73d660d5966b447
+  CocoaLumberjack: 78b0c238666f4f58db069738ec176f4519557516
   CYLTabBarController: edd9fecba9afa3f2e9e44ed50ca6dde69941f25f
+  DoraemonKit: 9e923599e28d0b61f1c6de4aef2c2d669b30abb7
+  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   FCUUID: bb054fc90cd7cd99320f9f6ff8e130fe607fba05
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
   FLEX: e13e805fc3eec8732cc227d1f7508770d46e9587
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  GCDWebServer: c0ab22c73e1b84f358d1e2f74bf6afd1c60829f2
   HWPanModal: 8ce3489c30e2268dafc50acdcde50d34f75f35aa
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
   JCore: a7f1dead960d77a97717c73ea8b0aa5b33706491
@@ -411,6 +488,7 @@ SPEC CHECKSUMS:
   RTRootNavigationController: 8344c2352d6d40fa370d0366efae2c84a945213f
   SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
   SDWebImage: 1245d058b7b8f59adef7a6da6bbafd4f1ab67041
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
   UICKeyChainStore: 85db518bb1d294366d15ec9b92a416c4e670518f
   UMCAnalytics: 045be2cd1ec05aa95ad62405a850757f932e2d59
@@ -418,9 +496,12 @@ SPEC CHECKSUMS:
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   WCDB: 8e90babdeb7784c569353a4bd22a66c0a175a882
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
+  WeexSDK: 78861d2f8b78f67e30580c15a54f5b420456db39
+  WXDevtool: 95b70c73c06fc3299d65bd53ba4b3e0b0087f3cb
   YTKNetwork: 19be749c30f0512ada07180f4637b4b67bc8ddc2
+  YYDebugDatabase: c8be8bd85222cc2ced76e93ca06618bab87224d7
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: cb0239d3f1aa04bf62657bad458eada9187d6e98
+PODFILE CHECKSUM: cfe91ffd7d0ba05c2c44eca19198375496ee8182
 
 COCOAPODS: 1.8.4
