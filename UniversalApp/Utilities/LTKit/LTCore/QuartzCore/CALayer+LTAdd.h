@@ -28,6 +28,21 @@ typedef NS_ENUM(NSUInteger, LTGradientLayerDirection) {
 
 @interface CALayer (LTAdd)
 
+
+/// 按照 sketch 中参数添加阴影
+/// @param shadowColor 阴影颜色
+/// @param alpha 阴影颜色透明度
+/// @param offsetX x 偏移量
+/// @param offsetY y 偏移量
+/// @param blur 阴影半径
+/// @param spread 扩展
+- (void)lt_addShadowWithColor:(UIColor *)shadowColor
+                        alpha:(CGFloat)alpha
+                      offsetX:(CGFloat)offsetX
+                      offsetY:(CGFloat)offsetY
+                         blur:(CGFloat)blur
+                       spread:(CGFloat)spread;
+
 /**
  添加阴影
 

@@ -11,6 +11,22 @@
 @implementation CALayer (LTAdd)
 
 - (void)lt_addShadowWithColor:(UIColor *)shadowColor
+                        alpha:(CGFloat)alpha
+                      offsetX:(CGFloat)offsetX
+                      offsetY:(CGFloat)offsetY
+                         blur:(CGFloat)blur
+                      spread:(CGFloat)spread
+{
+    self.shadowColor = shadowColor.CGColor;
+    self.shadowOffset = CGSizeMake(offsetX, offsetY);
+    self.shadowOpacity = alpha;
+    self.shadowRadius = blur * 0.5f;
+    self.masksToBounds = NO;
+    CGRect rect = CGRectMake(CGRectGetMinX(self.bounds) + spread, CGRectGetMinY(self.bounds) + spread, CGRectGetWidth(self.bounds) - 2 * spread, CGRectGetHeight(self.bounds) - 2 * spread);
+    self.shadowPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:self.cornerRadius].CGPath;
+}
+
+- (void)lt_addShadowWithColor:(UIColor *)shadowColor
                        offset:(CGSize)shadowOffset
                       opacity:(CGFloat)shadowOpacity
                        radius:(CGFloat)shadowRadius
