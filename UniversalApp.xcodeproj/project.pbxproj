@@ -11,6 +11,7 @@
 		3D03D64420B80C27006F6F75 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D03D64320B80C26006F6F75 /* UINavigationBar+Awesome.m */; };
 		3D20AC3F20B3B04200BDE45D /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20AC3D20B2C83800BDE45D /* JavaScriptCore.framework */; };
 		3D20AC4320B3B0EC00BDE45D /* LTBaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D20AC4220B3B0EC00BDE45D /* LTBaseWebViewController.m */; };
+		3D2CF88D24584FD200F95CC1 /* UICollectionView+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CF88C24584FD200F95CC1 /* UICollectionView+LTAdd.m */; };
 		3D48666220B1AAC5002BACA8 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48666020B1AAC4002BACA8 /* NSString+Hash.m */; };
 		3D48666320B1AAC5002BACA8 /* LTEncryptorTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48666120B1AAC4002BACA8 /* LTEncryptorTools.m */; };
 		3D48667320B1AE0F002BACA8 /* LTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D48666720B1AE0F002BACA8 /* LTDevice.m */; };
@@ -117,6 +118,8 @@
 		3D20AC3D20B2C83800BDE45D /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		3D20AC4120B3B0EC00BDE45D /* LTBaseWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTBaseWebViewController.h; sourceTree = "<group>"; };
 		3D20AC4220B3B0EC00BDE45D /* LTBaseWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTBaseWebViewController.m; sourceTree = "<group>"; };
+		3D2CF88B24584FD200F95CC1 /* UICollectionView+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+LTAdd.h"; sourceTree = "<group>"; };
+		3D2CF88C24584FD200F95CC1 /* UICollectionView+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+LTAdd.m"; sourceTree = "<group>"; };
 		3D48665E20B1AAC4002BACA8 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
 		3D48665F20B1AAC4002BACA8 /* LTEncryptorTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTEncryptorTools.h; sourceTree = "<group>"; };
 		3D48666020B1AAC4002BACA8 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
@@ -823,6 +826,8 @@
 				A073C2D2224A3F7900B685A1 /* UITableViewCell+LTAdd.m */,
 				A073C2D0224A3F7900B685A1 /* UITableView+LTAdd.h */,
 				A073C2E1224A3F7900B685A1 /* UITableView+LTAdd.m */,
+				3D2CF88B24584FD200F95CC1 /* UICollectionView+LTAdd.h */,
+				3D2CF88C24584FD200F95CC1 /* UICollectionView+LTAdd.m */,
 				A09099632296451B00B00859 /* UILabel+LTAdd.h */,
 				A09099642296451B00B00859 /* UILabel+LTAdd.m */,
 			);
@@ -1145,6 +1150,7 @@
 				A073C308224A3F7B00B685A1 /* NSDictionary+LTAdd.m in Sources */,
 				3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */,
 				3D48666220B1AAC5002BACA8 /* NSString+Hash.m in Sources */,
+				3D2CF88D24584FD200F95CC1 /* UICollectionView+LTAdd.m in Sources */,
 				3D67930D213E23160017891D /* LTFirstViewController.m in Sources */,
 				3D20AC4320B3B0EC00BDE45D /* LTBaseWebViewController.m in Sources */,
 				3DFE3E7320EA532500A8832C /* AppDelegate+OpenInstallSDK.m in Sources */,

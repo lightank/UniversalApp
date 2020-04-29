@@ -16,5 +16,13 @@
 - (void)lt_cleanTopAndBottomMargin;
 /**  隐藏分割线  */
 - (void)lt_hiddenSeparatorLine;
+/// 给定的 indexPath 是否合法
+/// @param indexPath indexPath
+- (BOOL)lt_isVaildRangForIndexPath:(NSIndexPath *)indexPath;
+/// 滚动到指定的 indexPath，默认滚动到tableview的顶部(不包含 contentInset 的 top 值)，如果需要滚动后再把视图往下移，请给 topOffset 设置值
+/// @param indexPath indexPath
+/// @param topOffset 顶部移动距离，如果 >0，视图将下移，如果 <= 0，视图将上移
+/// @param animated 是否动画
+- (void)lt_scrollToIndexPath:(NSIndexPath *)indexPath topOffset:(CGFloat)topOffset animated:(BOOL)animated;
 
 @end

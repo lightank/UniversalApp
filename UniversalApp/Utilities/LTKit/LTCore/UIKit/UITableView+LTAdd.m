@@ -33,4 +33,58 @@
     self.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
+- (NSIndexPath *)lt_firstFullVisibleCellIndexPath
+{
+    NSArray<NSIndexPath *> *indexPathsForVisibleRows = [self indexPathsForVisibleRows];
+    NSIndexPath *selectedIndexPath = nil;
+    if (indexPathsForVisibleRows.count <= 0)
+    {
+        return selectedIndexPath;
+    }
+    
+    UIView *window = UIApplication.sharedApplication.delegate.window;
+    CGRect tableViewReact = [self.superview convertRect:self.frame toView:window];
+    CGFloat tableViewMixY = CGRectGetMinY(tableViewReact);
+    
+    for (NSIndexPath *indexPath in indexPathsForVisibleRows)
+    {
+        CGRect cellRect = [self rectForRowAtIndexPath:indexPath];
+        CGRect cellRectOnWindow = [self convertRect:cellRect toView:window];
+        CGFloat cellMixY = CGRectGetMinY(cellRectOnWindow);
+        if (cellMixY >= tableViewMixY)
+        {
+            selectedIndexPath = indexPath;
+            break;
+        }
+    }
+    
+    if (!selectedIndexPath)
+    {
+        selectedIndexPath = indexPathsForVisibleRows.firstObject;
+    }
+    
+    return selectedIndexPath;
+}
+
+- (BOOL)lt_isVaildRangForIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section >= self.numberOfSections) {
+        return NO;
+    }
+    if (indexPath.row >= [self numberOfRowsInSection:indexPath.section]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)lt_scrollToIndexPath:(NSIndexPath *)indexPath topOffset:(CGFloat)topOffset animated:(BOOL)animated
+{
+    if (![self lt_isVaildRangForIndexPath:indexPath]) {
+        return;
+    }
+    
+    CGPoint point = [self rectForRowAtIndexPath:indexPath].origin;
+    point = CGPointMake(point.x, point.y - topOffset);
+    [self setContentOffset:point animated:animated];
+}
+
 @end
