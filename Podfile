@@ -47,7 +47,7 @@ target 'UniversalApp' do
     
     # UI
     pod 'IQKeyboardManager', '6.5.5'
-    pod 'QMUIKit', '4.0.4'
+    pod 'QMUIKit', '4.1.2'
     pod 'SDCycleScrollView', '1.80'
     pod 'YYKit', '1.0.9'
     pod 'CYLTabBarController', '1.28.5'
