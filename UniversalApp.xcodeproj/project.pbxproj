@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3D03D63B20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D03D63A20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m */; };
 		3D03D64420B80C27006F6F75 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D03D64320B80C26006F6F75 /* UINavigationBar+Awesome.m */; };
+		3D06085B24650E75004BC8C6 /* LTTableViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D06085A24650E75004BC8C6 /* LTTableViewCellItem.m */; };
 		3D20AC3F20B3B04200BDE45D /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D20AC3D20B2C83800BDE45D /* JavaScriptCore.framework */; };
 		3D20AC4320B3B0EC00BDE45D /* LTBaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D20AC4220B3B0EC00BDE45D /* LTBaseWebViewController.m */; };
 		3D2CF88D24584FD200F95CC1 /* UICollectionView+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2CF88C24584FD200F95CC1 /* UICollectionView+LTAdd.m */; };
@@ -115,6 +116,8 @@
 		3D03D63A20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTBaseLocalHTMLWebViewController.m; sourceTree = "<group>"; };
 		3D03D64220B80C26006F6F75 /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
 		3D03D64320B80C26006F6F75 /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
+		3D06085924650E75004BC8C6 /* LTTableViewCellItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTTableViewCellItem.h; sourceTree = "<group>"; };
+		3D06085A24650E75004BC8C6 /* LTTableViewCellItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTTableViewCellItem.m; sourceTree = "<group>"; };
 		3D20AC3D20B2C83800BDE45D /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		3D20AC4120B3B0EC00BDE45D /* LTBaseWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTBaseWebViewController.h; sourceTree = "<group>"; };
 		3D20AC4220B3B0EC00BDE45D /* LTBaseWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTBaseWebViewController.m; sourceTree = "<group>"; };
@@ -330,6 +333,15 @@
 				3D03D64320B80C26006F6F75 /* UINavigationBar+Awesome.m */,
 			);
 			path = LTNavigationBar;
+			sourceTree = "<group>";
+		};
+		3D06085824650E54004BC8C6 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				3D06085924650E75004BC8C6 /* LTTableViewCellItem.h */,
+				3D06085A24650E75004BC8C6 /* LTTableViewCellItem.m */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		3D20AC4020B3B0CD00BDE45D /* WebView */ = {
@@ -577,6 +589,7 @@
 		3DCC9F4720B0183300CD476A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				3D06085824650E54004BC8C6 /* TableView */,
 				3DE4977B23D93B09002BF5D2 /* PrintLog */,
 				A071249322E1943200C91E89 /* Notification */,
 				A03C93FD228270AD00F2D513 /* ScreenshotCapture */,
@@ -1154,6 +1167,7 @@
 				3D67930D213E23160017891D /* LTFirstViewController.m in Sources */,
 				3D20AC4320B3B0EC00BDE45D /* LTBaseWebViewController.m in Sources */,
 				3DFE3E7320EA532500A8832C /* AppDelegate+OpenInstallSDK.m in Sources */,
+				3D06085B24650E75004BC8C6 /* LTTableViewCellItem.m in Sources */,
 				A073C300224A3F7B00B685A1 /* UITableView+LTAdd.m in Sources */,
 				3D48666320B1AAC5002BACA8 /* LTEncryptorTools.m in Sources */,
 				A073C307224A3F7B00B685A1 /* NSString+LTAdd.m in Sources */,
