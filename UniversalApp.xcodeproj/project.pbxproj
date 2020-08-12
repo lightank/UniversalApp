@@ -28,6 +28,7 @@
 		3DB0BB61214117EF00EA1B6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DB0BB63214117EF00EA1B6E /* InfoPlist.strings */; };
 		3DB0BB6721411A1700EA1B6E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DB0BB6921411A1700EA1B6E /* Localizable.strings */; };
 		3DBD184B21CCD36400E98730 /* LTWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBD184A21CCD36400E98730 /* LTWKWebView.m */; };
+		3DCB889424E43092008FEBB9 /* NSDate+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCB889324E43092008FEBB9 /* NSDate+LTAdd.m */; };
 		3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1220B006EF00CD476A /* AppDelegate.m */; };
 		3DCC9F1B20B006F100CD476A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1A20B006F100CD476A /* Assets.xcassets */; };
 		3DCC9F2120B006F100CD476A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F2020B006F100CD476A /* main.m */; };
@@ -155,6 +156,8 @@
 		3DB0BB6A21411A1800EA1B6E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3DBD184921CCD36400E98730 /* LTWKWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTWKWebView.h; sourceTree = "<group>"; };
 		3DBD184A21CCD36400E98730 /* LTWKWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTWKWebView.m; sourceTree = "<group>"; };
+		3DCB889224E43092008FEBB9 /* NSDate+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+LTAdd.h"; sourceTree = "<group>"; };
+		3DCB889324E43092008FEBB9 /* NSDate+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+LTAdd.m"; sourceTree = "<group>"; };
 		3DCC9F0E20B006EF00CD476A /* UniversalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCC9F1120B006EF00CD476A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3DCC9F1220B006EF00CD476A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -850,6 +853,8 @@
 		A073C2EC224A3F7900B685A1 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				3DCB889224E43092008FEBB9 /* NSDate+LTAdd.h */,
+				3DCB889324E43092008FEBB9 /* NSDate+LTAdd.m */,
 				A0C2CFB12254A31F00190314 /* NSURL+LTAdd.h */,
 				A0C2CFB22254A31F00190314 /* NSURL+LTAdd.m */,
 				A073C2F1224A3F7A00B685A1 /* NSString+LTAdd.h */,
@@ -1168,6 +1173,7 @@
 				3D20AC4320B3B0EC00BDE45D /* LTBaseWebViewController.m in Sources */,
 				3DFE3E7320EA532500A8832C /* AppDelegate+OpenInstallSDK.m in Sources */,
 				3D06085B24650E75004BC8C6 /* LTTableViewCellItem.m in Sources */,
+				3DCB889424E43092008FEBB9 /* NSDate+LTAdd.m in Sources */,
 				A073C300224A3F7B00B685A1 /* UITableView+LTAdd.m in Sources */,
 				3D48666320B1AAC5002BACA8 /* LTEncryptorTools.m in Sources */,
 				A073C307224A3F7B00B685A1 /* NSString+LTAdd.m in Sources */,
