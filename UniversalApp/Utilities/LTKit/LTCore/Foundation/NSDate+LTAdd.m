@@ -8,9 +8,6 @@
 
 #import "NSDate+LTAdd.h"
 
-#import <AppKit/AppKit.h>
-
-
 @implementation NSDate (LTAdd)
 
 @end

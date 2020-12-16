@@ -28,6 +28,10 @@
 		3DB0BB61214117EF00EA1B6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DB0BB63214117EF00EA1B6E /* InfoPlist.strings */; };
 		3DB0BB6721411A1700EA1B6E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DB0BB6921411A1700EA1B6E /* Localizable.strings */; };
 		3DBD184B21CCD36400E98730 /* LTWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBD184A21CCD36400E98730 /* LTWKWebView.m */; };
+		3DC78AFE2589F192008B5403 /* LTURLRounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC78AFD2589F192008B5403 /* LTURLRounter.m */; };
+		3DC78B012589F1F0008B5403 /* LTURLHandlerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC78B002589F1F0008B5403 /* LTURLHandlerItem.m */; };
+		3DC78B042589F34E008B5403 /* NSURL+LTRounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC78B032589F34E008B5403 /* NSURL+LTRounter.m */; };
+		3DC78B062589F936008B5403 /* URL解析方案.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DC78B052589F936008B5403 /* URL解析方案.md */; };
 		3DCB889424E43092008FEBB9 /* NSDate+LTAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCB889324E43092008FEBB9 /* NSDate+LTAdd.m */; };
 		3DCC9F1320B006EF00CD476A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1220B006EF00CD476A /* AppDelegate.m */; };
 		3DCC9F1B20B006F100CD476A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DCC9F1A20B006F100CD476A /* Assets.xcassets */; };
@@ -156,6 +160,13 @@
 		3DB0BB6A21411A1800EA1B6E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3DBD184921CCD36400E98730 /* LTWKWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTWKWebView.h; sourceTree = "<group>"; };
 		3DBD184A21CCD36400E98730 /* LTWKWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTWKWebView.m; sourceTree = "<group>"; };
+		3DC78AFC2589F192008B5403 /* LTURLRounter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTURLRounter.h; sourceTree = "<group>"; };
+		3DC78AFD2589F192008B5403 /* LTURLRounter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTURLRounter.m; sourceTree = "<group>"; };
+		3DC78AFF2589F1F0008B5403 /* LTURLHandlerItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTURLHandlerItem.h; sourceTree = "<group>"; };
+		3DC78B002589F1F0008B5403 /* LTURLHandlerItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTURLHandlerItem.m; sourceTree = "<group>"; };
+		3DC78B022589F34E008B5403 /* NSURL+LTRounter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+LTRounter.h"; sourceTree = "<group>"; };
+		3DC78B032589F34E008B5403 /* NSURL+LTRounter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+LTRounter.m"; sourceTree = "<group>"; };
+		3DC78B052589F936008B5403 /* URL解析方案.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "URL解析方案.md"; sourceTree = "<group>"; };
 		3DCB889224E43092008FEBB9 /* NSDate+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+LTAdd.h"; sourceTree = "<group>"; };
 		3DCB889324E43092008FEBB9 /* NSDate+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+LTAdd.m"; sourceTree = "<group>"; };
 		3DCC9F0E20B006EF00CD476A /* UniversalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -471,6 +482,20 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
+		3DC78AFB2589F166008B5403 /* URLRounter */ = {
+			isa = PBXGroup;
+			children = (
+				3DC78B052589F936008B5403 /* URL解析方案.md */,
+				3DC78AFC2589F192008B5403 /* LTURLRounter.h */,
+				3DC78AFD2589F192008B5403 /* LTURLRounter.m */,
+				3DC78AFF2589F1F0008B5403 /* LTURLHandlerItem.h */,
+				3DC78B002589F1F0008B5403 /* LTURLHandlerItem.m */,
+				3DC78B022589F34E008B5403 /* NSURL+LTRounter.h */,
+				3DC78B032589F34E008B5403 /* NSURL+LTRounter.m */,
+			);
+			path = URLRounter;
+			sourceTree = "<group>";
+		};
 		3DCC9F0520B006EF00CD476A = {
 			isa = PBXGroup;
 			children = (
@@ -592,6 +617,7 @@
 		3DCC9F4720B0183300CD476A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				3DC78AFB2589F166008B5403 /* URLRounter */,
 				3D06085824650E54004BC8C6 /* TableView */,
 				3DE4977B23D93B09002BF5D2 /* PrintLog */,
 				A071249322E1943200C91E89 /* Notification */,
@@ -1053,6 +1079,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DB0BB6721411A1700EA1B6E /* Localizable.strings in Resources */,
+				3DC78B062589F936008B5403 /* URL解析方案.md in Resources */,
 				3DB0BB61214117EF00EA1B6E /* InfoPlist.strings in Resources */,
 				3DCC9F1B20B006F100CD476A /* Assets.xcassets in Resources */,
 				A0B9953422D333BE004BDCA3 /* CustomProtocol.html in Resources */,
@@ -1145,8 +1172,11 @@
 				A059165522F9220F00A0CFC7 /* LTPrivacyPermission.m in Sources */,
 				A059165022F91FDC00A0CFC7 /* LTThirdViewController.mm in Sources */,
 				3DCC9F4E20B019F100CD476A /* YYFPSLabel.m in Sources */,
+				3DC78AFE2589F192008B5403 /* LTURLRounter.m in Sources */,
 				3D48667E20B1B1C5002BACA8 /* LTUser.m in Sources */,
 				A035615821C3F6FD00DAAEE1 /* LTObjcViewController.m in Sources */,
+				3DC78B042589F34E008B5403 /* NSURL+LTRounter.m in Sources */,
+				3DC78B012589F1F0008B5403 /* LTURLHandlerItem.m in Sources */,
 				A060A7122274549100277C1A /* LTAuthID.m in Sources */,
 				A07830CA2273CDE000771DA3 /* LTContact.m in Sources */,
 				A06D065B22A51A0000FC3D42 /* LTTextAttributes.m in Sources */,

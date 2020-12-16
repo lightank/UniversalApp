@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import "YYFPSLabel.h"
 #import "LTTabBarControllerConfig.h"
+#import "LTURLRounter.h"
 
 @implementation AppDelegate (AppService)
 
@@ -30,6 +31,7 @@
     [self somethingForDebug];
     // 监听语言变化
     [self monitorLanguageChange];
+    [self testURLRounter];
 }
 
 /**  初始化服务  */
@@ -189,6 +191,45 @@ static char kAssociatedObjectKey_newVersion;
 - (BOOL)isNewVersion
 {
     return [objc_getAssociatedObject(self, &kAssociatedObjectKey_newVersion) boolValue];
+}
+
+- (void)testURLRounter {
+    LTURLHandlerItem *rootHandler = LTURLRounter.sharedInstance.rootHandler;
+    [rootHandler registerHandler:[self URLHandler]];
+    NSURL *url = [NSURL URLWithString:@"https://www.baidu.com/shoppingcart"];
+    LTURLHandlerItem *bestHandler = [LTURLRounter.sharedInstance bestHandlerForURL:url];
+    //[bestHandler handleURL:url];
+    [bestHandler handleChainHandleURL:url];
+    NSLog(@"");
+}
+
+- (LTURLHandlerItem *)URLHandler {
+    LTURLHandlerItem *handler = [[LTURLHandlerItem alloc] init];
+    handler.name = @"https://";
+    
+    // 注册子模块
+    {
+        LTURLHandlerItem *klook = [[LTURLHandlerItem alloc] init];
+        klook.name = @"www.baidu.com";
+        [handler registerHandler:klook];
+        
+        // 注册子模块
+        {
+            LTURLHandlerItem *shoppingcart = [[LTURLHandlerItem alloc] init];
+            shoppingcart.name = @"shoppingcart";
+            shoppingcart.canHandleURLBlock = ^BOOL(NSURL * _Nonnull url) {
+                return YES;
+            };
+            shoppingcart.handleURLBlock = ^(NSURL * _Nonnull url) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    // do something
+                });
+            };
+            [klook registerHandler:shoppingcart];
+        }
+    }
+
+    return handler;
 }
 
 @end

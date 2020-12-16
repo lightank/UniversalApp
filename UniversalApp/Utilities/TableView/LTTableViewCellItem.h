@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class LTTableViewCellItem;
+
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^LTTableViewCellItemBlock)(LTTableViewCellItem cellItem, UITableView *tableView, UITableViewCell *tableViewCell, NSIndexPath *indexPath);
+typedef void (^LTTableViewCellItemBlock)(LTTableViewCellItem *cellItem, UITableView *tableView, UITableViewCell *tableViewCell, NSIndexPath *indexPath);
 
 @interface LTTableViewCellItem : NSObject
 
