@@ -24,6 +24,10 @@
 		3D67930D213E23160017891D /* LTFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D67930C213E23160017891D /* LTFirstViewController.m */; };
 		3D6FD31523D91FF40015A780 /* KSCoordinateConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6FD31323D91FF30015A780 /* KSCoordinateConverter.m */; };
 		3D6FD31723D920390015A780 /* GCJ02.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D6FD31623D920390015A780 /* GCJ02.json */; };
+		3D8E62CD264D2A51002394DC /* LTObserverInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E62CC264D2A51002394DC /* LTObserverInfo.m */; };
+		3D8E62D0264D2C24002394DC /* NSObject+LTKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E62CF264D2C24002394DC /* NSObject+LTKVO.m */; };
+		3D8E62D3264D3086002394DC /* LTKVOExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E62D2264D3086002394DC /* LTKVOExample.m */; };
+		3D8E62D6264D39EF002394DC /* LTRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E62D5264D39EF002394DC /* LTRuntime.m */; };
 		3DACBB30219EAD610077E262 /* LTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DACBB2F219EAD610077E262 /* LTLoginViewController.m */; };
 		3DB0BB61214117EF00EA1B6E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DB0BB63214117EF00EA1B6E /* InfoPlist.strings */; };
 		3DB0BB6721411A1700EA1B6E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DB0BB6921411A1700EA1B6E /* Localizable.strings */; };
@@ -150,6 +154,14 @@
 		3D6FD31323D91FF30015A780 /* KSCoordinateConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSCoordinateConverter.m; sourceTree = "<group>"; };
 		3D6FD31423D91FF30015A780 /* KSCoordinateConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSCoordinateConverter.h; sourceTree = "<group>"; };
 		3D6FD31623D920390015A780 /* GCJ02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GCJ02.json; sourceTree = "<group>"; };
+		3D8E62CB264D2A51002394DC /* LTObserverInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTObserverInfo.h; sourceTree = "<group>"; };
+		3D8E62CC264D2A51002394DC /* LTObserverInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTObserverInfo.m; sourceTree = "<group>"; };
+		3D8E62CE264D2C24002394DC /* NSObject+LTKVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LTKVO.h"; sourceTree = "<group>"; };
+		3D8E62CF264D2C24002394DC /* NSObject+LTKVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LTKVO.m"; sourceTree = "<group>"; };
+		3D8E62D1264D3086002394DC /* LTKVOExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTKVOExample.h; sourceTree = "<group>"; };
+		3D8E62D2264D3086002394DC /* LTKVOExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTKVOExample.m; sourceTree = "<group>"; };
+		3D8E62D4264D39EF002394DC /* LTRuntime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTRuntime.h; sourceTree = "<group>"; };
+		3D8E62D5264D39EF002394DC /* LTRuntime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTRuntime.m; sourceTree = "<group>"; };
 		3D96E4542374FC5700B580E8 /* NSObjectSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectSafe.m; sourceTree = "<group>"; };
 		3D96E4552374FC5700B580E8 /* NSObjectSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObjectSafe.h; sourceTree = "<group>"; };
 		3DACBB2E219EAD610077E262 /* LTLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTLoginViewController.h; sourceTree = "<group>"; };
@@ -169,6 +181,7 @@
 		3DC78B052589F936008B5403 /* URL解析方案.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "URL解析方案.md"; sourceTree = "<group>"; };
 		3DCB889224E43092008FEBB9 /* NSDate+LTAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+LTAdd.h"; sourceTree = "<group>"; };
 		3DCB889324E43092008FEBB9 /* NSDate+LTAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+LTAdd.m"; sourceTree = "<group>"; };
+		3DCC5F9325B5C4AB005EC62B /* LTURLRounterProtocl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTURLRounterProtocl.h; sourceTree = "<group>"; };
 		3DCC9F0E20B006EF00CD476A /* UniversalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCC9F1120B006EF00CD476A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3DCC9F1220B006EF00CD476A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -445,6 +458,21 @@
 			path = KSCoordinateConverter;
 			sourceTree = "<group>";
 		};
+		3D8E62CA264D2A29002394DC /* KVO */ = {
+			isa = PBXGroup;
+			children = (
+				3D8E62CB264D2A51002394DC /* LTObserverInfo.h */,
+				3D8E62CC264D2A51002394DC /* LTObserverInfo.m */,
+				3D8E62CE264D2C24002394DC /* NSObject+LTKVO.h */,
+				3D8E62CF264D2C24002394DC /* NSObject+LTKVO.m */,
+				3D8E62D1264D3086002394DC /* LTKVOExample.h */,
+				3D8E62D2264D3086002394DC /* LTKVOExample.m */,
+				3D8E62D4264D39EF002394DC /* LTRuntime.h */,
+				3D8E62D5264D39EF002394DC /* LTRuntime.m */,
+			);
+			path = KVO;
+			sourceTree = "<group>";
+		};
 		3D96E4532374FC5700B580E8 /* NSObjectSafe */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,6 +520,7 @@
 				3DC78B002589F1F0008B5403 /* LTURLHandlerItem.m */,
 				3DC78B022589F34E008B5403 /* NSURL+LTRounter.h */,
 				3DC78B032589F34E008B5403 /* NSURL+LTRounter.m */,
+				3DCC5F9325B5C4AB005EC62B /* LTURLRounterProtocl.h */,
 			);
 			path = URLRounter;
 			sourceTree = "<group>";
@@ -831,6 +860,7 @@
 		A073C2CE224A3F7900B685A1 /* LTKit */ = {
 			isa = PBXGroup;
 			children = (
+				3D8E62CA264D2A29002394DC /* KVO */,
 				A023AAE1228AA96600E14B8B /* LTComponents */,
 				A0128D2F22891E4F006FF62D /* LTCore */,
 				A0A9A3A42251EBC700C2188E /* Device */,
@@ -1147,6 +1177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D4A2F9F21A2640600817536 /* LTLanguageSettingViewController.m in Sources */,
+				3D8E62D3264D3086002394DC /* LTKVOExample.m in Sources */,
 				A073C304224A3F7B00B685A1 /* UINavigationController+LTAdd.m in Sources */,
 				A073C309224A3F7B00B685A1 /* NSObject+LTAdd.m in Sources */,
 				3D03D64420B80C27006F6F75 /* UINavigationBar+Awesome.m in Sources */,
@@ -1208,10 +1239,12 @@
 				3D48666320B1AAC5002BACA8 /* LTEncryptorTools.m in Sources */,
 				A073C307224A3F7B00B685A1 /* NSString+LTAdd.m in Sources */,
 				A0C2CFB32254A31F00190314 /* NSURL+LTAdd.m in Sources */,
+				3D8E62D0264D2C24002394DC /* NSObject+LTKVO.m in Sources */,
 				A035615F21C3F8B400DAAEE1 /* LTBlockExample.m in Sources */,
 				3D03D63B20B69B17006F6F75 /* LTBaseLocalHTMLWebViewController.m in Sources */,
 				A07830CD2273CDF500771DA3 /* LTDynamicDevice.m in Sources */,
 				A05AAECB228AA9E20016F61C /* LTButton.m in Sources */,
+				3D8E62D6264D39EF002394DC /* LTRuntime.m in Sources */,
 				A09099652296451B00B00859 /* UILabel+LTAdd.m in Sources */,
 				A03C9400228270E000F2D513 /* LTScreenshotCapture.m in Sources */,
 				3D4A2FA321A2DF3900817536 /* LTLanguageTableViewCell.m in Sources */,
@@ -1219,6 +1252,7 @@
 				3DFE3E7620EA533300A8832C /* AppDelegate+JPush.m in Sources */,
 				A035615B21C3F76400DAAEE1 /* LTMultiThreadExample.m in Sources */,
 				A073C2FA224A3F7B00B685A1 /* UITableViewCell+LTAdd.m in Sources */,
+				3D8E62CD264D2A51002394DC /* LTObserverInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

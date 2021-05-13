@@ -11,6 +11,8 @@
 #import "YYFPSLabel.h"
 #import "LTTabBarControllerConfig.h"
 #import "LTURLRounter.h"
+#import "LTKVOExample.h"
+#import "NSObject+LTKVO.h"
 
 @implementation AppDelegate (AppService)
 
@@ -75,6 +77,13 @@
     //展示FPS
     [self showFPS];
 #endif
+
+    LTKVOExample *KVOExample = [[LTKVOExample alloc] init];
+    KVOExample.name = @"张三";
+    [KVOExample lt_addObserver:KVOExample forKey:@"name" options:LTKeyValueObservingOptionsNew|LTKeyValueObservingOptionsOld];
+    KVOExample.name = @"李四";
+    [KVOExample lt_removeObserver:KVOExample forKey:@"name"];
+    KVOExample.name = @"王麻子";
 }
 
 - (void)setupTabBarController
